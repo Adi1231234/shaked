@@ -1,0 +1,850 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#04060d" />
+<title>שקד · גפיים 💜</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;400;500;700;900&family=Frank+Ruhl+Libre:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  :root{
+    --bg-0:#03050b;
+    --ink:#e9f1ff;
+    --ink-dim:#aab7d4;
+    --ink-soft:#6b7a9a;
+    --cyan:#7ee8ff;
+    --cyan-deep:#3aa6ff;
+    --rose:#ff5f8f;
+    --rose-soft:#ff9bbf;
+    --gold:#ffe6b3;
+    --green:#5fffb0;
+    --bone:#f3e9d1;
+    --muscle:#d04060;
+    --vein:#5a8fff;
+  }
+  html, body {
+    height: 100%;
+    background: var(--bg-0);
+    color: var(--ink);
+    font-family: "Heebo", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-weight: 300;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+  body {
+    background:
+      radial-gradient(1100px 600px at 80% -10%, rgba(126,232,255,0.08), transparent 60%),
+      radial-gradient(900px 500px at 0% 110%, rgba(255,95,143,0.10), transparent 60%),
+      radial-gradient(140% 90% at 50% 0%, #0a1430 0%, #04070f 55%, #02030a 100%);
+  }
+  #app {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  header {
+    padding: max(env(safe-area-inset-top), 12px) 16px 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .greeting { display: flex; flex-direction: column; line-height: 1.15; text-decoration: none; color: inherit; cursor: pointer; }
+  .greeting:hover .hi { color: var(--cyan); }
+  .greeting .hi { font-size: 12px; color: var(--ink-dim); letter-spacing: 0.04em; transition: color .2s; }
+  .greeting .name {
+    font-family: "Frank Ruhl Libre", "Heebo", serif;
+    font-weight: 500;
+    font-size: 21px;
+    background: linear-gradient(120deg, var(--cyan), var(--rose-soft) 60%, var(--gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .score {
+    font-size: 12px;
+    color: var(--ink-dim);
+    background: rgba(126,232,255,0.06);
+    border: 1px solid rgba(126,232,255,0.18);
+    border-radius: 999px;
+    padding: 5px 10px;
+    display: none;
+  }
+  body.mode-quiz .score { display: inline-flex; gap: 6px; align-items: center; }
+  .score b { color: var(--cyan); font-weight: 700; }
+
+  nav.tabs { display: flex; gap: 6px; padding: 4px 16px 6px; }
+  .tab {
+    flex: 1;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    color: var(--ink-dim);
+    border-radius: 12px;
+    padding: 8px 12px;
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all .25s ease;
+  }
+  .tab.active {
+    background: linear-gradient(135deg, rgba(126,232,255,0.14), rgba(58,166,255,0.10));
+    border-color: rgba(126,232,255,0.35);
+    color: var(--ink);
+    box-shadow: 0 6px 20px -10px rgba(126,232,255,0.5);
+  }
+
+  .row { display: flex; gap: 6px; padding: 0 16px 6px; }
+  .seg-btn {
+    flex: 1;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    color: var(--ink-soft);
+    border-radius: 10px;
+    padding: 6px 8px;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all .2s ease;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .seg-btn .swatch {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: currentColor;
+    opacity: 0.5;
+  }
+  .seg-btn.layer-bones.on { color: var(--bone); border-color: rgba(243,233,209,0.35); background: rgba(243,233,209,0.08); }
+  .seg-btn.layer-muscles.on { color: var(--rose-soft); border-color: rgba(255,155,191,0.4); background: rgba(208,64,96,0.10); }
+  .seg-btn.layer-veins.on { color: var(--vein); border-color: rgba(90,143,255,0.4); background: rgba(90,143,255,0.10); }
+  .seg-btn.on .swatch { opacity: 1; box-shadow: 0 0 8px currentColor; }
+
+  .mode-btn.active {
+    background: rgba(255,95,143,0.10);
+    border-color: rgba(255,95,143,0.32);
+    color: var(--rose-soft);
+  }
+
+  .stage {
+    flex: 1;
+    position: relative;
+    margin: 0 12px;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid rgba(126,232,255,0.10);
+    background:
+      radial-gradient(80% 60% at 50% 30%, rgba(126,232,255,0.05), transparent 70%),
+      linear-gradient(180deg, #060a17 0%, #03050b 100%);
+    box-shadow: 0 20px 60px -30px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.02);
+    touch-action: none;
+  }
+  .stage canvas { display: block; width: 100%; height: 100%; }
+  .loader {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink-dim); font-size: 14px;
+    pointer-events: none;
+    transition: opacity .4s ease;
+  }
+  .loader.hide { opacity: 0; }
+  .pulse {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(126,232,255,0.6), transparent 70%);
+    animation: pulse 1.6s ease-in-out infinite;
+    margin-inline-end: 12px;
+  }
+  @keyframes pulse {
+    0%,100% { transform: scale(0.8); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 1; }
+  }
+  .hint {
+    position: absolute; bottom: 10px; right: 10px; left: 10px;
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 11px;
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  .quiz-prompt {
+    position: absolute;
+    top: 10px; right: 10px; left: 10px;
+    background: rgba(7,11,28,0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,95,143,0.25);
+    border-radius: 14px;
+    padding: 8px 14px;
+    text-align: center;
+    font-size: 14px;
+    display: none;
+  }
+  body.mode-quiz .quiz-prompt { display: block; }
+  .quiz-prompt .ask { color: var(--ink-dim); font-size: 11px; letter-spacing: 0.05em; }
+  .quiz-prompt .target { color: var(--rose-soft); font-weight: 500; font-size: 16px; margin-top: 1px; }
+  .quiz-prompt .target em { font-style: normal; color: var(--ink); font-size: 13px; opacity: 0.85; }
+
+  .feedback {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    transition: box-shadow .3s ease;
+  }
+  .feedback.correct { box-shadow: inset 0 0 0 3px var(--green), inset 0 0 80px rgba(95,255,176,0.2); }
+  .feedback.wrong { box-shadow: inset 0 0 0 3px var(--rose), inset 0 0 80px rgba(255,95,143,0.2); }
+
+  .info {
+    margin: 8px 12px max(env(safe-area-inset-bottom), 10px);
+    padding: 12px 14px;
+    background: linear-gradient(135deg, rgba(126,232,255,0.06), rgba(255,95,143,0.04));
+    border: 1px solid rgba(126,232,255,0.15);
+    border-radius: 16px;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all .3s ease;
+  }
+  .info.empty { opacity: 0.55; }
+  .info-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 14px var(--cyan);
+    flex-shrink: 0;
+  }
+  .info.empty .info-dot { background: var(--ink-soft); box-shadow: none; }
+  .info-text { flex: 1; min-width: 0; }
+  .info .heb {
+    font-family: "Frank Ruhl Libre", "Heebo", serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .info .lat {
+    font-size: 12.5px;
+    color: var(--cyan);
+    margin-top: 2px;
+    direction: ltr;
+    text-align: left;
+    letter-spacing: 0.02em;
+  }
+  .info .desc {
+    font-size: 12px;
+    color: var(--ink-dim);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+  .info .layer-tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 999px;
+    margin-inline-end: 6px;
+    border: 1px solid currentColor;
+    opacity: 0.85;
+  }
+  .layer-tag.l-Bones { color: var(--bone); }
+  .layer-tag.l-Muscles { color: var(--rose-soft); }
+  .layer-tag.l-Veins { color: var(--vein); }
+  .skip {
+    background: rgba(255,95,143,0.10);
+    border: 1px solid rgba(255,95,143,0.3);
+    color: var(--rose-soft);
+    border-radius: 10px;
+    padding: 7px 11px;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    display: none;
+  }
+  body.mode-quiz .skip { display: block; }
+
+  .confetti { position: absolute; pointer-events: none; font-size: 22px; animation: fall 1.4s ease-out forwards; }
+  @keyframes fall {
+    0% { transform: translate(0,-10px) rotate(0); opacity: 1; }
+    100% { transform: translate(var(--dx,0), 200px) rotate(var(--r,720deg)); opacity: 0; }
+  }
+</style>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+
+<div id="app">
+  <header>
+    <a class="greeting" href="./index.html">
+      <span class="hi">← חזרה</span>
+      <span class="name">שקד 💜</span>
+    </a>
+    <div class="score" id="score">ניקוד <b id="score-num">0</b> / <span id="score-total">0</span></div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-limb="legs">רגל</button>
+    <button class="tab" data-limb="arms">יד</button>
+  </nav>
+
+  <div class="row">
+    <button class="seg-btn layer-bones on" data-layer="Bones"><span class="swatch"></span>עצמות</button>
+    <button class="seg-btn layer-muscles" data-layer="Muscles"><span class="swatch"></span>שרירים</button>
+    <button class="seg-btn layer-veins" data-layer="Veins"><span class="swatch"></span>ורידים</button>
+  </div>
+
+  <div class="row">
+    <button class="seg-btn mode-btn active" data-mode="learn">למידה</button>
+    <button class="seg-btn mode-btn" data-mode="quiz">חידון</button>
+  </div>
+
+  <div class="stage" id="stage">
+    <div class="loader" id="loader"><div class="pulse"></div>טוען מודל…</div>
+    <div class="quiz-prompt" id="prompt">
+      <div class="ask" id="ask">איפה נמצא</div>
+      <div class="target" id="target">—</div>
+    </div>
+    <div class="feedback" id="feedback"></div>
+    <div class="hint">גרור לסיבוב · גלגלת/צביטה לזום · לחצי על מבנה</div>
+  </div>
+
+  <div class="info empty" id="info">
+    <div class="info-dot"></div>
+    <div class="info-text">
+      <div class="heb" id="info-heb">לחצי על מבנה כדי לראות את שמו</div>
+      <div class="lat" id="info-lat"></div>
+      <div class="desc" id="info-desc"></div>
+    </div>
+    <button class="skip" id="skip">דלגי ←</button>
+  </div>
+</div>
+
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+// =====================================================================
+// Dictionary: original glTF node name -> { heb, lat, desc? }
+// Layer is derived from the GLB's top-level group at runtime.
+// Items not in this dict still get clicked; they show their Latin name.
+// =====================================================================
+const STRUCTURES = {
+  // ===== LEG BONES =====
+  'Femur.r':                              { heb: 'עצם הירך', lat: 'Femur', desc: 'העצם הארוכה והחזקה ביותר בגוף' },
+  'Patella.r':                            { heb: 'פיקת הברך', lat: 'Patella', desc: 'עצם שומשמית שמגנה על מפרק הברך' },
+  'Tibia.r':                              { heb: 'עצם השוק', lat: 'Tibia', desc: 'הרחבה והפנימית מבין שתי עצמות השוק' },
+  'Fibula.r':                             { heb: 'השוקית', lat: 'Fibula', desc: 'הדקה והחיצונית מבין עצמות השוק' },
+  'Talus.r':                              { heb: 'טאלוס', lat: 'Talus', desc: 'מתחבר לעצם השוק ויוצר את מפרק הקרסול' },
+  'Calcaneus.r':                          { heb: 'עצם העקב', lat: 'Calcaneus', desc: 'העצם הגדולה ביותר בכף הרגל' },
+  'Navicular bone.r':                     { heb: 'העצם הסירתית', lat: 'Naviculare' },
+  'Cuboid bone.r':                        { heb: 'העצם הקובית', lat: 'Os cuboideum' },
+  'Medial cuneiform bone.r':              { heb: 'הטרזית התיכונה', lat: 'Cuneiforme mediale' },
+  'Intermediate cuneiform bone.r':        { heb: 'הטרזית האמצעית', lat: 'Cuneiforme intermedium' },
+  'Lateral cuneiform bone.r':             { heb: 'הטרזית הצדית', lat: 'Cuneiforme laterale' },
+  'First metatarsal bone.r':              { heb: 'מטטרסל I', lat: '1st Metatarsal' },
+  'Second metatarsal bone.r':             { heb: 'מטטרסל II', lat: '2nd Metatarsal' },
+  'Third metatarsal bone.r':              { heb: 'מטטרסל III', lat: '3rd Metatarsal' },
+  'Fourth metatarsal bone.r':             { heb: 'מטטרסל IV', lat: '4th Metatarsal' },
+  'Fifth metatarsal bone.r':              { heb: 'מטטרסל V', lat: '5th Metatarsal' },
+  'Sesamoid bones of foot.r':             { heb: 'עצמות שומשמיות', lat: 'Ossa sesamoidea' },
+
+  // ===== LEG MUSCLES =====
+  'Rectus femoris.r':                  { heb: 'הראש הישר של הארבע-ראשי', lat: 'Rectus femoris' },
+  'Vastus lateralis muscle.r':         { heb: 'הראש הצדי של הארבע-ראשי', lat: 'Vastus lateralis' },
+  'Vastus medialis muscle.r':          { heb: 'הראש הפנימי של הארבע-ראשי', lat: 'Vastus medialis' },
+  'Vastus intermedius muscle.r':       { heb: 'הראש האמצעי של הארבע-ראשי', lat: 'Vastus intermedius' },
+  'Long head of biceps femoris.r':     { heb: 'דו-ראשי הירך · ראש ארוך', lat: 'Biceps femoris (long head)' },
+  'Short head of biceps femoris.r':    { heb: 'דו-ראשי הירך · ראש קצר', lat: 'Biceps femoris (short head)' },
+  'Semitendinosus muscle.r':           { heb: 'חצי-גידי', lat: 'Semitendinosus' },
+  'Semimembranosus muscle.r':          { heb: 'חצי-קרומי', lat: 'Semimembranosus' },
+  'Sartorius muscle.r':                { heb: 'שריר החייט', lat: 'Sartorius', desc: 'השריר הארוך ביותר בגוף' },
+  'Gracilis muscle.r':                 { heb: 'השריר הדק', lat: 'Gracilis' },
+  'Adductor longus.r':                 { heb: 'מקרב ארוך', lat: 'Adductor longus' },
+  'Adductor brevis.r':                 { heb: 'מקרב קצר', lat: 'Adductor brevis' },
+  'Adductor magnus.r':                 { heb: 'מקרב גדול', lat: 'Adductor magnus' },
+  'Pectineus muscle.r':                { heb: 'סורקני', lat: 'Pectineus' },
+  'Gluteus maximus muscle.r':          { heb: 'אליות גדול', lat: 'Gluteus maximus' },
+  'Gluteus medius muscle.r':           { heb: 'אליות אמצעי', lat: 'Gluteus medius' },
+  'Gluteus minimus muscle.r':          { heb: 'אליות קטן', lat: 'Gluteus minimus' },
+  'Tensor fasciae latae.r':            { heb: 'מותח הפסיה הרחבה', lat: 'Tensor fasciae latae' },
+  'Iliacus muscle.r':                  { heb: 'איליאקוס', lat: 'Iliacus' },
+  'Psoas major.r':                     { heb: 'פסואס מייג׳ור', lat: 'Psoas major' },
+  'Psoas minor.r':                     { heb: 'פסואס מינור', lat: 'Psoas minor' },
+  'Piriformis muscle.r':               { heb: 'פיריפורמיס', lat: 'Piriformis' },
+  'Quadratus femoris muscle.r':        { heb: 'ריבועי הירך', lat: 'Quadratus femoris' },
+  'Obturator externus.r':              { heb: 'כובלי חיצוני', lat: 'Obturator externus' },
+  'Obturator internus.r':              { heb: 'כובלי פנימי', lat: 'Obturator internus' },
+  'Superior gemellus muscle.r':        { heb: 'תאומי עליון', lat: 'Gemellus superior' },
+  'Inferior gemellus muscle.r':        { heb: 'תאומי תחתון', lat: 'Gemellus inferior' },
+  'Lateral head of gastrocnemius.r':   { heb: 'תאומי שוק · ראש צדי', lat: 'Gastrocnemius (lateral)' },
+  'Medial head of gastrocnemius.r':    { heb: 'תאומי שוק · ראש פנימי', lat: 'Gastrocnemius (medial)' },
+  'Soleus muscle.r':                   { heb: 'שריר הסוליה', lat: 'Soleus' },
+  'Plantaris muscle.r':                { heb: 'פלנטריס', lat: 'Plantaris' },
+  'Tibialis anterior muscle.r':        { heb: 'שוקתי קדמי', lat: 'Tibialis anterior' },
+  'Tibialis posterior muscle.r':       { heb: 'שוקתי אחורי', lat: 'Tibialis posterior' },
+  'Fibularis longus muscle.r':         { heb: 'שוקיתי ארוך', lat: 'Peroneus longus' },
+  'Fibularis brevis muscle.r':         { heb: 'שוקיתי קצר', lat: 'Peroneus brevis' },
+  'Fibularis tertius muscle.r':        { heb: 'שוקיתי שלישוני', lat: 'Peroneus tertius' },
+  'Popliteus muscle.r':                { heb: 'פופליטאוס', lat: 'Popliteus' },
+  'Extensor digitorum longus.r':       { heb: 'יישרני הבהונות הארוך', lat: 'Extensor digitorum longus' },
+  'Extensor hallucis longus.r':        { heb: 'יישרן הבוהן הארוך', lat: 'Extensor hallucis longus' },
+  'Flexor digitorum longus.r':         { heb: 'כופפן הבהונות הארוך', lat: 'Flexor digitorum longus' },
+  'Flexor hallucis longus.r':          { heb: 'כופפן הבוהן הארוך', lat: 'Flexor hallucis longus' },
+
+  // ===== LEG VEINS =====
+  'Great saphenous vein.r':            { heb: 'הוריד הספני הגדול', lat: 'V. saphena magna', desc: 'הוריד הארוך ביותר בגוף' },
+  'Small saphenous vein.r':            { heb: 'הוריד הספני הקטן', lat: 'V. saphena parva' },
+  'Femoral vein.r':                    { heb: 'הוריד הירכי', lat: 'V. femoralis' },
+  'Deep femoral vein.r':               { heb: 'הוריד הירכי העמוק', lat: 'V. femoralis profunda' },
+  'Popliteal vein.r':                  { heb: 'הוריד הברכי', lat: 'V. poplitea' },
+  'Anterior tibial vein.r':            { heb: 'הוריד השוקתי הקדמי', lat: 'V. tibialis anterior' },
+  'Posterior tibial vein.r':           { heb: 'הוריד השוקתי האחורי', lat: 'V. tibialis posterior' },
+  'Fibular vein.r':                    { heb: 'הוריד השוקיתי', lat: 'V. fibularis' },
+  'Accessory saphenous vein.r':        { heb: 'הוריד הספני הנלווה', lat: 'V. saphena accessoria' },
+  'Lateral marginal vein.r':           { heb: 'הוריד השולי הצדי', lat: 'V. marginalis lateralis' },
+  'Medial marginal vein.r':            { heb: 'הוריד השולי הפנימי', lat: 'V. marginalis medialis' },
+  'Dorsal venous arch of foot.r':      { heb: 'קשת ורידית גבית של כף הרגל', lat: 'Arcus venosus dorsalis pedis' },
+
+  // ===== ARM BONES =====
+  'Humerus.r':                  { heb: 'עצם הזרוע', lat: 'Humerus', desc: 'העצם הארוכה של הזרוע, מהכתף עד המרפק' },
+  'Radius.r':                   { heb: 'עצם הגומד', lat: 'Radius', desc: 'בצד האגודל של האמה' },
+  'Ulna.r':                     { heb: 'עצם הקנה', lat: 'Ulna', desc: 'בצד הזרת של האמה' },
+  'Scaphoid.r':                 { heb: 'סקפואיד · העצם הסירתית', lat: 'Os scaphoideum', desc: 'הקרפאל הנשבר ביותר בנפילה על יד פשוטה' },
+  'Lunate bone.r':              { heb: 'לונאט · העצם הסהרונית', lat: 'Os lunatum' },
+  'Triquetrum.r':               { heb: 'טריקטרום · העצם המשולשת', lat: 'Os triquetrum' },
+  'Pisiform.r':                 { heb: 'פיסיפורם · העצם האפונית', lat: 'Os pisiforme' },
+  'Trapezium.r':                { heb: 'טרפזיום', lat: 'Os trapezium' },
+  'Trapezoid.r':                { heb: 'טרפזואיד', lat: 'Os trapezoideum' },
+  'Capitate.r':                 { heb: 'קפיטאט · העצם הראשית', lat: 'Os capitatum', desc: 'הקרפאל הגדול ביותר' },
+  'Hamate.r':                   { heb: 'המאט · העצם הוואית', lat: 'Os hamatum' },
+  '1st metacarpal bone.r':      { heb: 'מטקרפל I', lat: '1st Metacarpal' },
+  '2nd metacarpal bone.r':      { heb: 'מטקרפל II', lat: '2nd Metacarpal' },
+  '3rd metacarpal bone.r':      { heb: 'מטקרפל III', lat: '3rd Metacarpal' },
+  '4th metacarpal bone.r':      { heb: 'מטקרפל IV', lat: '4th Metacarpal' },
+  '5th metacarpal bone.r':      { heb: 'מטקרפל V', lat: '5th Metacarpal' },
+  'Sesamoid bones of hand.r':   { heb: 'עצמות שומשמיות', lat: 'Ossa sesamoidea' },
+
+  // ===== ARM MUSCLES =====
+  'Long head of biceps brachii.r':       { heb: 'דו-ראשי הזרוע · ראש ארוך', lat: 'Biceps brachii (long)' },
+  'Short head of biceps brachii.r':      { heb: 'דו-ראשי הזרוע · ראש קצר', lat: 'Biceps brachii (short)' },
+  'Long head of triceps brachii.r':      { heb: 'תלת-ראשי · ראש ארוך', lat: 'Triceps brachii (long)' },
+  'Lateral head of triceps brachii.r':   { heb: 'תלת-ראשי · ראש צדי', lat: 'Triceps brachii (lateral)' },
+  'Medial head of triceps brachii.r':    { heb: 'תלת-ראשי · ראש פנימי', lat: 'Triceps brachii (medial)' },
+  'Brachialis muscle.r':                 { heb: 'ברקיאליס', lat: 'Brachialis' },
+  'Coracobrachialis muscle.r':           { heb: 'קורקובראקיאליס', lat: 'Coracobrachialis' },
+  'Brachioradialis muscle.r':            { heb: 'ברקיורדיאליס', lat: 'Brachioradialis' },
+  'Anconeus muscle.r':                   { heb: 'אנקונאוס', lat: 'Anconeus' },
+  'Supinator.r':                         { heb: 'סופינטור (מוסבן)', lat: 'Supinator' },
+  'Pronator quadratus.r':                { heb: 'פרונטור ריבועי', lat: 'Pronator quadratus' },
+  'Humeral head of pronator teres.r':    { heb: 'פרונטור טרז · ראש זרועי', lat: 'Pronator teres (humeral)' },
+  'Ulnar head of pronator teres.r':      { heb: 'פרונטור טרז · ראש קני', lat: 'Pronator teres (ulnar)' },
+  'Flexor carpi radialis.r':             { heb: 'כופפן הרסג גומדי', lat: 'Flexor carpi radialis' },
+  'Palmaris longus muscle.r':            { heb: 'כפי ארוך', lat: 'Palmaris longus' },
+  'Humeral head of flexor carpi ulnaris.r': { heb: 'כופפן הרסג קני · זרועי', lat: 'FCU (humeral)' },
+  'Ulnar head of flexor carpi ulnaris.r':   { heb: 'כופפן הרסג קני · קני', lat: 'FCU (ulnar)' },
+  'Flexor digitorum superficialis humero-ulnar head.r': { heb: 'כופפן אצבעות שטחי · זרועי-קני', lat: 'FDS (humero-ulnar)' },
+  'Flexor digitorum superficialis radial head.r':       { heb: 'כופפן אצבעות שטחי · גומדי', lat: 'FDS (radial)' },
+  'Flexor digitorum profundus.r':        { heb: 'כופפן אצבעות עמוק', lat: 'Flexor digitorum profundus' },
+  'Flexor pollicis longus.r':            { heb: 'כופפן האגודל הארוך', lat: 'Flexor pollicis longus' },
+  'Extensor carpi radialis longus.r':    { heb: 'יישרן הרסג גומדי הארוך', lat: 'ECR longus' },
+  'Extensor carpi radialis brevis.r':    { heb: 'יישרן הרסג גומדי הקצר', lat: 'ECR brevis' },
+  'Humeral head of extensor carpi ulnaris.r': { heb: 'יישרן הרסג קני · זרועי', lat: 'ECU (humeral)' },
+  'Ulnar head of extensor carpi ulnaris.r':   { heb: 'יישרן הרסג קני · קני', lat: 'ECU (ulnar)' },
+  'Extensor digitorum.r':                { heb: 'יישרן האצבעות', lat: 'Extensor digitorum' },
+  'Extensor digiti minimi.r':            { heb: 'יישרן הזרת', lat: 'Extensor digiti minimi' },
+  'Extensor indicis.r':                  { heb: 'יישרן האמה', lat: 'Extensor indicis' },
+  'Extensor pollicis longus.r':          { heb: 'יישרן האגודל הארוך', lat: 'Extensor pollicis longus' },
+  'Extensor pollicis brevis.r':          { heb: 'יישרן האגודל הקצר', lat: 'Extensor pollicis brevis' },
+  'Abductor pollicis longus.r':          { heb: 'מרחיק האגודל הארוך', lat: 'Abductor pollicis longus' },
+  'Abductor pollicis brevis.r':          { heb: 'מרחיק האגודל הקצר', lat: 'Abductor pollicis brevis' },
+  'Adductor pollicis.r':                 { heb: 'מקרב האגודל', lat: 'Adductor pollicis' },
+  'Opponens pollicis muscle.r':          { heb: 'מנגיד האגודל', lat: 'Opponens pollicis' },
+  'Abductor digiti minimi.r':            { heb: 'מרחיק הזרת', lat: 'Abductor digiti minimi' },
+  'Opponens digiti minimi muscle of hand.r': { heb: 'מנגיד הזרת', lat: 'Opponens digiti minimi' },
+  'Palmaris brevis muscle.r':            { heb: 'כפי קצר', lat: 'Palmaris brevis' },
+
+  // ===== ARM VEINS =====
+  'Arm superficial vein-Cephalic vein.r':           { heb: 'הוריד הקפלי', lat: 'V. cephalica', desc: 'בצד הגומד של הזרוע' },
+  'Arm superficial vein-Basilic vein.r':            { heb: 'הוריד הבסילי', lat: 'V. basilica', desc: 'בצד הקני של הזרוע' },
+  'Arm superficial vein-Median cubital vein.r':     { heb: 'הוריד המרפקי האמצעי', lat: 'V. mediana cubiti', desc: 'אתר נטילת דם נפוץ' },
+  'Arm superficial vein-Median antebrachial vein.r':{ heb: 'הוריד האמתי האמצעי', lat: 'V. mediana antebrachii' },
+  'Axillary vein.r':                                { heb: 'הוריד הבית-שחי', lat: 'V. axillaris' },
+  'Deep veins of the arm.r':                        { heb: 'ורידים עמוקים של הזרוע', lat: 'Vv. brachiales' },
+  'Radial veins.r':                                 { heb: 'הוריד הגומדי', lat: 'V. radialis' },
+  'Ulnar veins.r':                                  { heb: 'הוריד הקני', lat: 'V. ulnaris' },
+  'Anterior interosseous veins.r':                  { heb: 'הוריד הבין-עצמי הקדמי', lat: 'V. interossea anterior' },
+  'Posterior interosseous veins.r':                 { heb: 'הוריד הבין-עצמי האחורי', lat: 'V. interossea posterior' },
+};
+
+// Sanitize per Three.js GLTFLoader: spaces -> _, [].:/ removed
+function sanitize(n) { return n.replace(/\s/g, '_').replace(/[\[\]\.:\/]/g, ''); }
+const SANITIZED_TO_ORIG = {};
+for (const k of Object.keys(STRUCTURES)) SANITIZED_TO_ORIG[sanitize(k)] = k;
+
+const LAYER_COLORS = {
+  Bones:   { color: 0xf3e9d1, roughness: 0.55, metalness: 0.0, opacity: 1.0 },
+  Muscles: { color: 0xc83a52, roughness: 0.5,  metalness: 0.0, opacity: 0.92 },
+  Veins:   { color: 0x4a78ff, roughness: 0.4,  metalness: 0.0, opacity: 0.95 },
+};
+const LAYER_LABELS = { Bones: 'עצם', Muscles: 'שריר', Veins: 'וריד' };
+
+// =====================================================================
+// Three.js setup
+// =====================================================================
+const stage = document.getElementById('stage');
+const loader = document.getElementById('loader');
+const feedbackEl = document.getElementById('feedback');
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+stage.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(40, 1, 0.05, 100);
+camera.position.set(0, 0.4, 1.6);
+
+scene.add(new THREE.AmbientLight(0x4a6080, 0.45));
+const key  = new THREE.DirectionalLight(0xfff2dc, 1.5); key.position.set(2, 3, 2); scene.add(key);
+const fill = new THREE.DirectionalLight(0x88c8ff, 0.6); fill.position.set(-2, 1, -1); scene.add(fill);
+const rim  = new THREE.DirectionalLight(0xff9bbf, 0.4); rim.position.set(0, 2, -3); scene.add(rim);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+controls.minDistance = 0.3;
+controls.maxDistance = 5;
+controls.enablePan = false;
+
+const dracoLoader = new DRACOLoader();
+dracoLoader.setDecoderPath('https://unpkg.com/three@0.160.0/examples/jsm/libs/draco/gltf/');
+const gltfLoader = new GLTFLoader();
+gltfLoader.setDRACOLoader(dracoLoader);
+
+const SELECT_COLOR  = new THREE.Color(0x7ee8ff);
+const CORRECT_COLOR = new THREE.Color(0x5fffb0);
+const WRONG_COLOR   = new THREE.Color(0xff5f8f);
+
+let currentLimb = 'legs';
+let currentRoot = null;
+let pickables = [];   // { mesh, nodeName, layer, info, originalEmissive }
+let layerNodes = {};  // { Bones: Object3D, Muscles: Object3D, Veins: Object3D }
+let selected = null;
+const cache = {};
+
+function infoFor(nodeName, layer) {
+  const s = STRUCTURES[nodeName];
+  if (s) return { heb: s.heb, lat: s.lat, desc: s.desc, layer };
+  // Fallback: nodeName without trailing .r, prefer Latin display only
+  const lat = nodeName.replace(/\.r$/, '').replace(/_/g, ' ');
+  return { heb: '', lat, desc: '', layer };
+}
+
+async function loadLimb(name) {
+  if (currentRoot) { scene.remove(currentRoot); currentRoot = null; }
+  pickables = [];
+  layerNodes = {};
+  selected = null;
+  loader.classList.remove('hide');
+
+  let gltf = cache[name];
+  if (!gltf) {
+    gltf = await gltfLoader.loadAsync(`./models/${name}.glb`);
+    cache[name] = gltf;
+  }
+  currentRoot = gltf.scene.clone(true);
+
+  // Identify the three top-level layer groups by name
+  for (const child of currentRoot.children) {
+    if (LAYER_COLORS[child.name]) layerNodes[child.name] = child;
+  }
+
+  // Walk every mesh, give it a per-mesh material and tag with layer + node identity
+  for (const [layerName, layerNode] of Object.entries(layerNodes)) {
+    const lc = LAYER_COLORS[layerName];
+    layerNode.traverse((obj) => {
+      if (!obj.isMesh) return;
+
+      // Identify this mesh's bone/muscle/vein name
+      let nodeName = null;
+      for (let n = obj; n && n !== layerNode; n = n.parent) {
+        const orig = SANITIZED_TO_ORIG[n.name];
+        if (orig) { nodeName = orig; break; }
+      }
+      if (!nodeName) {
+        // No dictionary entry: still pickable, derive name from sanitized parent
+        let n = obj;
+        while (n && n !== layerNode && !n.name) n = n.parent;
+        nodeName = n?.name || obj.name || 'unknown';
+      }
+
+      // Per-mesh material so highlighting is local
+      obj.material = obj.material.clone();
+      obj.material.color = new THREE.Color(lc.color);
+      if ('roughness' in obj.material) obj.material.roughness = lc.roughness;
+      if ('metalness' in obj.material) obj.material.metalness = lc.metalness;
+      obj.material.transparent = lc.opacity < 1;
+      obj.material.opacity = lc.opacity;
+      obj.material.depthWrite = lc.opacity >= 0.99;
+      obj.material.emissive = new THREE.Color(0x000000);
+
+      pickables.push({
+        mesh: obj,
+        nodeName,
+        layer: layerName,
+        info: infoFor(nodeName, layerName),
+        originalEmissive: obj.material.emissive.clone(),
+      });
+    });
+  }
+
+  scene.add(currentRoot);
+  applyLayerVisibility();
+  frameModel(currentRoot);
+  loader.classList.add('hide');
+  setInfoEmpty();
+  if (mode === 'quiz') nextQuestion();
+}
+
+function frameModel(root) {
+  const box = new THREE.Box3().setFromObject(root);
+  const size = box.getSize(new THREE.Vector3());
+  const center = box.getCenter(new THREE.Vector3());
+  root.position.sub(center);
+  const maxDim = Math.max(size.x, size.y, size.z);
+  const dist = maxDim / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2)) * 1.4;
+  camera.position.set(0, 0, dist);
+  controls.target.set(0, 0, 0);
+  controls.update();
+}
+
+function clearSelection() {
+  if (!selected) return;
+  selected.mesh.material.emissive.copy(selected.originalEmissive);
+  selected.mesh.material.emissiveIntensity = 1;
+  selected = null;
+}
+function setSelection(p, color = SELECT_COLOR) {
+  clearSelection();
+  selected = p;
+  p.mesh.material.emissive.copy(color);
+  p.mesh.material.emissiveIntensity = 0.7;
+}
+
+// =====================================================================
+// Picking
+// =====================================================================
+const raycaster = new THREE.Raycaster();
+const ndc = new THREE.Vector2();
+
+function pickFromEvent(ev) {
+  const rect = renderer.domElement.getBoundingClientRect();
+  const x = (ev.clientX - rect.left) / rect.width * 2 - 1;
+  const y = -((ev.clientY - rect.top) / rect.height * 2 - 1);
+  ndc.set(x, y);
+  raycaster.setFromCamera(ndc, camera);
+  const visibleMeshes = pickables.filter(p => layerNodes[p.layer]?.visible).map(p => p.mesh);
+  const hits = raycaster.intersectObjects(visibleMeshes, false);
+  if (!hits.length) return null;
+  return pickables.find(p => p.mesh === hits[0].object) || null;
+}
+
+let downPos = null;
+renderer.domElement.addEventListener('pointerdown', (e) => { downPos = { x: e.clientX, y: e.clientY }; });
+renderer.domElement.addEventListener('pointerup', (e) => {
+  if (!downPos) return;
+  const dx = e.clientX - downPos.x, dy = e.clientY - downPos.y;
+  downPos = null;
+  if (Math.hypot(dx, dy) > 6) return;
+  const picked = pickFromEvent(e);
+  if (!picked) {
+    if (mode === 'learn') { clearSelection(); setInfoEmpty(); }
+    return;
+  }
+  if (mode === 'learn') {
+    setSelection(picked);
+    showInfo(picked);
+  } else {
+    answerQuestion(picked);
+  }
+});
+
+// =====================================================================
+// Info panel
+// =====================================================================
+const infoEl = document.getElementById('info');
+const hebEl = document.getElementById('info-heb');
+const latEl = document.getElementById('info-lat');
+const descEl = document.getElementById('info-desc');
+
+function showInfo(p) {
+  const i = p.info;
+  infoEl.classList.remove('empty');
+  const tag = `<span class="layer-tag l-${p.layer}">${LAYER_LABELS[p.layer]}</span>`;
+  hebEl.innerHTML = tag + (i.heb || i.lat);
+  latEl.textContent = i.heb ? i.lat : '';
+  descEl.textContent = i.desc || '';
+}
+function setInfoEmpty() {
+  infoEl.classList.add('empty');
+  hebEl.textContent = mode === 'quiz' ? 'לחצי על המבנה המבוקש בתלת-ממד' : 'לחצי על מבנה כדי לראות את שמו';
+  latEl.textContent = '';
+  descEl.textContent = '';
+}
+
+// =====================================================================
+// Mode + tabs + layer toggles
+// =====================================================================
+let mode = 'learn';
+let target = null;
+let score = 0, total = 0;
+const promptEl = document.getElementById('prompt');
+const askEl = document.getElementById('ask');
+const targetEl = document.getElementById('target');
+const scoreNum = document.getElementById('score-num');
+const scoreTotal = document.getElementById('score-total');
+const layerState = { Bones: true, Muscles: false, Veins: false };
+
+function applyLayerVisibility() {
+  for (const [name, node] of Object.entries(layerNodes)) {
+    if (node) node.visible = layerState[name];
+  }
+}
+
+function quizPool() {
+  const visible = Object.keys(layerState).filter(l => layerState[l]);
+  return pickables.filter(p => visible.includes(p.layer) && p.info.heb);
+}
+function askPrefix(layer) {
+  return layer === 'Veins' ? 'איפה נמצא הוריד' : layer === 'Muscles' ? 'איפה נמצא השריר' : 'איפה נמצאת העצם';
+}
+function nextQuestion() {
+  clearSelection();
+  const pool = quizPool();
+  if (!pool.length) {
+    askEl.textContent = '';
+    targetEl.innerHTML = '<em>הפעילי שכבה כדי להתחיל</em>';
+    target = null;
+    return;
+  }
+  let pick;
+  do { pick = pool[Math.floor(Math.random() * pool.length)]; }
+  while (pool.length > 1 && pick === target);
+  target = pick;
+  askEl.textContent = askPrefix(target.layer);
+  targetEl.innerHTML = `${target.info.lat} <em>· ${target.info.heb}</em>`;
+  setInfoEmpty();
+}
+function flash(kind) {
+  feedbackEl.classList.remove('correct','wrong');
+  void feedbackEl.offsetWidth;
+  feedbackEl.classList.add(kind);
+  setTimeout(() => feedbackEl.classList.remove(kind), 600);
+}
+function confettiBurst() {
+  const emojis = ['💜','✨','💫','🦴','💖'];
+  for (let i = 0; i < 14; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti';
+    el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    el.style.left = (10 + Math.random()*80) + '%';
+    el.style.top = (20 + Math.random()*30) + '%';
+    el.style.setProperty('--dx', (Math.random()*120 - 60) + 'px');
+    el.style.setProperty('--r', (Math.random()*900 - 450) + 'deg');
+    el.style.animationDelay = (Math.random()*0.2) + 's';
+    stage.appendChild(el);
+    setTimeout(() => el.remove(), 1600);
+  }
+}
+function answerQuestion(picked) {
+  if (!target) return;
+  total++;
+  if (picked === target) {
+    score++;
+    setSelection(picked, CORRECT_COLOR);
+    showInfo(picked);
+    flash('correct');
+    confettiBurst();
+    setTimeout(nextQuestion, 1100);
+  } else {
+    setSelection(picked, WRONG_COLOR);
+    flash('wrong');
+    setTimeout(() => {
+      setSelection(target, CORRECT_COLOR);
+      showInfo(target);
+    }, 600);
+    setTimeout(nextQuestion, 1900);
+  }
+  scoreNum.textContent = score;
+  scoreTotal.textContent = total;
+}
+
+document.querySelectorAll('.tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (btn.dataset.limb === currentLimb) return;
+    document.querySelectorAll('.tab').forEach(b => b.classList.toggle('active', b === btn));
+    currentLimb = btn.dataset.limb;
+    loadLimb(currentLimb);
+  });
+});
+document.querySelectorAll('.mode-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (btn.dataset.mode === mode) return;
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b === btn));
+    mode = btn.dataset.mode;
+    document.body.classList.toggle('mode-quiz', mode === 'quiz');
+    score = 0; total = 0;
+    scoreNum.textContent = 0; scoreTotal.textContent = 0;
+    clearSelection();
+    setInfoEmpty();
+    if (mode === 'quiz') nextQuestion();
+  });
+});
+document.querySelectorAll('.seg-btn[data-layer]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const layer = btn.dataset.layer;
+    layerState[layer] = !layerState[layer];
+    btn.classList.toggle('on', layerState[layer]);
+    applyLayerVisibility();
+    if (mode === 'quiz') nextQuestion();
+    else { clearSelection(); setInfoEmpty(); }
+  });
+});
+document.getElementById('skip').addEventListener('click', nextQuestion);
+
+function resize() {
+  const w = stage.clientWidth, h = stage.clientHeight;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+}
+resize();
+new ResizeObserver(resize).observe(stage);
+
+function tick() {
+  controls.update();
+  renderer.render(scene, camera);
+  requestAnimationFrame(tick);
+}
+tick();
+
+loadLimb(currentLimb);
+</script>
+</body>
+</html>

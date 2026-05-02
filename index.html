@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#04060d" />
+<title>שקד 💜</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;400;500;700;900&family=Frank+Ruhl+Libre:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+    background: #03050b;
+    color: #e9f1ff;
+    font-family: "Heebo", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-weight: 300;
+  }
+  body {
+    background:
+      radial-gradient(900px 600px at 80% -10%, rgba(126,232,255,0.12), transparent 60%),
+      radial-gradient(800px 500px at 0% 110%, rgba(255,95,143,0.14), transparent 60%),
+      radial-gradient(140% 90% at 50% 0%, #0a1430 0%, #04070f 55%, #02030a 100%);
+  }
+  #app {
+    position: relative;
+    height: 100dvh;
+    width: 100%;
+    overflow: hidden;
+  }
+  canvas#bg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    display: block;
+  }
+
+  /* Soft vignette for depth */
+  .vignette {
+    position: absolute; inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.5) 100%);
+  }
+
+  /* Floating sparkles */
+  .sparkle {
+    position: absolute;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--c, #7ee8ff);
+    box-shadow: 0 0 8px currentColor;
+    color: var(--c, #7ee8ff);
+    pointer-events: none;
+    opacity: 0;
+    animation: twinkle var(--dur, 4s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 0.7; transform: scale(1); }
+  }
+
+  .hero {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: max(env(safe-area-inset-top), 24px) 24px max(env(safe-area-inset-bottom), 24px);
+    z-index: 2;
+  }
+
+  .heart {
+    font-size: 44px;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 0 24px rgba(255,95,143,0.6));
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+  }
+
+  .name {
+    font-family: "Frank Ruhl Libre", "Heebo", serif;
+    font-weight: 500;
+    font-size: clamp(56px, 14vw, 84px);
+    line-height: 1;
+    background: linear-gradient(120deg, #7ee8ff, #ff9bbf 50%, #ffe6b3);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 18px;
+    letter-spacing: -0.02em;
+    text-shadow: 0 6px 40px rgba(255,155,191,0.2);
+  }
+
+  .lede {
+    font-size: clamp(18px, 5vw, 24px);
+    font-weight: 400;
+    color: #e9f1ff;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .words {
+    font-size: 14.5px;
+    color: #aab7d4;
+    text-align: center;
+    line-height: 1.6;
+    max-width: 320px;
+    margin-bottom: 36px;
+  }
+  .words em {
+    font-style: normal;
+    color: #7ee8ff;
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, rgba(126,232,255,0.18), rgba(255,95,143,0.18));
+    border: 1px solid rgba(126,232,255,0.4);
+    border-radius: 999px;
+    color: #e9f1ff;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all .25s ease;
+    box-shadow: 0 10px 40px -20px rgba(126,232,255,0.6), 0 0 0 0 rgba(255,95,143,0.4);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.15) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform .6s ease;
+  }
+  .cta:hover {
+    transform: translateY(-2px);
+    border-color: rgba(126,232,255,0.7);
+    box-shadow: 0 14px 50px -20px rgba(126,232,255,0.8), 0 0 0 8px rgba(255,95,143,0.06);
+  }
+  .cta:hover::before { transform: translateX(100%); }
+  .cta:active { transform: translateY(0); }
+  .cta .arrow {
+    transition: transform .25s ease;
+  }
+  .cta:hover .arrow { transform: translateX(-4px); }
+
+  .footer-note {
+    position: absolute;
+    bottom: max(env(safe-area-inset-bottom), 14px);
+    left: 0; right: 0;
+    text-align: center;
+    color: #6b7a9a;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    pointer-events: none;
+  }
+  .footer-note em { font-style: normal; color: #ff9bbf; }
+</style>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+
+<div id="app">
+  <canvas id="bg"></canvas>
+  <div class="vignette"></div>
+
+  <main class="hero">
+    <div class="heart">💜</div>
+    <h1 class="name">שקד</h1>
+    <p class="lede">בהצלחה במבחן הגפיים!</p>
+    <p class="words">
+      כל <em>עצם</em>, כל <em>שריר</em>, כל <em>וריד</em>
+      <br>במקום שלהם.<br>
+      וגם את תזכרי את כולם.
+    </p>
+    <a href="./quiz.html" class="cta">
+      להתחיל לתרגל
+      <span class="arrow">←</span>
+    </a>
+  </main>
+
+  <div class="footer-note">עשיתי לך את זה <em>באהבה</em></div>
+</div>
+
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+
+const canvas = document.getElementById('bg');
+
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(38, 1, 0.05, 100);
+camera.position.set(0, 0.1, 2.4);
+
+scene.add(new THREE.AmbientLight(0x445a80, 0.5));
+const key  = new THREE.DirectionalLight(0xfff2dc, 1.2); key.position.set(2, 3, 2); scene.add(key);
+const fill = new THREE.DirectionalLight(0x7ee8ff, 0.7); fill.position.set(-3, 1, -1); scene.add(fill);
+const rim  = new THREE.DirectionalLight(0xff5f8f, 0.6); rim.position.set(0, -1, -3); scene.add(rim);
+
+const dracoLoader = new DRACOLoader();
+dracoLoader.setDecoderPath('https://unpkg.com/three@0.160.0/examples/jsm/libs/draco/gltf/');
+const gltfLoader = new GLTFLoader();
+gltfLoader.setDRACOLoader(dracoLoader);
+
+const LAYERS = {
+  Bones:   { color: 0xf3e9d1, opacity: 1.00, roughness: 0.55 },
+  Muscles: { color: 0xc83a52, opacity: 0.50, roughness: 0.5 },
+  Veins:   { color: 0x4a78ff, opacity: 0.85, roughness: 0.4 },
+};
+
+const root = new THREE.Group();
+scene.add(root);
+
+let ready = false;
+gltfLoader.load('./models/legs.glb', (gltf) => {
+  const m = gltf.scene;
+  m.traverse((obj) => {
+    if (!obj.isMesh) return;
+    let layer = null;
+    for (let n = obj; n; n = n.parent) {
+      if (LAYERS[n.name]) { layer = LAYERS[n.name]; break; }
+    }
+    if (!layer) return;
+    obj.material = obj.material.clone();
+    obj.material.color = new THREE.Color(layer.color);
+    if ('roughness' in obj.material) obj.material.roughness = layer.roughness;
+    if ('metalness' in obj.material) obj.material.metalness = 0.05;
+    obj.material.transparent = layer.opacity < 1;
+    obj.material.opacity = layer.opacity;
+    obj.material.depthWrite = layer.opacity >= 0.99;
+  });
+
+  // Center + scale to fit
+  const box = new THREE.Box3().setFromObject(m);
+  const size = box.getSize(new THREE.Vector3());
+  const center = box.getCenter(new THREE.Vector3());
+  m.position.sub(center);
+  const targetH = 1.7;
+  const scale = targetH / size.y;
+  m.scale.setScalar(scale);
+  root.add(m);
+  ready = true;
+});
+
+function resize() {
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h;
+  // Pull camera back a bit on narrow screens
+  camera.position.z = (w / h < 0.7) ? 2.6 : 2.2;
+  camera.updateProjectionMatrix();
+}
+resize();
+new ResizeObserver(resize).observe(canvas);
+
+const clock = new THREE.Clock();
+let mouseX = 0, mouseY = 0, tMouseX = 0, tMouseY = 0;
+window.addEventListener('pointermove', (e) => {
+  tMouseX = (e.clientX / window.innerWidth - 0.5);
+  tMouseY = (e.clientY / window.innerHeight - 0.5);
+});
+
+function animate() {
+  const dt = clock.getDelta();
+  const t = clock.getElapsedTime();
+  if (ready) {
+    // Slow Y rotation + subtle breathing tilt
+    root.rotation.y += dt * 0.25;
+    root.rotation.x = Math.sin(t * 0.4) * 0.06;
+    root.position.y = Math.sin(t * 0.6) * 0.03;
+  }
+  // Parallax follow
+  mouseX += (tMouseX - mouseX) * 0.06;
+  mouseY += (tMouseY - mouseY) * 0.06;
+  camera.position.x = mouseX * 0.25;
+  camera.position.y = 0.1 + mouseY * -0.15;
+  camera.lookAt(0, 0, 0);
+
+  renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+}
+animate();
+
+// Sparkles
+const sparkleColors = ['#7ee8ff', '#ff9bbf', '#ffe6b3'];
+for (let i = 0; i < 12; i++) {
+  const s = document.createElement('div');
+  s.className = 'sparkle';
+  s.style.left = Math.random() * 100 + '%';
+  s.style.top = Math.random() * 100 + '%';
+  s.style.setProperty('--c', sparkleColors[i % sparkleColors.length]);
+  s.style.setProperty('--dur', (3 + Math.random() * 4) + 's');
+  s.style.setProperty('--delay', (Math.random() * 4) + 's');
+  document.getElementById('app').appendChild(s);
+}
+</script>
+</body>
+</html>
