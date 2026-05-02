@@ -321,6 +321,15 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
+// ──────────────────────────────────────────────────────────────────────
+// Layout knobs — tweak these to move the leg / arm up & down on screen.
+// Values are fractions of visibleH (the camera's visible height in
+// world units). Positive = up, negative = down. Two values per knob:
+// [portrait, landscape].
+const LEG_Y_FRAC = { portrait:  0.30, landscape:  0.30 }; // higher = leg climbs up
+const ARM_Y_FRAC = { portrait: -0.30, landscape: -0.40 }; // lower  = arm sinks down
+// ──────────────────────────────────────────────────────────────────────
+
 const canvas = document.getElementById('bg');
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
@@ -561,8 +570,8 @@ function layoutModels() {
   // a touch below center so the hand reaches into the upper-middle
   // area while the humerus fades down off the bottom edge.
   const xFrac = portrait ? 0.32 : 0.42;
-  const legYFrac = portrait ? 0.22 : 0.18;
-  const armYFrac = portrait ? -0.22 : -0.18;
+  const legYFrac = portrait ? LEG_Y_FRAC.portrait : LEG_Y_FRAC.landscape;
+  const armYFrac = portrait ? ARM_Y_FRAC.portrait : ARM_Y_FRAC.landscape;
   legGroup.position.set( visibleW * xFrac, visibleH * legYFrac, 0);
   armGroup.position.set(-visibleW * xFrac, visibleH * armYFrac, 0);
 
