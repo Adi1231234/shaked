@@ -390,12 +390,14 @@ function layoutModels() {
   // Leg hangs from the top edge (positive yFrac) on the right side; the
   // upper soft-tissue mass is clipped above the viewport.
   // Arm — already flipped on Z at load time so the hand is its visual
-  // top — rises from the bottom edge (negative yFrac) on the left side;
-  // the humerus + shoulder mass is clipped below the viewport.
+  // top — rises from the bottom on the left side. We sit the arm just
+  // a touch below center so the hand reaches into the upper-middle
+  // area while the humerus fades down off the bottom edge.
   const xFrac = portrait ? 0.32 : 0.42;
-  const yFrac = portrait ? 0.22 : 0.18;
-  legGroup.position.set( visibleW * xFrac,  visibleH * yFrac, 0);
-  armGroup.position.set(-visibleW * xFrac, -visibleH * yFrac, 0);
+  const legYFrac = portrait ? 0.22 : 0.18;
+  const armYFrac = portrait ? -0.05 : -0.04;
+  legGroup.position.set( visibleW * xFrac, visibleH * legYFrac, 0);
+  armGroup.position.set(-visibleW * xFrac, visibleH * armYFrac, 0);
 
   // 50% bigger than the original tuning.
   const targetH = portrait
