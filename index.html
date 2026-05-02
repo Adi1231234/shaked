@@ -617,7 +617,7 @@ window.addEventListener('pointermove', (e) => {
 // auto-spin and X-axis sway are paused for that group; on release, auto-
 // spin resumes from the user's new orientation.
 let dragGroup = null;
-let dragLastX = 0, dragLastY = 0;
+let dragLastY = 0;
 let dragStarted = false;
 let downX = 0, downY = 0, downId = -1;
 canvas.addEventListener('pointerdown', (e) => {
@@ -625,7 +625,6 @@ canvas.addEventListener('pointerdown', (e) => {
   const cx = e.clientX - rect.left;
   // Leg sits on the right (canvas x > center), arm on the left.
   dragGroup = (cx < rect.width / 2) ? armGroup : legGroup;
-  dragLastX = e.clientX;
   dragLastY = e.clientY;
   downX = e.clientX; downY = e.clientY;
   downId = e.pointerId;
@@ -633,9 +632,7 @@ canvas.addEventListener('pointerdown', (e) => {
 });
 canvas.addEventListener('pointermove', (e) => {
   if (downId !== e.pointerId || !dragGroup) return;
-  const dx = e.clientX - dragLastX;
   const dy = e.clientY - dragLastY;
-  dragLastX = e.clientX;
   dragLastY = e.clientY;
   if (!dragStarted) {
     if (Math.hypot(e.clientX - downX, e.clientY - downY) < 4) return;
@@ -644,7 +641,6 @@ canvas.addEventListener('pointermove', (e) => {
     canvas.setPointerCapture(e.pointerId);
     dragGroup.userData.dragging = true;
   }
-  dragGroup.rotation.y += dx * 0.012;
   dragGroup.rotation.x += dy * 0.008;
 });
 function endDrag(e) {
