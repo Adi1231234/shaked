@@ -379,17 +379,19 @@ function layoutModels() {
   const visibleW = visibleH * aspect;
   const portrait = aspect < 1;
 
-  // Diagonal placement: push the models all the way to opposite corners.
-  // Slight overshoot is intentional so they appear anchored at the edges.
-  const xFrac = portrait ? 0.36 : 0.42;
-  const yFrac = portrait ? 0.38 : 0.32;
-  legGroup.position.set( visibleW * xFrac,  visibleH * yFrac, 0);
-  armGroup.position.set(-visibleW * xFrac, -visibleH * yFrac, 0);
+  // Both models hang from the top of the screen, one on each side. The
+  // upper portion of each extends above the visible viewport so only the
+  // bottoms (knee/foot for the leg, forearm/hand for the arm) are seen.
+  // yFrac > 0.5 places the model's center above the top edge.
+  const xFrac = portrait ? 0.32 : 0.42;
+  const yFrac = portrait ? 0.58 : 0.52;
+  legGroup.position.set( visibleW * xFrac, visibleH * yFrac, 0);
+  armGroup.position.set(-visibleW * xFrac, visibleH * yFrac, 0);
 
-  // Model size: ~30% bigger than the previous tuning. Cap by both axes.
+  // 50% bigger than the previous tuning (portrait went 0.52 -> 0.78).
   const targetH = portrait
-    ? Math.min(visibleH * 0.52, visibleW * 1.10)
-    : Math.min(visibleH * 0.72, visibleW * 0.52);
+    ? Math.min(visibleH * 0.78, visibleW * 1.65)
+    : Math.min(visibleH * 0.92, visibleW * 0.60);
   for (const g of [legGroup, armGroup]) {
     const m = g.children[0];
     if (!m || !m.userData.naturalHeight) continue;
