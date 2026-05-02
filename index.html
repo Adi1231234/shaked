@@ -348,15 +348,19 @@ function applyLayers(scene3) {
 function loadInto(file, group, opts) {
   gltfLoader.load(`./models/${file}`, (gltf) => {
     applyLayers(gltf.scene);
-    // Center the model on its own origin so group.position controls placement
+    // IMPORTANT: rotate first, then compute the bbox in world space, then
+    // apply the centering position offset. Three.js applies object
+    // transforms in T*R*S order, so a position offset chosen before
+    // rotation gets re-rotated and the model ends up far from its
+    // intended placement.
+    if (opts.flipUp) {
+      gltf.scene.rotation.z = Math.PI;
+    }
+    gltf.scene.updateMatrixWorld(true);
     const box = new THREE.Box3().setFromObject(gltf.scene);
     const center = box.getCenter(new THREE.Vector3());
     const size = box.getSize(new THREE.Vector3());
     gltf.scene.position.sub(center);
-    if (opts.flipUp) {
-      // Flip on Z so the model is upside down (hand becomes the new top).
-      gltf.scene.rotation.z = Math.PI;
-    }
     gltf.scene.userData.naturalHeight = size.y;
     group.add(gltf.scene);
     group.userData.spin = opts.spin;
