@@ -275,6 +275,157 @@
   .quiz-prompt .target { color: var(--rose-soft); font-weight: 500; font-size: 16px; margin-top: 1px; }
   .quiz-prompt .target em { font-style: normal; color: var(--ink); font-size: 13px; opacity: 0.85; }
 
+  /* Search box + dropdown */
+  .search-wrap {
+    position: relative;
+    margin: 0 16px 6px;
+  }
+  body.mode-quiz .search-wrap { display: none; }
+  .search-input {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(126,232,255,0.18);
+    border-radius: 12px;
+    padding: 10px 14px 10px 36px;
+    color: var(--ink);
+    font: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+  }
+  .search-input::placeholder { color: var(--ink-soft); }
+  .search-input:focus {
+    border-color: rgba(126,232,255,0.5);
+    background: rgba(255,255,255,0.06);
+    box-shadow: 0 0 0 3px rgba(126,232,255,0.12);
+  }
+  .search-icon {
+    position: absolute;
+    top: 50%; left: 12px;
+    transform: translateY(-50%);
+    width: 14px; height: 14px;
+    border: 1.6px solid var(--ink-soft);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .search-icon::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; right: -5px;
+    width: 7px; height: 1.6px;
+    background: var(--ink-soft);
+    transform: rotate(45deg);
+    border-radius: 1px;
+  }
+  .search-clear {
+    position: absolute;
+    top: 50%; right: 10px;
+    transform: translateY(-50%);
+    width: 22px; height: 22px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 50%;
+    color: var(--ink-dim);
+    font: inherit;
+    font-size: 12px;
+    line-height: 1;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .search-wrap.has-text .search-clear { display: flex; }
+  .search-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0; right: 0;
+    z-index: 20;
+    background: rgba(7,11,28,0.96);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(126,232,255,0.22);
+    border-radius: 12px;
+    padding: 4px;
+    max-height: 280px;
+    overflow-y: auto;
+    box-shadow: 0 18px 40px -12px rgba(0,0,0,0.7);
+    display: none;
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(126,232,255,0.35) transparent;
+  }
+  /* WebKit / Chromium */
+  .search-dropdown::-webkit-scrollbar {
+    width: 8px;
+  }
+  .search-dropdown::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 6px 0;
+  }
+  .search-dropdown::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(126,232,255,0.35), rgba(255,155,191,0.30));
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  .search-dropdown::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(126,232,255,0.6), rgba(255,155,191,0.5));
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+  .search-wrap.open .search-dropdown { display: block; }
+  .search-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background .15s ease;
+  }
+  .search-item:hover, .search-item.active {
+    background: rgba(126,232,255,0.10);
+  }
+  .search-item .layer-pip {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 0 8px currentColor;
+  }
+  .search-item.layer-Bones .layer-pip { background: var(--bone); color: var(--bone); }
+  .search-item.layer-Muscles .layer-pip { background: var(--rose-soft); color: var(--rose-soft); }
+  .search-item.layer-Veins .layer-pip { background: var(--vein); color: var(--vein); }
+  .search-item .item-text {
+    flex: 1; min-width: 0;
+    display: flex; flex-direction: column;
+    line-height: 1.2;
+    overflow: hidden;
+  }
+  .search-item .item-primary {
+    font-size: 14px;
+    color: var(--ink);
+    direction: ltr;
+    text-align: right;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .search-item .item-secondary {
+    font-size: 12px;
+    color: var(--ink-dim);
+    margin-top: 2px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .search-item mark {
+    background: rgba(126,232,255,0.22);
+    color: var(--cyan);
+    padding: 0 2px;
+    border-radius: 3px;
+  }
+  .search-empty {
+    padding: 14px 12px;
+    color: var(--ink-soft);
+    font-size: 13px;
+    text-align: center;
+  }
+
   .feedback {
     position: absolute;
     inset: 0;
@@ -433,6 +584,14 @@
   <div class="row">
     <button class="seg-btn mode-btn active" data-mode="learn">למידה</button>
     <button class="seg-btn mode-btn" data-mode="quiz">חידון</button>
+  </div>
+
+  <div class="search-wrap" id="search-wrap">
+    <span class="search-icon" aria-hidden="true"></span>
+    <input id="search-input" class="search-input" type="text" autocomplete="off" spellcheck="false"
+           placeholder="חפש מבנה — בעברית או באנגלית" />
+    <button id="search-clear" class="search-clear" aria-label="נקה">×</button>
+    <div id="search-dropdown" class="search-dropdown" role="listbox"></div>
   </div>
 
   <div class="stage" id="stage">
@@ -1041,6 +1200,200 @@ function setInfoEmpty() {
   secondaryEl.textContent = '';
   descEl.textContent = '';
 }
+
+// =====================================================================
+// Search box: type Hebrew or English to find and highlight a structure.
+// =====================================================================
+const searchWrap = document.getElementById('search-wrap');
+const searchInput = document.getElementById('search-input');
+const searchClear = document.getElementById('search-clear');
+const searchDropdown = document.getElementById('search-dropdown');
+let searchResults = [];
+let searchActiveIdx = 0;
+
+function normalize(s) {
+  // strip diacritics, lowercase, collapse spaces; keep Hebrew letters as-is.
+  return (s || '')
+    .toString()
+    .normalize('NFKD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function searchPool() {
+  // One entry per *named* pickable; deduplicate so the dropdown shows each
+  // structure once, not once per mesh fragment.
+  const seen = new Map();
+  for (const p of pickables) {
+    if (!p.info?.lat) continue;
+    const key = `${p.layer}::${p.nodeName}`;
+    if (!seen.has(key)) seen.set(key, p);
+  }
+  return [...seen.values()];
+}
+
+function searchableText(p) {
+  // English term from the model (e.g., "Adductor tubercle"), Latin display
+  // name, and Hebrew label all count as match haystacks. Strip ".r"/".l" sides.
+  const eng = (p.nodeName || '').replace(/\.[rl]$/, '').replace(/_/g, ' ');
+  return {
+    eng: normalize(eng),
+    lat: normalize(p.info.lat),
+    heb: normalize(p.info.heb),
+  };
+}
+
+function scoreMatch(p, q) {
+  if (!q) return 0;
+  const t = searchableText(p);
+  // Tokenize query — every token must hit *some* haystack. This lets users
+  // search loose phrases like "adductor t" or "biceps long" without needing
+  // exact prefixes.
+  const tokens = q.split(/\s+/).filter(Boolean);
+  let total = 0;
+  for (const tok of tokens) {
+    let best = 0;
+    for (const h of [t.eng, t.lat, t.heb]) {
+      if (!h) continue;
+      if (h === tok) best = Math.max(best, 120);
+      else if (h.startsWith(tok)) best = Math.max(best, 90);
+      else {
+        // Word-boundary boost (start of any word in the haystack).
+        const re = new RegExp(`(^|\\s|-)${tok.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'u');
+        if (re.test(h)) best = Math.max(best, 55);
+        else if (h.includes(tok)) best = Math.max(best, 25);
+      }
+    }
+    if (best === 0) return 0;  // a token failed to match anywhere — skip entry
+    total += best;
+  }
+  // Penalize very long names so a focused short hit beats a sprawling name.
+  return total - Math.min(t.lat.length, 60) / 20;
+}
+
+function highlightMatch(text, q) {
+  if (!q) return text;
+  const idx = normalize(text).indexOf(q);
+  if (idx < 0) return text;
+  // Find original-case slice. Normalize is roughly 1:1 for our text.
+  return text.slice(0, idx) + '<mark>' + text.slice(idx, idx + q.length) + '</mark>' + text.slice(idx + q.length);
+}
+
+function renderDropdown(query, results) {
+  if (!results.length) {
+    searchDropdown.innerHTML = '<div class="search-empty">לא נמצא מבנה תואם</div>';
+    return;
+  }
+  const q = normalize(query);
+  searchDropdown.innerHTML = results.slice(0, 30).map((p, i) => `
+    <div class="search-item layer-${p.layer} ${i === searchActiveIdx ? 'active' : ''}" data-idx="${i}" role="option">
+      <div class="layer-pip"></div>
+      <div class="item-text">
+        <div class="item-primary">${highlightMatch(p.info.lat, q)}</div>
+        <div class="item-secondary">${highlightMatch(p.info.heb || '', q)}</div>
+      </div>
+    </div>
+  `).join('');
+  // Wire up click handlers for the freshly rendered items
+  for (const el of searchDropdown.querySelectorAll('.search-item')) {
+    el.addEventListener('mouseenter', () => {
+      searchActiveIdx = +el.dataset.idx;
+      for (const e of searchDropdown.querySelectorAll('.search-item')) e.classList.toggle('active', e === el);
+    });
+    el.addEventListener('mousedown', (ev) => {
+      ev.preventDefault();
+      pickFromSearch(searchResults[+el.dataset.idx]);
+    });
+  }
+}
+
+function updateSearchResults() {
+  const q = normalize(searchInput.value);
+  searchWrap.classList.toggle('has-text', !!q);
+  if (!q) {
+    searchResults = [];
+    searchWrap.classList.remove('open');
+    return;
+  }
+  const pool = searchPool();
+  const scored = [];
+  for (const p of pool) {
+    const s = scoreMatch(p, q);
+    if (s > 0) scored.push({ p, s });
+  }
+  scored.sort((a, b) => b.s - a.s || a.p.info.lat.length - b.p.info.lat.length);
+  searchResults = scored.map(x => x.p);
+  searchActiveIdx = 0;
+  searchWrap.classList.add('open');
+  renderDropdown(q, searchResults);
+}
+
+function focusOn(p) {
+  // Fly the orbit camera over so the picked mesh fills a comfortable area.
+  if (!p.mesh.geometry.boundingBox) p.mesh.geometry.computeBoundingBox();
+  const box = p.mesh.geometry.boundingBox.clone().applyMatrix4(p.mesh.matrixWorld);
+  const center = box.getCenter(new THREE.Vector3());
+  const size = box.getSize(new THREE.Vector3());
+  const radius = Math.max(size.x, size.y, size.z) * 0.5;
+  // Hotspots are tiny — pick a sensible minimum view radius so we don't zoom in
+  // past the bone they sit on.
+  const viewRadius = Math.max(radius, 0.04);
+  const vfov = THREE.MathUtils.degToRad(camera.fov);
+  const dist = (viewRadius / Math.tan(vfov / 2)) * 2.6;
+  // Keep the current viewing direction; just slide along it to the new center.
+  const dir = camera.position.clone().sub(controls.target).normalize();
+  controls.target.copy(center);
+  camera.position.copy(center).add(dir.multiplyScalar(dist));
+  controls.update();
+}
+
+function pickFromSearch(p) {
+  if (!p) return;
+  // Make sure the layer is on so the highlight is visible.
+  if (!layerState[p.layer]) {
+    layerState[p.layer] = true;
+    document.querySelector(`.seg-btn[data-layer="${p.layer}"]`)?.classList.add('on');
+    applyLayerVisibility();
+  }
+  setSelection(p);
+  showInfo(p);
+  focusOn(p);
+  searchInput.value = p.info.lat;
+  searchWrap.classList.remove('open');
+  searchInput.blur();
+}
+
+searchInput.addEventListener('input', updateSearchResults);
+searchInput.addEventListener('focus', () => { if (searchInput.value) updateSearchResults(); });
+searchInput.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    if (!searchResults.length) return;
+    searchActiveIdx = (searchActiveIdx + 1) % Math.min(searchResults.length, 30);
+    renderDropdown(normalize(searchInput.value), searchResults);
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (!searchResults.length) return;
+    searchActiveIdx = (searchActiveIdx - 1 + Math.min(searchResults.length, 30)) % Math.min(searchResults.length, 30);
+    renderDropdown(normalize(searchInput.value), searchResults);
+  } else if (e.key === 'Enter') {
+    e.preventDefault();
+    pickFromSearch(searchResults[searchActiveIdx]);
+  } else if (e.key === 'Escape') {
+    searchWrap.classList.remove('open');
+    searchInput.blur();
+  }
+});
+searchClear.addEventListener('click', () => {
+  searchInput.value = '';
+  searchWrap.classList.remove('has-text', 'open');
+  searchInput.focus();
+});
+document.addEventListener('click', (e) => {
+  if (!searchWrap.contains(e.target)) searchWrap.classList.remove('open');
+});
 
 // =====================================================================
 // Mode + tabs + layer toggles
