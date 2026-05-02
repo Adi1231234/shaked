@@ -604,7 +604,13 @@ controls.enableDamping = true;
 controls.dampingFactor = 0.08;
 controls.minDistance = 0.3;
 controls.maxDistance = 5;
-controls.enablePan = false;
+controls.enablePan = true;
+controls.panSpeed = 1.1;
+controls.screenSpacePanning = true;
+// Touch: one finger rotates, two fingers pinch-zoom + pan together.
+controls.touches = { ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY_PAN };
+// Mouse: left rotate, middle dolly, right pan.
+controls.mouseButtons = { LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN };
 
 const dracoLoader = new DRACOLoader();
 dracoLoader.setDecoderPath('https://unpkg.com/three@0.160.0/examples/jsm/libs/draco/gltf/');
@@ -733,21 +739,58 @@ function setSelection(p, color = SELECT_COLOR) {
 }
 
 // =====================================================================
-// Picking
+// Picking — fuzzy raycast so a fat fingertip lands on thin bones.
+// First try the exact tap point. If nothing is hit, fan out a ring of
+// extra rays at ~22px radius and pick the nearest hit by 2D pixel
+// distance from the original tap.
 // =====================================================================
 const raycaster = new THREE.Raycaster();
 const ndc = new THREE.Vector2();
 
+const PICK_RADIUS_PX = 22;
+const PICK_RING = (() => {
+  // 1 center + 8 directions at 1x radius + 8 directions at 0.55x radius
+  const out = [[0, 0]];
+  const dirs = 8;
+  for (const r of [1.0, 0.55]) {
+    for (let i = 0; i < dirs; i++) {
+      const a = (i / dirs) * Math.PI * 2;
+      out.push([Math.cos(a) * r, Math.sin(a) * r]);
+    }
+  }
+  return out;
+})();
+
 function pickFromEvent(ev) {
   const rect = renderer.domElement.getBoundingClientRect();
-  const x = (ev.clientX - rect.left) / rect.width * 2 - 1;
-  const y = -((ev.clientY - rect.top) / rect.height * 2 - 1);
-  ndc.set(x, y);
-  raycaster.setFromCamera(ndc, camera);
+  const cx = ev.clientX - rect.left;
+  const cy = ev.clientY - rect.top;
   const visibleMeshes = pickables.filter(p => layerNodes[p.layer]?.visible).map(p => p.mesh);
-  const hits = raycaster.intersectObjects(visibleMeshes, false);
-  if (!hits.length) return null;
-  return pickables.find(p => p.mesh === hits[0].object) || null;
+  if (!visibleMeshes.length) return null;
+
+  let bestPick = null;
+  let bestPenalty = Infinity;
+  for (let i = 0; i < PICK_RING.length; i++) {
+    const [ox, oy] = PICK_RING[i];
+    const px = cx + ox * PICK_RADIUS_PX;
+    const py = cy + oy * PICK_RADIUS_PX;
+    const x = (px / rect.width) * 2 - 1;
+    const y = -((py / rect.height) * 2 - 1);
+    ndc.set(x, y);
+    raycaster.setFromCamera(ndc, camera);
+    const hits = raycaster.intersectObjects(visibleMeshes, false);
+    if (!hits.length) continue;
+    const offsetPx2 = (ox * PICK_RADIUS_PX) ** 2 + (oy * PICK_RADIUS_PX) ** 2;
+    if (i === 0) {
+      // Exact center hit always wins.
+      return pickables.find(p => p.mesh === hits[0].object) || null;
+    }
+    if (offsetPx2 < bestPenalty) {
+      bestPenalty = offsetPx2;
+      bestPick = hits[0].object;
+    }
+  }
+  return bestPick ? (pickables.find(p => p.mesh === bestPick) || null) : null;
 }
 
 let downPos = null;
@@ -756,7 +799,7 @@ renderer.domElement.addEventListener('pointerup', (e) => {
   if (!downPos) return;
   const dx = e.clientX - downPos.x, dy = e.clientY - downPos.y;
   downPos = null;
-  if (Math.hypot(dx, dy) > 6) return;
+  if (Math.hypot(dx, dy) > 12) return;
   const picked = pickFromEvent(e);
   if (!picked) {
     if (mode === 'learn') { clearSelection(); setInfoEmpty(); }
