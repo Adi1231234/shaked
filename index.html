@@ -31,6 +31,78 @@
     width: 100%;
     overflow: hidden;
   }
+
+  /* Boot loader covers everything until first GLB ready */
+  .boot {
+    position: absolute; inset: 0;
+    z-index: 50;
+    display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(120% 80% at 50% 50%, #060a18 0%, #03050b 70%);
+    transition: opacity .8s ease, visibility .8s;
+  }
+  #app.loaded .boot { opacity: 0; visibility: hidden; pointer-events: none; }
+  .boot-rings {
+    position: relative;
+    width: 160px; height: 160px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .boot-rings .ring {
+    position: absolute;
+    border: 1.5px solid;
+    border-radius: 50%;
+    width: 50px; height: 50px;
+    animation: ring-expand 2.4s ease-out infinite;
+    opacity: 0;
+  }
+  .boot-rings .ring.r1 { border-color: rgba(126,232,255,0.6); animation-delay: 0s; }
+  .boot-rings .ring.r2 { border-color: rgba(255,155,191,0.55); animation-delay: 0.8s; }
+  .boot-rings .ring.r3 { border-color: rgba(255,230,179,0.45); animation-delay: 1.6s; }
+  @keyframes ring-expand {
+    0%   { transform: scale(0.5); opacity: 0; }
+    15%  { opacity: 1; }
+    100% { transform: scale(2.6); opacity: 0; }
+  }
+  .boot-heart {
+    font-size: 44px;
+    filter: drop-shadow(0 0 22px rgba(255,95,143,0.6));
+    animation: heart-pulse 1.6s ease-in-out infinite;
+    z-index: 2;
+  }
+  @keyframes heart-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+  .boot-text {
+    position: absolute;
+    bottom: 30%;
+    color: #6b7a9a;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-align: center;
+    width: 100%;
+  }
+  .boot-text .dot {
+    display: inline-block;
+    animation: dot-fade 1.4s ease-in-out infinite;
+  }
+  .boot-text .dot:nth-child(2) { animation-delay: 0.2s; }
+  .boot-text .dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes dot-fade {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
+  }
+
+  /* Reveal hero content after load */
+  .hero, canvas#bg, .vignette, .footer-note, .sparkle {
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+  #app.loaded .hero,
+  #app.loaded canvas#bg,
+  #app.loaded .vignette,
+  #app.loaded .footer-note,
+  #app.loaded .sparkle { opacity: 1; }
+  #app.loaded .vignette { opacity: 0.9; }
   canvas#bg {
     position: absolute; inset: 0;
     width: 100%; height: 100%;
@@ -180,6 +252,16 @@
 <body>
 
 <div id="app">
+  <div class="boot" id="boot">
+    <div class="boot-rings">
+      <div class="ring r1"></div>
+      <div class="ring r2"></div>
+      <div class="ring r3"></div>
+      <div class="boot-heart">💜</div>
+    </div>
+    <div class="boot-text"><span class="dot">·</span> <span class="dot">·</span> <span class="dot">·</span></div>
+  </div>
+
   <canvas id="bg"></canvas>
   <div class="vignette"></div>
 
@@ -238,6 +320,12 @@ const root = new THREE.Group();
 scene.add(root);
 
 let ready = false;
+const bootStart = performance.now();
+const MIN_BOOT_MS = 700; // ensures the loader doesn't flash on cached loads
+function reveal() {
+  const wait = Math.max(0, MIN_BOOT_MS - (performance.now() - bootStart));
+  setTimeout(() => document.getElementById('app').classList.add('loaded'), wait);
+}
 gltfLoader.load('./models/legs.glb', (gltf) => {
   const m = gltf.scene;
   m.traverse((obj) => {
@@ -266,6 +354,7 @@ gltfLoader.load('./models/legs.glb', (gltf) => {
   m.scale.setScalar(scale);
   root.add(m);
   ready = true;
+  reveal();
 });
 
 function resize() {
