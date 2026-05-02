@@ -353,8 +353,15 @@ function loadInto(file, group, opts) {
     // transforms in T*R*S order, so a position offset chosen before
     // rotation gets re-rotated and the model ends up far from its
     // intended placement.
+    //
+    // Use X-axis flip rather than Z. R_y(β) * R_z(π) inverts the spin
+    // direction (the upper-left 2x2 of the composite is [-cos, sin;
+    // sin, cos] instead of [cos, sin; -sin, cos]), so the arm appears
+    // to rotate the opposite way from the leg. R_y(β) * R_x(π) keeps
+    // the same X-Z spin direction so both models rotate the same way
+    // around their own vertical axis.
     if (opts.flipUp) {
-      gltf.scene.rotation.z = Math.PI;
+      gltf.scene.rotation.x = Math.PI;
     }
     gltf.scene.updateMatrixWorld(true);
     const box = new THREE.Box3().setFromObject(gltf.scene);
