@@ -245,58 +245,80 @@
 
   .info {
     margin: 8px 12px max(env(safe-area-inset-bottom), 10px);
-    padding: 12px 14px;
+    padding: 14px 18px;
     background: linear-gradient(135deg, rgba(126,232,255,0.06), rgba(255,95,143,0.04));
     border: 1px solid rgba(126,232,255,0.15);
     border-radius: 16px;
-    min-height: 70px;
+    min-height: 84px;
     display: flex;
     align-items: center;
-    gap: 12px;
-    transition: all .3s ease;
+    gap: 14px;
+    transition: border-color .3s ease, background .3s ease;
   }
-  .info.empty { opacity: 0.55; }
+  .info.empty { opacity: 0.6; }
   .info-dot {
-    width: 10px; height: 10px;
+    width: 12px; height: 12px;
     border-radius: 50%;
-    background: var(--cyan);
-    box-shadow: 0 0 14px var(--cyan);
+    background: var(--ink-soft);
     flex-shrink: 0;
+    transition: background .25s ease, box-shadow .25s ease;
   }
-  .info.empty .info-dot { background: var(--ink-soft); box-shadow: none; }
+  .info[data-layer="Bones"] {
+    border-color: rgba(243,233,209,0.28);
+    background: linear-gradient(135deg, rgba(243,233,209,0.08), rgba(255,255,255,0.02));
+  }
+  .info[data-layer="Bones"] .info-dot {
+    background: var(--bone);
+    box-shadow: 0 0 16px rgba(243,233,209,0.7);
+  }
+  .info[data-layer="Muscles"] {
+    border-color: rgba(255,155,191,0.32);
+    background: linear-gradient(135deg, rgba(208,64,96,0.10), rgba(255,255,255,0.02));
+  }
+  .info[data-layer="Muscles"] .info-dot {
+    background: var(--rose-soft);
+    box-shadow: 0 0 16px rgba(255,155,191,0.7);
+  }
+  .info[data-layer="Veins"] {
+    border-color: rgba(90,143,255,0.36);
+    background: linear-gradient(135deg, rgba(90,143,255,0.10), rgba(255,255,255,0.02));
+  }
+  .info[data-layer="Veins"] .info-dot {
+    background: var(--vein);
+    box-shadow: 0 0 16px rgba(90,143,255,0.7);
+  }
   .info-text { flex: 1; min-width: 0; }
-  /* .primary now shows the Latin (English) name big; .secondary shows Hebrew small */
   .info .primary {
     font-weight: 700;
-    font-size: 20px;
+    font-size: 22px;
     color: var(--ink);
-    line-height: 1.2;
+    line-height: 1.15;
     letter-spacing: 0.01em;
+    direction: ltr;
+    text-align: right;       /* in our RTL container, right = visual start */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .info.empty .primary {
+    direction: rtl;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--ink-dim);
+    white-space: normal;
   }
   .info .secondary {
-    font-size: 13px;
+    font-size: 14px;
     color: var(--cyan);
-    margin-top: 3px;
+    margin-top: 4px;
     font-weight: 500;
   }
   .info .desc {
-    font-size: 12px;
+    font-size: 12.5px;
     color: var(--ink-dim);
-    margin-top: 3px;
-    line-height: 1.4;
+    margin-top: 4px;
+    line-height: 1.45;
   }
-  .info .layer-tag {
-    display: inline-block;
-    font-size: 10px;
-    padding: 2px 6px;
-    border-radius: 999px;
-    margin-inline-end: 6px;
-    border: 1px solid currentColor;
-    opacity: 0.85;
-  }
-  .layer-tag.l-Bones { color: var(--bone); }
-  .layer-tag.l-Muscles { color: var(--rose-soft); }
-  .layer-tag.l-Veins { color: var(--vein); }
   .skip {
     background: rgba(255,95,143,0.10);
     border: 1px solid rgba(255,95,143,0.3);
@@ -759,13 +781,14 @@ const descEl = document.getElementById('info-desc');
 function showInfo(p) {
   const i = p.info;
   infoEl.classList.remove('empty');
-  const tag = `<span class="layer-tag l-${p.layer}">${LAYER_LABELS[p.layer]}</span>`;
-  primaryEl.innerHTML = tag + i.lat;
+  infoEl.dataset.layer = p.layer;
+  primaryEl.textContent = i.lat;
   secondaryEl.textContent = i.heb || '';
   descEl.textContent = i.desc || '';
 }
 function setInfoEmpty() {
   infoEl.classList.add('empty');
+  delete infoEl.dataset.layer;
   primaryEl.textContent = mode === 'quiz' ? 'לחצי על המבנה המבוקש בתלת-ממד' : 'לחצי על מבנה כדי לראות את שמו';
   secondaryEl.textContent = '';
   descEl.textContent = '';
