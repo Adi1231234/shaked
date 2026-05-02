@@ -208,13 +208,55 @@
     50% { transform: scale(1.1); opacity: 1; }
   }
   .hint {
-    position: absolute; bottom: 10px; right: 10px; left: 10px;
-    text-align: center;
-    color: var(--ink-soft);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 6;
+    text-align: right;
+    color: var(--ink-dim);
     font-size: 11px;
+    line-height: 1.7;
+    letter-spacing: 0.02em;
     pointer-events: none;
-    opacity: 0.7;
+    opacity: 0.85;
+    list-style: none;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    text-shadow: 0 0 8px rgba(3, 5, 11, 0.9);
   }
+  .hint li {
+    list-style: none;
+    display: block;
+  }
+  .hint li::before {
+    content: "·  ";
+    color: var(--cyan);
+    opacity: 0.85;
+  }
+  body.mode-quiz .hint { top: 64px; }
+  .hint.hide {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  .reset-btn {
+    position: absolute;
+    bottom: 8px; left: 8px;
+    width: 36px; height: 36px;
+    background: rgba(126,232,255,0.10);
+    border: 1px solid rgba(126,232,255,0.32);
+    color: var(--cyan);
+    border-radius: 50%;
+    font: inherit;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s ease, border-color .2s ease, transform .35s ease;
+    z-index: 5;
+    box-shadow: 0 4px 14px -8px rgba(0,0,0,0.6);
+  }
+  .reset-btn:hover { background: rgba(126,232,255,0.18); border-color: rgba(126,232,255,0.5); transform: rotate(-90deg); }
+  .reset-btn:active { transform: rotate(-180deg); }
 
   .quiz-prompt {
     position: absolute;
@@ -249,10 +291,12 @@
     background: linear-gradient(135deg, rgba(126,232,255,0.06), rgba(255,95,143,0.04));
     border: 1px solid rgba(126,232,255,0.15);
     border-radius: 16px;
-    min-height: 84px;
+    height: 116px;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     gap: 14px;
+    overflow: hidden;
     transition: border-color .3s ease, background .3s ease;
   }
   .info.empty { opacity: 0.6; }
@@ -312,12 +356,19 @@
     color: var(--cyan);
     margin-top: 4px;
     font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .info .desc {
     font-size: 12.5px;
     color: var(--ink-dim);
     margin-top: 4px;
-    line-height: 1.45;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   .skip {
     background: rgba(255,95,143,0.10);
@@ -391,7 +442,12 @@
       <div class="target" id="target">—</div>
     </div>
     <div class="feedback" id="feedback"></div>
-    <div class="hint">גרור לסיבוב · גלגלת/צביטה לזום · לחצי על מבנה</div>
+    <button class="reset-btn" id="reset-view" aria-label="אפס מיקום" title="אפס מיקום">↻</button>
+    <ul class="hint" id="hint">
+      <li>גרור לסיבוב</li>
+      <li>גלגלת/צביטה לזום</li>
+      <li>לחצי על מבנה</li>
+    </ul>
   </div>
 
   <div class="info empty" id="info">
@@ -713,15 +769,53 @@ function reveal() {
   setTimeout(() => document.body.classList.add('loaded'), wait);
 }
 
+let initialView = null;
+function computeVisibleBox(root) {
+  const box = new THREE.Box3();
+  const tmpBox = new THREE.Box3();
+  root.updateMatrixWorld(true);
+  root.traverse((o) => {
+    if (!o.isMesh || !o.visible) return;
+    for (let p = o.parent; p; p = p.parent) { if (!p.visible) return; }
+    if (!o.geometry?.boundingBox) o.geometry?.computeBoundingBox();
+    if (!o.geometry?.boundingBox) return;
+    tmpBox.copy(o.geometry.boundingBox).applyMatrix4(o.matrixWorld);
+    box.union(tmpBox);
+  });
+  if (box.isEmpty()) box.setFromObject(root);
+  return box;
+}
 function frameModel(root) {
-  const box = new THREE.Box3().setFromObject(root);
+  // Make sure camera aspect reflects the current canvas size before fitting.
+  const w = stage.clientWidth, h = stage.clientHeight;
+  if (w && h) { camera.aspect = w / h; camera.updateProjectionMatrix(); }
+
+  const box = computeVisibleBox(root);
   const size = box.getSize(new THREE.Vector3());
   const center = box.getCenter(new THREE.Vector3());
   root.position.sub(center);
-  const maxDim = Math.max(size.x, size.y, size.z);
-  const dist = maxDim / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2)) * 1.4;
+  const vfov = THREE.MathUtils.degToRad(camera.fov);
+  const aspect = camera.aspect || 1;
+  const distForHeight = (size.y / 2) / Math.tan(vfov / 2);
+  const distForWidth  = (size.x / 2) / Math.tan(vfov / 2) / aspect;
+  const dist = Math.max(distForHeight, distForWidth) * 1.2;
   camera.position.set(0, 0, dist);
   controls.target.set(0, 0, 0);
+  controls.update();
+  initialView = {
+    rootPos: root.position.clone(),
+    rootQuat: root.quaternion.clone(),
+    camPos: camera.position.clone(),
+    target: controls.target.clone(),
+  };
+}
+
+function resetView() {
+  if (!initialView || !currentRoot) return;
+  currentRoot.position.copy(initialView.rootPos);
+  currentRoot.quaternion.copy(initialView.rootQuat);
+  camera.position.copy(initialView.camPos);
+  controls.target.copy(initialView.target);
   controls.update();
 }
 
@@ -956,6 +1050,7 @@ document.querySelectorAll('.seg-btn[data-layer]').forEach(btn => {
   });
 });
 document.getElementById('skip').addEventListener('click', nextQuestion);
+document.getElementById('reset-view').addEventListener('click', resetView);
 
 function resize() {
   const w = stage.clientWidth, h = stage.clientHeight;

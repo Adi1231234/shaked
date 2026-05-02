@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#04060d" />
-<title>שקד 💜</title>
+<title>שקד ❤️</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -107,7 +107,10 @@
     position: absolute; inset: 0;
     width: 100%; height: 100%;
     display: block;
+    touch-action: none;
+    cursor: grab;
   }
+  canvas#bg.grabbing { cursor: grabbing; }
 
   /* Soft vignette for depth */
   .vignette {
@@ -143,7 +146,9 @@
     justify-content: center;
     padding: max(env(safe-area-inset-top), 24px) 24px max(env(safe-area-inset-bottom), 24px);
     z-index: 2;
+    pointer-events: none;
   }
+  .hero .cta { pointer-events: auto; }
 
   .heart {
     font-size: 44px;
@@ -238,6 +243,34 @@
     pointer-events: none;
   }
   .footer-note em { font-style: normal; color: #ff9bbf; }
+
+  .rotate-hint {
+    position: absolute;
+    bottom: calc(max(env(safe-area-inset-bottom), 14px) + 22px);
+    left: 50%;
+    transform: translateX(-50%);
+    color: #8a9bbd;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    pointer-events: none;
+    white-space: nowrap;
+    opacity: 0;
+    animation: hint-fade 4.5s ease-in-out 1.4s infinite;
+  }
+  .rotate-hint .icon {
+    display: inline-block;
+    color: #7ee8ff;
+    margin-inline-end: 4px;
+    animation: hint-spin 4.5s ease-in-out 1.4s infinite;
+  }
+  @keyframes hint-fade {
+    0%, 90%, 100% { opacity: 0; }
+    15%, 75% { opacity: 0.85; }
+  }
+  @keyframes hint-spin {
+    0%, 90%, 100% { transform: rotate(0); }
+    50% { transform: rotate(360deg); }
+  }
 </style>
 <script type="importmap">
 {
@@ -256,7 +289,7 @@
       <div class="ring r1"></div>
       <div class="ring r2"></div>
       <div class="ring r3"></div>
-      <div class="boot-heart">💜</div>
+      <div class="boot-heart">❤️</div>
     </div>
     <div class="boot-text"><span class="dot">·</span> <span class="dot">·</span> <span class="dot">·</span></div>
   </div>
@@ -265,13 +298,13 @@
   <div class="vignette"></div>
 
   <main class="hero">
-    <div class="heart">💜</div>
+    <div class="heart">❤️</div>
     <h1 class="name">שקד</h1>
-    <p class="lede">בהצלחה במבחן הגפיים!</p>
+    <p class="lede">בהצלחה במבחן יפה שלי</p>
     <p class="words">
-      כל <em>עצם</em>, כל <em>שריר</em>, כל <em>וריד</em>
-      <br>במקום שלהם.<br>
-      וגם את תזכרי את כולם.
+      את הכי טובה וחכמה בעולם!
+      <br>
+      אני אוהב אותך ❤️
     </p>
     <a href="./quiz.html" class="cta">
       להתחיל לתרגל
@@ -279,6 +312,7 @@
     </a>
   </main>
 
+  <div class="rotate-hint"><span class="icon">↻</span>אפשר לסובב את היד והרגל באצבע</div>
   <div class="footer-note">עשיתי לך את זה <em>באהבה</em></div>
 </div>
 
@@ -327,6 +361,92 @@ function reveal() {
   setTimeout(() => document.getElementById('app').classList.add('loaded'), wait);
 }
 
+// Compute PCA on every vertex of an Object3D's mesh tree, in the object's
+// local frame. Returns the centroid + the three principal axes sorted by
+// descending eigenvalue. Used to find the long axis of an asymmetric model
+// (e.g. an arm whose hand-to-shoulder line is not axis-aligned in the
+// source GLB) so we can rotate it to spin around its own length instead of
+// orbiting around an off-center axis.
+function computePCA(obj3d) {
+  obj3d.updateMatrixWorld(true);
+  const inv = new THREE.Matrix4().copy(obj3d.matrixWorld).invert();
+  const positions = [];
+  obj3d.traverse((o) => {
+    if (!o.isMesh || !o.geometry || !o.geometry.attributes.position) return;
+    const posAttr = o.geometry.attributes.position;
+    const mat = new THREE.Matrix4().multiplyMatrices(inv, o.matrixWorld);
+    const v = new THREE.Vector3();
+    for (let i = 0; i < posAttr.count; i++) {
+      v.fromBufferAttribute(posAttr, i).applyMatrix4(mat);
+      positions.push(v.x, v.y, v.z);
+    }
+  });
+  if (positions.length === 0) return null;
+
+  const n = positions.length / 3;
+  let cx = 0, cy = 0, cz = 0;
+  for (let i = 0; i < n; i++) {
+    cx += positions[i * 3];
+    cy += positions[i * 3 + 1];
+    cz += positions[i * 3 + 2];
+  }
+  cx /= n; cy /= n; cz /= n;
+
+  let xx = 0, xy = 0, xz = 0, yy = 0, yz = 0, zz = 0;
+  for (let i = 0; i < n; i++) {
+    const dx = positions[i * 3] - cx;
+    const dy = positions[i * 3 + 1] - cy;
+    const dz = positions[i * 3 + 2] - cz;
+    xx += dx * dx; xy += dx * dy; xz += dx * dz;
+    yy += dy * dy; yz += dy * dz; zz += dz * dz;
+  }
+
+  // Jacobi eigendecomposition on the 3x3 symmetric covariance matrix.
+  const a = [[xx, xy, xz], [xy, yy, yz], [xz, yz, zz]];
+  const ev = [[1, 0, 0], [0, 1, 0], [0, 0, 1]];
+  for (let iter = 0; iter < 40; iter++) {
+    let p = 0, q = 1;
+    let maxOff = Math.abs(a[0][1]);
+    if (Math.abs(a[0][2]) > maxOff) { p = 0; q = 2; maxOff = Math.abs(a[0][2]); }
+    if (Math.abs(a[1][2]) > maxOff) { p = 1; q = 2; maxOff = Math.abs(a[1][2]); }
+    if (maxOff < 1e-12) break;
+    const apq = a[p][q];
+    const theta = (a[q][q] - a[p][p]) / (2 * apq);
+    const t = (theta >= 0 ? 1 : -1) / (Math.abs(theta) + Math.sqrt(theta * theta + 1));
+    const c = 1 / Math.sqrt(t * t + 1);
+    const s = t * c;
+    const app = a[p][p], aqq = a[q][q];
+    a[p][p] = c * c * app - 2 * s * c * apq + s * s * aqq;
+    a[q][q] = s * s * app + 2 * s * c * apq + c * c * aqq;
+    a[p][q] = 0; a[q][p] = 0;
+    for (let i = 0; i < 3; i++) {
+      if (i !== p && i !== q) {
+        const aip = a[i][p], aiq = a[i][q];
+        a[i][p] = c * aip - s * aiq; a[p][i] = a[i][p];
+        a[i][q] = s * aip + c * aiq; a[q][i] = a[i][q];
+      }
+    }
+    for (let i = 0; i < 3; i++) {
+      const vip = ev[i][p], viq = ev[i][q];
+      ev[i][p] = c * vip - s * viq;
+      ev[i][q] = s * vip + c * viq;
+    }
+  }
+
+  const axes = [
+    { val: a[0][0], vec: new THREE.Vector3(ev[0][0], ev[1][0], ev[2][0]).normalize() },
+    { val: a[1][1], vec: new THREE.Vector3(ev[0][1], ev[1][1], ev[2][1]).normalize() },
+    { val: a[2][2], vec: new THREE.Vector3(ev[0][2], ev[1][2], ev[2][2]).normalize() },
+  ];
+  axes.sort((p, q) => q.val - p.val);
+  return {
+    centroid: new THREE.Vector3(cx, cy, cz),
+    primary: axes[0].vec,
+    secondary: axes[1].vec,
+    tertiary: axes[2].vec,
+  };
+}
+
 function applyLayers(scene3) {
   scene3.traverse((obj) => {
     if (!obj.isMesh) return;
@@ -353,21 +473,60 @@ function loadInto(file, group, opts) {
     // transforms in T*R*S order, so a position offset chosen before
     // rotation gets re-rotated and the model ends up far from its
     // intended placement.
-    //
-    // Use X-axis flip rather than Z. R_y(β) * R_z(π) inverts the spin
-    // direction (the upper-left 2x2 of the composite is [-cos, sin;
-    // sin, cos] instead of [cos, sin; -sin, cos]), so the arm appears
-    // to rotate the opposite way from the leg. R_y(β) * R_x(π) keeps
-    // the same X-Z spin direction so both models rotate the same way
-    // around their own vertical axis.
-    if (opts.flipUp) {
+    if (opts.autoAlign) {
+      // PCA-align the model so its longest axis becomes world Y. This
+      // makes a Y-spin look like a self-rotation instead of an orbit
+      // around an off-center axis (the arm's hand-to-shoulder line is
+      // not axis-aligned in the source GLB).
+      //
+      // PCA gives a line, not a direction, so the +Y end is ambiguous.
+      // We pick the sign by mass distribution: the hand has more modeling
+      // detail (fingers), so the centroid sits closer to the hand. We
+      // want the hand on top, so +Y should point TOWARD the centroid,
+      // i.e. in the same direction as (centroid - bboxCenter).
+      const pca = computePCA(gltf.scene);
+      if (pca) {
+        const tmpBox = new THREE.Box3().setFromObject(gltf.scene);
+        const tmpCenter = tmpBox.getCenter(new THREE.Vector3());
+        const massOffset = pca.centroid.clone().sub(tmpCenter);
+        let yAxis = pca.primary.clone();
+        if (yAxis.dot(massOffset) < 0) yAxis.negate();
+        const q = new THREE.Quaternion().setFromUnitVectors(yAxis, new THREE.Vector3(0, 1, 0));
+        gltf.scene.quaternion.premultiply(q);
+      }
+    } else if (opts.flipUp) {
       gltf.scene.rotation.x = Math.PI;
     }
     gltf.scene.updateMatrixWorld(true);
     const box = new THREE.Box3().setFromObject(gltf.scene);
     const center = box.getCenter(new THREE.Vector3());
     const size = box.getSize(new THREE.Vector3());
-    gltf.scene.position.sub(center);
+    if (opts.autoAlign) {
+      // Pivot around the palm horizontally: shift X/Z so the palm sits
+      // on the parent group's Y axis (which is the spin axis). Any
+      // vertex with X=0,Z=0 stays still during the spin, regardless of
+      // Y — so the palm barely moves while the rest of the arm sweeps
+      // around it. Y stays bbox-centered so the visual placement on
+      // screen is unchanged.
+      const yCutoff = box.max.y - size.y * 0.15;
+      let hx = 0, hz = 0, hCount = 0;
+      const v = new THREE.Vector3();
+      gltf.scene.traverse((o) => {
+        if (!o.isMesh || !o.geometry || !o.geometry.attributes.position) return;
+        const posAttr = o.geometry.attributes.position;
+        for (let i = 0; i < posAttr.count; i++) {
+          v.fromBufferAttribute(posAttr, i).applyMatrix4(o.matrixWorld);
+          if (v.y >= yCutoff) { hx += v.x; hz += v.z; hCount++; }
+        }
+      });
+      if (hCount > 0) {
+        gltf.scene.position.set(-hx / hCount, -center.y, -hz / hCount);
+      } else {
+        gltf.scene.position.sub(center);
+      }
+    } else {
+      gltf.scene.position.sub(center);
+    }
     gltf.scene.userData.naturalHeight = size.y;
     group.add(gltf.scene);
     group.userData.spin = opts.spin;
@@ -378,9 +537,10 @@ function loadInto(file, group, opts) {
 
 // Leg: hangs from the top — top-of-thigh clipped above the screen.
 // Arm: rises from the bottom — humerus + shoulder mass clipped below
-// the screen, hand pointing up.
+// the screen, hand pointing up. autoAlign rotates the arm so its long
+// axis becomes vertical, so the spin reads as self-rotation.
 loadInto('legs.glb', legGroup, { spin: 0.22 });
-loadInto('arms.glb', armGroup, { spin: 0.18, flipUp: true });
+loadInto('arms.glb', armGroup, { spin: 0.18, autoAlign: true });
 
 // Compute placement + scale so the two models hug opposite visible corners
 // and stay on screen on any aspect ratio (mobile portrait through landscape).
@@ -402,7 +562,7 @@ function layoutModels() {
   // area while the humerus fades down off the bottom edge.
   const xFrac = portrait ? 0.32 : 0.42;
   const legYFrac = portrait ? 0.22 : 0.18;
-  const armYFrac = portrait ? 0.22 : 0.18;
+  const armYFrac = portrait ? -0.22 : -0.18;
   legGroup.position.set( visibleW * xFrac, visibleH * legYFrac, 0);
   armGroup.position.set(-visibleW * xFrac, visibleH * armYFrac, 0);
 
@@ -410,10 +570,18 @@ function layoutModels() {
   const targetH = portrait
     ? Math.min(visibleH * 0.78, visibleW * 1.65)
     : Math.min(visibleH * 0.92, visibleW * 0.60);
+  // Scale the OUTER group, not the inner gltf.scene. The inner gltf.scene
+  // holds the position offset that places the palm on the spin axis (X=Z=0
+  // in the inner frame). If we scaled the inner gltf.scene, scale would
+  // multiply the rotated vertex (R*v) BEFORE adding the position offset
+  // (matrix order T*R*S), so the palm would land at (s-1)*palmOffset
+  // instead of 0 — sweeping a circle when s ≠ 1. Scaling the outer group
+  // applies the scale uniformly to the inner frame's origin AND its
+  // contents, preserving the palm-on-axis property at any scale.
   for (const g of [legGroup, armGroup]) {
     const m = g.children[0];
     if (!m || !m.userData.naturalHeight) continue;
-    m.scale.setScalar(targetH / m.userData.naturalHeight);
+    g.scale.setScalar(targetH / m.userData.naturalHeight);
   }
 }
 
@@ -435,11 +603,58 @@ window.addEventListener('pointermove', (e) => {
   tMouseY = (e.clientY / window.innerHeight - 0.5);
 });
 
+// Drag-to-rotate: pick the closer of leg/arm based on horizontal pointer
+// position, then rotate that group by pointer delta. While dragging, the
+// auto-spin and X-axis sway are paused for that group; on release, auto-
+// spin resumes from the user's new orientation.
+let dragGroup = null;
+let dragLastX = 0, dragLastY = 0;
+let dragStarted = false;
+let downX = 0, downY = 0, downId = -1;
+canvas.addEventListener('pointerdown', (e) => {
+  const rect = canvas.getBoundingClientRect();
+  const cx = e.clientX - rect.left;
+  // Leg sits on the right (canvas x > center), arm on the left.
+  dragGroup = (cx < rect.width / 2) ? armGroup : legGroup;
+  dragLastX = e.clientX;
+  dragLastY = e.clientY;
+  downX = e.clientX; downY = e.clientY;
+  downId = e.pointerId;
+  dragStarted = false;
+});
+canvas.addEventListener('pointermove', (e) => {
+  if (downId !== e.pointerId || !dragGroup) return;
+  const dx = e.clientX - dragLastX;
+  const dy = e.clientY - dragLastY;
+  dragLastX = e.clientX;
+  dragLastY = e.clientY;
+  if (!dragStarted) {
+    if (Math.hypot(e.clientX - downX, e.clientY - downY) < 4) return;
+    dragStarted = true;
+    canvas.classList.add('grabbing');
+    canvas.setPointerCapture(e.pointerId);
+    dragGroup.userData.dragging = true;
+  }
+  dragGroup.rotation.y += dx * 0.012;
+  dragGroup.rotation.x += dy * 0.008;
+});
+function endDrag(e) {
+  if (downId !== e.pointerId) return;
+  if (dragGroup) dragGroup.userData.dragging = false;
+  dragGroup = null;
+  dragStarted = false;
+  downId = -1;
+  canvas.classList.remove('grabbing');
+}
+canvas.addEventListener('pointerup', endDrag);
+canvas.addEventListener('pointercancel', endDrag);
+
 function animate() {
   const dt = clock.getDelta();
   const t = clock.getElapsedTime();
   for (const g of [legGroup, armGroup]) {
     if (g.children.length === 0) continue;
+    if (g.userData.dragging) continue;
     g.rotation.y += dt * (g.userData.spin || 0.2);
     g.rotation.x = Math.sin(t * 0.4) * 0.05;
   }
