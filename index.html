@@ -353,6 +353,10 @@ function loadInto(file, group, opts) {
     const center = box.getCenter(new THREE.Vector3());
     const size = box.getSize(new THREE.Vector3());
     gltf.scene.position.sub(center);
+    if (opts.flipUp) {
+      // Flip on Z so the model is upside down (hand becomes the new top).
+      gltf.scene.rotation.z = Math.PI;
+    }
     gltf.scene.userData.naturalHeight = size.y;
     group.add(gltf.scene);
     group.userData.spin = opts.spin;
@@ -361,11 +365,11 @@ function loadInto(file, group, opts) {
   });
 }
 
-// Diagonal placement: leg in upper-right area, arm in lower-left area.
-// Positions are in world units; camera is at z~2.4 with FOV 38, so ±0.7
-// keeps each model away from the center text but still on screen.
+// Leg: hangs from the top — top-of-thigh clipped above the screen.
+// Arm: rises from the bottom — humerus + shoulder mass clipped below
+// the screen, hand pointing up.
 loadInto('legs.glb', legGroup, { spin: 0.22 });
-loadInto('arms.glb', armGroup, { spin: 0.18 });
+loadInto('arms.glb', armGroup, { spin: 0.18, flipUp: true });
 
 // Compute placement + scale so the two models hug opposite visible corners
 // and stay on screen on any aspect ratio (mobile portrait through landscape).
@@ -379,15 +383,15 @@ function layoutModels() {
   const visibleW = visibleH * aspect;
   const portrait = aspect < 1;
 
-  // Both models anchor near the top of the screen, one on each side.
-  // The bbox of each model includes the soft tissues (e.g. gluteus
-  // muscles for the leg) which extend well above the bones. We want
-  // only that upper soft-tissue portion clipped off the top, with the
-  // bones (femur/humerus through foot/hand) clearly visible.
+  // Leg hangs from the top edge (positive yFrac) on the right side; the
+  // upper soft-tissue mass is clipped above the viewport.
+  // Arm — already flipped on Z at load time so the hand is its visual
+  // top — rises from the bottom edge (negative yFrac) on the left side;
+  // the humerus + shoulder mass is clipped below the viewport.
   const xFrac = portrait ? 0.32 : 0.42;
   const yFrac = portrait ? 0.22 : 0.18;
-  legGroup.position.set( visibleW * xFrac, visibleH * yFrac, 0);
-  armGroup.position.set(-visibleW * xFrac, visibleH * yFrac, 0);
+  legGroup.position.set( visibleW * xFrac,  visibleH * yFrac, 0);
+  armGroup.position.set(-visibleW * xFrac, -visibleH * yFrac, 0);
 
   // 50% bigger than the original tuning.
   const targetH = portrait
