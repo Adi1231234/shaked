@@ -95,39 +95,97 @@
   #app { transition: opacity 0.6s ease 0.1s; }
 
   header {
-    padding: max(env(safe-area-inset-top), 12px) 16px 6px;
-    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 35;
+    padding: max(env(safe-area-inset-top), 10px) 16px 10px;
+    display: grid;
+    grid-template-columns: 84px 1fr 84px;
     align-items: center;
-    justify-content: space-between;
     gap: 10px;
+    background: transparent;
+    border-bottom: 1px solid rgba(126,232,255,0.12);
+    backdrop-filter: none;
   }
-  .greeting { display: flex; flex-direction: column; line-height: 1.15; text-decoration: none; color: inherit; cursor: pointer; }
-  .greeting:hover .hi { color: var(--cyan); }
-  .greeting .hi { font-size: 12px; color: var(--ink-dim); letter-spacing: 0.04em; transition: color .2s; }
-  .greeting .name {
+  .top-back {
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--ink-dim);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: color .2s ease;
+  }
+  .top-back:hover { color: var(--cyan); }
+  .top-back-icon {
+    font-size: 16px;
+    line-height: 1;
+  }
+  .brand-title {
+    justify-self: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    line-height: 1;
+  }
+  .brand-heart {
+    color: #c7f3ff;
+    font-size: 22px;
+    filter: drop-shadow(0 0 12px rgba(126,232,255,0.35));
+  }
+  .brand-name {
     font-weight: 800;
-    font-size: 21px;
+    font-size: 24px;
     background: linear-gradient(120deg, var(--cyan), var(--rose-soft) 60%, var(--gold));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
   .exam-progress {
-    font-size: 13px;
-    color: var(--ink-dim);
-    background: rgba(126,232,255,0.06);
-    border: 1px solid rgba(126,232,255,0.18);
-    border-radius: 999px;
-    padding: 6px 12px;
-    gap: 6px;
+    width: min(520px, calc(100% - 32px));
+    font-size: 12px;
+    color: var(--ink);
+    background: rgba(7,11,28,0.72);
+    border: 1px solid rgba(126,232,255,0.20);
+    border-radius: 14px;
+    padding: 8px 10px;
+    gap: 10px;
     align-items: center;
+    justify-content: space-between;
+    align-self: center;
     display: none;
+    box-shadow: 0 10px 26px -20px rgba(126,232,255,0.5);
   }
   body.mode-quiz .exam-progress { display: inline-flex; }
-  body.mode-practice .exam-progress-total { display: none; }
-  body.mode-practice .exam-progress-slash { display: none; }
-  .exam-progress b { color: var(--cyan); font-weight: 700; }
-  .exam-progress-sep { opacity: 0.5; }
+  body.mode-practice .exam-progress-total,
+  body.mode-practice .exam-progress-slash {
+    display: none;
+  }
+  .exam-progress-stats,
+  .exam-progress-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .exam-progress-item {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    white-space: nowrap;
+  }
+  .exam-progress b {
+    color: var(--cyan);
+    font-size: 15px;
+    font-weight: 800;
+  }
+  .exam-progress-sep {
+    width: 1px;
+    height: 18px;
+    background: rgba(255,255,255,0.11);
+  }
+  .exam-progress-label { color: var(--ink-soft); font-size: 11px; }
 
   .header-btn {
     background: rgba(126,232,255,0.06);
@@ -148,51 +206,96 @@
     display: none;
   }
   .back-to-overview:hover { background: rgba(255,95,143,0.18); border-color: rgba(255,95,143,0.45); }
-  body.mode-quiz #header-history { display: none; }
-  body.mode-quiz #back-home { display: none; }
   body.mode-quiz .back-to-overview { display: inline-flex; align-items: center; }
+  body.mode-practice .back-to-overview { display: none; }
+  .exam-progress .back-to-overview {
+    padding: 6px 10px;
+    font-size: 12px;
+    font-weight: 700;
+  }
 
   /* ===== Screens ===== */
   .screen { display: flex; flex-direction: column; flex: 1; min-height: 0; }
 
-  /* Hide controls bar entirely during quiz/practice for full-screen 3D. */
-  body.mode-quiz .main-controls { display: none; }
   .main-controls { display: flex; flex-direction: column; gap: 0; }
+  body.mode-quiz:not(.mode-practice) .main-controls .tabs,
+  body.mode-quiz:not(.mode-practice) .main-controls > .row,
+  body.mode-quiz:not(.mode-practice) .search-wrap,
+  body.mode-quiz:not(.mode-practice) .tab-actions {
+    display: none;
+  }
+  .main-controls .exam-progress {
+    margin: 0 16px 8px;
+    max-width: calc(100% - 32px);
+  }
+  body.panel-exam:not(.mode-quiz) .stage,
+  body.panel-exam:not(.mode-quiz) .info {
+    display: none;
+  }
 
   /* ===== Main tabs (חקירה / תרגול / מבחן) ===== */
   nav.main-tabs {
     display: flex;
-    gap: 4px;
-    margin: 4px 16px 8px;
-    padding: 3px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 14px;
+    gap: 28px;
+    margin: 6px 16px 12px;
+    padding: 0 2px;
+    border-bottom: 1px solid rgba(255,255,255,0.10);
   }
   .m-tab {
-    flex: 1;
+    flex: 0 0 auto;
     background: transparent;
     border: none;
     color: var(--ink-soft);
-    border-radius: 10px;
-    padding: 8px 10px;
+    border-radius: 0;
+    padding: 11px 0 12px;
     font: inherit;
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 700;
     cursor: pointer;
-    transition: all .2s ease;
+    position: relative;
+    transition: color .2s ease;
+  }
+  .m-tab::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: -1px;
+    height: 3px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--cyan), var(--rose-soft));
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform .2s ease;
   }
   .m-tab:hover { color: var(--ink-dim); }
   .m-tab.active {
-    background: linear-gradient(135deg, rgba(126,232,255,0.16), rgba(255,95,143,0.10));
     color: var(--ink);
-    box-shadow: 0 4px 14px -8px rgba(126,232,255,0.5);
+  }
+  .m-tab.active::after {
+    transform: scaleX(1);
   }
 
   /* ===== Tab-specific actions (only visible on matching panel) ===== */
   .tab-actions { display: none; padding: 4px 16px 8px; }
   body.panel-practice .tab-actions[data-panel="practice"] { display: block; }
   body.panel-exam .tab-actions[data-panel="exam"] { display: block; }
+  body.mode-quiz .tab-actions[data-panel="exam"] { display: none; }
+  body.panel-exam:not(.mode-quiz) .main-controls {
+    flex: 1;
+    min-height: 0;
+  }
+  body.panel-exam:not(.mode-quiz) .tab-actions[data-panel="exam"] {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  body.show-exam-config .tab-actions[data-panel="exam"] { display: none; }
+  body.panel-exam .tabs,
+  body.panel-exam #main-controls > .row {
+    display: none;
+  }
   /* Search box only relevant in overview (free explore) — hidden in practice/exam tab. */
   body.panel-practice .search-wrap,
   body.panel-exam .search-wrap { display: none; }
@@ -205,6 +308,171 @@
     align-self: stretch;
     display: flex; align-items: center;
   }
+  .exam-inline-history {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid rgba(126,232,255,0.14);
+    border-radius: 14px;
+    background: rgba(255,255,255,0.025);
+  }
+  body.panel-exam:not(.mode-quiz) .exam-inline-history {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .exam-overview {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 10px;
+    text-align: right;
+  }
+  .exam-overview-title {
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .exam-stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .exam-stat {
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 8px 10px;
+    min-width: 0;
+  }
+  .exam-stat-value {
+    color: var(--cyan);
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+  .exam-stat-label {
+    color: var(--ink-soft);
+    font-size: 10.5px;
+    margin-top: 3px;
+    white-space: nowrap;
+  }
+  .exam-trend.up .exam-stat-value { color: var(--green); }
+  .exam-trend.down .exam-stat-value { color: var(--rose-soft); }
+  .exam-chart {
+    width: 100%;
+    height: 128px;
+    border: 1px solid rgba(126,232,255,0.12);
+    border-radius: 12px;
+    background:
+      linear-gradient(180deg, rgba(126,232,255,0.05), transparent),
+      rgba(3,5,11,0.18);
+    overflow: visible;
+  }
+  .exam-chart text {
+    fill: var(--ink-soft);
+    font-size: 10px;
+  }
+  .exam-chart-line {
+    fill: none;
+    stroke: var(--cyan);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .exam-chart-point {
+    fill: var(--rose-soft);
+    stroke: #081023;
+    stroke-width: 2;
+    cursor: pointer;
+  }
+  .exam-chart-point.active {
+    fill: var(--green);
+    stroke: var(--ink);
+  }
+  .exam-chart-hit {
+    fill: transparent;
+    cursor: pointer;
+  }
+  .exam-chart-wrap {
+    position: relative;
+  }
+  .exam-chart-tooltip {
+    position: absolute;
+    display: none;
+    transform: translate(-50%, calc(-100% - 10px));
+    pointer-events: none;
+    z-index: 3;
+    color: var(--ink);
+    background: rgba(7,11,28,0.95);
+    border: 1px solid rgba(126,232,255,0.28);
+    border-radius: 10px;
+    padding: 7px 10px;
+    font-size: 12px;
+    line-height: 1.25;
+    white-space: nowrap;
+    box-shadow: 0 12px 28px -18px rgba(0,0,0,0.9);
+  }
+  .exam-inline-history .history-list {
+    max-height: 170px;
+    margin: 0;
+  }
+  body.panel-exam:not(.mode-quiz) .exam-inline-history .history-list {
+    flex: 1;
+    max-height: none;
+  }
+  .exam-config-grid { display: grid; gap: 14px; text-align: right; }
+  .exam-config-group { display: grid; gap: 8px; }
+  .exam-config-label {
+    color: var(--ink-dim);
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .exam-choice-row { display: flex; gap: 8px; }
+  .exam-choice { flex: 1; position: relative; }
+  .exam-choice input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .exam-choice span {
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(126,232,255,0.18);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.035);
+    color: var(--ink-dim);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .15s ease, border-color .15s ease, color .15s ease;
+  }
+  .exam-choice input:checked + span {
+    background: linear-gradient(135deg, rgba(126,232,255,0.18), rgba(255,95,143,0.12));
+    border-color: rgba(126,232,255,0.45);
+    color: var(--ink);
+  }
+  .exam-config-error {
+    min-height: 18px;
+    color: var(--rose-soft);
+    font-size: 12px;
+    text-align: center;
+  }
+  .practice-reset-btn {
+    display: none;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.10);
+    color: var(--ink-dim);
+    border-radius: 999px;
+    padding: 6px 10px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .practice-reset-btn:hover { color: var(--cyan); border-color: rgba(126,232,255,0.28); }
+  body.mode-practice .practice-reset-btn { display: inline-flex; }
 
   /* ===== Start exam / practice buttons ===== */
   .start-btn, .practice-btn {
@@ -375,7 +643,7 @@
   }
   .hint {
     position: absolute;
-    top: 10px;
+    top: 18px;
     right: 10px;
     z-index: 6;
     text-align: right;
@@ -398,7 +666,7 @@
     color: var(--cyan);
     opacity: 0.85;
   }
-  body.mode-quiz .hint { top: 64px; }
+  body.mode-quiz .hint { top: 18px; }
   .hint.hide {
     opacity: 0;
     transform: translateY(-4px);
@@ -425,21 +693,105 @@
   .reset-btn:active { transform: rotate(-180deg); }
 
   .quiz-prompt {
-    position: absolute;
-    top: 10px; right: 10px; left: 10px;
-    background: rgba(7,11,28,0.85);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,95,143,0.25);
-    border-radius: 14px;
-    padding: 8px 14px;
+    margin: 0 16px 8px;
+    width: calc(100% - 32px);
+    align-self: center;
+    background: rgba(7,11,28,0.88);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,95,143,0.42);
+    border-radius: 16px;
+    padding: 10px 16px;
     text-align: center;
     font-size: 14px;
     display: none;
+    box-shadow: 0 18px 46px -26px rgba(255,95,143,0.65);
   }
-  body.mode-quiz .quiz-prompt { display: block; }
-  .quiz-prompt .ask { color: var(--ink-dim); font-size: 11px; letter-spacing: 0.05em; }
-  .quiz-prompt .target { color: var(--rose-soft); font-weight: 500; font-size: 16px; margin-top: 1px; }
-  .quiz-prompt .target em { font-style: normal; color: var(--ink); font-size: 13px; opacity: 0.85; }
+  body.mode-quiz .quiz-prompt { display: flex; flex-direction: column; }
+  .quiz-prompt .ask {
+    color: var(--cyan);
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .quiz-prompt .ask::before {
+    content: "שאלה במבחן · ";
+    color: var(--rose-soft);
+  }
+  .quiz-prompt .target { color: var(--rose-soft); font-weight: 800; font-size: 18px; margin-top: 3px; line-height: 1.25; }
+  .quiz-prompt .target em { font-style: normal; color: var(--ink); font-size: 14px; opacity: 0.9; }
+  .answer-note {
+    display: none;
+    width: 100%;
+    border-radius: 10px;
+    padding: 8px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.35;
+    text-align: right;
+  }
+  .answer-note.show { display: block; }
+  .answer-note.wrong {
+    color: var(--rose-soft);
+    background: rgba(255,95,143,0.10);
+    border: 1px solid rgba(255,95,143,0.24);
+  }
+  .answer-note.correct {
+    color: var(--green);
+    background: rgba(95,255,176,0.08);
+    border: 1px solid rgba(95,255,176,0.22);
+  }
+  .answer-note b { color: var(--ink); font-weight: 800; }
+  .answer-note-title {
+    display: block;
+    font-size: 13px;
+    font-weight: 900;
+    margin-bottom: 6px;
+  }
+  .answer-note-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 4px;
+  }
+  .answer-note-row + .answer-note-row {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin-top: 4px;
+  }
+  .answer-note-label {
+    color: var(--ink-soft);
+    flex: 0 0 auto;
+  }
+  .answer-note-value {
+    color: var(--ink);
+    font-weight: 800;
+    text-align: left;
+    direction: ltr;
+  }
+  body.mode-quiz .info .info-dot,
+  body.mode-quiz .info .primary,
+  body.mode-quiz .info .secondary,
+  body.mode-quiz .info .desc {
+    display: none;
+  }
+  body.mode-quiz .info .info-text {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  body.mode-quiz .info {
+    height: 116px;
+    align-items: center;
+    justify-content: center;
+  }
+  body.mode-quiz .info.empty {
+    opacity: 1;
+  }
+  .quiz-prompt::after {
+    content: "לחצי על המבנה המתאים במודל";
+    display: block;
+    margin-top: 6px;
+    color: var(--ink-dim);
+    font-size: 12px;
+  }
 
   /* Search box + dropdown */
   .search-wrap {
@@ -698,14 +1050,15 @@
     background: rgba(255,95,143,0.10);
     border: 1px solid rgba(255,95,143,0.3);
     color: var(--rose-soft);
-    border-radius: 10px;
-    padding: 7px 11px;
+    border-radius: 999px;
+    padding: 6px 10px;
     font: inherit;
     font-size: 12px;
+    font-weight: 700;
     cursor: pointer;
     display: none;
   }
-  body.mode-quiz .skip { display: block; }
+  body.mode-quiz .exam-progress-actions .skip { display: inline-flex; align-items: center; justify-content: center; }
 
   /* ===== Modal overlays (history + results) ===== */
   .modal-overlay {
@@ -722,6 +1075,8 @@
   }
   body.show-results #results-overlay { display: flex; }
   body.show-history #history-overlay { display: flex; }
+  body.show-exam-config #exam-config-overlay { display: flex; }
+  body.show-results #results-overlay { align-items: stretch; }
   @keyframes overlay-in {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -740,6 +1095,14 @@
     animation: card-in 0.4s cubic-bezier(.2,.9,.3,1.2);
     scrollbar-width: thin;
     scrollbar-color: rgba(126,232,255,0.35) transparent;
+  }
+  #results-overlay .results-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .results-summary {
+    flex: 0 0 auto;
   }
   @keyframes card-in {
     from { transform: translateY(20px) scale(0.96); opacity: 0; }
@@ -792,6 +1155,11 @@
     text-align: right;
     margin: 14px 0 18px;
   }
+  #results-overlay .mistakes-section {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
   .mistakes-section.empty { display: none; }
   .mistakes-title {
     font-size: 13px;
@@ -803,6 +1171,13 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
+  }
+  #results-overlay .mistakes-list {
+    max-height: 100%;
+    overflow-y: auto;
+    padding-left: 2px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(126,232,255,0.35) transparent;
   }
   .mistake-item {
     background: rgba(255,95,143,0.06);
@@ -836,12 +1211,33 @@
     gap: 8px;
     margin-top: 8px;
   }
+  #results-overlay .results-actions {
+    flex: 0 0 auto;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    background: linear-gradient(180deg, rgba(6,10,23,0), #060a17 24%);
+  }
   .results-btn { margin-top: 0; }
 
   .confetti { position: absolute; pointer-events: none; font-size: 22px; animation: fall 1.4s ease-out forwards; }
   @keyframes fall {
     0% { transform: translate(0,-10px) rotate(0); opacity: 1; }
     100% { transform: translate(var(--dx,0), 200px) rotate(var(--r,720deg)); opacity: 0; }
+  }
+  @media (max-width: 430px) {
+    .exam-progress {
+      align-items: stretch;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .exam-progress-stats,
+    .exam-progress-actions {
+      justify-content: space-between;
+    }
+    .exam-progress-actions > button {
+      flex: 1;
+      justify-content: center;
+    }
   }
 </style>
 
@@ -867,16 +1263,15 @@
 
 <div id="app">
   <header>
-    <a class="greeting" href="./index.html" id="back-home">
-      <span class="hi">← חזרה</span>
-      <span class="name">שקד 💜</span>
+    <a class="top-back" href="./index.html" id="back-home" aria-label="&#1495;&#1494;&#1512;&#1492; &#1500;&#1506;&#1502;&#1493;&#1491; &#1492;&#1489;&#1497;&#1514;">
+      <span class="top-back-icon">&rarr;</span>
+      <span>&#1495;&#1494;&#1512;&#1492;</span>
     </a>
-    <button class="header-btn back-to-overview" id="back-to-overview" aria-label="יציאה">✕ סיום</button>
-    <div class="exam-progress" id="exam-progress">
-      <span><b id="q-num">1</b><span class="exam-progress-slash">/</span><span class="exam-progress-total" id="q-total">20</span></span>
-      <span class="exam-progress-sep">·</span>
-      <span>ניקוד <b id="score-num">0</b></span>
+    <div class="brand-title" aria-label="&#1513;&#1511;&#1491;">
+      <span class="brand-heart">&hearts;</span>
+      <span class="brand-name">&#1513;&#1511;&#1491;</span>
     </div>
+    <div aria-hidden="true"></div>
   </header>
 
   <!-- ===== MAIN SCREEN: 3D viewer + controls ===== -->
@@ -887,6 +1282,18 @@
         <button class="m-tab" data-tab="practice">תרגול</button>
         <button class="m-tab" data-tab="exam">מבחן</button>
       </nav>
+      <div class="exam-progress" id="exam-progress">
+        <div class="exam-progress-stats">
+          <span class="exam-progress-item"><span class="exam-progress-label">שאלה</span> <b id="q-num">1</b><span class="exam-progress-slash"> מתוך </span><span class="exam-progress-total" id="q-total">20</span></span>
+          <span class="exam-progress-sep" aria-hidden="true"></span>
+          <span class="exam-progress-item"><span class="exam-progress-label">ניקוד</span> <b id="score-num">0</b></span>
+        </div>
+        <div class="exam-progress-actions">
+          <button class="practice-reset-btn" id="practice-reset" type="button">איפוס</button>
+          <button class="skip" id="skip">דלגי ←</button>
+          <button class="header-btn back-to-overview" id="back-to-overview" aria-label="יציאה">✕ סיום</button>
+        </div>
+      </div>
       <nav class="tabs">
         <button class="tab active" data-limb="legs">רגל</button>
         <button class="tab" data-limb="arms">יד</button>
@@ -905,29 +1312,29 @@
       </div>
 
       <!-- Tab-specific actions, shown only on practice/exam tabs -->
-      <div class="tab-actions" data-panel="practice">
-        <button class="practice-btn" id="start-practice">
-          <span class="start-btn-main">התחל תרגול</span>
-          <span class="start-btn-sub">ללא הגבלת שאלות · ללא שמירה</span>
-        </button>
-      </div>
+      <div class="tab-actions" data-panel="practice"></div>
       <div class="tab-actions" data-panel="exam">
         <div class="exam-actions-row">
           <button class="start-btn" id="start-exam">
             <span class="start-btn-main">התחל מבחן</span>
-            <span class="start-btn-sub">20 שאלות · נשמר</span>
+            <span class="start-btn-sub">בחירת שאלות ונושאים · נשמר</span>
           </button>
-          <button class="header-btn exam-history-btn" id="header-history">📋 היסטוריה</button>
+        </div>
+        <div class="exam-inline-history">
+          <div class="exam-overview" id="exam-overview"></div>
+          <div class="history-list" id="exam-history-list">
+            <div class="history-empty">עוד אין מבחנים שמורים</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="stage" id="stage">
-      <div class="loader" id="loader"><div class="pulse"></div>טוען מודל…</div>
       <div class="quiz-prompt" id="prompt">
         <div class="ask" id="ask">איפה נמצא</div>
         <div class="target" id="target">—</div>
       </div>
+      <div class="stage" id="stage">
+      <div class="loader" id="loader"><div class="pulse"></div>טוען מודל…</div>
       <div class="feedback" id="feedback"></div>
       <button class="reset-btn" id="reset-view" aria-label="אפס מיקום" title="אפס מיקום">↻</button>
       <ul class="hint" id="hint">
@@ -943,10 +1350,47 @@
         <div class="primary" id="info-primary">לחצי על מבנה כדי לראות את שמו</div>
         <div class="secondary" id="info-secondary"></div>
         <div class="desc" id="info-desc"></div>
+        <div class="answer-note" id="answer-note"></div>
       </div>
-      <button class="skip" id="skip">דלגי ←</button>
     </div>
   </section>
+
+  <!-- ===== EXAM CONFIG OVERLAY ===== -->
+  <div class="modal-overlay" id="exam-config-overlay">
+    <div class="results-card">
+      <div class="results-title">הגדרת מבחן</div>
+      <div class="exam-config-grid">
+        <div class="exam-config-group">
+          <div class="exam-config-label">כמה שאלות?</div>
+          <div class="exam-choice-row">
+            <label class="exam-choice"><input type="radio" name="exam-count" value="10"><span>10</span></label>
+            <label class="exam-choice"><input type="radio" name="exam-count" value="20" checked><span>20</span></label>
+            <label class="exam-choice"><input type="radio" name="exam-count" value="30"><span>30</span></label>
+          </div>
+        </div>
+        <div class="exam-config-group">
+          <div class="exam-config-label">איזה אזור?</div>
+          <div class="exam-choice-row">
+            <label class="exam-choice"><input type="radio" name="exam-limb" value="legs" checked><span>רגל</span></label>
+            <label class="exam-choice"><input type="radio" name="exam-limb" value="arms"><span>יד</span></label>
+          </div>
+        </div>
+        <div class="exam-config-group">
+          <div class="exam-config-label">באיזה נושאים?</div>
+          <div class="exam-choice-row">
+            <label class="exam-choice"><input type="checkbox" name="exam-topic" value="Bones" checked><span>עצמות</span></label>
+            <label class="exam-choice"><input type="checkbox" name="exam-topic" value="Muscles"><span>שרירים</span></label>
+            <label class="exam-choice"><input type="checkbox" name="exam-topic" value="Veins"><span>ורידים</span></label>
+          </div>
+        </div>
+        <div class="exam-config-error" id="exam-config-error"></div>
+      </div>
+      <div class="results-actions">
+        <button class="start-btn results-btn" id="exam-config-start">התחל</button>
+        <button class="learn-link" id="exam-config-close">ביטול</button>
+      </div>
+    </div>
+  </div>
 
   <!-- ===== HISTORY OVERLAY ===== -->
   <div class="modal-overlay" id="history-overlay">
@@ -965,13 +1409,15 @@
   <!-- ===== RESULTS OVERLAY ===== -->
   <div class="modal-overlay" id="results-overlay">
     <div class="results-card">
-      <div class="results-emoji" id="results-emoji">🎉</div>
-      <div class="results-title" id="results-title">סיימת!</div>
-      <div class="results-score">
-        <span id="r-score">0</span><span class="results-sep">/</span><span id="r-total">20</span>
+      <div class="results-summary">
+        <div class="results-emoji" id="results-emoji">🎉</div>
+        <div class="results-title" id="results-title">סיימת!</div>
+        <div class="results-score">
+          <span id="r-score">0</span><span class="results-sep">/</span><span id="r-total">20</span>
+        </div>
+        <div class="results-pct" id="r-pct">0%</div>
+        <div class="results-meta" id="r-meta"></div>
       </div>
-      <div class="results-pct" id="r-pct">0%</div>
-      <div class="results-meta" id="r-meta"></div>
 
       <div class="mistakes-section" id="r-mistakes-section">
         <div class="mistakes-title">טעויות (<span id="r-mistakes-count">0</span>)</div>
@@ -1462,16 +1908,15 @@ function setSelection(p, color = SELECT_COLOR) {
 const raycaster = new THREE.Raycaster();
 const ndc = new THREE.Vector2();
 
-const PICK_RADIUS_PX = 22;
+const PICK_RADIUS_PX = 10;
 const PICK_RING = (() => {
-  // 1 center + 8 directions at 1x radius + 8 directions at 0.55x radius
+  // 1 center + a tight 8-ray ring. Keep this small so hotspot markers do not
+  // steal taps that land clearly beside them.
   const out = [[0, 0]];
   const dirs = 8;
-  for (const r of [1.0, 0.55]) {
-    for (let i = 0; i < dirs; i++) {
-      const a = (i / dirs) * Math.PI * 2;
-      out.push([Math.cos(a) * r, Math.sin(a) * r]);
-    }
+  for (let i = 0; i < dirs; i++) {
+    const a = (i / dirs) * Math.PI * 2;
+    out.push([Math.cos(a), Math.sin(a)]);
   }
   return out;
 })();
@@ -1517,13 +1962,17 @@ function pickFromEvent(ev) {
       bestAny = rayPick;
     }
   }
-  // Hotspots always win if any was hit anywhere in the fan, even if a bone hit
-  // landed closer to center: tiny markers need this magnetism to be tappable.
-  const winner = bestHotspot || bestAny;
+  const winner = bestHotspotPenalty <= bestAnyPenalty ? bestHotspot : bestAny;
   return winner ? meshToP.get(winner) || null : null;
 }
 
 let downPos = null;
+renderer.domElement.addEventListener('pointermove', (e) => {
+  renderer.domElement.style.cursor = pickFromEvent(e) ? 'pointer' : '';
+});
+renderer.domElement.addEventListener('pointerleave', () => {
+  renderer.domElement.style.cursor = '';
+});
 renderer.domElement.addEventListener('pointerdown', (e) => { downPos = { x: e.clientX, y: e.clientY }; });
 renderer.domElement.addEventListener('pointerup', (e) => {
   if (!downPos) return;
@@ -1771,6 +2220,9 @@ const HISTORY_KEY = 'shaked-quiz-history-v1';
 let mode = 'learn';
 let target = null;
 let score = 0;
+let activeResultsRecord = null;
+let answerLocked = false;
+let examRunSeq = 0;
 
 // Active exam (null when not running)
 let exam = null;
@@ -1782,9 +2234,11 @@ const layerState = { Bones: true, Muscles: false, Veins: false };
 const promptEl = document.getElementById('prompt');
 const askEl = document.getElementById('ask');
 const targetEl = document.getElementById('target');
+const answerNoteEl = document.getElementById('answer-note');
 const scoreNum = document.getElementById('score-num');
 const qNumEl = document.getElementById('q-num');
 const qTotalEl = document.getElementById('q-total');
+const examConfigError = document.getElementById('exam-config-error');
 
 function applyLayerVisibility() {
   for (const [name, node] of Object.entries(layerNodes)) {
@@ -1800,6 +2254,28 @@ function askPrefix(layer) {
   return layer === 'Veins' ? 'איפה נמצא הוריד' : layer === 'Muscles' ? 'איפה נמצא השריר' : 'איפה נמצאת העצם';
 }
 
+function displayName(p) {
+  return p?.info?.heb || p?.info?.lat || p?.nodeName || '—';
+}
+
+function setAnswerNote(kind, html = '') {
+  answerNoteEl.className = `answer-note${kind ? ` ${kind} show` : ''}`;
+  answerNoteEl.innerHTML = html;
+}
+
+function answerFeedbackHtml(picked, correct) {
+  return `
+    <span class="answer-note-title">לא נכון</span>
+    <span class="answer-note-row">
+      <span class="answer-note-label">הבחירה שלך</span>
+      <span class="answer-note-value">${displayName(picked)}</span>
+    </span>
+    <span class="answer-note-row">
+      <span class="answer-note-label">התשובה הנכונה</span>
+      <span class="answer-note-value">${displayName(correct)}</span>
+    </span>`;
+}
+
 function setMode(next) {
   mode = next;
   document.body.classList.toggle('mode-quiz', next === 'quiz');
@@ -1807,7 +2283,7 @@ function setMode(next) {
 
 // Active main tab: 'overview' | 'practice' | 'exam'.
 let activeTab = 'overview';
-function setActiveTab(name) {
+function setActiveTab(name, opts = {}) {
   activeTab = name;
   for (const btn of document.querySelectorAll('.m-tab')) {
     btn.classList.toggle('active', btn.dataset.tab === name);
@@ -1815,6 +2291,13 @@ function setActiveTab(name) {
   document.body.classList.toggle('panel-overview', name === 'overview');
   document.body.classList.toggle('panel-practice', name === 'practice');
   document.body.classList.toggle('panel-exam', name === 'exam');
+  if (!opts.skipUrl) {
+    const url = new URL(window.location.href);
+    if (name === 'overview') url.searchParams.delete('tab');
+    else url.searchParams.set('tab', name);
+    history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+  }
+  if (name === 'exam') renderHistory('exam-history-list');
 }
 
 // ===== Exam flow =====
@@ -1835,9 +2318,11 @@ function buildExamQuestions(limb, topics, limit = QUESTIONS_PER_EXAM) {
   return Number.isFinite(limit) ? uniquePool.slice(0, limit) : uniquePool;
 }
 
-function startSession(kind) {
-  const topics = Object.keys(layerState).filter(t => layerState[t]);
+function startSession(kind, options = {}) {
+  const topics = options.topics || Object.keys(layerState).filter(t => layerState[t]);
   if (!topics.length) return;
+  const limb = options.limb || currentLimb;
+  const questionLimit = options.questionCount || QUESTIONS_PER_EXAM;
 
   setMode('quiz');
   document.body.classList.toggle('mode-practice', kind === 'practice');
@@ -1846,17 +2331,24 @@ function startSession(kind) {
   // stage grew taller.
   if (currentRoot) requestAnimationFrame(() => frameModel(currentRoot));
 
-  const allQuestions = buildExamQuestions(currentLimb, topics, kind === 'practice' ? Infinity : QUESTIONS_PER_EXAM);
+  const hasExplicitQuestions = Array.isArray(options.questions);
+  const allQuestions = hasExplicitQuestions
+    ? options.questions.slice(0, questionLimit)
+    : buildExamQuestions(limb, topics, kind === 'practice' ? Infinity : questionLimit);
+  if (!allQuestions.length) return;
   exam = {
     kind,
-    limb: currentLimb,
+    runId: ++examRunSeq,
+    limb,
     topics: [...topics],
     questions: allQuestions,
     idx: 0,
+    answered: 0,
     score: 0,
     mistakes: [],
     startedAt: Date.now(),
   };
+  answerLocked = false;
   score = 0;
   scoreNum.textContent = '0';
   qTotalEl.textContent = String(allQuestions.length);
@@ -1865,7 +2357,84 @@ function startSession(kind) {
 function startExam() { return startSession('exam'); }
 function startPractice() { return startSession('practice'); }
 
+function resetPractice() {
+  if (!exam || exam.kind !== 'practice') return;
+  exam.idx = 0;
+  exam.answered = 0;
+  exam.score = 0;
+  exam.mistakes = [];
+  score = 0;
+  scoreNum.textContent = '0';
+  presentExamQuestion();
+}
+
+function showExamConfig() {
+  examConfigError.textContent = '';
+  document.querySelector(`input[name="exam-limb"][value="${currentLimb}"]`)?.click();
+  for (const input of document.querySelectorAll('input[name="exam-topic"]')) {
+    input.checked = !!layerState[input.value];
+  }
+  document.body.classList.add('show-exam-config');
+}
+
+function hideExamConfig() {
+  document.body.classList.remove('show-exam-config');
+}
+
+async function startConfiguredExam() {
+  const count = Number(document.querySelector('input[name="exam-count"]:checked')?.value || QUESTIONS_PER_EXAM);
+  const limb = document.querySelector('input[name="exam-limb"]:checked')?.value || currentLimb;
+  const topics = [...document.querySelectorAll('input[name="exam-topic"]:checked')].map(input => input.value);
+  if (!topics.length) {
+    examConfigError.textContent = 'צריך לבחור לפחות נושא אחד';
+    return;
+  }
+
+  hideExamConfig();
+  for (const key of Object.keys(layerState)) layerState[key] = topics.includes(key);
+  syncLayerButtons();
+  if (limb !== currentLimb) {
+    currentLimb = limb;
+    syncLimbTabs();
+    await loadLimb(currentLimb);
+  } else {
+    applyLayerVisibility();
+  }
+  startSession('exam', { limb, topics, questionCount: count });
+}
+
+async function startMistakeExam(rec) {
+  const mistakes = normalizedMistakes(rec);
+  const topics = [...new Set(mistakes.map(m => m.correctLayer).filter(Boolean))];
+  if (!rec || !mistakes.length || !topics.length) return;
+
+  for (const key of Object.keys(layerState)) layerState[key] = topics.includes(key);
+  syncLayerButtons();
+  if (rec.limb !== currentLimb) {
+    currentLimb = rec.limb;
+    syncLimbTabs();
+    await loadLimb(currentLimb);
+  } else {
+    applyLayerVisibility();
+  }
+
+  const questions = [];
+  for (const mistake of mistakes) {
+    const pickable = pickables.find(p => p.layer === mistake.correctLayer && p.nodeName === mistake.correctNodeName)
+      || pickables.find(p => p.layer === mistake.correctLayer && p.info.lat === mistake.correctLat)
+      || pickables.find(p => p.layer === mistake.correctLayer && p.info.heb === mistake.correctHeb);
+    if (pickable) {
+      questions.push(pickable);
+    }
+  }
+  if (questions.length !== mistakes.length) {
+    console.warn(`Mistake exam could match ${questions.length} of ${mistakes.length} saved mistakes.`);
+  }
+  startSession('exam', { limb: rec.limb, topics, questions, questionCount: questions.length });
+}
+
 function presentExamQuestion() {
+  answerLocked = false;
   clearSelection();
   if (!exam) return;
   if (exam.idx >= exam.questions.length) {
@@ -1882,14 +2451,16 @@ function presentExamQuestion() {
     }
   }
   target = exam.questions[exam.idx];
-  qNumEl.textContent = String(exam.idx + 1);
+  qNumEl.textContent = String(exam.kind === 'practice' ? exam.answered + 1 : exam.idx + 1);
   askEl.textContent = askPrefix(target.layer);
   targetEl.innerHTML = `${target.info.lat} <em>· ${target.info.heb}</em>`;
+  setAnswerNote('');
   setInfoEmpty();
 }
 
 function finishExam() {
   if (!exam) return;
+  answerLocked = true;
   const record = {
     id: exam.startedAt,
     date: exam.startedAt,
@@ -1909,10 +2480,12 @@ function finishExam() {
       skipped: !m.picked,
     })),
   };
+  record.mistakes = normalizedMistakes(record);
   saveHistoryEntry(record);
   showResults(record);
   exam = null;
   target = null;
+  examRunSeq++;
 }
 
 function flash(kind) {
@@ -1938,31 +2511,46 @@ function confettiBurst() {
 }
 
 function answerQuestion(picked) {
-  if (!target || !exam) return;
+  if (!target || !exam || answerLocked) return;
+  answerLocked = true;
+  const runId = exam.runId;
   if (picked === target) {
     exam.score++;
     score = exam.score;
     setSelection(picked, CORRECT_COLOR);
-    showInfo(picked);
+    setAnswerNote('correct', 'נכון');
     flash('correct');
     confettiBurst();
     scoreNum.textContent = String(score);
-    setTimeout(() => { exam.idx++; presentExamQuestion(); }, 1100);
+    setTimeout(() => {
+      if (!exam || exam.runId !== runId) return;
+      exam.answered++;
+      exam.idx++;
+      presentExamQuestion();
+    }, 1100);
   } else {
     exam.mistakes.push({ correct: target, picked });
     setSelection(picked, WRONG_COLOR);
     flash('wrong');
     setTimeout(() => {
+      if (!exam || exam.runId !== runId) return;
       setSelection(target, CORRECT_COLOR);
-      showInfo(target);
+      setAnswerNote('wrong', answerFeedbackHtml(picked, target));
     }, 600);
-    setTimeout(() => { exam.idx++; presentExamQuestion(); }, 1900);
+    setTimeout(() => {
+      if (!exam || exam.runId !== runId) return;
+      exam.answered++;
+      exam.idx++;
+      presentExamQuestion();
+    }, 1900);
   }
 }
 
 function skipQuestion() {
-  if (mode !== 'quiz' || !exam || !target) return;
+  if (mode !== 'quiz' || !exam || !target || answerLocked) return;
+  answerLocked = true;
   exam.mistakes.push({ correct: target, picked: null });
+  exam.answered++;
   exam.idx++;
   presentExamQuestion();
 }
@@ -1984,10 +2572,37 @@ function saveHistoryEntry(rec) {
   list.unshift(rec);
   // Keep last 50.
   saveHistory(list.slice(0, 50));
+  renderHistory('exam-history-list');
 }
 
 const TOPIC_HEB = { Bones: 'עצמות', Muscles: 'שרירים', Veins: 'ורידים' };
 const LIMB_HEB  = { legs: 'רגל', arms: 'יד' };
+
+function expectedMistakeCount(rec) {
+  const total = Number(rec?.total) || 0;
+  const score = Number(rec?.score) || 0;
+  return Math.max(0, total - score);
+}
+
+function normalizedMistakes(rec) {
+  const mistakes = Array.isArray(rec?.mistakes) ? [...rec.mistakes] : [];
+  const expected = expectedMistakeCount(rec);
+  if (mistakes.length <= expected) return mistakes;
+
+  const result = [];
+  const seen = new Set();
+  let overflow = mistakes.length - expected;
+  for (const mistake of mistakes) {
+    const key = `${mistake.correctLayer || ''}::${mistake.correctNodeName || mistake.correctLat || mistake.correctHeb || ''}`;
+    if (overflow > 0 && seen.has(key)) {
+      overflow--;
+      continue;
+    }
+    seen.add(key);
+    result.push(mistake);
+  }
+  return result.slice(0, expected);
+}
 
 function formatDate(ts) {
   const d = new Date(ts);
@@ -2001,16 +2616,120 @@ function formatDate(ts) {
   return `${dd}/${mo} ${hh}:${mm}`;
 }
 
-function renderHistory() {
-  const list = loadHistory();
-  const wrap = document.getElementById('history-list');
-  const clearBtn = document.getElementById('history-clear');
+function renderExamOverview(list) {
+  const el = document.getElementById('exam-overview');
+  if (!el) return;
   if (!list.length) {
-    wrap.innerHTML = '<div class="history-empty">עוד אין מבחנים שמורים</div>';
-    clearBtn.hidden = true;
+    el.innerHTML = `
+      <div class="exam-overview-title">סקירה</div>
+      <div class="history-empty">אחרי המבחן הראשון יופיעו כאן ממוצע, מגמה וגרף התקדמות</div>`;
     return;
   }
-  clearBtn.hidden = false;
+
+  const chronological = [...list].reverse();
+  const scores = chronological.map(rec => rec.total ? Math.round((rec.score / rec.total) * 100) : 0);
+  const latest = scores[scores.length - 1];
+  const avg = Math.round(scores.reduce((sum, n) => sum + n, 0) / scores.length);
+  const previous = scores.length > 1 ? scores[scores.length - 2] : latest;
+  const delta = latest - previous;
+  const trendClass = delta > 0 ? 'up' : delta < 0 ? 'down' : '';
+  const trendText = delta > 0 ? `+${delta}%` : delta < 0 ? `${delta}%` : 'ללא שינוי';
+  const best = Math.max(...scores);
+  const width = 340;
+  const height = 128;
+  const padX = 34;
+  const padTop = 16;
+  const padBottom = 36;
+  const chartBottom = height - padBottom;
+  const usableW = width - padX * 2;
+  const usableH = chartBottom - padTop;
+  const points = scores.map((pct, i) => {
+    const x = scores.length === 1 ? width / 2 : padX + (i / (scores.length - 1)) * usableW;
+    const y = padTop + (1 - pct / 100) * usableH;
+    const rec = chronological[i];
+    return { x, y, pct, score: rec.score, total: rec.total, date: formatDate(rec.date), index: i + 1 };
+  });
+  const path = points.map((p, i) => `${i ? 'L' : 'M'} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ');
+  const latestPoint = points[points.length - 1];
+
+  el.innerHTML = `
+    <div class="exam-overview-title">סקירה</div>
+    <div class="exam-stat-row">
+      <div class="exam-stat">
+        <div class="exam-stat-value">${list.length}</div>
+        <div class="exam-stat-label">מבחנים</div>
+      </div>
+      <div class="exam-stat">
+        <div class="exam-stat-value">${avg}%</div>
+        <div class="exam-stat-label">ממוצע</div>
+      </div>
+      <div class="exam-stat">
+        <div class="exam-stat-value">${latest}%</div>
+        <div class="exam-stat-label">אחרון</div>
+      </div>
+      <div class="exam-stat exam-trend ${trendClass}">
+        <div class="exam-stat-value">${trendText}</div>
+        <div class="exam-stat-label">מגמה</div>
+      </div>
+    </div>
+    <div class="exam-chart-wrap">
+    <svg class="exam-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="גרף תשובות נכונות לפי מבחן">
+      <line x1="${padX}" y1="${padTop}" x2="${padX}" y2="${chartBottom}" stroke="rgba(255,255,255,0.12)" />
+      <line x1="${padX}" y1="${chartBottom}" x2="${width - padX}" y2="${chartBottom}" stroke="rgba(255,255,255,0.12)" />
+      <text x="${padX - 8}" y="${padTop + 4}" text-anchor="end">100%</text>
+      <text x="${padX - 8}" y="${chartBottom + 3}" text-anchor="end">0%</text>
+      <text x="${padX}" y="${height - 10}" text-anchor="start">ציר X: מבחנים מהישן לחדש</text>
+      <text x="${width - padX}" y="${height - 10}" text-anchor="end">ציר Y: % נכונות</text>
+      <path class="exam-chart-line" d="${path}" />
+      ${points.map(p => `
+        <circle class="exam-chart-point" data-chart-point="1" data-score="${p.score}" data-total="${p.total}" data-pct="${p.pct}" data-date="${p.date}" data-index="${p.index}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4.5"></circle>
+        <circle class="exam-chart-hit" data-chart-point="1" data-score="${p.score}" data-total="${p.total}" data-pct="${p.pct}" data-date="${p.date}" data-index="${p.index}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="13"></circle>
+      `).join('')}
+    </svg>
+    <div class="exam-chart-tooltip" id="exam-chart-tooltip"></div>
+    </div>`;
+
+  const tooltip = document.getElementById('exam-chart-tooltip');
+  const showTooltip = (point) => {
+    const svg = el.querySelector('.exam-chart');
+    const wrap = el.querySelector('.exam-chart-wrap');
+    if (!svg || !wrap || !tooltip) return;
+    const svgRect = svg.getBoundingClientRect();
+    const wrapRect = wrap.getBoundingClientRect();
+    const x = Number(point.getAttribute('cx'));
+    const y = Number(point.getAttribute('cy'));
+    tooltip.textContent = `מבחן ${point.dataset.index}: ${point.dataset.score}/${point.dataset.total} (${point.dataset.pct}%) · ${point.dataset.date}`;
+    tooltip.style.left = `${((x / width) * svgRect.width) + (svgRect.left - wrapRect.left)}px`;
+    tooltip.style.top = `${((y / height) * svgRect.height) + (svgRect.top - wrapRect.top)}px`;
+    tooltip.style.display = 'block';
+  };
+  for (const point of el.querySelectorAll('[data-chart-point]')) {
+    point.addEventListener('mouseenter', () => showTooltip(point));
+    point.addEventListener('mouseleave', () => {
+      if (!point.classList.contains('active')) tooltip.style.display = 'none';
+    });
+    point.addEventListener('click', () => {
+      el.querySelectorAll('.exam-chart-point').forEach(node => node.classList.remove('active'));
+      const cx = point.getAttribute('cx');
+      const cy = point.getAttribute('cy');
+      el.querySelectorAll(`[data-chart-point][cx="${cx}"][cy="${cy}"]`).forEach(node => node.classList.add('active'));
+      showTooltip(point);
+    });
+  }
+}
+
+function renderHistory(targetId = 'history-list') {
+  const list = loadHistory();
+  const wrap = document.getElementById(targetId);
+  const clearBtn = document.getElementById('history-clear');
+  if (!wrap) return;
+  if (targetId === 'exam-history-list') renderExamOverview(list);
+  if (!list.length) {
+    wrap.innerHTML = '<div class="history-empty">עוד אין מבחנים שמורים</div>';
+    if (clearBtn) clearBtn.hidden = true;
+    return;
+  }
+  if (clearBtn) clearBtn.hidden = false;
   wrap.innerHTML = list.map(rec => {
     const pct = rec.total ? Math.round((rec.score / rec.total) * 100) : 0;
     const cls = pct >= 85 ? 'high' : pct < 60 ? 'low' : '';
@@ -2035,6 +2754,7 @@ function renderHistory() {
 
 // ===== Results overlay =====
 function showResults(rec, opts = {}) {
+  activeResultsRecord = rec;
   const pct = rec.total ? Math.round((rec.score / rec.total) * 100) : 0;
   const emoji = pct >= 90 ? '🏆' : pct >= 75 ? '🎉' : pct >= 50 ? '💪' : '🌱';
   document.getElementById('results-emoji').textContent = emoji;
@@ -2049,13 +2769,14 @@ function showResults(rec, opts = {}) {
 
   const mSection = document.getElementById('r-mistakes-section');
   const mList = document.getElementById('r-mistakes-list');
-  document.getElementById('r-mistakes-count').textContent = String(rec.mistakes.length);
-  if (!rec.mistakes.length) {
+  const mistakes = normalizedMistakes(rec);
+  document.getElementById('r-mistakes-count').textContent = String(mistakes.length);
+  if (!mistakes.length) {
     mSection.classList.add('empty');
     mList.innerHTML = '';
   } else {
     mSection.classList.remove('empty');
-    mList.innerHTML = rec.mistakes.map(m => {
+    mList.innerHTML = mistakes.map(m => {
       const layerLabel = LAYER_LABELS[m.correctLayer] || '';
       const wrongLine = m.skipped
         ? `<div class="m-skipped">דילגת על השאלה</div>`
@@ -2068,17 +2789,17 @@ function showResults(rec, opts = {}) {
     }).join('');
   }
 
-  // "Try again" only makes sense for an exam we just finished, not history.
-  document.getElementById('results-again').textContent =
-    opts.fromHistory ? 'מבחן חדש על אותם נושאים' : 'מבחן נוסף';
-  document.getElementById('results-again').dataset.fromHistory = opts.fromHistory ? '1' : '';
+  const againBtn = document.getElementById('results-again');
+  const mistakeCount = mistakes.length;
+  againBtn.textContent = mistakeCount ? 'מבחן חדש על הטעויות שלי' : 'אין טעויות למבחן חוזר';
+  againBtn.disabled = !mistakeCount;
+  againBtn.dataset.fromHistory = opts.fromHistory ? '1' : '';
+  againBtn.dataset.historyId = opts.fromHistory ? String(rec.id) : '';
   if (opts.fromHistory) {
-    // Preload the topics/limb selection from the historical record.
-    document.getElementById('results-again').dataset.limb = rec.limb;
-    document.getElementById('results-again').dataset.topics = rec.topics.join(',');
+    againBtn.dataset.limb = rec.limb;
   } else {
-    delete document.getElementById('results-again').dataset.limb;
-    delete document.getElementById('results-again').dataset.topics;
+    delete againBtn.dataset.limb;
+    delete againBtn.dataset.historyId;
   }
 
   document.body.classList.add('show-results');
@@ -2092,9 +2813,7 @@ function syncLayerButtons() {
   for (const btn of document.querySelectorAll('#main-controls .seg-btn[data-layer]')) {
     btn.classList.toggle('on', !!layerState[btn.dataset.layer]);
   }
-  const noneOn = !Object.values(layerState).some(Boolean);
-  document.getElementById('start-exam').disabled = noneOn;
-  document.getElementById('start-practice').disabled = noneOn;
+  document.getElementById('start-exam').disabled = false;
 }
 function syncLimbTabs() {
   for (const btn of document.querySelectorAll('.tab[data-limb]')) {
@@ -2106,6 +2825,12 @@ function syncLimbTabs() {
 document.querySelectorAll('.m-tab').forEach(btn => {
   btn.addEventListener('click', () => {
     setActiveTab(btn.dataset.tab);
+    if (btn.dataset.tab === 'practice' && !(exam && exam.kind === 'practice')) {
+      if (!Object.values(layerState).some(Boolean)) return;
+      startPractice();
+    } else if (btn.dataset.tab !== 'practice' && exam && exam.kind === 'practice') {
+      exitExam();
+    }
   });
 });
 
@@ -2116,6 +2841,9 @@ document.querySelectorAll('.tab[data-limb]').forEach(btn => {
     currentLimb = btn.dataset.limb;
     syncLimbTabs();
     await loadLimb(currentLimb);
+    if (exam && exam.kind === 'practice' && Object.values(layerState).some(Boolean)) {
+      startPractice();
+    }
   });
 });
 
@@ -2128,23 +2856,28 @@ document.querySelectorAll('#main-controls .seg-btn[data-layer]').forEach(btn => 
     applyLayerVisibility();
     clearSelection();
     setInfoEmpty();
+    if (exam && exam.kind === 'practice' && Object.values(layerState).some(Boolean)) {
+      startPractice();
+    }
   });
 });
 
 // ===== Start exam / practice =====
 document.getElementById('start-exam').addEventListener('click', () => {
-  if (!Object.values(layerState).some(Boolean)) return;
-  startExam();
+  showExamConfig();
 });
-document.getElementById('start-practice').addEventListener('click', () => {
-  if (!Object.values(layerState).some(Boolean)) return;
-  startPractice();
+document.getElementById('exam-config-start').addEventListener('click', startConfiguredExam);
+document.getElementById('exam-config-close').addEventListener('click', hideExamConfig);
+document.getElementById('exam-config-overlay').addEventListener('click', (e) => {
+  if (e.target.id === 'exam-config-overlay') hideExamConfig();
 });
 
 // ===== Exit exam back to learn mode =====
 function exitExam() {
   exam = null;
   target = null;
+  answerLocked = false;
+  examRunSeq++;
   document.body.classList.remove('mode-practice');
   setMode('learn');
   clearSelection();
@@ -2155,12 +2888,9 @@ document.getElementById('back-to-overview').addEventListener('click', exitExam);
 
 document.getElementById('skip').addEventListener('click', skipQuestion);
 document.getElementById('reset-view').addEventListener('click', resetView);
+document.getElementById('practice-reset').addEventListener('click', resetPractice);
 
 // ===== Header history button =====
-document.getElementById('header-history').addEventListener('click', () => {
-  renderHistory();
-  document.body.classList.add('show-history');
-});
 document.getElementById('history-close').addEventListener('click', () => {
   document.body.classList.remove('show-history');
 });
@@ -2171,6 +2901,7 @@ document.getElementById('history-clear').addEventListener('click', () => {
   if (!confirm('למחוק את כל היסטוריית המבחנים?')) return;
   saveHistory([]);
   renderHistory();
+  renderHistory('exam-history-list');
 });
 
 // ===== Results overlay actions =====
@@ -2178,20 +2909,10 @@ document.getElementById('results-again').addEventListener('click', (e) => {
   hideResults();
   setActiveTab('exam');
   const btn = e.currentTarget;
-  if (btn.dataset.fromHistory === '1') {
-    const presetLimb = btn.dataset.limb;
-    const presetTopics = (btn.dataset.topics || '').split(',').filter(Boolean);
-    for (const k of Object.keys(layerState)) layerState[k] = presetTopics.includes(k);
-    syncLayerButtons();
-    if (presetLimb && presetLimb !== currentLimb) {
-      currentLimb = presetLimb;
-      syncLimbTabs();
-      loadLimb(currentLimb).then(() => startExam());
-      return;
-    }
-    applyLayerVisibility();
-  }
-  startExam();
+  const rec = btn.dataset.fromHistory === '1'
+    ? loadHistory().find(r => String(r.id) === btn.dataset.historyId)
+    : activeResultsRecord;
+  if (rec) startMistakeExam(rec);
 });
 document.getElementById('results-back').addEventListener('click', () => {
   hideResults();
@@ -2216,10 +2937,15 @@ tick();
 
 // ===== Initial state =====
 setMode('learn');
-setActiveTab('overview');
+const initialTab = new URLSearchParams(window.location.search).get('tab');
+setActiveTab(['overview', 'practice', 'exam'].includes(initialTab) ? initialTab : 'overview', { skipUrl: true });
 syncLimbTabs();
 syncLayerButtons();
-loadLimb(currentLimb);
+loadLimb(currentLimb).then(() => {
+  if (activeTab === 'practice' && Object.values(layerState).some(Boolean)) {
+    startPractice();
+  }
+});
 </script>
 </body>
 </html>
