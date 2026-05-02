@@ -265,19 +265,19 @@
   }
   .info.empty .info-dot { background: var(--ink-soft); box-shadow: none; }
   .info-text { flex: 1; min-width: 0; }
-  .info .heb {
+  /* .primary now shows the Latin (English) name big; .secondary shows Hebrew small */
+  .info .primary {
     font-weight: 700;
-    font-size: 18px;
+    font-size: 20px;
     color: var(--ink);
     line-height: 1.2;
+    letter-spacing: 0.01em;
   }
-  .info .lat {
-    font-size: 12.5px;
+  .info .secondary {
+    font-size: 13px;
     color: var(--cyan);
-    margin-top: 2px;
-    direction: ltr;
-    text-align: left;
-    letter-spacing: 0.02em;
+    margin-top: 3px;
+    font-weight: 500;
   }
   .info .desc {
     font-size: 12px;
@@ -375,8 +375,8 @@
   <div class="info empty" id="info">
     <div class="info-dot"></div>
     <div class="info-text">
-      <div class="heb" id="info-heb">לחצי על מבנה כדי לראות את שמו</div>
-      <div class="lat" id="info-lat"></div>
+      <div class="primary" id="info-primary">לחצי על מבנה כדי לראות את שמו</div>
+      <div class="secondary" id="info-secondary"></div>
       <div class="desc" id="info-desc"></div>
     </div>
     <button class="skip" id="skip">דלגי ←</button>
@@ -752,22 +752,22 @@ renderer.domElement.addEventListener('pointerup', (e) => {
 // Info panel
 // =====================================================================
 const infoEl = document.getElementById('info');
-const hebEl = document.getElementById('info-heb');
-const latEl = document.getElementById('info-lat');
+const primaryEl = document.getElementById('info-primary');
+const secondaryEl = document.getElementById('info-secondary');
 const descEl = document.getElementById('info-desc');
 
 function showInfo(p) {
   const i = p.info;
   infoEl.classList.remove('empty');
   const tag = `<span class="layer-tag l-${p.layer}">${LAYER_LABELS[p.layer]}</span>`;
-  hebEl.innerHTML = tag + (i.heb || i.lat);
-  latEl.textContent = i.heb ? i.lat : '';
+  primaryEl.innerHTML = tag + i.lat;
+  secondaryEl.textContent = i.heb || '';
   descEl.textContent = i.desc || '';
 }
 function setInfoEmpty() {
   infoEl.classList.add('empty');
-  hebEl.textContent = mode === 'quiz' ? 'לחצי על המבנה המבוקש בתלת-ממד' : 'לחצי על מבנה כדי לראות את שמו';
-  latEl.textContent = '';
+  primaryEl.textContent = mode === 'quiz' ? 'לחצי על המבנה המבוקש בתלת-ממד' : 'לחצי על מבנה כדי לראות את שמו';
+  secondaryEl.textContent = '';
   descEl.textContent = '';
 }
 
