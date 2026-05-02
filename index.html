@@ -7,7 +7,7 @@
 <title>שקד 💜</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;400;500;700;900&family=Frank+Ruhl+Libre:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   html, body {
@@ -157,8 +157,7 @@
   }
 
   .name {
-    font-family: "Frank Ruhl Libre", "Heebo", serif;
-    font-weight: 500;
+    font-weight: 800;
     font-size: clamp(56px, 14vw, 84px);
     line-height: 1;
     background: linear-gradient(120deg, #7ee8ff, #ff9bbf 50%, #ffe6b3);
@@ -316,19 +315,20 @@ const LAYERS = {
   Veins:   { color: 0x4a78ff, opacity: 0.85, roughness: 0.4 },
 };
 
-const root = new THREE.Group();
-scene.add(root);
+const legGroup = new THREE.Group();
+const armGroup = new THREE.Group();
+scene.add(legGroup, armGroup);
 
-let ready = false;
+let loadsRemaining = 2;
 const bootStart = performance.now();
-const MIN_BOOT_MS = 700; // ensures the loader doesn't flash on cached loads
+const MIN_BOOT_MS = 700;
 function reveal() {
   const wait = Math.max(0, MIN_BOOT_MS - (performance.now() - bootStart));
   setTimeout(() => document.getElementById('app').classList.add('loaded'), wait);
 }
-gltfLoader.load('./models/legs.glb', (gltf) => {
-  const m = gltf.scene;
-  m.traverse((obj) => {
+
+function applyLayers(scene3) {
+  scene3.traverse((obj) => {
     if (!obj.isMesh) return;
     let layer = null;
     for (let n = obj; n; n = n.parent) {
@@ -343,27 +343,55 @@ gltfLoader.load('./models/legs.glb', (gltf) => {
     obj.material.opacity = layer.opacity;
     obj.material.depthWrite = layer.opacity >= 0.99;
   });
+}
 
-  // Center + scale to fit
-  const box = new THREE.Box3().setFromObject(m);
+function fitTo(model, targetH) {
+  const box = new THREE.Box3().setFromObject(model);
   const size = box.getSize(new THREE.Vector3());
   const center = box.getCenter(new THREE.Vector3());
-  m.position.sub(center);
-  const targetH = 1.7;
-  const scale = targetH / size.y;
-  m.scale.setScalar(scale);
-  root.add(m);
-  ready = true;
-  reveal();
-});
+  model.position.sub(center);
+  model.scale.setScalar(targetH / size.y);
+}
+
+function loadInto(file, group, opts) {
+  gltfLoader.load(`./models/${file}`, (gltf) => {
+    applyLayers(gltf.scene);
+    fitTo(gltf.scene, 1.4);
+    group.add(gltf.scene);
+    group.userData.spin = opts.spin;
+    group.userData.tilt = opts.tilt || 0;
+    if (--loadsRemaining === 0) reveal();
+  });
+}
+
+// Diagonal placement: leg in upper-right area, arm in lower-left area.
+// Positions are in world units; camera is at z~2.4 with FOV 38, so ±0.7
+// keeps each model away from the center text but still on screen.
+loadInto('legs.glb', legGroup, { spin: 0.22 });
+loadInto('arms.glb', armGroup, { spin: 0.18 });
+
+function layoutModels() {
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  const portrait = h > w;
+  // Diagonal corners. Coordinates in world units; chosen empirically
+  // so the models hug opposite corners and leave the center clear.
+  if (portrait) {
+    legGroup.position.set(0.65, 0.85, 0);   // top-right
+    armGroup.position.set(-0.65, -0.85, 0); // bottom-left
+  } else {
+    legGroup.position.set(1.05, 0.55, 0);
+    armGroup.position.set(-1.05, -0.55, 0);
+  }
+}
 
 function resize() {
   const w = canvas.clientWidth, h = canvas.clientHeight;
   renderer.setSize(w, h, false);
   camera.aspect = w / h;
-  // Pull camera back a bit on narrow screens
-  camera.position.z = (w / h < 0.7) ? 2.6 : 2.2;
+  // Pull camera back on narrow screens; widen on landscape
+  camera.position.z = (w / h < 0.7) ? 2.7 : 2.3;
   camera.updateProjectionMatrix();
+  layoutModels();
 }
 resize();
 new ResizeObserver(resize).observe(canvas);
@@ -378,17 +406,16 @@ window.addEventListener('pointermove', (e) => {
 function animate() {
   const dt = clock.getDelta();
   const t = clock.getElapsedTime();
-  if (ready) {
-    // Slow Y rotation + subtle breathing tilt
-    root.rotation.y += dt * 0.25;
-    root.rotation.x = Math.sin(t * 0.4) * 0.06;
-    root.position.y = Math.sin(t * 0.6) * 0.03;
+  for (const g of [legGroup, armGroup]) {
+    if (g.children.length === 0) continue;
+    g.rotation.y += dt * (g.userData.spin || 0.2);
+    g.rotation.x = Math.sin(t * 0.4) * 0.05;
   }
   // Parallax follow
   mouseX += (tMouseX - mouseX) * 0.06;
   mouseY += (tMouseY - mouseY) * 0.06;
-  camera.position.x = mouseX * 0.25;
-  camera.position.y = 0.1 + mouseY * -0.15;
+  camera.position.x = mouseX * 0.2;
+  camera.position.y = 0.05 + mouseY * -0.12;
   camera.lookAt(0, 0, 0);
 
   renderer.render(scene, camera);
