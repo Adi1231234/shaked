@@ -345,21 +345,18 @@ function applyLayers(scene3) {
   });
 }
 
-function fitTo(model, targetH) {
-  const box = new THREE.Box3().setFromObject(model);
-  const size = box.getSize(new THREE.Vector3());
-  const center = box.getCenter(new THREE.Vector3());
-  model.position.sub(center);
-  model.scale.setScalar(targetH / size.y);
-}
-
 function loadInto(file, group, opts) {
   gltfLoader.load(`./models/${file}`, (gltf) => {
     applyLayers(gltf.scene);
-    fitTo(gltf.scene, 1.4);
+    // Center the model on its own origin so group.position controls placement
+    const box = new THREE.Box3().setFromObject(gltf.scene);
+    const center = box.getCenter(new THREE.Vector3());
+    const size = box.getSize(new THREE.Vector3());
+    gltf.scene.position.sub(center);
+    gltf.scene.userData.naturalHeight = size.y;
     group.add(gltf.scene);
     group.userData.spin = opts.spin;
-    group.userData.tilt = opts.tilt || 0;
+    layoutModels();
     if (--loadsRemaining === 0) reveal();
   });
 }
@@ -370,17 +367,36 @@ function loadInto(file, group, opts) {
 loadInto('legs.glb', legGroup, { spin: 0.22 });
 loadInto('arms.glb', armGroup, { spin: 0.18 });
 
+// Compute placement + scale so the two models hug opposite visible corners
+// and stay on screen on any aspect ratio (mobile portrait through landscape).
 function layoutModels() {
   const w = canvas.clientWidth, h = canvas.clientHeight;
-  const portrait = h > w;
-  // Diagonal corners. Coordinates in world units; chosen empirically
-  // so the models hug opposite corners and leave the center clear.
-  if (portrait) {
-    legGroup.position.set(0.65, 0.85, 0);   // top-right
-    armGroup.position.set(-0.65, -0.85, 0); // bottom-left
-  } else {
-    legGroup.position.set(1.05, 0.55, 0);
-    armGroup.position.set(-1.05, -0.55, 0);
+  if (!w || !h) return;
+  const aspect = w / h;
+  const fovV = camera.fov * Math.PI / 180;
+  const dist = camera.position.z;
+  const visibleH = 2 * dist * Math.tan(fovV / 2);
+  const visibleW = visibleH * aspect;
+  const portrait = aspect < 1;
+
+  // Diagonal placement. Offsets are a fraction of the visible viewport so
+  // the models hug the corners regardless of screen size. On portrait we
+  // push more vertically (tall screen has lots of vertical room), on
+  // landscape we push more horizontally.
+  const xFrac = portrait ? 0.28 : 0.34;
+  const yFrac = portrait ? 0.30 : 0.26;
+  legGroup.position.set( visibleW * xFrac,  visibleH * yFrac, 0);
+  armGroup.position.set(-visibleW * xFrac, -visibleH * yFrac, 0);
+
+  // Model size: small enough to fit in its corner without overlapping the
+  // central text. Cap by both visible dimensions.
+  const targetH = portrait
+    ? Math.min(visibleH * 0.40, visibleW * 0.85)
+    : Math.min(visibleH * 0.55, visibleW * 0.40);
+  for (const g of [legGroup, armGroup]) {
+    const m = g.children[0];
+    if (!m || !m.userData.naturalHeight) continue;
+    m.scale.setScalar(targetH / m.userData.naturalHeight);
   }
 }
 
@@ -388,8 +404,7 @@ function resize() {
   const w = canvas.clientWidth, h = canvas.clientHeight;
   renderer.setSize(w, h, false);
   camera.aspect = w / h;
-  // Pull camera back on narrow screens; widen on landscape
-  camera.position.z = (w / h < 0.7) ? 2.7 : 2.3;
+  camera.position.z = (w / h < 0.7) ? 2.6 : 2.3;
   camera.updateProjectionMatrix();
   layoutModels();
 }
