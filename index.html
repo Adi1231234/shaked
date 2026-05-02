@@ -379,16 +379,17 @@ function layoutModels() {
   const visibleW = visibleH * aspect;
   const portrait = aspect < 1;
 
-  // Both models hang from the top of the screen, one on each side. The
-  // upper portion of each extends above the visible viewport so only the
-  // bottoms (knee/foot for the leg, forearm/hand for the arm) are seen.
-  // yFrac > 0.5 places the model's center above the top edge.
+  // Both models anchor near the top of the screen, one on each side.
+  // The bbox of each model includes the soft tissues (e.g. gluteus
+  // muscles for the leg) which extend well above the bones. We want
+  // only that upper soft-tissue portion clipped off the top, with the
+  // bones (femur/humerus through foot/hand) clearly visible.
   const xFrac = portrait ? 0.32 : 0.42;
-  const yFrac = portrait ? 0.58 : 0.52;
+  const yFrac = portrait ? 0.22 : 0.18;
   legGroup.position.set( visibleW * xFrac, visibleH * yFrac, 0);
   armGroup.position.set(-visibleW * xFrac, visibleH * yFrac, 0);
 
-  // 50% bigger than the previous tuning (portrait went 0.52 -> 0.78).
+  // 50% bigger than the original tuning.
   const targetH = portrait
     ? Math.min(visibleH * 0.78, visibleW * 1.65)
     : Math.min(visibleH * 0.92, visibleW * 0.60);
