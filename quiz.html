@@ -2084,7 +2084,7 @@ controls.enablePan = true;
 controls.panSpeed = 1.1;
 // Wheel / trackpad on desktop feels right at 20; pinch-zoom on phones is much jumpier with the same factor.
 const ORBIT_ZOOM_SPEED_DESKTOP = 20.0;
-const ORBIT_ZOOM_SPEED_TOUCH = 7.5;
+const ORBIT_ZOOM_SPEED_TOUCH = 2.0;
 function applyOrbitZoomSensitivity() {
   const coarse =
     window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
