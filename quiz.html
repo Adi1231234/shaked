@@ -2129,6 +2129,8 @@ const CORRECT_COLOR = new THREE.Color(0x5fffb0);
 const WRONG_COLOR   = new THREE.Color(0xff5f8f);
 
 let currentLimb = 'legs';
+/** Bumped on every loadLimb(); stale async completions must not scene.add() after a newer swap. */
+let limbLoadGeneration = 0;
 let currentRoot = null;
 let pickables = [];   // { mesh, nodeName, layer, info, originalEmissive }
 let layerNodes = {};  // { Bones: Object3D, Muscles: Object3D, Veins: Object3D }
@@ -2144,6 +2146,7 @@ function infoFor(nodeName, layer) {
 }
 
 async function loadLimb(name) {
+  const gen = ++limbLoadGeneration;
   if (currentRoot) { scene.remove(currentRoot); currentRoot = null; }
   pickables = [];
   layerNodes = {};
@@ -2155,6 +2158,8 @@ async function loadLimb(name) {
     gltf = await gltfLoader.loadAsync(`./models/${name}.glb`);
     cache[name] = gltf;
   }
+  if (gen !== limbLoadGeneration) return;
+
   currentRoot = gltf.scene.clone(true);
 
   // Identify the three top-level layer groups by name
