@@ -609,6 +609,7 @@
   .seg-btn.on .swatch { opacity: 1; box-shadow: 0 0 8px currentColor; }
 
   .stage {
+    container-type: inline-size;
     flex: 1;
     position: relative;
     margin: 0 12px;
@@ -621,7 +622,86 @@
     box-shadow: 0 20px 60px -30px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.02);
     touch-action: none;
   }
+  .stage.reveal-correct-hint {
+    animation: stage-reveal-pulse 1s ease-in-out 2;
+  }
+  @keyframes stage-reveal-pulse {
+    0%, 100% {
+      box-shadow: 0 20px 60px -30px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.02);
+    }
+    45% {
+      box-shadow:
+        0 24px 64px -28px rgba(95,255,176,0.25),
+        inset 0 0 0 1px rgba(95,255,176,0.45),
+        inset 0 0 52px 14px rgba(95,255,176,0.18);
+    }
+  }
   .stage canvas { display: block; width: 100%; height: 100%; }
+
+  /* Floating screen-space marker for “here is the correct structure” (no camera zoom). */
+  .reveal-pointer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 14;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.12s ease;
+  }
+  .reveal-pointer.is-on {
+    opacity: 1;
+  }
+  /* Arrow + label are positioned independently inside #reveal-pointer
+     (anchored at the projected mesh point) by JS so each can stay in-stage. */
+  .reveal-pointer-arrow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 26px;
+    height: 50px;
+    transform-origin: 50% 0;
+    /* Default: tip pinned to (left:0, top:0), centered horizontally on the anchor */
+    transform: translateX(-50%);
+  }
+  .reveal-pointer-arrow svg {
+    display: block;
+    width: 26px;
+    height: 50px;
+    overflow: visible;
+    filter: drop-shadow(0 5px 14px rgba(0,0,0,0.55));
+  }
+  .reveal-pointer-label-wrap {
+    position: absolute;
+    top: 56px;
+    left: 0;
+    transform: translateX(-50%);
+    max-width: min(260px, calc(100cqw - 24px));
+    text-align: center;
+  }
+  .reveal-pointer-label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    color: #051209;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: linear-gradient(145deg, #8fffcc 0%, #7ee8ff 100%);
+    border: 2px solid rgba(255,255,255,0.95);
+    box-shadow:
+      0 0 0 1px rgba(95,255,176,0.5),
+      0 0 28px rgba(95,255,176,0.55),
+      0 6px 20px rgba(0,0,0,0.35);
+    animation: reveal-label-nudge 0.85s ease-in-out infinite;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  @keyframes reveal-label-nudge {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
   .loader {
     position: absolute; inset: 0;
     display: flex; align-items: center; justify-content: center;
@@ -641,36 +721,178 @@
     0%,100% { transform: scale(0.8); opacity: 0.5; }
     50% { transform: scale(1.1); opacity: 1; }
   }
-  .hint {
+  /* ===== קיצורים: כפתור פינתי + פופאובר אופקי ===== */
+  .shortcut-help {
     position: absolute;
-    top: 18px;
+    top: 10px;
     right: 10px;
-    z-index: 6;
-    text-align: right;
-    color: var(--ink-dim);
-    font-size: 11px;
-    line-height: 1.7;
-    letter-spacing: 0.02em;
-    pointer-events: none;
-    opacity: 0.85;
-    list-style: none;
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    text-shadow: 0 0 8px rgba(3, 5, 11, 0.9);
+    left: auto;
+    z-index: 7;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    direction: rtl;
+    gap: 0;
   }
-  .hint li {
-    list-style: none;
-    display: block;
-  }
-  .hint li::before {
-    content: "·  ";
+  .shortcut-help-btn {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px solid rgba(126, 232, 255, 0.35);
+    background: rgba(8, 11, 22, 0.85);
     color: var(--cyan);
-    opacity: 0.85;
+    cursor: pointer;
+    box-shadow: 0 4px 18px -8px rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(10px);
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
-  body.mode-quiz .hint { top: 18px; }
-  .hint.hide {
+  .shortcut-help-btn:hover {
+    background: rgba(126, 232, 255, 0.12);
+    border-color: rgba(126, 232, 255, 0.55);
+    box-shadow: 0 6px 22px -6px rgba(126, 232, 255, 0.25);
+  }
+  .shortcut-help-btn:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 2px;
+  }
+  .shortcut-help-btn svg {
+    width: 18px;
+    height: 18px;
+    opacity: 0.92;
+  }
+  .shortcut-help.is-open .shortcut-help-btn {
+    background: rgba(126, 232, 255, 0.16);
+    border-color: rgba(126, 232, 255, 0.55);
+  }
+  .shortcut-help-popover {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    left: auto;
+    min-width: min(100vw - 24px, 300px);
+    max-width: min(100vw - 24px, 420px);
+    padding: 12px 12px 10px;
+    border-radius: 12px;
+    background: rgba(7, 10, 20, 0.96);
+    border: 1px solid rgba(126, 232, 255, 0.18);
+    box-shadow:
+      0 16px 40px -16px rgba(0, 0, 0, 0.85),
+      0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+    backdrop-filter: blur(14px);
     opacity: 0;
-    transform: translateY(-4px);
+    visibility: hidden;
+    transform: translateY(-6px) scale(0.98);
+    transform-origin: top right;
+    pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
   }
+  .shortcut-help:hover .shortcut-help-popover,
+  .shortcut-help.is-open .shortcut-help-popover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .shortcut-help-popover {
+      transition: none;
+      transform: none;
+    }
+    .shortcut-help:hover .shortcut-help-popover,
+    .shortcut-help.is-open .shortcut-help-popover {
+      transform: none;
+    }
+  }
+  .shortcut-help-popover::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    left: auto;
+    width: 100%;
+    height: 12px;
+  }
+  .shortcut-help-section--desktop { display: none; }
+  .shortcut-help-section--mobile { display: block; }
+  @media (hover: hover) and (pointer: fine) {
+    .shortcut-help-section--desktop { display: block; }
+    .shortcut-help-section--mobile { display: none; }
+  }
+  .sh-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    direction: rtl;
+    text-align: right;
+  }
+  .sh-table-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: 12px;
+    padding: 2px 2px 8px;
+    margin-bottom: 2px;
+    border-bottom: 1px solid rgba(126, 232, 255, 0.22);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--cyan);
+    letter-spacing: 0.02em;
+  }
+  .sh-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: 12px;
+    padding: 10px 2px;
+    border-bottom: 1px solid rgba(126, 232, 255, 0.09);
+    align-items: start;
+  }
+  .sh-row:last-of-type {
+    border-bottom: none;
+    padding-bottom: 2px;
+  }
+  .sh-row.sh-click-quiz {
+    display: none;
+  }
+  body.mode-quiz .sh-row.sh-click-learn {
+    display: none;
+  }
+  body.mode-quiz .sh-row.sh-click-quiz {
+    display: grid;
+  }
+  .sh-cell-do {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.45;
+  }
+  .sh-cell-how {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--ink-dim);
+    line-height: 1.5;
+  }
+  .sh-cell-how .sh-k {
+    margin-inline-start: 3px;
+    margin-inline-end: 3px;
+    vertical-align: baseline;
+  }
+  .sh-k {
+    display: inline-block;
+    padding: 2px 7px;
+    font-size: 10px;
+    font-weight: 600;
+    font-family: ui-monospace, "Cascadia Code", "Segoe UI", sans-serif;
+    line-height: 1.35;
+    border-radius: 6px;
+    background: rgba(126, 232, 255, 0.09);
+    border: 1px solid rgba(126, 232, 255, 0.22);
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  body.mode-quiz .shortcut-help { top: 10px; }
 
   .reset-btn {
     position: absolute;
@@ -692,105 +914,122 @@
   .reset-btn:hover { background: rgba(126,232,255,0.18); border-color: rgba(126,232,255,0.5); transform: rotate(-90deg); }
   .reset-btn:active { transform: rotate(-180deg); }
 
-  .quiz-prompt {
-    margin: 0 16px 8px;
-    width: calc(100% - 32px);
-    align-self: center;
-    background: rgba(7,11,28,0.88);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,95,143,0.42);
-    border-radius: 16px;
-    padding: 10px 16px;
-    text-align: center;
-    font-size: 14px;
+  /* ===== סרגל שאלה: רוחב מלא, גובה נמוך, שתי עמודות — שאלה | מה בחרת ===== */
+  .quiz-prompt.qp-bar {
+    margin: 0 8px 6px;
+    width: calc(100% - 16px);
+    max-width: none;
+    align-self: stretch;
     display: none;
-    box-shadow: 0 18px 46px -26px rgba(255,95,143,0.65);
-  }
-  body.mode-quiz .quiz-prompt { display: flex; flex-direction: column; }
-  .quiz-prompt .ask {
-    color: var(--cyan);
-    font-size: 12px;
-    font-weight: 800;
-  }
-  .quiz-prompt .ask::before {
-    content: "שאלה במבחן · ";
-    color: var(--rose-soft);
-  }
-  .quiz-prompt .target { color: var(--rose-soft); font-weight: 800; font-size: 18px; margin-top: 3px; line-height: 1.25; }
-  .quiz-prompt .target em { font-style: normal; color: var(--ink); font-size: 14px; opacity: 0.9; }
-  .answer-note {
-    display: none;
-    width: 100%;
+    box-sizing: border-box;
     border-radius: 10px;
-    padding: 8px 10px;
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 1.35;
+    background: rgba(8, 11, 22, 0.94);
+    border: 1px solid rgba(126, 232, 255, 0.14);
+    box-shadow: 0 3px 14px -6px rgba(0, 0, 0, 0.55);
+    overflow: visible;
+  }
+  body.mode-quiz .quiz-prompt.qp-bar {
+    display: block;
+    height: auto;
+    min-height: 88px;
+    max-height: none;
+  }
+  .qp-bar-row {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    height: 100%;
+    min-height: 0;
+  }
+  .qp-sec {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 12px 9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 4px;
     text-align: right;
   }
-  .answer-note.show { display: block; }
-  .answer-note.wrong {
-    color: var(--rose-soft);
-    background: rgba(255,95,143,0.10);
-    border: 1px solid rgba(255,95,143,0.24);
-  }
-  .answer-note.correct {
-    color: var(--green);
-    background: rgba(95,255,176,0.08);
-    border: 1px solid rgba(95,255,176,0.22);
-  }
-  .answer-note b { color: var(--ink); font-weight: 800; }
-  .answer-note-title {
-    display: block;
-    font-size: 13px;
-    font-weight: 900;
-    margin-bottom: 6px;
-  }
-  .answer-note-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    padding-top: 4px;
-  }
-  .answer-note-row + .answer-note-row {
-    border-top: 1px solid rgba(255,255,255,0.08);
-    margin-top: 4px;
-  }
-  .answer-note-label {
-    color: var(--ink-soft);
-    flex: 0 0 auto;
-  }
-  .answer-note-value {
-    color: var(--ink);
-    font-weight: 800;
-    text-align: left;
-    direction: ltr;
-  }
-  body.mode-quiz .info .info-dot,
-  body.mode-quiz .info .primary,
-  body.mode-quiz .info .secondary,
-  body.mode-quiz .info .desc {
-    display: none;
-  }
-  body.mode-quiz .info .info-text {
-    flex: 1;
-    display: flex;
-    align-items: center;
-  }
-  body.mode-quiz .info {
-    height: 116px;
-    align-items: center;
+  .qp-sec--question {
     justify-content: center;
   }
-  body.mode-quiz .info.empty {
-    opacity: 1;
+  .qp-sec--picked {
+    justify-content: center;
+    min-height: 0;
   }
-  .quiz-prompt::after {
-    content: "לחצי על המבנה המתאים במודל";
-    display: block;
-    margin-top: 6px;
+  .qp-sec-label {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    opacity: 0.72;
+  }
+  .qp-bar-divider {
+    flex: 0 0 1px;
+    width: 1px;
+    align-self: stretch;
+    margin: 6px 0;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      rgba(255, 255, 255, 0.11) 18%,
+      rgba(255, 255, 255, 0.11) 82%,
+      transparent
+    );
+  }
+  .qp-sec--question .qp-ask,
+  .qp-sec--picked .qp-ask {
+    margin: 0;
+    font-size: 10.5px;
+    font-weight: 700;
     color: var(--ink-dim);
+    line-height: 1.2;
+  }
+  .qp-ask--silent {
+    visibility: hidden;
+  }
+  .qp-target {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    direction: rtl;
+    justify-content: flex-start;
+    gap: 4px 6px;
+    line-height: 1.2;
+    min-height: 1.3em;
+  }
+  .qp-target-lat {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--rose-soft);
+    unicode-bidi: isolate;
+  }
+  .qp-target-dot {
+    color: var(--ink-dim);
+    opacity: 0.38;
     font-size: 12px;
+    unicode-bidi: isolate;
+  }
+  .qp-target-heb {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    unicode-bidi: isolate;
+  }
+  .qp-target--idle .qp-target-idle {
+    color: var(--ink-soft);
+    opacity: 0.92;
+    font-size: 13px;
+    font-weight: 600;
+    unicode-bidi: isolate;
+    user-select: none;
+    pointer-events: none;
+  }
+  /* במבחן/תרגול — רק קופסת השאלה למעלה; ללא פאנל המידע התחתון */
+  body.mode-quiz .info {
+    display: none !important;
   }
 
   /* Search box + dropdown */
@@ -963,15 +1202,18 @@
 
   .info {
     margin: 8px 12px max(env(safe-area-inset-bottom), 10px);
-    padding: 14px 18px;
+    padding: 12px 16px;
     background: linear-gradient(135deg, rgba(126,232,255,0.06), rgba(255,95,143,0.04));
     border: 1px solid rgba(126,232,255,0.15);
     border-radius: 16px;
-    height: 116px;
+    box-sizing: border-box;
+    height: 128px;
+    min-height: 128px;
+    max-height: 128px;
     flex-shrink: 0;
     display: flex;
-    align-items: center;
-    gap: 14px;
+    align-items: stretch;
+    gap: 12px;
     overflow: hidden;
     transition: border-color .3s ease, background .3s ease;
   }
@@ -981,6 +1223,7 @@
     border-radius: 50%;
     background: var(--ink-soft);
     flex-shrink: 0;
+    align-self: center;
     transition: background .25s ease, box-shadow .25s ease;
   }
   .info[data-layer="Bones"] {
@@ -1007,7 +1250,24 @@
     background: var(--vein);
     box-shadow: 0 0 16px rgba(90,143,255,0.7);
   }
-  .info-text { flex: 1; min-width: 0; }
+  .info-text {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 3px;
+    padding: 2px 0;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(126,232,255,0.35) transparent;
+  }
+  .info.empty .info-text {
+    justify-content: center;
+    overflow-y: hidden;
+  }
   .info .primary {
     font-weight: 700;
     font-size: 22px;
@@ -1039,12 +1299,10 @@
   .info .desc {
     font-size: 12.5px;
     color: var(--ink-dim);
-    margin-top: 4px;
-    line-height: 1.4;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    margin-top: 2px;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
   .skip {
     background: rgba(255,95,143,0.10);
@@ -1290,7 +1548,7 @@
         </div>
         <div class="exam-progress-actions">
           <button class="practice-reset-btn" id="practice-reset" type="button">איפוס</button>
-          <button class="skip" id="skip">דלגי ←</button>
+          <button class="skip" id="skip">דלג ←</button>
           <button class="header-btn back-to-overview" id="back-to-overview" aria-label="יציאה">✕ סיום</button>
         </div>
       </div>
@@ -1329,28 +1587,124 @@
       </div>
     </div>
 
-      <div class="quiz-prompt" id="prompt">
-        <div class="ask" id="ask">איפה נמצא</div>
-        <div class="target" id="target">—</div>
+      <div class="quiz-prompt qp-bar" id="prompt">
+        <div class="qp-bar-row">
+          <section class="qp-sec qp-sec--question" aria-labelledby="qp-lbl-q">
+            <div id="qp-lbl-q" class="qp-sec-label">שאלה</div>
+            <p class="qp-ask" id="ask">איפה נמצא</p>
+            <div class="qp-target" id="target">—</div>
+          </section>
+          <div class="qp-bar-divider" aria-hidden="true"></div>
+          <section class="qp-sec qp-sec--picked" aria-labelledby="qp-lbl-p">
+            <div id="qp-lbl-p" class="qp-sec-label">מה בחרת</div>
+            <p class="qp-ask qp-ask--silent" aria-hidden="true">&#8203;</p>
+            <div class="qp-target qp-target--idle" id="picked-display">
+              <span class="qp-target-idle">יש לבחור</span>
+            </div>
+          </section>
+        </div>
       </div>
       <div class="stage" id="stage">
       <div class="loader" id="loader"><div class="pulse"></div>טוען מודל…</div>
       <div class="feedback" id="feedback"></div>
       <button class="reset-btn" id="reset-view" aria-label="אפס מיקום" title="אפס מיקום">↻</button>
-      <ul class="hint" id="hint">
-        <li>גרור לסיבוב</li>
-        <li>גלגלת/צביטה לזום</li>
-        <li>לחצי על מבנה</li>
-      </ul>
+      <div class="shortcut-help" id="shortcut-help">
+        <button type="button" class="shortcut-help-btn" id="shortcut-help-btn"
+          aria-expanded="false" aria-controls="shortcut-help-popover" title="שליטה בתצוגת התלת־ממד">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2.5"/>
+            <path d="M7 9h2M11 9h2M15 9h2M7 13h4M14 13h3"/>
+          </svg>
+        </button>
+        <div class="shortcut-help-popover" id="shortcut-help-popover" role="region"
+          aria-label="שליטה בתצוגת התלת־ממד בלבד" aria-hidden="true">
+          <div class="shortcut-help-section shortcut-help-section--desktop">
+            <div class="sh-table">
+              <div class="sh-table-head">
+                <span>מה זה נותן</span>
+                <span>מה לעשות (על התצוגה)</span>
+              </div>
+              <div class="sh-row">
+                <div class="sh-cell-do">סיבוב המודל סביב צירים</div>
+                <div class="sh-cell-how">גרירה בזמן שלחצן העכבר <kbd class="sh-k">שמאלי</kbd> לחוץ</div>
+              </div>
+              <div class="sh-row">
+                <div class="sh-cell-do">הזזת זווית התצוגה (למעלה / למטה / צדדים)</div>
+                <div class="sh-cell-how">
+                  <kbd class="sh-k">Ctrl</kbd><span>/</span><kbd class="sh-k">⌘</kbd>
+                  <span>+ גרירה עם שמאלי, או גרירה עם</span>
+                  <kbd class="sh-k">ימני</kbd>
+                  <span>(בלי Ctrl)</span>
+                </div>
+              </div>
+              <div class="sh-row">
+                <div class="sh-cell-do">זום פנימה והחוצה</div>
+                <div class="sh-cell-how">
+                  <span>גלילת</span> <kbd class="sh-k">גלגלת</kbd>
+                  <span>· או לחיצה על</span> <kbd class="sh-k">גלגלת אמצעית</kbd> <span>ואז גרירה</span>
+                </div>
+              </div>
+              <div class="sh-row sh-click-learn">
+                <div class="sh-cell-do">שם בעברית / לטינית של חלק במודל</div>
+                <div class="sh-cell-how"><kbd class="sh-k">לחיצה</kbd> <span>על אותו חלק בתלת־ממד</span></div>
+              </div>
+              <div class="sh-row sh-click-quiz">
+                <div class="sh-cell-do">עונים על שאלת התרגול או המבחן</div>
+                <div class="sh-cell-how"><kbd class="sh-k">לחיצה</kbd> <span>על החלק הנכון במודל — לא חקירת שמות כמו במצב «חקירה»</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="shortcut-help-section shortcut-help-section--mobile">
+            <div class="sh-table">
+              <div class="sh-table-head">
+                <span>מה זה נותן</span>
+                <span>מה לעשות (מגע)</span>
+              </div>
+              <div class="sh-row">
+                <div class="sh-cell-do">סיבוב המודל</div>
+                <div class="sh-cell-how">גרירה עם <strong>אצבע אחת</strong> על המודל</div>
+              </div>
+              <div class="sh-row">
+                <div class="sh-cell-do">זום והזזת התצוגה</div>
+                <div class="sh-cell-how"><strong>שתי אצבעות</strong> — צביטה לזום, גרירה להזזה</div>
+              </div>
+              <div class="sh-row sh-click-learn">
+                <div class="sh-cell-do">שם המבנה (חקירה בלבד)</div>
+                <div class="sh-cell-how"><kbd class="sh-k">לחיצה</kbd> <span>על חלק במודל</span></div>
+              </div>
+              <div class="sh-row sh-click-quiz">
+                <div class="sh-cell-do">עונים על השאלה (תרגול / מבחן פעיל)</div>
+                <div class="sh-cell-how"><kbd class="sh-k">לחיצה</kbd> <span>על החלק הנכון — לא את כרטיס השם של חקירה</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="reveal-pointer" class="reveal-pointer" hidden>
+        <div class="reveal-pointer-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 46" width="26" height="50" focusable="false">
+            <defs>
+              <linearGradient id="reveal-arrow-fill" x1="12" y1="0" x2="12" y2="46" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#9dffcf"/>
+                <stop offset="100%" stop-color="#6ae8ff"/>
+              </linearGradient>
+            </defs>
+            <!-- Top vertex (12,0) = mesh anchor; rotates around it to redirect into stage. -->
+            <path d="M12 0L20 14h-5v32H9V14H4L12 0z" fill="url(#reveal-arrow-fill)" stroke="rgba(255,255,255,0.92)" stroke-width="1.1" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="reveal-pointer-label-wrap">
+          <span class="reveal-pointer-label">כאן התשובה</span>
+        </div>
+      </div>
     </div>
 
     <div class="info empty" id="info">
       <div class="info-dot"></div>
       <div class="info-text">
-        <div class="primary" id="info-primary">לחצי על מבנה כדי לראות את שמו</div>
+        <div class="primary" id="info-primary">לחץ על מבנה כדי לראות את שמו</div>
         <div class="secondary" id="info-secondary"></div>
         <div class="desc" id="info-desc"></div>
-        <div class="answer-note" id="answer-note"></div>
       </div>
     </div>
   </section>
@@ -1686,6 +2040,10 @@ const LAYER_LABELS = { Bones: 'עצם', Muscles: 'שריר', Veins: 'וריד' }
 const stage = document.getElementById('stage');
 const loader = document.getElementById('loader');
 const feedbackEl = document.getElementById('feedback');
+const revealPointerEl = document.getElementById('reveal-pointer');
+let revealPointerPick = null;
+let revealPointerRunId = null;
+const _revealProj = new THREE.Vector3();
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -1886,17 +2244,363 @@ function resetView() {
   controls.update();
 }
 
+/** Quiz reveal: draw correct mesh above occluders while highlighted (restore in clearSelection). */
+const REVEAL_MESH_RENDER_ORDER = 999;
+
+function pushRevealMeshToFront(mesh) {
+  if (!mesh?.material) return;
+  const m = mesh.material;
+  const u = mesh.userData;
+  if (u._revealSavedRenderOrder === undefined) u._revealSavedRenderOrder = mesh.renderOrder;
+  if (u._revealSavedDepthTest === undefined) u._revealSavedDepthTest = m.depthTest;
+  if (u._revealSavedDepthWrite === undefined) u._revealSavedDepthWrite = m.depthWrite;
+  mesh.renderOrder = REVEAL_MESH_RENDER_ORDER;
+  m.depthTest = false;
+  m.depthWrite = false;
+}
+
+function restoreRevealMeshDepth(mesh) {
+  if (!mesh?.material) return;
+  const u = mesh.userData;
+  if (u._revealSavedRenderOrder !== undefined) {
+    mesh.renderOrder = u._revealSavedRenderOrder;
+    delete u._revealSavedRenderOrder;
+  }
+  const m = mesh.material;
+  if (u._revealSavedDepthTest !== undefined) {
+    m.depthTest = u._revealSavedDepthTest;
+    delete u._revealSavedDepthTest;
+  }
+  if (u._revealSavedDepthWrite !== undefined) {
+    m.depthWrite = u._revealSavedDepthWrite;
+    delete u._revealSavedDepthWrite;
+  }
+}
+
 function clearSelection() {
   if (!selected) return;
+  restoreRevealMeshDepth(selected.mesh);
   selected.mesh.material.emissive.copy(selected.originalEmissive);
   selected.mesh.material.emissiveIntensity = 1;
   selected = null;
 }
-function setSelection(p, color = SELECT_COLOR) {
+function setSelection(p, color = SELECT_COLOR, emissiveIntensity = 0.7, revealDrawOnTop = false) {
   clearSelection();
   selected = p;
   p.mesh.material.emissive.copy(color);
-  p.mesh.material.emissiveIntensity = 0.7;
+  if ('emissiveIntensity' in p.mesh.material) {
+    p.mesh.material.emissiveIntensity = emissiveIntensity;
+  }
+  if (revealDrawOnTop) pushRevealMeshToFront(p.mesh);
+}
+
+/** Wrong answers: ensure mesh layer is on (same as search). */
+function ensureLayerVisibleForPick(p) {
+  if (!p?.layer || layerState[p.layer]) return;
+  layerState[p.layer] = true;
+  document.querySelector(`.seg-btn[data-layer="${p.layer}"]`)?.classList.add('on');
+  applyLayerVisibility();
+}
+
+let correctRevealPulseGen = 0;
+/** Pulses emissive so the correct mesh is easier to spot after a mistake. */
+function pulseCorrectRevealHighlight(runId, baseIntensity) {
+  const pulseId = ++correctRevealPulseGen;
+  const mesh = selected?.mesh;
+  if (!mesh?.material || runId == null) return;
+  const mat = mesh.material;
+  const start = performance.now();
+  const duration = 1250;
+
+  function frame(now) {
+    if (pulseId !== correctRevealPulseGen) return;
+    if (!exam || exam.runId !== runId || !selected || selected.mesh !== mesh) return;
+    const t = (now - start) / duration;
+    if (t >= 1) {
+      mat.emissiveIntensity = baseIntensity;
+      return;
+    }
+    const damp = 1 - t * 0.35;
+    const waves = Math.sin(t * Math.PI * 6.5) * damp;
+    mat.emissiveIntensity = baseIntensity + waves * 0.5;
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+/** World bbox center → projected NDC (mutates `out`). */
+function projectMeshCenterToNDC(p, out) {
+  if (!p?.mesh) return null;
+  p.mesh.updateWorldMatrix(true, false);
+  if (!p.mesh.geometry.boundingBox) p.mesh.geometry.computeBoundingBox();
+  p.mesh.geometry.boundingBox.getCenter(out);
+  out.applyMatrix4(p.mesh.matrixWorld);
+  out.project(camera);
+  return out;
+}
+
+function isProjectedMeshCenterVisible(p) {
+  projectMeshCenterToNDC(p, _revealProj);
+  return (
+    Math.abs(_revealProj.x) <= 1.06 &&
+    Math.abs(_revealProj.y) <= 1.06 &&
+    _revealProj.z >= -1 &&
+    _revealProj.z <= 1
+  );
+}
+
+/**
+ * Zoom out (and gently pan the orbit target toward the mesh) until its center
+ * projects inside the frustum. OrbitControls maxDistance can clamp pulls; we
+ * relax it for this animation only.
+ */
+function smoothZoomOutUntilVisible(p, runId, onDone) {
+  const onFinish = typeof onDone === 'function' ? onDone : () => {};
+
+  function easeOutCubic(t) {
+    return 1 - (1 - t) ** 3;
+  }
+
+  if (!p?.mesh || !exam || exam.runId !== runId) {
+    onFinish();
+    return;
+  }
+  if (isProjectedMeshCenterVisible(p)) {
+    onFinish();
+    return;
+  }
+
+  const meshCenter = new THREE.Vector3();
+  if (!p.mesh.geometry.boundingBox) p.mesh.geometry.computeBoundingBox();
+  p.mesh.geometry.boundingBox.getCenter(meshCenter);
+  meshCenter.applyMatrix4(p.mesh.matrixWorld);
+
+  const savedMaxDistance = controls.maxDistance;
+  controls.maxDistance = 120;
+
+  const startDist = camera.position.distanceTo(controls.target);
+  if (startDist < 1e-7) {
+    controls.maxDistance = savedMaxDistance;
+    controls.update();
+    onFinish();
+    return;
+  }
+
+  const primaryMs = 1400;
+  const maxElapsedMs = 4800;
+  const t0 = performance.now();
+  let finished = false;
+
+  function done() {
+    if (finished) return;
+    finished = true;
+    controls.maxDistance = savedMaxDistance;
+    controls.update();
+    onFinish();
+  }
+
+  function step(now) {
+    if (!exam || exam.runId !== runId) {
+      controls.maxDistance = savedMaxDistance;
+      return;
+    }
+
+    const elapsed = now - t0;
+    const u = Math.min(1, elapsed / primaryMs);
+
+    controls.target.lerp(meshCenter, 0.088 + easeOutCubic(u) * 0.052);
+
+    const towardCam = camera.position.clone().sub(controls.target);
+    const len = towardCam.length();
+    if (len < 1e-7) {
+      done();
+      return;
+    }
+    towardCam.multiplyScalar(1 / len);
+
+    const ease = easeOutCubic(u);
+    const pullCap = Math.min(
+      startDist * (8 + ease * 26),
+      startDist + 14 + ease * 52,
+      94,
+    );
+    let goalDist = THREE.MathUtils.lerp(startDist, pullCap, ease);
+
+    if (elapsed > primaryMs) {
+      const over = elapsed - primaryMs;
+      goalDist = Math.min(pullCap + over * 0.052, 94);
+    }
+
+    camera.position.copy(controls.target).addScaledVector(towardCam, goalDist);
+    controls.update();
+
+    if (isProjectedMeshCenterVisible(p) && elapsed > 55) {
+      done();
+      return;
+    }
+    if (elapsed >= maxElapsedMs) {
+      done();
+      return;
+    }
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+/** Reveal-pointer geometry constants (kept in sync with CSS). */
+const REVEAL_ARROW_LEN = 50;
+const REVEAL_ARROW_HALF_W = 13;
+const REVEAL_LABEL_GAP = 6;
+const REVEAL_PAD = 14;
+
+function updateRevealPointerPosition() {
+  const el = revealPointerEl;
+  const p = revealPointerPick;
+  if (!el || !p?.mesh || !el.classList.contains('is-on')) return;
+  if (exam && revealPointerRunId != null && exam.runId !== revealPointerRunId) {
+    hideRevealScreenPointer();
+    return;
+  }
+
+  projectMeshCenterToNDC(p, _revealProj);
+
+  const w = renderer.domElement.clientWidth;
+  const h = renderer.domElement.clientHeight;
+  const vis =
+    Math.abs(_revealProj.x) <= 1.06 &&
+    Math.abs(_revealProj.y) <= 1.06 &&
+    _revealProj.z >= -1 &&
+    _revealProj.z <= 1;
+
+  if (!vis) {
+    el.style.opacity = '0';
+    return;
+  }
+
+  const meshLeft = (_revealProj.x * 0.5 + 0.5) * w;
+  const meshTop = (-_revealProj.y * 0.5 + 0.5) * h;
+
+  el.style.left = `${meshLeft}px`;
+  el.style.top = `${meshTop}px`;
+  el.style.opacity = '1';
+
+  layoutRevealPointer(meshLeft, meshTop);
+}
+
+/**
+ * Place the arrow + label so that:
+ *   1. The arrow's tip stays anchored at the mesh projection (meshLeft, meshTop).
+ *   2. The arrow body and the label remain fully inside the stage rectangle.
+ *      If the mesh sits near a stage edge, the arrow rotates around its tip
+ *      so its body extends inward and the label fits.
+ *   3. The label is placed below the body (default) or above (when below
+ *      doesn't fit), and shifts horizontally if it would still overflow.
+ */
+function layoutRevealPointer(meshLeft, meshTop) {
+  const el = revealPointerEl;
+  const arrow = el?.querySelector('.reveal-pointer-arrow');
+  const labelWrap = el?.querySelector('.reveal-pointer-label-wrap');
+  if (!el || !arrow || !labelWrap) return;
+
+  const stageW = stage.clientWidth;
+  const stageH = stage.clientHeight;
+  if (!stageW || !stageH) return;
+
+  // Reset label transform to measure natural width without prior horizontal shift.
+  labelWrap.style.transform = 'translateX(-50%)';
+
+  const labelW = labelWrap.offsetWidth;
+  const labelH = labelWrap.offsetHeight;
+  const labelHalfW = labelW / 2;
+
+  // 1) Below vs above. Prefer below; flip when there is not enough room.
+  const totalH = REVEAL_ARROW_LEN + REVEAL_LABEL_GAP + labelH;
+  const spaceBelow = stageH - REVEAL_PAD - meshTop;
+  const spaceAbove = meshTop - REVEAL_PAD;
+  let placeBelow;
+  if (spaceBelow >= totalH) placeBelow = true;
+  else if (spaceAbove >= totalH) placeBelow = false;
+  else placeBelow = spaceBelow >= spaceAbove;
+
+  // 2) Pick body anchor (where arrow body bottom + label center sit).
+  //    Default: directly below/above the mesh (bodyDx = 0). Clamp horizontally
+  //    so both label half-width and arrow half-width stay inside the stage.
+  const halfW = Math.max(REVEAL_ARROW_HALF_W, labelHalfW);
+  const minBodyCx = REVEAL_PAD + halfW;
+  const maxBodyCx = stageW - REVEAL_PAD - halfW;
+  let bodyCx;
+  if (minBodyCx <= maxBodyCx) {
+    bodyCx = Math.max(minBodyCx, Math.min(maxBodyCx, meshLeft));
+  } else {
+    // Stage narrower than the bubble; just center it.
+    bodyCx = stageW * 0.5;
+  }
+
+  const bodyDx = bodyCx - meshLeft;
+  const bodyDy = placeBelow ? REVEAL_ARROW_LEN : -REVEAL_ARROW_LEN;
+
+  // 3) Rotate + scale the arrow so the body bottom lands at (bodyDx, bodyDy)
+  //    while the tip stays at the transform origin (= mesh point).
+  //    Solving for: (-L*scaleY*sin(a), L*scaleY*cos(a)) = (bodyDx, bodyDy)
+  const bodyDist = Math.hypot(bodyDx, bodyDy);
+  let scaleY = 1;
+  let angleDeg = 0;
+  if (bodyDist > 0.5) {
+    scaleY = bodyDist / REVEAL_ARROW_LEN;
+    angleDeg = Math.atan2(-bodyDx, bodyDy) * 180 / Math.PI;
+  }
+  arrow.style.transform =
+    `translateX(-50%) rotate(${angleDeg.toFixed(3)}deg) scale(1, ${scaleY.toFixed(4)})`;
+
+  // 4) Place label at the body anchor; shift horizontally if the clamp had to push
+  //    the body so far that the label would still touch the stage edge.
+  const labelTopRel = placeBelow
+    ? (bodyDy + REVEAL_LABEL_GAP)
+    : (bodyDy - REVEAL_LABEL_GAP - labelH);
+
+  // Desired label center on screen (in stage local coords).
+  const desiredLabelCx = meshLeft + bodyDx;
+  const labelMinCx = REVEAL_PAD + labelHalfW;
+  const labelMaxCx = stageW - REVEAL_PAD - labelHalfW;
+  let labelCx;
+  if (labelMinCx <= labelMaxCx) {
+    labelCx = Math.max(labelMinCx, Math.min(labelMaxCx, desiredLabelCx));
+  } else {
+    labelCx = stageW * 0.5;
+  }
+  const labelLeftRel = labelCx - meshLeft;
+
+  labelWrap.style.top = `${labelTopRel.toFixed(2)}px`;
+  labelWrap.style.left = `${labelLeftRel.toFixed(2)}px`;
+  labelWrap.style.transform = 'translateX(-50%)';
+}
+
+function showRevealScreenPointer(p, runId) {
+  if (!revealPointerEl || !p?.mesh) return;
+  revealPointerPick = p;
+  revealPointerRunId = runId;
+  revealPointerEl.hidden = false;
+  revealPointerEl.classList.add('is-on');
+  updateRevealPointerPosition();
+}
+
+function hideRevealScreenPointer() {
+  revealPointerPick = null;
+  revealPointerRunId = null;
+  if (!revealPointerEl) return;
+  revealPointerEl.classList.remove('is-on');
+  revealPointerEl.style.left = '';
+  revealPointerEl.style.top = '';
+  revealPointerEl.style.opacity = '';
+  const arrow = revealPointerEl.querySelector('.reveal-pointer-arrow');
+  if (arrow) arrow.style.transform = '';
+  const labelWrap = revealPointerEl.querySelector('.reveal-pointer-label-wrap');
+  if (labelWrap) {
+    labelWrap.style.transform = '';
+    labelWrap.style.left = '';
+    labelWrap.style.top = '';
+  }
+  revealPointerEl.hidden = true;
 }
 
 // =====================================================================
@@ -2011,7 +2715,7 @@ function showInfo(p) {
 function setInfoEmpty() {
   infoEl.classList.add('empty');
   delete infoEl.dataset.layer;
-  primaryEl.textContent = mode === 'quiz' ? 'לחצי על המבנה המבוקש בתלת-ממד' : 'לחצי על מבנה כדי לראות את שמו';
+  primaryEl.textContent = mode === 'quiz' ? 'לחץ על המבנה המבוקש בתלת-ממד' : 'לחץ על מבנה כדי לראות את שמו';
   secondaryEl.textContent = '';
   descEl.textContent = '';
 }
@@ -2231,10 +2935,9 @@ let exam = null;
 // snapshots whichever layers were active at the moment of "start".
 const layerState = { Bones: true, Muscles: false, Veins: false };
 
-const promptEl = document.getElementById('prompt');
 const askEl = document.getElementById('ask');
 const targetEl = document.getElementById('target');
-const answerNoteEl = document.getElementById('answer-note');
+const pickedDisplayEl = document.getElementById('picked-display');
 const scoreNum = document.getElementById('score-num');
 const qNumEl = document.getElementById('q-num');
 const qTotalEl = document.getElementById('q-total');
@@ -2254,26 +2957,38 @@ function askPrefix(layer) {
   return layer === 'Veins' ? 'איפה נמצא הוריד' : layer === 'Muscles' ? 'איפה נמצא השריר' : 'איפה נמצאת העצם';
 }
 
-function displayName(p) {
-  return p?.info?.heb || p?.info?.lat || p?.nodeName || '—';
+function escapeHtml(s) {
+  if (s == null) return '';
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
-function setAnswerNote(kind, html = '') {
-  answerNoteEl.className = `answer-note${kind ? ` ${kind} show` : ''}`;
-  answerNoteEl.innerHTML = html;
+/** Same markup as the question row (#target) — Hebrew · Latin order, qp-target-* classes. */
+function qpTargetLineHtml(p) {
+  if (!p) {
+    return `<span class="qp-target-lat" dir="ltr">—</span>`;
+  }
+  const lat = escapeHtml(p.info?.lat || p.nodeName || '—');
+  const hebRaw = p.info?.heb || '';
+  const heb = hebRaw ? escapeHtml(hebRaw) : '';
+  return heb
+    ? `<span class="qp-target-heb" dir="rtl">${heb}</span><span class="qp-target-dot" aria-hidden="true">·</span><span class="qp-target-lat" dir="ltr">${lat}</span>`
+    : `<span class="qp-target-lat" dir="ltr">${lat}</span>`;
 }
 
-function answerFeedbackHtml(picked, correct) {
-  return `
-    <span class="answer-note-title">לא נכון</span>
-    <span class="answer-note-row">
-      <span class="answer-note-label">הבחירה שלך</span>
-      <span class="answer-note-value">${displayName(picked)}</span>
-    </span>
-    <span class="answer-note-row">
-      <span class="answer-note-label">התשובה הנכונה</span>
-      <span class="answer-note-value">${displayName(correct)}</span>
-    </span>`;
+function resetPickedDisplay() {
+  if (!pickedDisplayEl) return;
+  pickedDisplayEl.className = 'qp-target qp-target--idle';
+  pickedDisplayEl.innerHTML = '<span class="qp-target-idle">יש לבחור</span>';
+}
+
+function showPickedDisplay(p) {
+  if (!pickedDisplayEl) return;
+  pickedDisplayEl.className = 'qp-target';
+  pickedDisplayEl.innerHTML = qpTargetLineHtml(p);
 }
 
 function setMode(next) {
@@ -2434,6 +3149,9 @@ async function startMistakeExam(rec) {
 }
 
 function presentExamQuestion() {
+  correctRevealPulseGen++;
+  stage.classList.remove('reveal-correct-hint');
+  hideRevealScreenPointer();
   answerLocked = false;
   clearSelection();
   if (!exam) return;
@@ -2453,13 +3171,15 @@ function presentExamQuestion() {
   target = exam.questions[exam.idx];
   qNumEl.textContent = String(exam.kind === 'practice' ? exam.answered + 1 : exam.idx + 1);
   askEl.textContent = askPrefix(target.layer);
-  targetEl.innerHTML = `${target.info.lat} <em>· ${target.info.heb}</em>`;
-  setAnswerNote('');
+  targetEl.innerHTML = qpTargetLineHtml(target);
+  resetPickedDisplay();
   setInfoEmpty();
 }
 
 function finishExam() {
   if (!exam) return;
+  hideRevealScreenPointer();
+  stage.classList.remove('reveal-correct-hint');
   answerLocked = true;
   const record = {
     id: exam.startedAt,
@@ -2518,7 +3238,7 @@ function answerQuestion(picked) {
     exam.score++;
     score = exam.score;
     setSelection(picked, CORRECT_COLOR);
-    setAnswerNote('correct', 'נכון');
+    showPickedDisplay(picked);
     flash('correct');
     confettiBurst();
     scoreNum.textContent = String(score);
@@ -2534,15 +3254,36 @@ function answerQuestion(picked) {
     flash('wrong');
     setTimeout(() => {
       if (!exam || exam.runId !== runId) return;
-      setSelection(target, CORRECT_COLOR);
-      setAnswerNote('wrong', answerFeedbackHtml(picked, target));
+      ensureLayerVisibleForPick(target);
+      const revealIntensity = 0.98;
+      setSelection(target, CORRECT_COLOR, revealIntensity, true);
+
+      const showWrongRevealChrome = () => {
+        showRevealScreenPointer(target, runId);
+        pulseCorrectRevealHighlight(runId, revealIntensity);
+        stage.classList.remove('reveal-correct-hint');
+        void stage.offsetWidth;
+        stage.classList.add('reveal-correct-hint');
+        showPickedDisplay(picked);
+      };
+
+      const advanceQuestion = () => {
+        if (!exam || exam.runId !== runId) return;
+        exam.answered++;
+        exam.idx++;
+        presentExamQuestion();
+      };
+
+      if (isProjectedMeshCenterVisible(target)) {
+        showWrongRevealChrome();
+        setTimeout(advanceQuestion, 1900);
+      } else {
+        smoothZoomOutUntilVisible(target, runId, () => {
+          showWrongRevealChrome();
+          setTimeout(advanceQuestion, 1900);
+        });
+      }
     }, 600);
-    setTimeout(() => {
-      if (!exam || exam.runId !== runId) return;
-      exam.answered++;
-      exam.idx++;
-      presentExamQuestion();
-    }, 1900);
   }
 }
 
@@ -2874,6 +3615,8 @@ document.getElementById('exam-config-overlay').addEventListener('click', (e) => 
 
 // ===== Exit exam back to learn mode =====
 function exitExam() {
+  hideRevealScreenPointer();
+  stage.classList.remove('reveal-correct-hint');
   exam = null;
   target = null;
   answerLocked = false;
@@ -2889,6 +3632,40 @@ document.getElementById('back-to-overview').addEventListener('click', exitExam);
 document.getElementById('skip').addEventListener('click', skipQuestion);
 document.getElementById('reset-view').addEventListener('click', resetView);
 document.getElementById('practice-reset').addEventListener('click', resetPractice);
+
+// ===== קיצורים: כפתור פינתי (מעבר עכבר / לחיצה / Esc) =====
+(function setupShortcutHelp() {
+  const root = document.getElementById('shortcut-help');
+  const btn = document.getElementById('shortcut-help-btn');
+  const panel = document.getElementById('shortcut-help-popover');
+  if (!root || !btn || !panel) return;
+
+  function syncAria() {
+    const open = root.classList.contains('is-open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+  }
+
+  function close() {
+    root.classList.remove('is-open');
+    syncAria();
+  }
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    root.classList.toggle('is-open');
+    syncAria();
+  });
+
+  root.addEventListener('click', (e) => e.stopPropagation());
+
+  document.addEventListener('click', close);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') close();
+  });
+
+  syncAria();
+})();
 
 // ===== Header history button =====
 document.getElementById('history-close').addEventListener('click', () => {
@@ -2930,6 +3707,7 @@ new ResizeObserver(resize).observe(stage);
 
 function tick() {
   controls.update();
+  if (revealPointerPick) updateRevealPointerPosition();
   renderer.render(scene, camera);
   requestAnimationFrame(tick);
 }
