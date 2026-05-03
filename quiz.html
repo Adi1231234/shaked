@@ -930,9 +930,11 @@
   }
   body.mode-quiz .quiz-prompt.qp-bar {
     display: block;
-    height: auto;
-    min-height: 88px;
-    max-height: none;
+    height: 92px;
+    min-height: 92px;
+    max-height: 92px;
+    overflow: hidden;
+    box-sizing: border-box;
   }
   .qp-bar-row {
     display: flex;
@@ -999,6 +1001,18 @@
     gap: 4px 6px;
     line-height: 1.2;
     min-height: 1.3em;
+  }
+  /* גודל קבוע לשורת המטרה בשאלה ובחירה — בלי שינוי גובה כשהטקסט ארוך */
+  body.mode-quiz .quiz-prompt.qp-bar .qp-target {
+    flex: 0 0 auto;
+    align-items: center;
+    align-content: center;
+    min-height: 36px;
+    max-height: 36px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    word-break: break-word;
   }
   .qp-target-lat {
     font-size: 14px;
@@ -2068,7 +2082,20 @@ controls.minDistance = 0.05;
 controls.maxDistance = 5;
 controls.enablePan = true;
 controls.panSpeed = 1.1;
-controls.zoomSpeed = 20.0;
+// Wheel / trackpad on desktop feels right at 20; pinch-zoom on phones is much jumpier with the same factor.
+const ORBIT_ZOOM_SPEED_DESKTOP = 20.0;
+const ORBIT_ZOOM_SPEED_TOUCH = 7.5;
+function applyOrbitZoomSensitivity() {
+  const coarse =
+    window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+  controls.zoomSpeed = coarse ? ORBIT_ZOOM_SPEED_TOUCH : ORBIT_ZOOM_SPEED_DESKTOP;
+}
+applyOrbitZoomSensitivity();
+if (window.matchMedia) {
+  window
+    .matchMedia('(pointer: coarse)')
+    .addEventListener('change', applyOrbitZoomSensitivity);
+}
 controls.screenSpacePanning = true;
 // Touch: one finger rotates, two fingers pinch-zoom + pan together.
 controls.touches = { ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY_PAN };
