@@ -11,6 +11,7 @@
 <style>
   *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   :root{
+    --radius: 12px;
     --bg-0:#03050b;
     --ink:#e9f1ff;
     --ink-dim:#aab7d4;
@@ -130,6 +131,10 @@
     gap: 9px;
     line-height: 1;
   }
+  /* במבחן/תרגול: הלב משמאל ל«שקד» (בעמוד RTL בלי זה הלב נופל לימין המילה) */
+  body.mode-quiz .brand-title {
+    direction: ltr;
+  }
   .brand-heart {
     color: #c7f3ff;
     font-size: 22px;
@@ -149,7 +154,7 @@
     color: var(--ink);
     background: rgba(7,11,28,0.72);
     border: 1px solid rgba(126,232,255,0.20);
-    border-radius: 14px;
+    border-radius: var(--radius);
     padding: 8px 10px;
     gap: 10px;
     align-items: center;
@@ -191,7 +196,7 @@
     background: rgba(126,232,255,0.06);
     border: 1px solid rgba(126,232,255,0.18);
     color: var(--cyan);
-    border-radius: 999px;
+    border-radius: var(--radius);
     padding: 6px 12px;
     font: inherit;
     font-size: 12px;
@@ -246,7 +251,7 @@
     background: transparent;
     border: none;
     color: var(--ink-soft);
-    border-radius: 0;
+    border-radius: var(--radius);
     padding: 11px 0 12px;
     font: inherit;
     font-size: 16px;
@@ -262,7 +267,7 @@
     left: 0;
     bottom: -1px;
     height: 3px;
-    border-radius: 999px;
+    border-radius: var(--radius);
     background: linear-gradient(90deg, var(--cyan), var(--rose-soft));
     transform: scaleX(0);
     transform-origin: center;
@@ -312,7 +317,7 @@
     margin-top: 10px;
     padding: 10px;
     border: 1px solid rgba(126,232,255,0.14);
-    border-radius: 14px;
+    border-radius: var(--radius);
     background: rgba(255,255,255,0.025);
   }
   body.panel-exam:not(.mode-quiz) .exam-inline-history {
@@ -340,7 +345,7 @@
   .exam-stat {
     background: rgba(255,255,255,0.035);
     border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 10px;
+    border-radius: var(--radius);
     padding: 8px 10px;
     min-width: 0;
   }
@@ -362,7 +367,7 @@
     width: 100%;
     height: 128px;
     border: 1px solid rgba(126,232,255,0.12);
-    border-radius: 12px;
+    border-radius: var(--radius);
     background:
       linear-gradient(180deg, rgba(126,232,255,0.05), transparent),
       rgba(3,5,11,0.18);
@@ -405,7 +410,7 @@
     color: var(--ink);
     background: rgba(7,11,28,0.95);
     border: 1px solid rgba(126,232,255,0.28);
-    border-radius: 10px;
+    border-radius: var(--radius);
     padding: 7px 10px;
     font-size: 12px;
     line-height: 1.25;
@@ -440,7 +445,7 @@
     align-items: center;
     justify-content: center;
     border: 1px solid rgba(126,232,255,0.18);
-    border-radius: 12px;
+    border-radius: var(--radius);
     background: rgba(255,255,255,0.035);
     color: var(--ink-dim);
     font-size: 13px;
@@ -464,7 +469,7 @@
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.10);
     color: var(--ink-dim);
-    border-radius: 999px;
+    border-radius: var(--radius);
     padding: 6px 10px;
     font: inherit;
     font-size: 12px;
@@ -477,7 +482,7 @@
   /* ===== Start exam / practice buttons ===== */
   .start-btn, .practice-btn {
     width: 100%;
-    border-radius: 14px;
+    border-radius: var(--radius);
     padding: 12px 14px;
     font: inherit;
     font-weight: 700;
@@ -511,7 +516,7 @@
     background: transparent;
     border: 1px solid rgba(126,232,255,0.18);
     color: var(--ink-dim);
-    border-radius: 12px;
+    border-radius: var(--radius);
     padding: 10px;
     font: inherit;
     font-size: 13px;
@@ -529,7 +534,7 @@
     background: rgba(255,255,255,0.03);
     border: 1px solid rgba(255,255,255,0.06);
     color: var(--ink-dim);
-    border-radius: 12px;
+    border-radius: var(--radius);
     padding: 8px 12px;
     font: inherit;
     font-size: 14px;
@@ -561,12 +566,12 @@
     text-align: center;
     padding: 18px 8px;
     border: 1px dashed rgba(255,255,255,0.08);
-    border-radius: 12px;
+    border-radius: var(--radius);
   }
   .history-item {
     background: rgba(255,255,255,0.03);
     border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px;
+    border-radius: var(--radius);
     padding: 10px 12px;
     cursor: pointer;
     display: flex;
@@ -590,7 +595,7 @@
     background: rgba(255,255,255,0.02);
     border: 1px solid rgba(255,255,255,0.05);
     color: var(--ink-soft);
-    border-radius: 10px;
+    border-radius: var(--radius);
     padding: 6px 8px;
     font: inherit;
     font-size: 12px;
@@ -613,7 +618,7 @@
     flex: 1;
     position: relative;
     margin: 0 12px;
-    border-radius: 22px;
+    border-radius: var(--radius);
     overflow: hidden;
     border: 1px solid rgba(126,232,255,0.10);
     background:
@@ -685,7 +690,7 @@
     letter-spacing: 0.04em;
     color: #051209;
     padding: 7px 14px;
-    border-radius: 999px;
+    border-radius: var(--radius);
     background: linear-gradient(145deg, #8fffcc 0%, #7ee8ff 100%);
     border: 2px solid rgba(255,255,255,0.95);
     box-shadow:
@@ -741,7 +746,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
+    border-radius: var(--radius);
     border: 1px solid rgba(126, 232, 255, 0.35);
     background: rgba(8, 11, 22, 0.85);
     color: var(--cyan);
@@ -776,7 +781,7 @@
     min-width: min(100vw - 24px, 300px);
     max-width: min(100vw - 24px, 420px);
     padding: 12px 12px 10px;
-    border-radius: 12px;
+    border-radius: var(--radius);
     background: rgba(7, 10, 20, 0.96);
     border: 1px solid rgba(126, 232, 255, 0.18);
     box-shadow:
@@ -886,7 +891,7 @@
     font-weight: 600;
     font-family: ui-monospace, "Cascadia Code", "Segoe UI", sans-serif;
     line-height: 1.35;
-    border-radius: 6px;
+    border-radius: var(--radius);
     background: rgba(126, 232, 255, 0.09);
     border: 1px solid rgba(126, 232, 255, 0.22);
     color: var(--ink);
@@ -922,7 +927,7 @@
     align-self: stretch;
     display: none;
     box-sizing: border-box;
-    border-radius: 10px;
+    border-radius: var(--radius);
     background: rgba(8, 11, 22, 0.94);
     border: 1px solid rgba(126, 232, 255, 0.14);
     box-shadow: 0 3px 14px -6px rgba(0, 0, 0, 0.55);
@@ -930,9 +935,10 @@
   }
   body.mode-quiz .quiz-prompt.qp-bar {
     display: block;
-    height: 92px;
-    min-height: 92px;
-    max-height: 92px;
+    /* גובה קבוע אחיד; מספיק לכמה שורות של עברית+לטינית בלי לחתוך */
+    height: 124px;
+    min-height: 124px;
+    max-height: 124px;
     overflow: hidden;
     box-sizing: border-box;
   }
@@ -959,6 +965,10 @@
   .qp-sec--picked {
     justify-content: center;
     min-height: 0;
+  }
+  body.mode-quiz .qp-sec--question,
+  body.mode-quiz .qp-sec--picked {
+    justify-content: flex-start;
   }
   .qp-sec-label {
     font-size: 9px;
@@ -1002,17 +1012,24 @@
     line-height: 1.2;
     min-height: 1.3em;
   }
-  /* גודל קבוע לשורת המטרה בשאלה ובחירה — בלי שינוי גובה כשהטקסט ארוך */
+  /* שורת המטרה תופסת את הגובה הפנוי מתחת לתוויות — בלי חיתוך בשימוש רגיל */
   body.mode-quiz .quiz-prompt.qp-bar .qp-target {
-    flex: 0 0 auto;
-    align-items: center;
-    align-content: center;
-    min-height: 36px;
-    max-height: 36px;
+    flex: 1 1 auto;
+    min-height: 0;
+    align-items: baseline;
+    align-content: flex-start;
+    justify-content: flex-start;
     overflow-x: hidden;
     overflow-y: auto;
     overscroll-behavior: contain;
     word-break: break-word;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  body.mode-quiz .quiz-prompt.qp-bar .qp-target::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
   }
   .qp-target-lat {
     font-size: 14px;
@@ -1055,7 +1072,7 @@
     width: 100%;
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(126,232,255,0.18);
-    border-radius: 12px;
+    border-radius: var(--radius);
     padding: 10px 14px 10px 36px;
     color: var(--ink);
     font: inherit;
@@ -1086,7 +1103,7 @@
     width: 7px; height: 1.6px;
     background: var(--ink-soft);
     transform: rotate(45deg);
-    border-radius: 1px;
+    border-radius: var(--radius);
   }
   .search-wrap.has-text .search-icon { opacity: 0; }
   .search-clear {
@@ -1121,7 +1138,7 @@
     background: rgba(7,11,28,0.96);
     backdrop-filter: blur(14px);
     border: 1px solid rgba(126,232,255,0.22);
-    border-radius: 12px;
+    border-radius: var(--radius);
     padding: 4px;
     max-height: 280px;
     overflow-y: auto;
@@ -1141,7 +1158,7 @@
   }
   .search-dropdown::-webkit-scrollbar-thumb {
     background: linear-gradient(180deg, rgba(126,232,255,0.35), rgba(255,155,191,0.30));
-    border-radius: 999px;
+    border-radius: var(--radius);
     border: 2px solid transparent;
     background-clip: padding-box;
   }
@@ -1156,7 +1173,7 @@
     align-items: center;
     gap: 10px;
     padding: 8px 10px;
-    border-radius: 8px;
+    border-radius: var(--radius);
     cursor: pointer;
     transition: background .15s ease;
   }
@@ -1195,7 +1212,7 @@
     background: rgba(126,232,255,0.22);
     color: var(--cyan);
     padding: 0 2px;
-    border-radius: 3px;
+    border-radius: var(--radius);
   }
   .search-empty {
     padding: 14px 12px;
@@ -1219,7 +1236,7 @@
     padding: 12px 16px;
     background: linear-gradient(135deg, rgba(126,232,255,0.06), rgba(255,95,143,0.04));
     border: 1px solid rgba(126,232,255,0.15);
-    border-radius: 16px;
+    border-radius: var(--radius);
     box-sizing: border-box;
     height: 128px;
     min-height: 128px;
@@ -1322,7 +1339,7 @@
     background: rgba(255,95,143,0.10);
     border: 1px solid rgba(255,95,143,0.3);
     color: var(--rose-soft);
-    border-radius: 999px;
+    border-radius: var(--radius);
     padding: 6px 10px;
     font: inherit;
     font-size: 12px;
@@ -1360,7 +1377,7 @@
     overflow-y: auto;
     background: linear-gradient(180deg, #0a1430 0%, #060a17 100%);
     border: 1px solid rgba(126,232,255,0.22);
-    border-radius: 24px;
+    border-radius: var(--radius);
     padding: 22px 20px max(env(safe-area-inset-bottom), 22px);
     text-align: center;
     box-shadow: 0 30px 80px -20px rgba(0,0,0,0.8);
@@ -1454,7 +1471,7 @@
   .mistake-item {
     background: rgba(255,95,143,0.06);
     border: 1px solid rgba(255,95,143,0.18);
-    border-radius: 10px;
+    border-radius: var(--radius);
     padding: 8px 12px;
     font-size: 13px;
     line-height: 1.4;
