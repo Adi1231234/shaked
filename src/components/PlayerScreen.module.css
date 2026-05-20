@@ -5,11 +5,11 @@
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6) 80%),
     var(--accent);
   transition: background-color 0.35s ease;
-  animation: rise 0.3s ease;
+  animation: rise 0.34s cubic-bezier(0.3, 0, 0, 1);
 }
 @keyframes rise {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
+  from { transform: translateY(100%); opacity: 0.4; }
+  to { transform: translateY(0); opacity: 1; }
 }
 .top {
   display: flex; align-items: center; justify-content: space-between;
@@ -79,6 +79,16 @@
   width: 62px; height: 62px; padding: 0;
   background: none; border: none; cursor: pointer;
 }
+.bigPlay:active {
+  transform: scale(0.91);
+  opacity: 1;
+}
+.bigPlayCircle {
+  transition: transform 0.12s ease;
+}
+.bigPlay:active .bigPlayCircle {
+  transform: scale(0.96);
+}
 .bigPlayCircle {
   display: flex; align-items: center; justify-content: center;
   width: 56px; height: 56px; border-radius: 50%;
@@ -98,4 +108,5 @@
 }
 .on {
   color: #1ed760;
+  animation: pop 0.38s ease;
 }

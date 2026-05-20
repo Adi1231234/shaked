@@ -57,4 +57,4 @@
 .rowTitle.active { color: #1ed760; }
 .rowArtist { margin-top: 4px; font-size: 13px; color: #b3b3b3; }
 .rowMore { display: flex; padding: 8px; color: rgba(255, 255, 255, 0.7); }
-.on { color: #1ed760; }
+.on { color: #1ed760; animation: pop 0.38s ease; }

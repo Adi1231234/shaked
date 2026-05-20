@@ -36,9 +36,24 @@ body {
   font-family: "SpotifyMixUI", "Helvetica Neue", helvetica, arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
-button,
+/* משוב מגע גלובלי - כל כפתור מגיב ללחיצה */
+button {
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 0.1s ease,
+    opacity 0.12s ease,
+    color 0.2s ease;
+}
+button:active {
+  opacity: 0.6;
+  transform: scale(0.96);
+}
+
 input {
   font-family: inherit;
 }
@@ -50,4 +65,18 @@ img {
 ::-webkit-scrollbar {
   width: 0;
   height: 0;
+}
+
+/* אנימציית "פופ" משמחת - ללב ולכפתורי ערבוב/חזרה */
+@keyframes pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.32); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+/* כניסת הנגן הקטן מלמטה */
+@keyframes miniIn {
+  from { transform: translateY(115%); }
+  to { transform: translateY(0); }
 }
