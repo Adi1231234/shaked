@@ -34,7 +34,7 @@
 }
 .metaRow {
   display: flex; align-items: center; justify-content: space-between;
-  gap: 8px; margin-top: 24px; flex-shrink: 0;
+  gap: 8px; margin: 24px 12px 0 0; flex-shrink: 0;
 }
 .titles { min-width: 0; }
 .songTitle {
@@ -50,7 +50,7 @@
   width: 48px; height: 48px; flex-shrink: 0;
   background: none; border: none; color: rgba(255, 255, 255, 0.7); cursor: pointer;
 }
-.seekRow { margin-top: 15px; padding-top: 20px; flex-shrink: 0; }
+.seekRow { margin: 15px 12px 0; padding-top: 20px; flex-shrink: 0; }
 .seek {
   display: block; width: 100%; height: 4px; border-radius: 2px;
   direction: ltr; -webkit-appearance: none; appearance: none; cursor: pointer;
@@ -69,7 +69,7 @@
 }
 .controls {
   display: flex; align-items: center; justify-content: space-between;
-  margin-top: 24px; direction: ltr; flex-shrink: 0;
+  margin-top: 31px; direction: ltr; flex-shrink: 0;
 }
 .ctlBtn {
   display: flex; align-items: center; justify-content: center;
