@@ -1,28 +1,33 @@
 import { useEffect, useRef, useState } from "react";
+import { load, save } from "../store.js";
 
 // hook שמנהל את הפלייליסט: ניגון, מעבר, ערבוב, חזרה, ולבבות.
+// כל המצב נשמר ב-localStorage ומשוחזר בטעינה.
 export function usePlayer(songs) {
   const audioRef = useRef(null);
   const autoPlay = useRef(false);
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(() => {
+    const i = load("index", 0);
+    return Number.isInteger(i) && i >= 0 && i < songs.length ? i : 0;
+  });
   const [dir, setDir] = useState(1);
   const [playing, setPlaying] = useState(false);
   const [current, setCurrent] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [shuffle, setShuffle] = useState(false);
-  const [repeat, setRepeat] = useState("off"); // off | all | one
-  const [liked, setLiked] = useState(() => {
-    try {
-      return new Set(JSON.parse(localStorage.getItem("dv-liked") || "[]"));
-    } catch {
-      return new Set();
-    }
-  });
+  const [shuffle, setShuffle] = useState(() => load("shuffle", false) === true);
+  const [repeat, setRepeat] = useState(() => load("repeat", "off"));
+  const [liked, setLiked] = useState(() => new Set(load("liked", [])));
 
   const repeatRef = useRef(repeat);
   repeatRef.current = repeat;
   const shuffleRef = useRef(shuffle);
   shuffleRef.current = shuffle;
+
+  useEffect(() => {
+    save("index", index);
+    save("shuffle", shuffle);
+    save("repeat", repeat);
+  }, [index, shuffle, repeat]);
 
   const randomOther = (i) => {
     let r = i;
@@ -35,7 +40,6 @@ export function usePlayer(songs) {
     audioRef.current = audio;
     setCurrent(0);
     setDuration(0);
-
     const onTime = () => setCurrent(audio.currentTime);
     const onMeta = () => setDuration(audio.duration || 0);
     const onEnd = () => {
@@ -60,12 +64,10 @@ export function usePlayer(songs) {
     audio.addEventListener("timeupdate", onTime);
     audio.addEventListener("loadedmetadata", onMeta);
     audio.addEventListener("ended", onEnd);
-
     if (autoPlay.current) {
       autoPlay.current = false;
       audio.play().then(() => setPlaying(true)).catch(() => {});
     }
-
     return () => {
       audio.pause();
       audio.removeEventListener("timeupdate", onTime);
@@ -74,15 +76,16 @@ export function usePlayer(songs) {
     };
   }, [index, songs]);
 
+  // toggle מבוסס על ה-state, לא על audio.paused - כדי שיתחלף נכון תמיד
   const toggle = () => {
     const a = audioRef.current;
     if (!a) return;
-    if (a.paused) {
-      a.play().catch(() => {});
-      setPlaying(true);
-    } else {
+    if (playing) {
       a.pause();
       setPlaying(false);
+    } else {
+      a.play().catch(() => {});
+      setPlaying(true);
     }
   };
 
@@ -116,7 +119,7 @@ export function usePlayer(songs) {
       const n = new Set(s);
       if (n.has(index)) n.delete(index);
       else n.add(index);
-      localStorage.setItem("dv-liked", JSON.stringify([...n]));
+      save("liked", [...n]);
       return n;
     });
 
