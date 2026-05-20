@@ -9,8 +9,9 @@ import { song } from "./song.js";
 import styles from "./App.module.css";
 
 export default function App() {
-  const [playerOpen, setPlayerOpen] = useState(false);
-  const [started, setStarted] = useState(false);
+  // נפתח ישירות על מסך הנגן - זה העמוד שצריך להיות פיקסל-פרפקט מול Spotify
+  const [playerOpen, setPlayerOpen] = useState(true);
+  const [started, setStarted] = useState(true);
   const audio = useAudio(song.audio);
 
   // לחיצה על שיר / כפתור Play - מתחיל ניגון ומראה את הנגן הקטן

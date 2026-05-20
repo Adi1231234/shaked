@@ -1,7 +1,7 @@
 .player {
   position: absolute; inset: 0; z-index: 20;
   display: flex; flex-direction: column;
-  padding: 14px 12px;
+  padding: 12px;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6) 80%),
     var(--accent);
   animation: rise 0.3s ease;
@@ -12,39 +12,48 @@
 }
 .top {
   display: flex; align-items: center; justify-content: space-between;
-  padding-top: 8px;
+  height: 48px; flex-shrink: 0;
 }
 .iconBtn {
-  background: none; border: none; color: #fff;
-  padding: 6px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  width: 48px; height: 48px;
+  background: none; border: none; color: #fff; cursor: pointer;
 }
-.headerTitle { font-size: 13px; font-weight: 700; color: #fff; }
+.headerTitle {
+  flex: 1; text-align: center;
+  font-size: 13px; font-weight: 700; color: #fff;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
 .artWrap {
-  flex: 1; min-height: 0; padding: 32px 4px 0;
-  display: flex; align-items: flex-start; justify-content: center;
+  flex: 1; min-height: 0; padding-top: 40px;
+  display: flex;
 }
 .art {
-  max-width: 100%; max-height: 100%; aspect-ratio: 1;
-  object-fit: cover; box-shadow: 0 8px 26px rgba(0, 0, 0, 0.45);
+  width: 100%; height: 100%;
+  object-fit: cover; border-radius: 4px;
 }
 .metaRow {
   display: flex; align-items: center; justify-content: space-between;
-  gap: 12px;
+  gap: 8px; margin-top: 24px; flex-shrink: 0;
 }
 .titles { min-width: 0; }
 .songTitle {
   font-size: 20px; font-weight: 700; color: #fff;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.songArtist { margin-top: 4px; font-size: 16px; color: rgba(255, 255, 255, 0.7); }
-.heart {
-  flex-shrink: 0; background: none; border: none;
-  color: rgba(255, 255, 255, 0.7); padding: 4px; cursor: pointer;
+.songArtist {
+  margin-top: 2px; font-size: 16px; color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.seekRow { margin-top: 16px; }
+.heart {
+  display: flex; align-items: center; justify-content: center;
+  width: 48px; height: 48px; flex-shrink: 0;
+  background: none; border: none; color: rgba(255, 255, 255, 0.7); cursor: pointer;
+}
+.seekRow { margin-top: 15px; padding-top: 20px; flex-shrink: 0; }
 .seek {
-  width: 100%; height: 4px; border-radius: 2px; direction: ltr;
-  -webkit-appearance: none; appearance: none; cursor: pointer;
+  display: block; width: 100%; height: 4px; border-radius: 2px;
+  direction: ltr; -webkit-appearance: none; appearance: none; cursor: pointer;
   background: linear-gradient(to right, #fff var(--pct), rgba(255, 255, 255, 0.3) var(--pct));
 }
 .seek::-webkit-slider-thumb {
@@ -52,8 +61,7 @@
   border-radius: 50%; background: #fff;
 }
 .seek::-moz-range-thumb {
-  width: 12px; height: 12px; border: none;
-  border-radius: 50%; background: #fff;
+  width: 12px; height: 12px; border: none; border-radius: 50%; background: #fff;
 }
 .times {
   display: flex; justify-content: space-between; margin-top: 8px;
@@ -61,22 +69,26 @@
 }
 .controls {
   display: flex; align-items: center; justify-content: space-between;
-  margin-top: 6px; direction: ltr;
+  margin-top: 24px; direction: ltr; flex-shrink: 0;
 }
 .ctlBtn {
-  display: flex; background: none; border: none;
-  color: #fff; padding: 4px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  background: none; border: none; color: #fff; cursor: pointer;
 }
+.smallBtn { width: 48px; height: 48px; }
+.skipBtn { width: 56px; height: 56px; }
 .bigPlay {
   display: flex; align-items: center; justify-content: center;
-  width: 62px; height: 62px; border-radius: 50%; flex-shrink: 0;
+  width: 62px; height: 62px; border-radius: 50%;
   background: #fff; color: #000; border: none; cursor: pointer;
 }
 .footer {
   display: flex; align-items: center; justify-content: space-between;
-  margin-top: 14px; direction: ltr;
+  margin-top: 15px; direction: ltr; flex-shrink: 0;
 }
 .footBtn {
-  display: flex; background: none; border: none;
-  color: #fff; padding: 4px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px;
+  background: none; border: none; color: #fff; cursor: pointer;
 }
+.connectBtn { width: 52px; }
