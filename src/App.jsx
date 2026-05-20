@@ -4,6 +4,7 @@ import PlayerScreen from "./components/PlayerScreen.jsx";
 import MiniPlayer from "./components/MiniPlayer.jsx";
 import BottomNav from "./components/BottomNav.jsx";
 import Toast from "./components/Toast.jsx";
+import WelcomeDialog from "./components/WelcomeDialog.jsx";
 import { usePlayer } from "./hooks/usePlayer.js";
 import { songs, playlistName, albumYear } from "./song.js";
 import styles from "./App.module.css";
@@ -48,6 +49,7 @@ export default function App() {
         />
       )}
       <Toast />
+      <WelcomeDialog />
     </div>
   );
 }
