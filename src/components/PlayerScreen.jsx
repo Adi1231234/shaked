@@ -2,9 +2,9 @@ import * as Icon from "./icons.jsx";
 import { fmt } from "../format.js";
 import styles from "./PlayerScreen.module.css";
 
-// מסך הנגן - פיקסל-פרפקט מול ה-now-playing view של Spotify
-export default function PlayerScreen({ player, playlistName, onClose }) {
-  const { song, playing, current, duration } = player;
+// מסך הנגן - פיקסל-פרפקט מול Spotify, כולל קרוסלת עטיפות מחליקה
+export default function PlayerScreen({ player, songs, playlistName, onClose }) {
+  const { song, index, playing, current, duration } = player;
   const pct = duration ? (current / duration) * 100 : 0;
 
   return (
@@ -20,7 +20,16 @@ export default function PlayerScreen({ player, playlistName, onClose }) {
       </div>
 
       <div className={styles.artWrap}>
-        <img className={styles.art} src={song.cover} alt={song.title} />
+        <div
+          className={styles.artTrack}
+          style={{ "--p": songs.length - 1 - index }}
+        >
+          {songs.map((s, i) => (
+            <div className={styles.slide} key={i}>
+              <img className={styles.art} src={s.cover} alt={s.title} />
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className={styles.metaRow}>

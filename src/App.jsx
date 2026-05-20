@@ -39,6 +39,7 @@ export default function App() {
       {playerOpen && (
         <PlayerScreen
           player={player}
+          songs={songs}
           playlistName={playlistName}
           onClose={() => setPlayerOpen(false)}
         />
