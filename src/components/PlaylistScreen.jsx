@@ -1,10 +1,20 @@
 import * as Icon from "./icons.jsx";
 import styles from "./PlaylistScreen.module.css";
 
-// מסך האלבום - מבנה זהה לעמוד אלבום אמיתי ב-Spotify (נשאב מהטאב)
-export default function PlaylistScreen({ song, playing, onPlay, onPlaySong }) {
+// מסך האלבום - מציג את רשימת כל השירים. לחיצה על שיר מנגנת אותו.
+export default function PlaylistScreen({
+  songs,
+  playlistName,
+  year,
+  currentIndex,
+  playing,
+  onPlay,
+  onPlayIndex,
+}) {
+  const album = songs[0];
+
   return (
-    <div className={styles.screen} style={{ "--accent": song.accent }}>
+    <div className={styles.screen} style={{ "--accent": album.accent }}>
       <div className={styles.topbar}>
         <button className={styles.back} aria-label="חזרה">
           <Icon.Back size={24} />
@@ -13,16 +23,18 @@ export default function PlaylistScreen({ song, playing, onPlay, onPlaySong }) {
 
       <div className={styles.scroll}>
         <div className={styles.coverWrap}>
-          <img className={styles.cover} src={song.cover} alt={song.playlistName} />
+          <img className={styles.cover} src={album.cover} alt={playlistName} />
         </div>
 
-        <h1 className={styles.title}>{song.playlistName}</h1>
+        <h1 className={styles.title}>{playlistName}</h1>
 
         <div className={styles.artistRow}>
           <span className={styles.avatar} />
-          <span className={styles.artistName}>{song.artist}</span>
+          <span className={styles.artistName}>{album.artist}</span>
         </div>
-        <div className={styles.meta}>{song.year} • סינגל</div>
+        <div className={styles.meta}>
+          {year} • {songs.length} שירים
+        </div>
 
         <div className={styles.actions}>
           <div className={styles.icons}>
@@ -41,17 +53,25 @@ export default function PlaylistScreen({ song, playing, onPlay, onPlaySong }) {
           </button>
         </div>
 
-        <button className={styles.row} onClick={onPlaySong}>
-          <div className={styles.rowText}>
-            <div className={`${styles.rowTitle} ${playing ? styles.active : ""}`}>
-              {song.title}
+        {songs.map((s, i) => (
+          <button
+            key={`${s.title}-${i}`}
+            className={styles.row}
+            onClick={() => onPlayIndex(i)}
+          >
+            <div className={styles.rowText}>
+              <div
+                className={`${styles.rowTitle} ${i === currentIndex ? styles.active : ""}`}
+              >
+                {s.title}
+              </div>
+              <div className={styles.rowArtist}>{s.artist}</div>
             </div>
-            <div className={styles.rowArtist}>{song.artist}</div>
-          </div>
-          <span className={styles.rowMore}>
-            <Icon.More size={20} />
-          </span>
-        </button>
+            <span className={styles.rowMore}>
+              <Icon.More size={20} />
+            </span>
+          </button>
+        ))}
       </div>
     </div>
   );

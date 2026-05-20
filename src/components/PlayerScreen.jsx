@@ -3,8 +3,9 @@ import { fmt } from "../format.js";
 import styles from "./PlayerScreen.module.css";
 
 // מסך הנגן - פיקסל-פרפקט מול ה-now-playing view של Spotify
-export default function PlayerScreen({ song, audio, onPlay, onClose }) {
-  const pct = audio.duration ? (audio.current / audio.duration) * 100 : 0;
+export default function PlayerScreen({ player, playlistName, onClose }) {
+  const { song, playing, current, duration } = player;
+  const pct = duration ? (current / duration) * 100 : 0;
 
   return (
     <div className={styles.player} style={{ "--accent": song.accent }}>
@@ -12,7 +13,7 @@ export default function PlayerScreen({ song, audio, onPlay, onClose }) {
         <button className={styles.iconBtn} onClick={onClose} aria-label="סגור">
           <Icon.ChevronDown size={24} />
         </button>
-        <div className={styles.headerTitle}>{song.playlistName}</div>
+        <div className={styles.headerTitle}>{playlistName}</div>
         <button className={styles.iconBtn} aria-label="עוד">
           <Icon.More size={24} />
         </button>
@@ -37,15 +38,15 @@ export default function PlayerScreen({ song, audio, onPlay, onClose }) {
           className={styles.seek}
           type="range"
           min={0}
-          max={audio.duration || 0}
-          value={audio.current}
+          max={duration || 0}
+          value={current}
           step="0.1"
-          onChange={(e) => audio.seek(Number(e.target.value))}
+          onChange={(e) => player.seek(Number(e.target.value))}
           style={{ "--pct": `${pct}%` }}
         />
         <div className={styles.times}>
-          <span>{fmt(audio.current)}</span>
-          <span>{fmt(audio.duration)}</span>
+          <span>{fmt(current)}</span>
+          <span>{fmt(duration)}</span>
         </div>
       </div>
 
@@ -53,15 +54,23 @@ export default function PlayerScreen({ song, audio, onPlay, onClose }) {
         <button className={`${styles.ctlBtn} ${styles.smallBtn}`} aria-label="ערבוב">
           <Icon.Shuffle size={24} />
         </button>
-        <button className={`${styles.ctlBtn} ${styles.skipBtn}`} aria-label="הקודם">
+        <button
+          className={`${styles.ctlBtn} ${styles.skipBtn}`}
+          onClick={player.prev}
+          aria-label="הקודם"
+        >
           <Icon.Prev size={32} />
         </button>
-        <button className={styles.bigPlay} onClick={onPlay} aria-label="נגן">
+        <button className={styles.bigPlay} onClick={player.toggle} aria-label="נגן">
           <span className={styles.bigPlayCircle}>
-            {audio.playing ? <Icon.Pause size={24} /> : <Icon.Play size={24} />}
+            {playing ? <Icon.Pause size={24} /> : <Icon.Play size={24} />}
           </span>
         </button>
-        <button className={`${styles.ctlBtn} ${styles.skipBtn}`} aria-label="הבא">
+        <button
+          className={`${styles.ctlBtn} ${styles.skipBtn}`}
+          onClick={player.next}
+          aria-label="הבא"
+        >
           <Icon.Next size={32} />
         </button>
         <button className={`${styles.ctlBtn} ${styles.smallBtn}`} aria-label="חזרה על שיר">
