@@ -1,3 +1,4 @@
+import { useState } from "react";
 import * as Icon from "./icons.jsx";
 import { fmt } from "../format.js";
 import { shareLink } from "../share.js";
@@ -9,11 +10,22 @@ import styles from "./PlayerScreen.module.css";
 export default function PlayerScreen({ player, playlistName, onClose }) {
   const { song, playing, current, duration, shuffle, repeat, liked } = player;
   const pct = duration ? (current / duration) * 100 : 0;
+  const [closing, setClosing] = useState(false);
 
   return (
-    <div className={styles.player} style={{ "--accent": song.accent }}>
+    <div
+      className={`${styles.player} ${closing ? styles.closing : ""}`}
+      style={{ "--accent": song.accent }}
+      onAnimationEnd={(e) => {
+        if (closing && e.target === e.currentTarget) onClose();
+      }}
+    >
       <div className={styles.top}>
-        <button className={styles.iconBtn} onClick={onClose} aria-label="סגור">
+        <button
+          className={styles.iconBtn}
+          onClick={() => setClosing(true)}
+          aria-label="סגור"
+        >
           <Icon.ChevronDown size={24} />
         </button>
         <div className={styles.headerTitle}>{playlistName}</div>

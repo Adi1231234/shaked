@@ -11,6 +11,14 @@
   from { transform: translateY(100%); opacity: 0.4; }
   to { transform: translateY(0); opacity: 1; }
 }
+.closing {
+  animation: fall 0.3s cubic-bezier(0.3, 0, 0, 1) forwards;
+  pointer-events: none;
+}
+@keyframes fall {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(100%); opacity: 0.4; }
+}
 .top {
   display: flex; align-items: center; justify-content: space-between;
   height: 48px; flex-shrink: 0;
