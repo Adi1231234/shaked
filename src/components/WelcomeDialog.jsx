@@ -22,7 +22,7 @@ export default function WelcomeDialog() {
           <span>את הכי טובה בעולם!!</span>
           <span>אני אוהב אותך</span>
         </div>
-        <button className={styles.btn} onClick={dismiss} aria-label="תודה">
+        <button className={styles.btn} onClick={dismiss} aria-label="Close">
           ❤️
         </button>
       </div>

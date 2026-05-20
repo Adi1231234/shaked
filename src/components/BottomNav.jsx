@@ -4,13 +4,13 @@ import { showToast } from "../toast.js";
 import styles from "./BottomNav.module.css";
 
 const TABS = [
-  { Icon: Icon.Home, label: "מסך הבית" },
-  { Icon: Icon.Search, label: "חיפוש" },
-  { Icon: Icon.Library, label: "הספרייה שלכם" },
-  { Icon: Icon.Download, label: "להורדת היישום" },
+  { Icon: Icon.Home, label: "Home" },
+  { Icon: Icon.Search, label: "Search" },
+  { Icon: Icon.Library, label: "Your Library" },
+  { Icon: Icon.Download, label: "Install App" },
 ];
 
-// סרגל הניווט התחתון - לחיצה מסמנת את הלשונית הפעילה
+// Bottom navigation bar - tapping highlights the active tab
 export default function BottomNav() {
   const [active, setActive] = useState(0);
 

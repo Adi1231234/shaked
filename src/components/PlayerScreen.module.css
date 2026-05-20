@@ -38,7 +38,7 @@
 }
 .metaRow {
   display: flex; align-items: center; justify-content: space-between;
-  gap: 8px; margin: 24px 12px 0 0; flex-shrink: 0;
+  gap: 8px; margin: 24px 0 0; margin-inline-start: 12px; flex-shrink: 0;
 }
 .titles { min-width: 0; }
 .songTitle {

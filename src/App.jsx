@@ -6,7 +6,7 @@ import BottomNav from "./components/BottomNav.jsx";
 import Toast from "./components/Toast.jsx";
 import WelcomeDialog from "./components/WelcomeDialog.jsx";
 import { usePlayer } from "./hooks/usePlayer.js";
-import { songs, playlistName, albumYear } from "./song.js";
+import { songs, playlistName, albumYear, artistImage } from "./song.js";
 import styles from "./App.module.css";
 
 export default function App() {
@@ -23,6 +23,7 @@ export default function App() {
         songs={songs}
         playlistName={playlistName}
         year={albumYear}
+        artistImage={artistImage}
         currentIndex={player.index}
         playing={player.playing}
         onPlay={player.toggle}

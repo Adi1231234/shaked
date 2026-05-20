@@ -3,11 +3,12 @@ import * as Icon from "./icons.jsx";
 import { shareLink } from "../share.js";
 import styles from "./PlaylistScreen.module.css";
 
-// מסך האלבום - רשימת השירים. לחיצה על שיר מנגנת אותו.
+// The album screen - lists every song. Tapping a song plays it.
 export default function PlaylistScreen({
   songs,
   playlistName,
   year,
+  artistImage,
   currentIndex,
   playing,
   onPlay,
@@ -20,7 +21,7 @@ export default function PlaylistScreen({
   return (
     <div className={styles.screen} style={{ "--accent": album.accent }}>
       <div className={styles.topbar}>
-        <button className={styles.back} onClick={onBack} aria-label="חזרה">
+        <button className={styles.back} onClick={onBack} aria-label="Back">
           <Icon.Back size={24} />
         </button>
       </div>
@@ -33,30 +34,30 @@ export default function PlaylistScreen({
         <h1 className={styles.title}>{playlistName}</h1>
 
         <div className={styles.artistRow}>
-          <span className={styles.avatar} />
+          <img className={styles.avatar} src={artistImage} alt="" />
           <span className={styles.artistName}>{album.artist}</span>
         </div>
         <div className={styles.meta}>
-          {year} • {songs.length} שירים
+          {year} • {songs.length} songs
         </div>
 
         <div className={styles.actions}>
           <div className={styles.icons}>
-            <button className={styles.dim} onClick={shareLink} aria-label="עוד">
+            <button className={styles.dim} onClick={shareLink} aria-label="More">
               <Icon.More size={24} />
             </button>
-            <button className={styles.dim} onClick={shareLink} aria-label="שיתוף">
+            <button className={styles.dim} onClick={shareLink} aria-label="Share">
               <Icon.Share size={22} />
             </button>
             <button
               className={`${styles.dim} ${albumLiked ? styles.on : ""}`}
               onClick={() => setAlbumLiked((v) => !v)}
-              aria-label="אהבתי"
+              aria-label="Like"
             >
               {albumLiked ? <Icon.HeartFill size={24} /> : <Icon.Heart size={24} />}
             </button>
           </div>
-          <button className={styles.play} onClick={onPlay} aria-label="נגן">
+          <button className={styles.play} onClick={onPlay} aria-label="Play">
             {playing ? <Icon.Pause size={24} /> : <Icon.Play size={24} />}
           </button>
         </div>

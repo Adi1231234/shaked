@@ -1,7 +1,7 @@
 import * as Icon from "./icons.jsx";
 import styles from "./MiniPlayer.module.css";
 
-// הנגן הקטן שמופיע מעל סרגל הניווט. לחיצה עליו פותחת את הנגן המלא.
+// The mini player above the nav bar. Tapping it opens the full player.
 export default function MiniPlayer({
   song,
   playing,
@@ -30,7 +30,7 @@ export default function MiniPlayer({
           stop(e);
           onLike();
         }}
-        aria-label="אהבתי"
+        aria-label="Like"
       >
         {liked ? <Icon.HeartFill size={22} /> : <Icon.Heart size={22} />}
       </button>
@@ -40,7 +40,7 @@ export default function MiniPlayer({
           stop(e);
           onToggle();
         }}
-        aria-label="נגן"
+        aria-label="Play"
       >
         {playing ? <Icon.Pause size={24} /> : <Icon.Play size={24} />}
       </button>
