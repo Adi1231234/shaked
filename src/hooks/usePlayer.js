@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-// hook שמנהל פלייליסט: ניגון, מעבר בין שירים, והמשך אוטומטי לשיר הבא.
-// dir = כיוון המעבר האחרון (1 קדימה, -1 אחורה) - משמש לאנימציית ההחלקה.
+// hook שמנהל את הפלייליסט: ניגון, מעבר, ערבוב, חזרה, ולבבות.
 export function usePlayer(songs) {
   const audioRef = useRef(null);
   const autoPlay = useRef(false);
@@ -10,6 +9,26 @@ export function usePlayer(songs) {
   const [playing, setPlaying] = useState(false);
   const [current, setCurrent] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [shuffle, setShuffle] = useState(false);
+  const [repeat, setRepeat] = useState("off"); // off | all | one
+  const [liked, setLiked] = useState(() => {
+    try {
+      return new Set(JSON.parse(localStorage.getItem("dv-liked") || "[]"));
+    } catch {
+      return new Set();
+    }
+  });
+
+  const repeatRef = useRef(repeat);
+  repeatRef.current = repeat;
+  const shuffleRef = useRef(shuffle);
+  shuffleRef.current = shuffle;
+
+  const randomOther = (i) => {
+    let r = i;
+    while (r === i) r = Math.floor(Math.random() * songs.length);
+    return r;
+  };
 
   useEffect(() => {
     const audio = new Audio(songs[index].audio);
@@ -20,9 +39,23 @@ export function usePlayer(songs) {
     const onTime = () => setCurrent(audio.currentTime);
     const onMeta = () => setDuration(audio.duration || 0);
     const onEnd = () => {
+      if (repeatRef.current === "one") {
+        audio.currentTime = 0;
+        audio.play().catch(() => {});
+        return;
+      }
+      const last = songs.length - 1;
+      if (index === last && repeatRef.current === "off" && !shuffleRef.current) {
+        setPlaying(false);
+        return;
+      }
       autoPlay.current = true;
       setDir(1);
-      setIndex((i) => (i + 1) % songs.length);
+      setIndex(
+        shuffleRef.current && songs.length > 1
+          ? randomOther(index)
+          : (index + 1) % songs.length,
+      );
     };
     audio.addEventListener("timeupdate", onTime);
     audio.addEventListener("loadedmetadata", onMeta);
@@ -68,16 +101,24 @@ export function usePlayer(songs) {
     setIndex(((n % songs.length) + songs.length) % songs.length);
   };
 
-  const next = () => switchTo(index + 1, 1);
+  const next = () =>
+    switchTo(shuffle && songs.length > 1 ? randomOther(index) : index + 1, 1);
   const prev = () => {
     const a = audioRef.current;
-    if (a && a.currentTime > 3) seek(0); // כמו Spotify: אחרי 3 שניות חוזרים להתחלה
+    if (a && a.currentTime > 3) seek(0);
     else switchTo(index - 1, -1);
   };
-  const playIndex = (i) => {
-    if (i === index) toggle();
-    else switchTo(i, i > index ? 1 : -1);
-  };
+  const playIndex = (i) =>
+    i === index ? toggle() : switchTo(i, i > index ? 1 : -1);
+
+  const toggleLike = () =>
+    setLiked((s) => {
+      const n = new Set(s);
+      if (n.has(index)) n.delete(index);
+      else n.add(index);
+      localStorage.setItem("dv-liked", JSON.stringify([...n]));
+      return n;
+    });
 
   return {
     song: songs[index],
@@ -86,10 +127,17 @@ export function usePlayer(songs) {
     playing,
     current,
     duration,
+    shuffle,
+    repeat,
+    liked: liked.has(index),
     toggle,
     seek,
     next,
     prev,
     playIndex,
+    toggleLike,
+    toggleShuffle: () => setShuffle((s) => !s),
+    cycleRepeat: () =>
+      setRepeat((r) => (r === "off" ? "all" : r === "all" ? "one" : "off")),
   };
 }

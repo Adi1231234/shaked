@@ -16,11 +16,11 @@ export default function CoverCarousel({ song, dir }) {
     }
   }, [song, dir]);
 
-  // סדר העטיפות במסילה: ב"הבא" הנכנס משמאל, ב"הקודם" הנכנס מימין
+  // סדר העטיפות במסילה: ב"הבא" המסילה מחליקה שמאלה, ב"הקודם" ימינה
   const covers = anim
     ? anim.prev
-      ? [anim.out, anim.in]
-      : [anim.in, anim.out]
+      ? [anim.in, anim.out]
+      : [anim.out, anim.in]
     : [song];
 
   return (

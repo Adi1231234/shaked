@@ -1,11 +1,13 @@
 import * as Icon from "./icons.jsx";
 import { fmt } from "../format.js";
+import { shareLink } from "../share.js";
+import { showToast } from "../toast.js";
 import CoverCarousel from "./CoverCarousel.jsx";
 import styles from "./PlayerScreen.module.css";
 
-// מסך הנגן - פיקסל-פרפקט מול Spotify, כולל קרוסלת עטיפות מחליקה
+// מסך הנגן - פיקסל-פרפקט מול Spotify, עם כל הכפתורים פעילים
 export default function PlayerScreen({ player, playlistName, onClose }) {
-  const { song, playing, current, duration } = player;
+  const { song, playing, current, duration, shuffle, repeat, liked } = player;
   const pct = duration ? (current / duration) * 100 : 0;
 
   return (
@@ -15,7 +17,7 @@ export default function PlayerScreen({ player, playlistName, onClose }) {
           <Icon.ChevronDown size={24} />
         </button>
         <div className={styles.headerTitle}>{playlistName}</div>
-        <button className={styles.iconBtn} aria-label="עוד">
+        <button className={styles.iconBtn} onClick={shareLink} aria-label="עוד">
           <Icon.More size={24} />
         </button>
       </div>
@@ -29,8 +31,12 @@ export default function PlayerScreen({ player, playlistName, onClose }) {
           <div className={styles.songTitle}>{song.title}</div>
           <div className={styles.songArtist}>{song.artist}</div>
         </div>
-        <button className={styles.heart} aria-label="אהבתי">
-          <Icon.Heart size={24} />
+        <button
+          className={`${styles.heart} ${liked ? styles.on : ""}`}
+          onClick={player.toggleLike}
+          aria-label="אהבתי"
+        >
+          {liked ? <Icon.HeartFill size={24} /> : <Icon.Heart size={24} />}
         </button>
       </div>
 
@@ -52,7 +58,11 @@ export default function PlayerScreen({ player, playlistName, onClose }) {
       </div>
 
       <div className={styles.controls}>
-        <button className={`${styles.ctlBtn} ${styles.smallBtn}`} aria-label="ערבוב">
+        <button
+          className={`${styles.ctlBtn} ${styles.smallBtn} ${shuffle ? styles.on : ""}`}
+          onClick={player.toggleShuffle}
+          aria-label="ערבוב"
+        >
           <Icon.Shuffle size={24} />
         </button>
         <button
@@ -74,16 +84,24 @@ export default function PlayerScreen({ player, playlistName, onClose }) {
         >
           <Icon.Next size={32} />
         </button>
-        <button className={`${styles.ctlBtn} ${styles.smallBtn}`} aria-label="חזרה על שיר">
+        <button
+          className={`${styles.ctlBtn} ${styles.smallBtn} ${repeat !== "off" ? styles.on : ""}`}
+          onClick={player.cycleRepeat}
+          aria-label="חזרה על שיר"
+        >
           <Icon.Repeat size={24} />
         </button>
       </div>
 
       <div className={styles.footer}>
-        <button className={styles.footBtn} aria-label="שיתוף">
+        <button className={styles.footBtn} onClick={shareLink} aria-label="שיתוף">
           <Icon.Share size={16} />
         </button>
-        <button className={`${styles.footBtn} ${styles.connectBtn}`} aria-label="מכשירים">
+        <button
+          className={`${styles.footBtn} ${styles.connectBtn}`}
+          onClick={() => showToast("מנגן במכשיר הזה")}
+          aria-label="מכשירים"
+        >
           <Icon.Device size={16} />
         </button>
       </div>

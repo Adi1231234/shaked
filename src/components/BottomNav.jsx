@@ -1,26 +1,34 @@
+import { useState } from "react";
 import * as Icon from "./icons.jsx";
+import { showToast } from "../toast.js";
 import styles from "./BottomNav.module.css";
 
-// סרגל הניווט התחתון - 4 פריטים, לפי המקור
+const TABS = [
+  { Icon: Icon.Home, label: "מסך הבית" },
+  { Icon: Icon.Search, label: "חיפוש" },
+  { Icon: Icon.Library, label: "הספרייה שלכם" },
+  { Icon: Icon.Download, label: "להורדת היישום" },
+];
+
+// סרגל הניווט התחתון - לחיצה מסמנת את הלשונית הפעילה
 export default function BottomNav() {
+  const [active, setActive] = useState(0);
+
   return (
     <nav className={styles.nav}>
-      <button className={`${styles.item} ${styles.active}`}>
-        <Icon.Home size={24} />
-        <span>מסך הבית</span>
-      </button>
-      <button className={styles.item}>
-        <Icon.Search size={24} />
-        <span>חיפוש</span>
-      </button>
-      <button className={styles.item}>
-        <Icon.Library size={24} />
-        <span>הספרייה שלכם</span>
-      </button>
-      <button className={styles.item}>
-        <Icon.Download size={24} />
-        <span>להורדת היישום</span>
-      </button>
+      {TABS.map((tab, i) => (
+        <button
+          key={tab.label}
+          className={`${styles.item} ${i === active ? styles.active : ""}`}
+          onClick={() => {
+            setActive(i);
+            if (i !== 0) showToast(tab.label);
+          }}
+        >
+          <tab.Icon size={24} />
+          <span>{tab.label}</span>
+        </button>
+      ))}
     </nav>
   );
 }

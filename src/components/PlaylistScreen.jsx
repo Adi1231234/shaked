@@ -1,7 +1,9 @@
+import { useState } from "react";
 import * as Icon from "./icons.jsx";
+import { shareLink } from "../share.js";
 import styles from "./PlaylistScreen.module.css";
 
-// מסך האלבום - מציג את רשימת כל השירים. לחיצה על שיר מנגנת אותו.
+// מסך האלבום - רשימת השירים. לחיצה על שיר מנגנת אותו.
 export default function PlaylistScreen({
   songs,
   playlistName,
@@ -10,13 +12,15 @@ export default function PlaylistScreen({
   playing,
   onPlay,
   onPlayIndex,
+  onBack,
 }) {
+  const [albumLiked, setAlbumLiked] = useState(false);
   const album = songs[0];
 
   return (
     <div className={styles.screen} style={{ "--accent": album.accent }}>
       <div className={styles.topbar}>
-        <button className={styles.back} aria-label="חזרה">
+        <button className={styles.back} onClick={onBack} aria-label="חזרה">
           <Icon.Back size={24} />
         </button>
       </div>
@@ -38,14 +42,18 @@ export default function PlaylistScreen({
 
         <div className={styles.actions}>
           <div className={styles.icons}>
-            <button className={styles.dim} aria-label="עוד">
+            <button className={styles.dim} onClick={shareLink} aria-label="עוד">
               <Icon.More size={24} />
             </button>
-            <button className={styles.dim} aria-label="שיתוף">
+            <button className={styles.dim} onClick={shareLink} aria-label="שיתוף">
               <Icon.Share size={22} />
             </button>
-            <button className={styles.dim} aria-label="אהבתי">
-              <Icon.Heart size={24} />
+            <button
+              className={`${styles.dim} ${albumLiked ? styles.on : ""}`}
+              onClick={() => setAlbumLiked((v) => !v)}
+              aria-label="אהבתי"
+            >
+              {albumLiked ? <Icon.HeartFill size={24} /> : <Icon.Heart size={24} />}
             </button>
           </div>
           <button className={styles.play} onClick={onPlay} aria-label="נגן">
@@ -67,7 +75,13 @@ export default function PlaylistScreen({
               </div>
               <div className={styles.rowArtist}>{s.artist}</div>
             </div>
-            <span className={styles.rowMore}>
+            <span
+              className={styles.rowMore}
+              onClick={(e) => {
+                e.stopPropagation();
+                shareLink();
+              }}
+            >
               <Icon.More size={20} />
             </span>
           </button>

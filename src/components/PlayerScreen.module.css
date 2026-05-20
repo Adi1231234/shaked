@@ -96,3 +96,6 @@
 .connectBtn {
   width: 52px; justify-content: flex-end; padding-inline-end: 12px;
 }
+.on {
+  color: #1ed760;
+}

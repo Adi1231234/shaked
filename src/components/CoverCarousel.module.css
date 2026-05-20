@@ -21,10 +21,10 @@
   animation: coverPrev 0.35s cubic-bezier(0.3, 0, 0, 1) forwards;
 }
 @keyframes coverNext {
-  from { transform: translateX(-100cqw); }
-  to { transform: translateX(0); }
-}
-@keyframes coverPrev {
   from { transform: translateX(0); }
   to { transform: translateX(-100cqw); }
+}
+@keyframes coverPrev {
+  from { transform: translateX(-100cqw); }
+  to { transform: translateX(0); }
 }
