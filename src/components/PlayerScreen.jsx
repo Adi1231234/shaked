@@ -57,7 +57,9 @@ export default function PlayerScreen({ song, audio, onPlay, onClose }) {
           <Icon.Prev size={32} />
         </button>
         <button className={styles.bigPlay} onClick={onPlay} aria-label="נגן">
-          {audio.playing ? <Icon.Pause size={24} /> : <Icon.Play size={24} />}
+          <span className={styles.bigPlayCircle}>
+            {audio.playing ? <Icon.Pause size={24} /> : <Icon.Play size={24} />}
+          </span>
         </button>
         <button className={`${styles.ctlBtn} ${styles.skipBtn}`} aria-label="הבא">
           <Icon.Next size={32} />
