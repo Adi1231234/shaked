@@ -18,7 +18,10 @@
   background: linear-gradient(180deg, var(--accent) 0%, transparent 414px);
 }
 .coverWrap { display: flex; justify-content: center; margin-bottom: 24px; }
-.cover { width: 152px; height: 152px; object-fit: cover; }
+.cover {
+  width: 240px; height: 240px; object-fit: cover;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
 .title {
   font-family: "SpotifyMixUITitle", "SpotifyMixUI", sans-serif;
   font-size: 24px; font-weight: 700; line-height: 1.12; margin-bottom: 16px;
