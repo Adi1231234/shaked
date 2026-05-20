@@ -20,6 +20,6 @@ export const song = {
   cover: base + "cover.svg",
   audio: base + "song.mp3",
 
-  // צבע הגרדיאנט מאחורי הנגן - בחר צבע שמתאים לעטיפה
-  accent: "#6c3fd1",
+  // צבע הרקע - ב-Spotify האמיתי זה נגזר מצבע העטיפה. בחר צבע שמתאים לעטיפה.
+  accent: "#387888",
 };

@@ -1,66 +1,27 @@
 .mini {
-  position: absolute;
-  left: 8px;
-  right: 8px;
-  bottom: 66px;
-  height: 56px;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0 8px;
-  border-radius: 8px;
-  cursor: pointer;
-  background: color-mix(in srgb, var(--accent) 72%, #000);
+  position: absolute; inset-inline: 8px; inset-block-end: 64px;
+  height: 56px; z-index: 10; cursor: pointer; overflow: hidden;
+  display: flex; align-items: center; gap: 10px;
+  padding: 0 8px; border-radius: 6px;
+  background: var(--accent);
 }
-
-.cover {
-  width: 40px;
-  height: 40px;
-  border-radius: 4px;
-  object-fit: cover;
-}
-
-.text {
-  flex: 1;
-  min-width: 0;
-}
-
+.cover { width: 40px; height: 40px; border-radius: 4px; object-fit: cover; }
+.text { flex: 1; min-width: 0; }
 .title {
-  font-size: 13px;
-  font-weight: 700;
-  color: #fff;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 13px; font-weight: 700; color: #fff;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-
 .artist {
-  margin-top: 1px;
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.7);
+  margin-top: 1px; font-size: 13px; color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-
 .icon {
-  background: none;
-  border: none;
-  color: #fff;
-  padding: 6px;
-  cursor: pointer;
+  display: flex; background: none; border: none;
+  color: #fff; padding: 6px; cursor: pointer;
 }
-
 .bar {
-  position: absolute;
-  left: 8px;
-  right: 8px;
-  bottom: 4px;
-  height: 2px;
-  border-radius: 2px;
+  position: absolute; inset-inline: 8px; inset-block-end: 3px;
+  height: 2px; border-radius: 2px; direction: ltr;
   background: rgba(255, 255, 255, 0.3);
 }
-
-.fill {
-  height: 100%;
-  border-radius: 2px;
-  background: #fff;
-}
+.fill { height: 100%; border-radius: 2px; background: #fff; }

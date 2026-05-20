@@ -1,30 +1,14 @@
 .nav {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 64px;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding-bottom: 6px;
-  background: linear-gradient(180deg, rgba(18, 18, 18, 0.6), #0a0a0a 60%);
+  position: absolute; inset-inline: 0; inset-block-end: 0;
+  height: 64px; z-index: 10; padding-bottom: 4px;
+  display: flex; align-items: center; justify-content: space-around;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), #0a0a0a 70%);
 }
-
 .item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #9b9b9b;
-  font-size: 10px;
-  font-weight: 600;
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; gap: 4px;
+  background: none; border: none; cursor: pointer;
+  color: #b3b3b3; font-size: 11px; font-weight: 400;
 }
-
-.active {
-  color: #fff;
-}
+.item span { white-space: nowrap; }
+.active { color: #fff; }

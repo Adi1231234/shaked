@@ -16,12 +16,8 @@ export default function MiniPlayer({ song, playing, progress, onToggle, onExpand
         <div className={styles.title}>{song.title}</div>
         <div className={styles.artist}>{song.artist}</div>
       </div>
-      <button
-        className={styles.icon}
-        onClick={(e) => stop(e)}
-        aria-label="מכשירים"
-      >
-        <Icon.Device size={20} />
+      <button className={styles.icon} onClick={stop} aria-label="אהבתי">
+        <Icon.Heart size={22} />
       </button>
       <button
         className={styles.icon}
@@ -31,7 +27,7 @@ export default function MiniPlayer({ song, playing, progress, onToggle, onExpand
         }}
         aria-label="נגן"
       >
-        {playing ? <Icon.Pause size={22} /> : <Icon.Play size={22} />}
+        {playing ? <Icon.Pause size={24} /> : <Icon.Play size={24} />}
       </button>
       <div className={styles.bar}>
         <div className={styles.fill} style={{ width: `${progress}%` }} />

@@ -1,16 +1,13 @@
 import * as Icon from "./icons.jsx";
 import styles from "./PlaylistScreen.module.css";
 
-// מסך הפלייליסט - המסך הראשי, נראה כמו עמוד פלייליסט באפליקציה
+// מסך האלבום - מבנה זהה לעמוד אלבום אמיתי ב-Spotify (נשאב מהטאב)
 export default function PlaylistScreen({ song, playing, onPlay, onPlaySong }) {
   return (
     <div className={styles.screen} style={{ "--accent": song.accent }}>
       <div className={styles.topbar}>
-        <button className={styles.iconBtn} aria-label="חזרה">
+        <button className={styles.back} aria-label="חזרה">
           <Icon.Back size={24} />
-        </button>
-        <button className={styles.iconBtn} aria-label="עוד">
-          <Icon.More size={22} />
         </button>
       </div>
 
@@ -21,43 +18,37 @@ export default function PlaylistScreen({ song, playing, onPlay, onPlaySong }) {
 
         <h1 className={styles.title}>{song.playlistName}</h1>
 
-        <div className={styles.byline}>
-          <Icon.Logo size={19} />
-          <span>{song.artist}</span>
+        <div className={styles.artistRow}>
+          <span className={styles.avatar} />
+          <span className={styles.artistName}>{song.artist}</span>
         </div>
-        <div className={styles.meta}>סינגל • {song.year}</div>
+        <div className={styles.meta}>{song.year} • סינגל</div>
 
         <div className={styles.actions}>
-          <div className={styles.left}>
-            <span className={styles.heart}>
-              <Icon.Heart size={26} />
-            </span>
-            <span className={styles.dim}>
-              <Icon.Download size={24} />
-            </span>
-            <span className={styles.dim}>
+          <div className={styles.icons}>
+            <button className={styles.dim} aria-label="עוד">
               <Icon.More size={24} />
-            </span>
-          </div>
-          <div className={styles.right}>
-            <span className={styles.dim}>
-              <Icon.Shuffle size={26} />
-            </span>
-            <button className={styles.play} onClick={onPlay} aria-label="נגן">
-              {playing ? <Icon.Pause size={26} /> : <Icon.Play size={26} />}
+            </button>
+            <button className={styles.dim} aria-label="שיתוף">
+              <Icon.Share size={22} />
+            </button>
+            <button className={styles.dim} aria-label="אהבתי">
+              <Icon.Heart size={24} />
             </button>
           </div>
+          <button className={styles.play} onClick={onPlay} aria-label="נגן">
+            {playing ? <Icon.Pause size={24} /> : <Icon.Play size={24} />}
+          </button>
         </div>
 
         <button className={styles.row} onClick={onPlaySong}>
-          <img className={styles.rowCover} src={song.cover} alt="" />
           <div className={styles.rowText}>
             <div className={`${styles.rowTitle} ${playing ? styles.active : ""}`}>
               {song.title}
             </div>
             <div className={styles.rowArtist}>{song.artist}</div>
           </div>
-          <span className={styles.dim}>
+          <span className={styles.rowMore}>
             <Icon.More size={20} />
           </span>
         </button>
