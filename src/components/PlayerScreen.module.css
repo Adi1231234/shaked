@@ -1,0 +1,178 @@
+.player {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 22px 26px;
+  background: linear-gradient(180deg, var(--accent) 0%, #121212 72%, #000 100%);
+  animation: rise 0.28s ease;
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+  color: #fff;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.from {
+  text-align: center;
+}
+
+.fromLabel {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.fromName {
+  margin-top: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.artWrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px 0;
+}
+
+.art {
+  width: 100%;
+  max-width: 332px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.6);
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.titles {
+  min-width: 0;
+}
+
+.songTitle {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.songArtist {
+  margin-top: 4px;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.heart {
+  color: #1ed760;
+  display: flex;
+}
+
+.seekRow {
+  margin-top: 18px;
+}
+
+.seek {
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  background: linear-gradient(
+    to right,
+    #fff var(--pct),
+    rgba(255, 255, 255, 0.3) var(--pct)
+  );
+}
+
+.seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.seek::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.times {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.ctl {
+  color: #fff;
+  display: flex;
+}
+
+.ctlDim {
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+}
+
+.bigPlay {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #fff;
+  color: #000;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 22px;
+}
