@@ -23,7 +23,10 @@ html.caq-quiz-active nav { opacity: 0 !important; pointer-events: none !importan
 .caq-btn:hover { filter: brightness(1.08); }
 .caq-btn--ghost { background: transparent; color: var(--caq-muted); border: 1px solid var(--caq-line); }
 .caq-btn--ghost:hover { color: var(--caq-text); border-color: var(--caq-muted); }
+.caq-btn--right { background: var(--caq-green); color: #16250a; }
+.caq-btn--wrong { background: #e0533d; color: #fff; }
 .caq-btn:disabled { opacity: .4; cursor: default; filter: none; }
+.caq-btn--ghost.caq-btn--skip { flex: 0 0 auto !important; padding: 10px 14px; }
 
 /* --- Launcher pill (top-centre, in the empty toolbar space) --- */
 .caq-launch {
@@ -78,6 +81,26 @@ html.caq-quiz-active nav { opacity: 0 !important; pointer-events: none !importan
 .caq-item { display: flex; align-items: center; gap: 8px; padding: 3px 0; font-size: 13px; cursor: pointer; }
 .caq-item input { accent-color: var(--caq-accent); width: 15px; height: 15px; }
 .caq-item span { direction: ltr; text-align: left; flex: 1; color: var(--caq-text); }
+.caq-dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.caq-dot--known { background: var(--caq-green); }
+.caq-dot--unknown { background: #e0533d; }
+.caq-dot--unmarked { background: var(--caq-line); }
+
+/* --- Progress-status filter chips --- */
+.caq-filter { display: flex; align-items: center; gap: 8px; padding: 10px 22px 2px; flex-wrap: wrap; }
+.caq-filter__label { font-size: 13px; color: var(--caq-muted); }
+.caq-chip {
+  border: 1px solid var(--caq-line); background: transparent; color: var(--caq-muted);
+  border-radius: 14px; padding: 5px 12px; font: 600 12px var(--caq-font); cursor: pointer; opacity: .5;
+}
+.caq-chip--on { opacity: 1; }
+.caq-chip--known.caq-chip--on { color: var(--caq-green); border-color: var(--caq-green); background: rgba(140,198,63,.12); }
+.caq-chip--unknown.caq-chip--on { color: #e0533d; border-color: #e0533d; background: rgba(224,83,61,.14); }
+.caq-chip--unmarked.caq-chip--on { color: var(--caq-text); border-color: var(--caq-muted); }
+.caq-modal__footleft { display: flex; gap: 14px; align-items: center; }
+.caq-modal__footright { display: flex; gap: 10px; }
+.caq-reset { color: var(--caq-muted); }
+.caq-reset:hover { color: #e0533d; }
 .caq-modal__foot {
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
   padding: 14px 22px; border-top: 1px solid var(--caq-line);
