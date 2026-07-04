@@ -33,6 +33,8 @@
     document.body.appendChild(panel);
 
     let revealed = false;
+    let nKnown = 0; // marked "remembered" this session
+    let nUnknown = 0; // marked "didn't remember" this session
 
     // Foot layouts: 'blurred' (waiting to reveal), 'answered' (mark buttons), 'skip'.
     function footMode(mode) {
@@ -46,10 +48,21 @@
 
     function renderDone() {
       panel.innerHTML = '';
+      const answered = nKnown + nUnknown;
+      const skipped = quiz.total - answered;
+      const pct = answered ? Math.round((nKnown / answered) * 100) : 0;
+      const emoji = !answered ? '📋' : pct >= 80 ? '🎉' : pct >= 50 ? '👏' : '💪';
       const done = h('div', 'caq-done');
-      done.appendChild(h('div', 'caq-done__emoji', '🎉'));
+      done.appendChild(h('div', 'caq-done__emoji', emoji));
       done.appendChild(h('div', 'caq-done__title', 'סיימת את המבחן!'));
-      done.appendChild(h('div', 'caq-done__sub', `עברת על כל ${quiz.total} האיברים. כל הכבוד!`));
+      if (answered) {
+        const s = h('div', 'caq-done__sub');
+        s.innerHTML = `זכרת <b style="color:var(--caq-green)">${nKnown}</b> מתוך <b>${answered}</b> שסימנת (${pct}%)`;
+        done.appendChild(s);
+        if (skipped) done.appendChild(h('div', 'caq-done__sub', `${skipped} מתוך ${quiz.total} האיברים לא סומנו`));
+      } else {
+        done.appendChild(h('div', 'caq-done__sub', `עברת על כל ${quiz.total} האיברים (לא סימנת זכרתי / לא זכרתי).`));
+      }
       panel.appendChild(done);
       const f = h('div', 'caq-quiz__foot');
       const again = h('button', 'caq-btn', 'סגירה');
@@ -115,6 +128,7 @@
     function mark(status) {
       const cur = quiz.current;
       if (cur && CAQ.store) CAQ.store.set(cur.cid, status);
+      if (status === 'known') nKnown++; else if (status === 'unknown') nUnknown++;
       advance();
     }
     answer.addEventListener('click', reveal);
