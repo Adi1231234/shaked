@@ -29,11 +29,12 @@
     head.className = 'caq-add-menu__head';
     head.textContent = `הוסף את "${item.term}" ל:`;
     menu.appendChild(head);
-    CAQ.lists.all().forEach((l) => {
-      const exists = l.items.some((x) => x.cid === item.cid);
-      menu.appendChild(itemBtn(l.label, `${l.items.length} · ${exists ? 'כבר קיים' : 'הוסף'}`, () => {
-        CAQ.lists.setActive(l.id);
-        CAQ.lists.addItem(l.id, item);
+    CAQ.lists.targets().forEach((t) => {
+      const exists = t.items.some((x) => x.cid === item.cid);
+      const label = (t.builtin ? '' : '★ ') + t.label;
+      menu.appendChild(itemBtn(label, `${t.items.length} · ${exists ? 'כבר קיים' : 'הוסף'}`, () => {
+        CAQ.lists.setActive(t.id);
+        CAQ.lists.addItem(t.id, item);
         close();
       }));
     });
