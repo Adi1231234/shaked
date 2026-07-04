@@ -68,8 +68,11 @@
     const foot = h('div', 'caq-modal__foot');
     const left = h('div', 'caq-modal__footleft');
     const count = h('span', 'caq-selcount', '');
+    // Global select/clear toggle (pick mode only) — clear everything, then tick the
+    // few you want, instead of un-ticking ~130 pre-checked items.
+    const selAll = h('button', 'caq-linkbtn caq-selall', 'נקה הכל');
     const reset = h('button', 'caq-linkbtn caq-reset', 'אפס התקדמות');
-    left.appendChild(count); left.appendChild(reset);
+    left.appendChild(count); left.appendChild(selAll); left.appendChild(reset);
     const right = h('div', 'caq-modal__footright');
     const cancel = h('button', 'caq-btn caq-btn--ghost', 'ביטול');
     const start = h('button', 'caq-btn', 'התחל מבחן');
@@ -102,6 +105,11 @@
       start.disabled = n === 0;
       const cs = statusCounts();
       STATUSES.forEach((s) => { chips[s.key].textContent = `${s.label} · ${cs[s.key]}`; });
+      if (mode === 'pick') {
+        const vis = list.visibleBoxes();
+        const allOn = vis.length > 0 && vis.every((cb) => cb.checked);
+        selAll.textContent = allOn ? 'נקה הכל' : 'בחר הכל';
+      }
     }
     function setMode(m) {
       mode = m;
@@ -110,10 +118,17 @@
       allNote.style.display = m === 'all' ? '' : 'none';
       hint.style.display = m === 'pick' ? '' : 'none';
       list.el.style.display = m === 'pick' ? '' : 'none';
+      selAll.style.display = m === 'pick' ? '' : 'none'; // clearing only applies to picking
       updateCount();
     }
     tabAll.addEventListener('click', () => setMode('all'));
     tabPick.addEventListener('click', () => setMode('pick'));
+    selAll.addEventListener('click', () => {
+      const vis = list.visibleBoxes();
+      const anyOff = vis.some((cb) => !cb.checked);
+      vis.forEach((cb) => (cb.checked = anyOff)); // all-on → clear; otherwise select all
+      updateCount();
+    });
     reset.addEventListener('click', () => {
       if (CAQ.store) CAQ.store.clear();
       Object.keys(progress).forEach((k) => delete progress[k]);
