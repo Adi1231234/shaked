@@ -11,10 +11,14 @@
 }
 
 /* --- Spoiler hiding while a quiz is running --- */
-/* Breadcrumbs + the selection card name stay visible but unreadable (blurred);
+/* Breadcrumbs + the selection card name/subtitle stay visible but unreadable
+   (blurred); clickable so the learner can choose to reveal via the prompt.
    .caq-hide fully hides the search drawer and the card only while (re)selecting. */
 html.caq-quiz-active nav,
-.caq-blur { filter: blur(8px) !important; pointer-events: none !important; user-select: none !important; }
+.caq-blur { filter: blur(8px) !important; user-select: none !important; cursor: pointer !important; pointer-events: auto !important; }
+/* A blurred spoiler the learner chose to reveal (needs to beat the nav blur too). */
+.caq-reveal { filter: none !important; user-select: text !important; cursor: auto !important; }
+html.caq-quiz-active nav.caq-reveal { filter: none !important; }
 .caq-hide { opacity: 0 !important; pointer-events: none !important; }
 /* Hide the native search drawer from its first paint — before JS can tag it — so
    the query + result names never flash while the extension drives the search. The

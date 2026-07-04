@@ -101,6 +101,8 @@
     // never flashes readable mid-render. Once the selection settles we reveal the
     // card again with only its name blurred.
     cardSuppressed = true;
+    // Drop any manual reveals from the previous structure so they don't carry over.
+    document.querySelectorAll('.caq-reveal').forEach((e) => e.classList.remove('caq-reveal'));
     await resetModel();
     if (!(await ensureSearchOpen())) return false;
     hideSearchPanel();
@@ -163,16 +165,43 @@
     return null;
   }
 
+  // Blur the name AND its Latin subtitle (both give the answer away) without
+  // touching the card's controls. They share a wrapper (name h2 + subtitle h3);
+  // blur that wrapper unless it also swallows the HIDE / Isolate controls.
+  function blurNameBlock(nameH2) {
+    const wrap = nameH2.parentElement;
+    if (wrap && !/HIDE|FADE|Isolate/i.test(wrap.textContent || '')) {
+      wrap.classList.add('caq-blur');
+    } else {
+      nameH2.classList.add('caq-blur');
+      const sub = nameH2.nextElementSibling;
+      if (sub && sub.tagName === 'H3') sub.classList.add('caq-blur');
+    }
+  }
+
   function tagSpoilers() {
     const nameH2 = nameHeading();
     if (nameH2) {
-      nameH2.classList.add('caq-blur'); // blur just the name, leave the card in place
+      blurNameBlock(nameH2); // blur name + Latin subtitle, leave the card in place
       const card = cardPanel(nameH2);
       // Fully hidden only while (re)selecting; otherwise visible with the name blurred.
       if (card) card.classList.toggle('caq-hide', cardSuppressed);
     }
     // Keep the search drawer fully hidden if it is open.
     hideSearchPanel();
+  }
+
+  // Clicking a blurred app spoiler (breadcrumbs, or the card's name/subtitle) asks
+  // before revealing it, so an accidental click can't spoil the answer. Our own
+  // quiz UI (.caq-root) is exempt — its answer box reveals directly on click.
+  function onSpoilerClick(e) {
+    if (!document.documentElement.classList.contains('caq-quiz-active')) return;
+    if (e.target.closest('.caq-root')) return;
+    const el = e.target.closest('.caq-blur, nav');
+    if (!el || el.classList.contains('caq-reveal')) return;
+    e.preventDefault();
+    e.stopPropagation();
+    if (window.confirm('לחשוף את הטקסט?')) el.classList.add('caq-reveal');
   }
 
   CAQ.hideSpoilers = function () {
@@ -185,10 +214,12 @@
     cardSuppressed = false;
     document.querySelectorAll('.caq-hide').forEach((e) => e.classList.remove('caq-hide'));
     document.querySelectorAll('.caq-blur').forEach((e) => e.classList.remove('caq-blur'));
+    document.querySelectorAll('.caq-reveal').forEach((e) => e.classList.remove('caq-reveal'));
   };
 
   CAQ.startSpoilerWatch = function () {
     if (observer) return;
+    document.addEventListener('click', onSpoilerClick, true);
     // Re-hide spoilers (name card + search drawer) on DOM changes, batched to one
     // pass per animation frame (runs before paint, so nothing flashes into view).
     let scheduled = false;
@@ -204,6 +235,7 @@
   };
 
   CAQ.stopSpoilerWatch = function () {
+    document.removeEventListener('click', onSpoilerClick, true);
     if (observer) { observer.disconnect(); observer = null; }
   };
 
