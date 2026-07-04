@@ -33,8 +33,7 @@
     document.body.appendChild(panel);
 
     let revealed = false;
-    let nKnown = 0; // marked "remembered" this session
-    let nUnknown = 0; // marked "didn't remember" this session
+    let nKnown = 0, nUnknown = 0; // "remembered" / "didn't remember" marks this session
 
     // Foot layouts: 'blurred' (waiting to reveal), 'answered' (mark buttons), 'skip'.
     function footMode(mode) {
@@ -67,8 +66,7 @@
       const f = h('div', 'caq-quiz__foot');
       const again = h('button', 'caq-btn', 'סגירה');
       again.addEventListener('click', finish);
-      f.appendChild(again);
-      panel.appendChild(f);
+      f.appendChild(again); panel.appendChild(f);
     }
 
     function reveal() {
