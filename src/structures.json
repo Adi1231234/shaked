@@ -1,0 +1,1266 @@
+{
+ "modelId": "964db2dd4f98052f03baa9ca5f2dbcae",
+ "bodyRegion": 3,
+ "totalTerms": 291,
+ "presentTerms": 120,
+ "groups": [
+  {
+   "id": "d1",
+   "label": "ניתוח 1 - פני שטח המוח (Cerebrum)",
+   "items": [
+    {
+     "term": "Cerebrum",
+     "cid": 20884,
+     "model": "Cerebrum"
+    },
+    {
+     "term": "Cerebellum",
+     "cid": 17389,
+     "model": "Cerebellum"
+    },
+    {
+     "term": "Mid brain",
+     "cid": 16911,
+     "model": "Mesencephalon"
+    },
+    {
+     "term": "Pons",
+     "cid": 19076,
+     "model": "Pons"
+    },
+    {
+     "term": "Medulla oblongata",
+     "cid": 20291,
+     "model": "Medulla Oblongata"
+    },
+    {
+     "term": "Lateral sulcus (sylvian fissure)",
+     "cid": 23001,
+     "model": "Lateral Sulcus"
+    },
+    {
+     "term": "Frontal lobe",
+     "cid": 21733,
+     "model": "Frontal Lobe"
+    },
+    {
+     "term": "Precentral gyrus",
+     "cid": 18066,
+     "model": "Precentral Gyrus"
+    },
+    {
+     "term": "Central sulcus (of Rolando)",
+     "cid": 21753,
+     "model": "Central Sulcus"
+    },
+    {
+     "term": "Parietal lobe",
+     "cid": 19182,
+     "model": "Parietal Lobe"
+    },
+    {
+     "term": "Post central gyrus",
+     "cid": 23457,
+     "model": "Postcentral Gyrus"
+    },
+    {
+     "term": "Occipital lobe",
+     "cid": 22254,
+     "model": "Occipital Lobe"
+    },
+    {
+     "term": "Parietooccipital sulcus",
+     "cid": 23806,
+     "model": "Parietooccipital Sulcus"
+    },
+    {
+     "term": "Temporal lobe",
+     "cid": 18955,
+     "model": "Temporal Lobe"
+    },
+    {
+     "term": "Olfactory bulb",
+     "cid": 24802,
+     "model": "Olfactory Bulb"
+    },
+    {
+     "term": "Olfactory tract",
+     "cid": 21523,
+     "model": "Olfactory Tract"
+    },
+    {
+     "term": "Anterior perforated substance",
+     "cid": 24301,
+     "model": "Anterior Perforated Substance"
+    },
+    {
+     "term": "Optic nerve",
+     "cid": 21880,
+     "model": "Optic Nerve"
+    },
+    {
+     "term": "Optic chiasm",
+     "cid": 18974,
+     "model": "Optic Chiasm"
+    },
+    {
+     "term": "Optic tract",
+     "cid": 24575,
+     "model": "Optic Tract"
+    },
+    {
+     "term": "Mammillary body",
+     "cid": 17740,
+     "model": "Mammillary Body"
+    },
+    {
+     "term": "Corpus callosum",
+     "cid": 21002,
+     "model": "Corpus Callosum"
+    },
+    {
+     "term": "Cingulate gyrus",
+     "cid": 19395,
+     "model": "Cingulate Gyrus"
+    }
+   ]
+  },
+  {
+   "id": "d2",
+   "label": "ניתוח 2 - כלי דם, קרומים וחדרים",
+   "items": [
+    {
+     "term": "Vertebral artery",
+     "cid": 18792,
+     "model": "Vertebral Artery"
+    },
+    {
+     "term": "Posterior inferior cerebellar artery - PICA",
+     "cid": 23546,
+     "model": "Posterior Inferior Cerebellar Artery"
+    },
+    {
+     "term": "Posterior spinal artery",
+     "cid": 17050,
+     "model": "Posterior Spinal Artery (Thoracic; Left)"
+    },
+    {
+     "term": "Anterior spinal artery",
+     "cid": 17574,
+     "model": "Anterior Spinal Artery (Lumbar)"
+    },
+    {
+     "term": "Basilar artery",
+     "cid": 18263,
+     "model": "Basilar Artery"
+    },
+    {
+     "term": "Anterior inferior cerebellar artery - AICA",
+     "cid": 22070,
+     "model": "Anterior Inferior Cerebellar Artery"
+    },
+    {
+     "term": "Labyrinthine artery (internal acoustic)",
+     "cid": 22161,
+     "model": "Labyrinthine Artery"
+    },
+    {
+     "term": "Pontine arteries",
+     "cid": 17606,
+     "model": "Pontine Arteries"
+    },
+    {
+     "term": "Superior cerebellar artery",
+     "cid": 20567,
+     "model": "Superior Cerebellar Artery"
+    },
+    {
+     "term": "Posterior cerebral artery - PCA",
+     "cid": 20436,
+     "model": "Posterior Cerebral Artery (Left)"
+    },
+    {
+     "term": "Posterior communicating artery - P.COM",
+     "cid": 17645,
+     "model": "Posterior Communicating Artery"
+    },
+    {
+     "term": "Internal carotid artery",
+     "cid": 16830,
+     "model": "Internal Carotid Artery"
+    },
+    {
+     "term": "Anterior choroidal artery",
+     "cid": 19173,
+     "model": "Anterior Choroidal Artery"
+    },
+    {
+     "term": "Middle cerebral artery - MCA",
+     "cid": 19158,
+     "model": "Middle Cerebral Artery"
+    },
+    {
+     "term": "Perforating arteries (lenticulostriate)",
+     "cid": 16540,
+     "model": "Anterolateral Central Arteries"
+    },
+    {
+     "term": "Anterior cerebral artery - ACA",
+     "cid": 22085,
+     "model": "Anterior Cerebral Artery"
+    },
+    {
+     "term": "Anterior communicating artery - A.COM",
+     "cid": 18523,
+     "model": "Anterior Communicating Artery"
+    },
+    {
+     "term": "Orbitofrontal artery",
+     "cid": 16477,
+     "model": "Lateral Orbitofrontal Artery"
+    },
+    {
+     "term": "Polar frontal artery",
+     "cid": 18500,
+     "model": "Frontopolar Artery"
+    },
+    {
+     "term": "Callosomarginal artery",
+     "cid": 18163,
+     "model": "Callosomarginal Artery"
+    },
+    {
+     "term": "Pericallosal artery",
+     "cid": 24588,
+     "model": "Pericallosal Artery"
+    },
+    {
+     "term": "Dorsal branch to corpus callosum",
+     "cid": 18813,
+     "model": "Dorsal Branch to Corpus Callosum"
+    },
+    {
+     "term": "Internal cerebral vein",
+     "cid": 21039,
+     "model": "Internal Cerebral Vein"
+    },
+    {
+     "term": "Anterior cerebral vein",
+     "cid": 18255,
+     "model": "Anterior Cerebral Veins"
+    },
+    {
+     "term": "Basal vein (of Rosenthal)",
+     "cid": 19387,
+     "model": "Basal Vein"
+    },
+    {
+     "term": "Great cerebral vein (of Galen)",
+     "cid": 17125,
+     "model": "Great Cerebral Vein"
+    },
+    {
+     "term": "Superficial middle cerebral vein",
+     "cid": 22788,
+     "model": "Superficial Middle Cerebral Vein"
+    },
+    {
+     "term": "Inferior anastomotic vein (of Labbe)",
+     "cid": 16976,
+     "model": "Inferior Anastomotic Vein"
+    },
+    {
+     "term": "Superior sagittal sinus",
+     "cid": 24749,
+     "model": "Superior Sagittal Sinus"
+    },
+    {
+     "term": "Inferior sagittal sinus",
+     "cid": 24797,
+     "model": "Inferior Sagittal Sinus"
+    },
+    {
+     "term": "Straight sinus",
+     "cid": 23351,
+     "model": "Straight Sinus"
+    },
+    {
+     "term": "Occipital sinus",
+     "cid": 20582,
+     "model": "Occipital Sinus"
+    },
+    {
+     "term": "Transverse sinus",
+     "cid": 17654,
+     "model": "Transverse Sinus"
+    },
+    {
+     "term": "Falx cerebri",
+     "cid": 19169,
+     "model": "Falx Cerebri"
+    },
+    {
+     "term": "Falx cerebelli",
+     "cid": 20967,
+     "model": "Falx Cerebelli"
+    },
+    {
+     "term": "Tentorium cerebelli",
+     "cid": 22396,
+     "model": "Tentorium Cerebelli"
+    },
+    {
+     "term": "Middle meningeal artery",
+     "cid": 17918,
+     "model": "Middle Meningeal Artery"
+    },
+    {
+     "term": "Anterior (Frontal) horn of lateral ventricle",
+     "cid": 21857,
+     "model": "Frontal Horn of Lateral Ventricle"
+    },
+    {
+     "term": "Body (Central part) of lateral ventricle",
+     "cid": 20179,
+     "model": "Central Part of Lateral Ventricle"
+    },
+    {
+     "term": "Posterior (Occipital) horn of lateral ventricle",
+     "cid": 20265,
+     "model": "Occipital Horn of Lateral Ventricle"
+    },
+    {
+     "term": "Inferior (Temporal) horn of lateral ventricle",
+     "cid": 22660,
+     "model": "Temporal Horn of Lateral Ventricle"
+    },
+    {
+     "term": "Septum pellucidum",
+     "cid": 20081,
+     "model": "Septum Pellucidum"
+    },
+    {
+     "term": "Choroid plexus of lateral ventricle",
+     "cid": 21035,
+     "model": "Choroid Plexus of Lateral Ventricle"
+    },
+    {
+     "term": "Choroid plexus of 3rd ventricle",
+     "cid": 23689,
+     "model": "Choroid Plexus of Third and Fourth Ventricles"
+    },
+    {
+     "term": "Interventricular foramen (of Monro)",
+     "cid": 19734,
+     "model": "Interventricular Foramen"
+    },
+    {
+     "term": "3rd ventricle",
+     "cid": 20649,
+     "model": "Third Ventricle"
+    },
+    {
+     "term": "Cerebral aqueduct (of Sylvius)",
+     "cid": 23355,
+     "model": "Mesencephalic Aqueduct"
+    },
+    {
+     "term": "4th ventricle",
+     "cid": 22702,
+     "model": "Fourth Ventricle"
+    },
+    {
+     "term": "foramen of Luschka",
+     "cid": 18208,
+     "model": "Lateral Aperture of Fourth Ventricle"
+    },
+    {
+     "term": "foramen of Magendie",
+     "cid": 18296,
+     "model": "Median Aperture of Fourth Ventricle"
+    }
+   ]
+  },
+  {
+   "id": "d3",
+   "label": "ניתוח 3 - מבנים עמוקים ומערכת לימבית",
+   "items": [
+    {
+     "term": "Paraterminal gyrus",
+     "cid": 20809,
+     "model": "Paraterminal Gyrus"
+    },
+    {
+     "term": "Septal area",
+     "cid": 21023,
+     "model": "Subcallosal Area"
+    },
+    {
+     "term": "Pes hippocampus",
+     "cid": 19709,
+     "model": "Hippocampus"
+    },
+    {
+     "term": "Crus of fornix",
+     "cid": 16874,
+     "model": "Crus of Fornix"
+    },
+    {
+     "term": "Commissure of fornix",
+     "cid": 24358,
+     "model": "Hippocampal Commissure"
+    },
+    {
+     "term": "Body of fornix",
+     "cid": 17209,
+     "model": "Body of Fornix"
+    },
+    {
+     "term": "Columns of fornix",
+     "cid": 18959,
+     "model": "Column of Fornix"
+    },
+    {
+     "term": "Indusium griseum",
+     "cid": 17103,
+     "model": "Indusium Griseum"
+    },
+    {
+     "term": "Amygdaloid body",
+     "cid": 22284,
+     "model": "Amygdaloid Body"
+    },
+    {
+     "term": "Putamen",
+     "cid": 22340,
+     "model": "Putamen"
+    },
+    {
+     "term": "Globus pallidus",
+     "cid": 18097,
+     "model": "Lateral Segment of Globus Pallidus"
+    },
+    {
+     "term": "Caudate nucleus",
+     "cid": 23898,
+     "model": "Caudate Nucleus"
+    },
+    {
+     "term": "Thalamus",
+     "cid": 21133,
+     "model": "Thalamus"
+    },
+    {
+     "term": "Pulvinar of thalamus",
+     "cid": 18810,
+     "model": "Pulvinar Nuclei of Thalamus"
+    },
+    {
+     "term": "Interthalamic adhesion (massa intermedia)",
+     "cid": 18492,
+     "model": "Interthalamic Adhesion"
+    },
+    {
+     "term": "Anterior commissure",
+     "cid": 21078,
+     "model": "Anterior Commissure"
+    },
+    {
+     "term": "Pineal body",
+     "cid": 20574,
+     "model": "Pineal Gland"
+    },
+    {
+     "term": "Cerebral crus",
+     "cid": 24203,
+     "model": "Cerebral Peduncle"
+    },
+    {
+     "term": "Pyramid",
+     "cid": 24645,
+     "model": "Pyramid of Medulla Oblongata"
+    }
+   ]
+  },
+  {
+   "id": "d4",
+   "label": "ניתוח 4 - צרבלום, גזע המוח ועצבים קרניאליים",
+   "items": [
+    {
+     "term": "Vermis",
+     "cid": 20663,
+     "model": "Vermis of Cerebellum"
+    },
+    {
+     "term": "Anterior lobe of cerebellum",
+     "cid": 24545,
+     "model": "Anterior Lobe of Cerebellum"
+    },
+    {
+     "term": "Posterior lobe of cerebellum",
+     "cid": 23089,
+     "model": "Posterior Lobe of Cerebellum"
+    },
+    {
+     "term": "Tonsils",
+     "cid": 22906,
+     "model": "Tonsil of Cerebellum"
+    },
+    {
+     "term": "Flocculus",
+     "cid": 17123,
+     "model": "Flocculus"
+    },
+    {
+     "term": "Superior cerebellar peduncle",
+     "cid": 17336,
+     "model": "Superior Cerebellar Peduncle (Posterior; Right)"
+    },
+    {
+     "term": "Middle cerebellar peduncle",
+     "cid": 17694,
+     "model": "Middle Cerebellar Peduncle (Posterior; Left)"
+    },
+    {
+     "term": "Inferior cerebellar peduncle",
+     "cid": 19381,
+     "model": "Inferior Cerebellar Peduncle (Posterior; Left)"
+    },
+    {
+     "term": "Arbor vitae",
+     "cid": 18943,
+     "model": "Arbor Vitae"
+    },
+    {
+     "term": "Tectum (lamina quadrigemina)",
+     "cid": 20913,
+     "model": "Quadrigeminal Plate"
+    },
+    {
+     "term": "Substantia nigra",
+     "cid": 20981,
+     "model": "Substantia Nigra"
+    },
+    {
+     "term": "Superior colliculi",
+     "cid": 18882,
+     "model": "Superior Colliculus"
+    },
+    {
+     "term": "Inferior colliculus",
+     "cid": 20376,
+     "model": "Inferior Colliculus"
+    },
+    {
+     "term": "Lateral geniculate body (LGB)",
+     "cid": 23365,
+     "model": "Lateral Geniculate Nucleus of Thalamus"
+    },
+    {
+     "term": "Olive",
+     "cid": 24873,
+     "model": "Olive"
+    },
+    {
+     "term": "Olfactory nerve (CN-1)",
+     "cid": 24741,
+     "model": "Olfactory Nerve"
+    },
+    {
+     "term": "Oculomotor nerve (CN-3)",
+     "cid": 18359,
+     "model": "Oculomotor Nerve"
+    },
+    {
+     "term": "Trochlear nerve (CN-4)",
+     "cid": 21469,
+     "model": "Trochlear Nerve"
+    },
+    {
+     "term": "Trigeminal nerve (CN-5)",
+     "cid": 17993,
+     "model": "Trigeminal Nerve"
+    },
+    {
+     "term": "Abducent nerve (CN-6)",
+     "cid": 19696,
+     "model": "Abducens Nerve"
+    },
+    {
+     "term": "Facial nerve (CN-7)",
+     "cid": 18487,
+     "model": "Facial Nerve"
+    },
+    {
+     "term": "Vestibulocochlear nerve (CN-8)",
+     "cid": 24834,
+     "model": "Vestibulocochlear Nerve"
+    },
+    {
+     "term": "Glossopharyngeal nerve (CN-9)",
+     "cid": 21110,
+     "model": "Glossopharyngeal Nerve"
+    },
+    {
+     "term": "Vagal nerve (CN-10)",
+     "cid": 22197,
+     "model": "Vagus Nerve"
+    },
+    {
+     "term": "Accessory nerve (CN-11)",
+     "cid": 18441,
+     "model": "Accessory Nerve"
+    },
+    {
+     "term": "Hypoglossal nerve (CN-12)",
+     "cid": 21068,
+     "model": "Hypoglossal Nerve"
+    },
+    {
+     "term": "Cuneate tubercle",
+     "cid": 18765,
+     "model": "Cuneate Tubercle"
+    },
+    {
+     "term": "Gracile tubercle",
+     "cid": 16500,
+     "model": "Gracile Tubercle"
+    }
+   ]
+  }
+ ],
+ "excluded": [
+  {
+   "group": "d1",
+   "term": "White and gray matter"
+  },
+  {
+   "group": "d1",
+   "term": "Cortex"
+  },
+  {
+   "group": "d1",
+   "term": "Longitudinal cerebral fissure (interhemispheric fissure)"
+  },
+  {
+   "group": "d1",
+   "term": "Frontal pole"
+  },
+  {
+   "group": "d1",
+   "term": "Superior frontal gyrus (medially - medial frontal gyrus)"
+  },
+  {
+   "group": "d1",
+   "term": "Middle frontal gyrus"
+  },
+  {
+   "group": "d1",
+   "term": "Inferior frontal gyrus"
+  },
+  {
+   "group": "d1",
+   "term": "Superior frontal sulcus"
+  },
+  {
+   "group": "d1",
+   "term": "Inferior frontal sulcus"
+  },
+  {
+   "group": "d1",
+   "term": "Pars orbitalis (orbital part of inferior frontal gyrus)"
+  },
+  {
+   "group": "d1",
+   "term": "Pars triangularis (triangular part of inferior frontal gyrus)"
+  },
+  {
+   "group": "d1",
+   "term": "Pars opercularis (opercular part of inferior frontal gyrus)"
+  },
+  {
+   "group": "d1",
+   "term": "Anterior ramus of lateral sulcus"
+  },
+  {
+   "group": "d1",
+   "term": "Ascending ramus of lateral sulcus"
+  },
+  {
+   "group": "d1",
+   "term": "Posterior ramus of lateral sulcus"
+  },
+  {
+   "group": "d1",
+   "term": "Precentral sulcus"
+  },
+  {
+   "group": "d1",
+   "term": "Post central sulcus"
+  },
+  {
+   "group": "d1",
+   "term": "Intraparietal sulcus"
+  },
+  {
+   "group": "d1",
+   "term": "Superior parietal lobule"
+  },
+  {
+   "group": "d1",
+   "term": "Inferior parietal lobule"
+  },
+  {
+   "group": "d1",
+   "term": "Supramarginal gyrus"
+  },
+  {
+   "group": "d1",
+   "term": "Angular gyrus"
+  },
+  {
+   "group": "d1",
+   "term": "Occipital pole"
+  },
+  {
+   "group": "d1",
+   "term": "Preoccipital notch"
+  },
+  {
+   "group": "d1",
+   "term": "Calcarine sulcus"
+  },
+  {
+   "group": "d1",
+   "term": "Temporal pole"
+  },
+  {
+   "group": "d1",
+   "term": "Superior temporal gyrus"
+  },
+  {
+   "group": "d1",
+   "term": "Middle temporal gyrus"
+  },
+  {
+   "group": "d1",
+   "term": "Inferior temporal gyrus"
+  },
+  {
+   "group": "d1",
+   "term": "Superior temporal sulcus"
+  },
+  {
+   "group": "d1",
+   "term": "Inferior temporal sulcus"
+  },
+  {
+   "group": "d1",
+   "term": "Transverse gyri of Heschl"
+  },
+  {
+   "group": "d1",
+   "term": "Insula"
+  },
+  {
+   "group": "d1",
+   "term": "Long gyrus of insula"
+  },
+  {
+   "group": "d1",
+   "term": "Short gyri of insula"
+  },
+  {
+   "group": "d1",
+   "term": "Central sulcus of insula"
+  },
+  {
+   "group": "d1",
+   "term": "Circular sulcus of insula"
+  },
+  {
+   "group": "d1",
+   "term": "Limen of insula"
+  },
+  {
+   "group": "d1",
+   "term": "Straight (rectus) gyrus"
+  },
+  {
+   "group": "d1",
+   "term": "Olfactory sulcus"
+  },
+  {
+   "group": "d1",
+   "term": "Orbital gyri"
+  },
+  {
+   "group": "d1",
+   "term": "Orbital sulci"
+  },
+  {
+   "group": "d1",
+   "term": "Lateral olfactory stria (tract)"
+  },
+  {
+   "group": "d1",
+   "term": "Medial olfactory stria (tract)"
+  },
+  {
+   "group": "d1",
+   "term": "Olfactory trigone"
+  },
+  {
+   "group": "d1",
+   "term": "Tuber cinereum"
+  },
+  {
+   "group": "d1",
+   "term": "Infundibulum (pituitary stalk) of hypophysis"
+  },
+  {
+   "group": "d1",
+   "term": "Interpeduncular fossa"
+  },
+  {
+   "group": "d1",
+   "term": "Posterior perforated substance"
+  },
+  {
+   "group": "d1",
+   "term": "Uncus"
+  },
+  {
+   "group": "d1",
+   "term": "Parahippocampal gyrus"
+  },
+  {
+   "group": "d1",
+   "term": "Lingual gyrus"
+  },
+  {
+   "group": "d1",
+   "term": "Collateral sulcus"
+  },
+  {
+   "group": "d1",
+   "term": "Rhinal sulcus"
+  },
+  {
+   "group": "d1",
+   "term": "Occipitotemporal gyrus"
+  },
+  {
+   "group": "d1",
+   "term": "Occipitotemporal sulcus"
+  },
+  {
+   "group": "d1",
+   "term": "Rostrum of corpus callosum"
+  },
+  {
+   "group": "d1",
+   "term": "Genu of corpus callosum"
+  },
+  {
+   "group": "d1",
+   "term": "Body of corpus callosum"
+  },
+  {
+   "group": "d1",
+   "term": "Splenium of corpus callosum"
+  },
+  {
+   "group": "d1",
+   "term": "Lamina terminalis"
+  },
+  {
+   "group": "d1",
+   "term": "Subcallosal gyrus"
+  },
+  {
+   "group": "d1",
+   "term": "Sulcus of corpus callosum"
+  },
+  {
+   "group": "d1",
+   "term": "Cingulate sulcus"
+  },
+  {
+   "group": "d1",
+   "term": "Isthmus of cingulate gyrus"
+  },
+  {
+   "group": "d1",
+   "term": "Paracentral sulcus"
+  },
+  {
+   "group": "d1",
+   "term": "Paracentral lobule"
+  },
+  {
+   "group": "d1",
+   "term": "Marginal sulcus"
+  },
+  {
+   "group": "d1",
+   "term": "Precuneus"
+  },
+  {
+   "group": "d1",
+   "term": "Cuneus"
+  },
+  {
+   "group": "d1",
+   "term": "Apex of cuneus"
+  },
+  {
+   "group": "d2",
+   "term": "Superior thalamostriate vein"
+  },
+  {
+   "group": "d2",
+   "term": "Anterior septal vein"
+  },
+  {
+   "group": "d2",
+   "term": "Deep middle cerebral vein"
+  },
+  {
+   "group": "d2",
+   "term": "Superior anastomotic vein (of Trolard)"
+  },
+  {
+   "group": "d2",
+   "term": "Confluence of sinuses"
+  },
+  {
+   "group": "d2",
+   "term": "Dura mater"
+  },
+  {
+   "group": "d2",
+   "term": "Arachnoid mater"
+  },
+  {
+   "group": "d2",
+   "term": "Arachnoid granulations"
+  },
+  {
+   "group": "d2",
+   "term": "Pia mater"
+  },
+  {
+   "group": "d2",
+   "term": "Lateral ventricles"
+  },
+  {
+   "group": "d2",
+   "term": "Choroid plexus of 4th ventricle"
+  },
+  {
+   "group": "d2",
+   "term": "Head of caudate nucleus"
+  },
+  {
+   "group": "d2",
+   "term": "Body of caudate nucleus"
+  },
+  {
+   "group": "d2",
+   "term": "Tail of caudate nucleus"
+  },
+  {
+   "group": "d2",
+   "term": "Superior medullary velum"
+  },
+  {
+   "group": "d2",
+   "term": "Inferior medullary velum"
+  },
+  {
+   "group": "d3",
+   "term": "Isthmus of cingulate gyrus"
+  },
+  {
+   "group": "d3",
+   "term": "Parahippocampal gyrus"
+  },
+  {
+   "group": "d3",
+   "term": "Uncus"
+  },
+  {
+   "group": "d3",
+   "term": "Cingulum"
+  },
+  {
+   "group": "d3",
+   "term": "Fimbria of hippocampus"
+  },
+  {
+   "group": "d3",
+   "term": "Fornix"
+  },
+  {
+   "group": "d3",
+   "term": "Mammillothalamic tract"
+  },
+  {
+   "group": "d3",
+   "term": "Mammillotegmental tract"
+  },
+  {
+   "group": "d3",
+   "term": "Dentate gyrus"
+  },
+  {
+   "group": "d3",
+   "term": "Medial longitudinal stria"
+  },
+  {
+   "group": "d3",
+   "term": "Lateral longitudinal stria"
+  },
+  {
+   "group": "d3",
+   "term": "Stria terminalis"
+  },
+  {
+   "group": "d3",
+   "term": "Stria medullaris thalami"
+  },
+  {
+   "group": "d3",
+   "term": "Habenular trigone"
+  },
+  {
+   "group": "d3",
+   "term": "Cortex of insula"
+  },
+  {
+   "group": "d3",
+   "term": "Extreme capsule"
+  },
+  {
+   "group": "d3",
+   "term": "Claustrum"
+  },
+  {
+   "group": "d3",
+   "term": "External capsule"
+  },
+  {
+   "group": "d3",
+   "term": "Lentiform nucleus"
+  },
+  {
+   "group": "d3",
+   "term": "Internal capsule"
+  },
+  {
+   "group": "d3",
+   "term": "Anterior limb of internal capsule"
+  },
+  {
+   "group": "d3",
+   "term": "Posterior limb of internal capsule"
+  },
+  {
+   "group": "d3",
+   "term": "Genu of internal capsule"
+  },
+  {
+   "group": "d3",
+   "term": "Forceps minor"
+  },
+  {
+   "group": "d3",
+   "term": "Forceps major"
+  },
+  {
+   "group": "d3",
+   "term": "Anterior tubercle of thalamus"
+  },
+  {
+   "group": "d3",
+   "term": "U fibers (arcuate)"
+  },
+  {
+   "group": "d3",
+   "term": "Superior longitudinal fasciculus"
+  },
+  {
+   "group": "d3",
+   "term": "Inferior longitudinal fasciculus"
+  },
+  {
+   "group": "d3",
+   "term": "Uncinate fibers"
+  },
+  {
+   "group": "d3",
+   "term": "Posterior commissure"
+  },
+  {
+   "group": "d3",
+   "term": "Habenular commissure"
+  },
+  {
+   "group": "d3",
+   "term": "Corona radiata"
+  },
+  {
+   "group": "d3",
+   "term": "Decussation of pyramids"
+  },
+  {
+   "group": "d4",
+   "term": "Primary fissure"
+  },
+  {
+   "group": "d4",
+   "term": "Horizontal fissure"
+  },
+  {
+   "group": "d4",
+   "term": "Nodule"
+  },
+  {
+   "group": "d4",
+   "term": "Flocculonodular lobe"
+  },
+  {
+   "group": "d4",
+   "term": "Dentate nucleus"
+  },
+  {
+   "group": "d4",
+   "term": "Lingula"
+  },
+  {
+   "group": "d4",
+   "term": "Uvula"
+  },
+  {
+   "group": "d4",
+   "term": "Folia"
+  },
+  {
+   "group": "d4",
+   "term": "Tegmentum"
+  },
+  {
+   "group": "d4",
+   "term": "Medial longitudinal fasciculus (MLF)"
+  },
+  {
+   "group": "d4",
+   "term": "Interpeduncular fossa"
+  },
+  {
+   "group": "d4",
+   "term": "Red nucleus"
+  },
+  {
+   "group": "d4",
+   "term": "Periaqueductal grey matter"
+  },
+  {
+   "group": "d4",
+   "term": "Brachium of superior colliculus"
+  },
+  {
+   "group": "d4",
+   "term": "Brachium of inferior colliculus"
+  },
+  {
+   "group": "d4",
+   "term": "Optic radiation"
+  },
+  {
+   "group": "d4",
+   "term": "Medial geniculate body (MGB)"
+  },
+  {
+   "group": "d4",
+   "term": "Superior pontine sulcus"
+  },
+  {
+   "group": "d4",
+   "term": "Inferior pontine sulcus"
+  },
+  {
+   "group": "d4",
+   "term": "Basilary groove"
+  },
+  {
+   "group": "d4",
+   "term": "Transverse pontine fibers"
+  },
+  {
+   "group": "d4",
+   "term": "Decussation of pyramids"
+  },
+  {
+   "group": "d4",
+   "term": "Superior medullary velum"
+  },
+  {
+   "group": "d4",
+   "term": "Inferior medullary velum"
+  },
+  {
+   "group": "d4",
+   "term": "Rhomboid fossa"
+  },
+  {
+   "group": "d4",
+   "term": "Dorsal median sulcus"
+  },
+  {
+   "group": "d4",
+   "term": "Ventral median sulcus"
+  },
+  {
+   "group": "d4",
+   "term": "Sulcus limitans"
+  },
+  {
+   "group": "d4",
+   "term": "Medial eminence"
+  },
+  {
+   "group": "d4",
+   "term": "Facial colliculus"
+  },
+  {
+   "group": "d4",
+   "term": "Vestibular area"
+  },
+  {
+   "group": "d4",
+   "term": "Striae medullares"
+  },
+  {
+   "group": "d4",
+   "term": "Hypoglossal trigone"
+  },
+  {
+   "group": "d4",
+   "term": "Vagal trigone"
+  },
+  {
+   "group": "d4",
+   "term": "Obex"
+  },
+  {
+   "group": "d4",
+   "term": "Cuneate fasciculus"
+  },
+  {
+   "group": "d4",
+   "term": "Gracile fasciculus"
+  }
+ ]
+}

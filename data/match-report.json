@@ -1,0 +1,2628 @@
+{
+ "counts": {
+  "strong": 122,
+  "medium": 48,
+  "none": 121
+ },
+ "out": [
+  {
+   "group": "d1",
+   "term": "Cerebrum",
+   "cls": "strong",
+   "cid": 20884,
+   "match": "Cerebrum",
+   "sname": "Cerebrum",
+   "sc": 100
+  },
+  {
+   "group": "d1",
+   "term": "Cerebellum",
+   "cls": "strong",
+   "cid": 17389,
+   "match": "Cerebellum",
+   "sname": "Cerebellum",
+   "sc": 100
+  },
+  {
+   "group": "d1",
+   "term": "Mid brain",
+   "cls": "strong",
+   "cid": 16911,
+   "match": "Mesencephalon",
+   "sname": "Mesencephalon",
+   "sc": 100
+  },
+  {
+   "group": "d1",
+   "term": "Pons",
+   "cls": "strong",
+   "cid": 19076,
+   "match": "Pons",
+   "sname": "Pons",
+   "sc": 100
+  },
+  {
+   "group": "d1",
+   "term": "Medulla oblongata",
+   "cls": "strong",
+   "cid": 20291,
+   "match": "Medulla Oblongata",
+   "sname": "Medulla Oblongata",
+   "sc": 100
+  },
+  {
+   "group": "d1",
+   "term": "White and gray matter",
+   "cls": "medium",
+   "cid": 17335,
+   "match": "Gray Matter of Spinal Cord",
+   "sname": "Substantia grisea medullae spinalis",
+   "sc": 67
+  },
+  {
+   "group": "d1",
+   "term": "Cortex",
+   "cls": "medium",
+   "cid": 16569,
+   "match": "Ovarian Cortex (Left; Superior)",
+   "sname": "Cortex ovarii",
+   "sc": 67
+  },
+  {
+   "group": "d1",
+   "term": "Longitudinal cerebral fissure (interhemispheric fissure)",
+   "cls": "none",
+   "cid": 16743,
+   "match": "Superior Orbital Fissure",
+   "sname": "Fissura orbitalis superior",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Lateral sulcus (sylvian fissure)",
+   "cls": "strong",
+   "cid": 23001,
+   "match": "Lateral Sulcus",
+   "sname": "Sulcus lateralis",
+   "sc": 100
+  },
+  {
+   "group": "d1",
+   "term": "Frontal lobe",
+   "cls": "strong",
+   "cid": 21733,
+   "match": "Frontal Lobe",
+   "sname": "Lobus frontalis",
+   "sc": 100
+  },
+  {
+   "group": "d1",
+   "term": "Frontal pole",
+   "cls": "none",
+   "cid": 22697,
+   "match": "Frontal Eminence",
+   "sname": "Eminentia frontalis",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Superior frontal gyrus (medially - medial frontal gyrus)",
+   "cls": "none",
+   "cid": 20941,
+   "match": "Groove for Superior Sagittal Sinus (Frontal Part)",
+   "sname": "Sulcus sinus sagittalis superioris",
+   "sc": 46
+  },
+  {
+   "group": "d1",
+   "term": "Middle frontal gyrus",
+   "cls": "none",
+   "cid": 18066,
+   "match": "Precentral Gyrus",
+   "sname": "Gyrus praecentralis",
+   "sc": 40
+  },
+  {
+   "group": "d1",
+   "term": "Inferior frontal gyrus",
+   "cls": "none",
+   "cid": 18066,
+   "match": "Precentral Gyrus",
+   "sname": "Gyrus praecentralis",
+   "sc": 40
+  },
+  {
+   "group": "d1",
+   "term": "Superior frontal sulcus",
+   "cls": "none",
+   "cid": 20941,
+   "match": "Groove for Superior Sagittal Sinus (Frontal Part)",
+   "sname": "Sulcus sinus sagittalis superioris",
+   "sc": 44
+  },
+  {
+   "group": "d1",
+   "term": "Inferior frontal sulcus",
+   "cls": "none",
+   "cid": 21753,
+   "match": "Central Sulcus",
+   "sname": "Sulcus centralis",
+   "sc": 40
+  },
+  {
+   "group": "d1",
+   "term": "Pars orbitalis (orbital part of inferior frontal gyrus)",
+   "cls": "none",
+   "cid": 22409,
+   "match": "Inferior Orbital Fissure",
+   "sname": "Fissura orbitalis inferior",
+   "sc": 44
+  },
+  {
+   "group": "d1",
+   "term": "Pars triangularis (triangular part of inferior frontal gyrus)",
+   "cls": "none",
+   "cid": 16428,
+   "match": "Posterior Part of Peritoneum",
+   "sname": "Pars posterior peritonei",
+   "sc": 40
+  },
+  {
+   "group": "d1",
+   "term": "Pars opercularis (opercular part of inferior frontal gyrus)",
+   "cls": "none",
+   "cid": 16428,
+   "match": "Posterior Part of Peritoneum",
+   "sname": "Pars posterior peritonei",
+   "sc": 40
+  },
+  {
+   "group": "d1",
+   "term": "Anterior ramus of lateral sulcus",
+   "cls": "medium",
+   "cid": 23001,
+   "match": "Lateral Sulcus",
+   "sname": "Sulcus lateralis",
+   "sc": 67
+  },
+  {
+   "group": "d1",
+   "term": "Ascending ramus of lateral sulcus",
+   "cls": "medium",
+   "cid": 23001,
+   "match": "Lateral Sulcus",
+   "sname": "Sulcus lateralis",
+   "sc": 67
+  },
+  {
+   "group": "d1",
+   "term": "Posterior ramus of lateral sulcus",
+   "cls": "medium",
+   "cid": 23001,
+   "match": "Lateral Sulcus",
+   "sname": "Sulcus lateralis",
+   "sc": 67
+  },
+  {
+   "group": "d1",
+   "term": "Precentral gyrus",
+   "cls": "strong",
+   "cid": 18066,
+   "match": "Precentral Gyrus",
+   "sname": "Gyrus praecentralis",
+   "sc": 100
+  },
+  {
+   "group": "d1",
+   "term": "Precentral sulcus",
+   "cls": "none",
+   "cid": 21753,
+   "match": "Central Sulcus",
+   "sname": "Sulcus centralis",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Central sulcus (of Rolando)",
+   "cls": "strong",
+   "cid": 21753,
+   "match": "Central Sulcus",
+   "sname": "Sulcus centralis",
+   "sc": 100
+  },
+  {
+   "group": "d1",
+   "term": "Parietal lobe",
+   "cls": "strong",
+   "cid": 19182,
+   "match": "Parietal Lobe",
+   "sname": "Lobus parietalis",
+   "sc": 100
+  },
+  {
+   "group": "d1",
+   "term": "Post central gyrus",
+   "cls": "strong",
+   "cid": 23457,
+   "match": "Postcentral Gyrus",
+   "sname": "Gyrus postcentralis",
+   "sc": 100
+  },
+  {
+   "group": "d1",
+   "term": "Post central sulcus",
+   "cls": "medium",
+   "cid": 21753,
+   "match": "Central Sulcus",
+   "sname": "Sulcus centralis",
+   "sc": 80
+  },
+  {
+   "group": "d1",
+   "term": "Intraparietal sulcus",
+   "cls": "none",
+   "cid": 21753,
+   "match": "Central Sulcus",
+   "sname": "Sulcus centralis",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Superior parietal lobule",
+   "cls": "none",
+   "cid": 20208,
+   "match": "Lobules of Mammary Gland (Superior Medial Quadrant; Right)",
+   "sname": "Lobuli glandulae mammariae",
+   "sc": 44
+  },
+  {
+   "group": "d1",
+   "term": "Inferior parietal lobule",
+   "cls": "none",
+   "cid": 23961,
+   "match": "Lobules of Mammary Gland (Inferior Medial Quadrant; Left)",
+   "sname": "Lobuli glandulae mammariae",
+   "sc": 44
+  },
+  {
+   "group": "d1",
+   "term": "Supramarginal gyrus",
+   "cls": "none",
+   "cid": 18066,
+   "match": "Precentral Gyrus",
+   "sname": "Gyrus praecentralis",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Angular gyrus",
+   "cls": "none",
+   "cid": 18066,
+   "match": "Precentral Gyrus",
+   "sname": "Gyrus praecentralis",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Occipital lobe",
+   "cls": "strong",
+   "cid": 22254,
+   "match": "Occipital Lobe",
+   "sname": "Lobus occipitalis",
+   "sc": 100
+  },
+  {
+   "group": "d1",
+   "term": "Occipital pole",
+   "cls": "none",
+   "cid": 17015,
+   "match": "Occipital Plane",
+   "sname": "Planum occipitale",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Parietooccipital sulcus",
+   "cls": "strong",
+   "cid": 23806,
+   "match": "Parietooccipital Sulcus",
+   "sname": "Sulcus parietooccipitalis",
+   "sc": 100
+  },
+  {
+   "group": "d1",
+   "term": "Preoccipital notch",
+   "cls": "none",
+   "cid": 16452,
+   "match": "Articular Capsules of Proximal Interphalangeal Joints of Hand",
+   "sname": "Capsulae articulares articulationum interphalangearum proximalium manus",
+   "sc": 0
+  },
+  {
+   "group": "d1",
+   "term": "Calcarine sulcus",
+   "cls": "none",
+   "cid": 21753,
+   "match": "Central Sulcus",
+   "sname": "Sulcus centralis",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Temporal lobe",
+   "cls": "strong",
+   "cid": 18955,
+   "match": "Temporal Lobe",
+   "sname": "Lobus temporalis",
+   "sc": 100
+  },
+  {
+   "group": "d1",
+   "term": "Temporal pole",
+   "cls": "none",
+   "cid": 17187,
+   "match": "Temporal Fascia",
+   "sname": "Fascia temporalis",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Superior temporal gyrus",
+   "cls": "medium",
+   "cid": 19009,
+   "match": "Superior Temporal Line",
+   "sname": "Linea temporalis superior",
+   "sc": 67
+  },
+  {
+   "group": "d1",
+   "term": "Middle temporal gyrus",
+   "cls": "none",
+   "cid": 18066,
+   "match": "Precentral Gyrus",
+   "sname": "Gyrus praecentralis",
+   "sc": 40
+  },
+  {
+   "group": "d1",
+   "term": "Inferior temporal gyrus",
+   "cls": "medium",
+   "cid": 18641,
+   "match": "Inferior Temporal Line",
+   "sname": "Linea temporalis inferior",
+   "sc": 67
+  },
+  {
+   "group": "d1",
+   "term": "Superior temporal sulcus",
+   "cls": "medium",
+   "cid": 19009,
+   "match": "Superior Temporal Line",
+   "sname": "Linea temporalis superior",
+   "sc": 67
+  },
+  {
+   "group": "d1",
+   "term": "Inferior temporal sulcus",
+   "cls": "medium",
+   "cid": 18641,
+   "match": "Inferior Temporal Line",
+   "sname": "Linea temporalis inferior",
+   "sc": 67
+  },
+  {
+   "group": "d1",
+   "term": "Transverse gyri of Heschl",
+   "cls": "none",
+   "cid": 20175,
+   "match": "Anterior Deep Temporal Nerve",
+   "sname": "Nervus temporalis profundus anterior",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Insula",
+   "cls": "none",
+   "cid": 16452,
+   "match": "Articular Capsules of Proximal Interphalangeal Joints of Hand",
+   "sname": "Capsulae articulares articulationum interphalangearum proximalium manus",
+   "sc": 0
+  },
+  {
+   "group": "d1",
+   "term": "Long gyrus of insula",
+   "cls": "none",
+   "cid": 18066,
+   "match": "Precentral Gyrus",
+   "sname": "Gyrus praecentralis",
+   "sc": 40
+  },
+  {
+   "group": "d1",
+   "term": "Short gyri of insula",
+   "cls": "none",
+   "cid": 18066,
+   "match": "Precentral Gyrus",
+   "sname": "Gyrus praecentralis",
+   "sc": 40
+  },
+  {
+   "group": "d1",
+   "term": "Central sulcus of insula",
+   "cls": "medium",
+   "cid": 21753,
+   "match": "Central Sulcus",
+   "sname": "Sulcus centralis",
+   "sc": 80
+  },
+  {
+   "group": "d1",
+   "term": "Circular sulcus of insula",
+   "cls": "none",
+   "cid": 21753,
+   "match": "Central Sulcus",
+   "sname": "Sulcus centralis",
+   "sc": 40
+  },
+  {
+   "group": "d1",
+   "term": "Limen of insula",
+   "cls": "none",
+   "cid": 16452,
+   "match": "Articular Capsules of Proximal Interphalangeal Joints of Hand",
+   "sname": "Capsulae articulares articulationum interphalangearum proximalium manus",
+   "sc": 0
+  },
+  {
+   "group": "d1",
+   "term": "Straight (rectus) gyrus",
+   "cls": "medium",
+   "cid": 23351,
+   "match": "Straight Sinus",
+   "sname": "Sinus rectus",
+   "sc": 67
+  },
+  {
+   "group": "d1",
+   "term": "Olfactory sulcus",
+   "cls": "none",
+   "cid": 21753,
+   "match": "Central Sulcus",
+   "sname": "Sulcus centralis",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Orbital gyri",
+   "cls": "none",
+   "cid": 18066,
+   "match": "Precentral Gyrus",
+   "sname": "Gyrus praecentralis",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Orbital sulci",
+   "cls": "none",
+   "cid": 21753,
+   "match": "Central Sulcus",
+   "sname": "Sulcus centralis",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Olfactory bulb",
+   "cls": "strong",
+   "cid": 24802,
+   "match": "Olfactory Bulb",
+   "sname": "Bulbus olfactorius",
+   "sc": 100
+  },
+  {
+   "group": "d1",
+   "term": "Olfactory tract",
+   "cls": "strong",
+   "cid": 21523,
+   "match": "Olfactory Tract",
+   "sname": "Tractus olfactorius",
+   "sc": 100
+  },
+  {
+   "group": "d1",
+   "term": "Lateral olfactory stria (tract)",
+   "cls": "medium",
+   "cid": 21523,
+   "match": "Olfactory Tract",
+   "sname": "Tractus olfactorius",
+   "sc": 67
+  },
+  {
+   "group": "d1",
+   "term": "Medial olfactory stria (tract)",
+   "cls": "medium",
+   "cid": 21523,
+   "match": "Olfactory Tract",
+   "sname": "Tractus olfactorius",
+   "sc": 67
+  },
+  {
+   "group": "d1",
+   "term": "Olfactory trigone",
+   "cls": "none",
+   "cid": 20644,
+   "match": "Right Fibrous Trigone",
+   "sname": "Trigonum fibrosum dextrum",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Anterior perforated substance",
+   "cls": "strong",
+   "cid": 24301,
+   "match": "Anterior Perforated Substance",
+   "sname": "Substantia perforata anterior",
+   "sc": 100
+  },
+  {
+   "group": "d1",
+   "term": "Optic nerve",
+   "cls": "strong",
+   "cid": 21880,
+   "match": "Optic Nerve",
+   "sname": "Nervus opticus",
+   "sc": 100
+  },
+  {
+   "group": "d1",
+   "term": "Optic chiasm",
+   "cls": "strong",
+   "cid": 18974,
+   "match": "Optic Chiasm",
+   "sname": "Chiasma opticum",
+   "sc": 100
+  },
+  {
+   "group": "d1",
+   "term": "Optic tract",
+   "cls": "strong",
+   "cid": 24575,
+   "match": "Optic Tract",
+   "sname": "Tractus opticus",
+   "sc": 100
+  },
+  {
+   "group": "d1",
+   "term": "Tuber cinereum",
+   "cls": "none",
+   "cid": 23376,
+   "match": "Maxillary Tuberosity",
+   "sname": "Tuber maxillae",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Infundibulum (pituitary stalk) of hypophysis",
+   "cls": "medium",
+   "cid": 23668,
+   "match": "Hypothalamus",
+   "sname": "Hypothalamus",
+   "sc": 67
+  },
+  {
+   "group": "d1",
+   "term": "Mammillary body",
+   "cls": "strong",
+   "cid": 17740,
+   "match": "Mammillary Body",
+   "sname": "Corpus mamillare",
+   "sc": 100
+  },
+  {
+   "group": "d1",
+   "term": "Interpeduncular fossa",
+   "cls": "none",
+   "cid": 17165,
+   "match": "Cerebral Fossa",
+   "sname": "Fossa cerebralis",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Posterior perforated substance",
+   "cls": "medium",
+   "cid": 24301,
+   "match": "Anterior Perforated Substance",
+   "sname": "Substantia perforata anterior",
+   "sc": 67
+  },
+  {
+   "group": "d1",
+   "term": "Uncus",
+   "cls": "none",
+   "cid": 16452,
+   "match": "Articular Capsules of Proximal Interphalangeal Joints of Hand",
+   "sname": "Capsulae articulares articulationum interphalangearum proximalium manus",
+   "sc": 0
+  },
+  {
+   "group": "d1",
+   "term": "Parahippocampal gyrus",
+   "cls": "none",
+   "cid": 18066,
+   "match": "Precentral Gyrus",
+   "sname": "Gyrus praecentralis",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Lingual gyrus",
+   "cls": "none",
+   "cid": 18066,
+   "match": "Precentral Gyrus",
+   "sname": "Gyrus praecentralis",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Collateral sulcus",
+   "cls": "none",
+   "cid": 21753,
+   "match": "Central Sulcus",
+   "sname": "Sulcus centralis",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Rhinal sulcus",
+   "cls": "none",
+   "cid": 21753,
+   "match": "Central Sulcus",
+   "sname": "Sulcus centralis",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Occipitotemporal gyrus",
+   "cls": "none",
+   "cid": 18066,
+   "match": "Precentral Gyrus",
+   "sname": "Gyrus praecentralis",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Occipitotemporal sulcus",
+   "cls": "none",
+   "cid": 21753,
+   "match": "Central Sulcus",
+   "sname": "Sulcus centralis",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Corpus callosum",
+   "cls": "strong",
+   "cid": 21002,
+   "match": "Corpus Callosum",
+   "sname": "Corpus callosum",
+   "sc": 100
+  },
+  {
+   "group": "d1",
+   "term": "Rostrum of corpus callosum",
+   "cls": "medium",
+   "cid": 21002,
+   "match": "Corpus Callosum",
+   "sname": "Corpus callosum",
+   "sc": 80
+  },
+  {
+   "group": "d1",
+   "term": "Genu of corpus callosum",
+   "cls": "medium",
+   "cid": 21002,
+   "match": "Corpus Callosum",
+   "sname": "Corpus callosum",
+   "sc": 80
+  },
+  {
+   "group": "d1",
+   "term": "Body of corpus callosum",
+   "cls": "medium",
+   "cid": 21002,
+   "match": "Corpus Callosum",
+   "sname": "Corpus callosum",
+   "sc": 80
+  },
+  {
+   "group": "d1",
+   "term": "Splenium of corpus callosum",
+   "cls": "medium",
+   "cid": 21002,
+   "match": "Corpus Callosum",
+   "sname": "Corpus callosum",
+   "sc": 80
+  },
+  {
+   "group": "d1",
+   "term": "Lamina terminalis",
+   "cls": "none",
+   "cid": 18249,
+   "match": "Terminal Nerve",
+   "sname": "Nervus terminalis",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Subcallosal gyrus",
+   "cls": "none",
+   "cid": 18066,
+   "match": "Precentral Gyrus",
+   "sname": "Gyrus praecentralis",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Sulcus of corpus callosum",
+   "cls": "medium",
+   "cid": 21002,
+   "match": "Corpus Callosum",
+   "sname": "Corpus callosum",
+   "sc": 80
+  },
+  {
+   "group": "d1",
+   "term": "Cingulate gyrus",
+   "cls": "strong",
+   "cid": 19395,
+   "match": "Cingulate Gyrus",
+   "sname": "Gyrus cinguli",
+   "sc": 100
+  },
+  {
+   "group": "d1",
+   "term": "Cingulate sulcus",
+   "cls": "none",
+   "cid": 21753,
+   "match": "Central Sulcus",
+   "sname": "Sulcus centralis",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Isthmus of cingulate gyrus",
+   "cls": "medium",
+   "cid": 19395,
+   "match": "Cingulate Gyrus",
+   "sname": "Gyrus cinguli",
+   "sc": 80
+  },
+  {
+   "group": "d1",
+   "term": "Paracentral sulcus",
+   "cls": "none",
+   "cid": 21753,
+   "match": "Central Sulcus",
+   "sname": "Sulcus centralis",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Paracentral lobule",
+   "cls": "none",
+   "cid": 17160,
+   "match": "Lobules of Mammary Gland (Superior Lateral Quadrant; Right)",
+   "sname": "Lobuli glandulae mammariae",
+   "sc": 40
+  },
+  {
+   "group": "d1",
+   "term": "Marginal sulcus",
+   "cls": "none",
+   "cid": 21753,
+   "match": "Central Sulcus",
+   "sname": "Sulcus centralis",
+   "sc": 50
+  },
+  {
+   "group": "d1",
+   "term": "Precuneus",
+   "cls": "none",
+   "cid": 16452,
+   "match": "Articular Capsules of Proximal Interphalangeal Joints of Hand",
+   "sname": "Capsulae articulares articulationum interphalangearum proximalium manus",
+   "sc": 0
+  },
+  {
+   "group": "d1",
+   "term": "Cuneus",
+   "cls": "none",
+   "cid": 16452,
+   "match": "Articular Capsules of Proximal Interphalangeal Joints of Hand",
+   "sname": "Capsulae articulares articulationum interphalangearum proximalium manus",
+   "sc": 0
+  },
+  {
+   "group": "d1",
+   "term": "Apex of cuneus",
+   "cls": "none",
+   "cid": 19950,
+   "match": "Apex of Petrous Part",
+   "sname": "Apex partis petrosae",
+   "sc": 50
+  },
+  {
+   "group": "d2",
+   "term": "Vertebral artery",
+   "cls": "strong",
+   "cid": 18792,
+   "match": "Vertebral Artery",
+   "sname": "Arteria vertebralis",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Posterior inferior cerebellar artery - PICA",
+   "cls": "strong",
+   "cid": 23546,
+   "match": "Posterior Inferior Cerebellar Artery",
+   "sname": "Arteria inferior posterior cerebelli",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Posterior spinal artery",
+   "cls": "strong",
+   "cid": 21647,
+   "match": "Posterior Spinal Arteries",
+   "sname": "Arteriae spinales posteriores",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Anterior spinal artery",
+   "cls": "strong",
+   "cid": 22195,
+   "match": "Anterior Spinal Artery",
+   "sname": "Arteria spinalis anterior",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Basilar artery",
+   "cls": "strong",
+   "cid": 18263,
+   "match": "Basilar Artery",
+   "sname": "Arteria basilaris",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Anterior inferior cerebellar artery - AICA",
+   "cls": "strong",
+   "cid": 22070,
+   "match": "Anterior Inferior Cerebellar Artery",
+   "sname": "Arteria cerebelli inferior anterior",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Labyrinthine artery (internal acoustic)",
+   "cls": "strong",
+   "cid": 22161,
+   "match": "Labyrinthine Artery",
+   "sname": "Arteria labyrinthi",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Pontine arteries",
+   "cls": "strong",
+   "cid": 17606,
+   "match": "Pontine Arteries",
+   "sname": "Arteriae pontis",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Superior cerebellar artery",
+   "cls": "strong",
+   "cid": 20567,
+   "match": "Superior Cerebellar Artery",
+   "sname": "Arteria superior cerebelli",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Posterior cerebral artery - PCA",
+   "cls": "strong",
+   "cid": 20436,
+   "match": "Posterior Cerebral Artery (Left)",
+   "sname": "Arteria cerebri posterior",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Posterior communicating artery - P.COM",
+   "cls": "strong",
+   "cid": 17645,
+   "match": "Posterior Communicating Artery",
+   "sname": "Arteria communicans posterior",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Internal carotid artery",
+   "cls": "strong",
+   "cid": 16830,
+   "match": "Internal Carotid Artery",
+   "sname": "Carotis interna",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Anterior choroidal artery",
+   "cls": "strong",
+   "cid": 19173,
+   "match": "Anterior Choroidal Artery",
+   "sname": "Arteria choroidea anterior",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Middle cerebral artery - MCA",
+   "cls": "strong",
+   "cid": 19158,
+   "match": "Middle Cerebral Artery",
+   "sname": "Arteria cerebri media",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Perforating arteries (lenticulostriate)",
+   "cls": "strong",
+   "cid": 16540,
+   "match": "Anterolateral Central Arteries",
+   "sname": "Arteriae centrales anterolaterales",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Anterior cerebral artery - ACA",
+   "cls": "strong",
+   "cid": 22085,
+   "match": "Anterior Cerebral Artery",
+   "sname": "Arteria cerebri anterior",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Anterior communicating artery - A.COM",
+   "cls": "strong",
+   "cid": 18523,
+   "match": "Anterior Communicating Artery",
+   "sname": "Arteria communicans anterior",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Orbitofrontal artery",
+   "cls": "medium",
+   "cid": 16477,
+   "match": "Lateral Orbitofrontal Artery",
+   "sname": "Arteria orbitofrontalis lateralis",
+   "sc": 80
+  },
+  {
+   "group": "d2",
+   "term": "Polar frontal artery",
+   "cls": "strong",
+   "cid": 18500,
+   "match": "Frontopolar Artery",
+   "sname": "Arteria polaris frontalis",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Callosomarginal artery",
+   "cls": "strong",
+   "cid": 18163,
+   "match": "Callosomarginal Artery",
+   "sname": "Arteria callosomarginalis",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Pericallosal artery",
+   "cls": "strong",
+   "cid": 24588,
+   "match": "Pericallosal Artery",
+   "sname": "Arteria pericallosa",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Dorsal branch to corpus callosum",
+   "cls": "strong",
+   "cid": 18813,
+   "match": "Dorsal Branch to Corpus Callosum",
+   "sname": "Ramus corporis callosi dorsalis",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Superior thalamostriate vein",
+   "cls": "medium",
+   "cid": 19617,
+   "match": "Superior Cerebral Veins",
+   "sname": "Venae cerebri superiores",
+   "sc": 67
+  },
+  {
+   "group": "d2",
+   "term": "Anterior septal vein",
+   "cls": "medium",
+   "cid": 18255,
+   "match": "Anterior Cerebral Veins",
+   "sname": "Venae cerebri anteriores",
+   "sc": 67
+  },
+  {
+   "group": "d2",
+   "term": "Internal cerebral vein",
+   "cls": "strong",
+   "cid": 21039,
+   "match": "Internal Cerebral Vein",
+   "sname": "Vena cerebri interna",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Anterior cerebral vein",
+   "cls": "strong",
+   "cid": 18255,
+   "match": "Anterior Cerebral Veins",
+   "sname": "Venae cerebri anteriores",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Deep middle cerebral vein",
+   "cls": "medium",
+   "cid": 22788,
+   "match": "Superficial Middle Cerebral Vein",
+   "sname": "Vena cerebri media superficialis",
+   "sc": 75
+  },
+  {
+   "group": "d2",
+   "term": "Basal vein (of Rosenthal)",
+   "cls": "strong",
+   "cid": 19387,
+   "match": "Basal Vein",
+   "sname": "Vena basalis",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Great cerebral vein (of Galen)",
+   "cls": "strong",
+   "cid": 17125,
+   "match": "Great Cerebral Vein",
+   "sname": "Vena magna cerebri",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Superficial middle cerebral vein",
+   "cls": "strong",
+   "cid": 22788,
+   "match": "Superficial Middle Cerebral Vein",
+   "sname": "Vena cerebri media superficialis",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Superior anastomotic vein (of Trolard)",
+   "cls": "medium",
+   "cid": 19617,
+   "match": "Superior Cerebral Veins",
+   "sname": "Venae cerebri superiores",
+   "sc": 67
+  },
+  {
+   "group": "d2",
+   "term": "Inferior anastomotic vein (of Labbe)",
+   "cls": "strong",
+   "cid": 16976,
+   "match": "Inferior Anastomotic Vein",
+   "sname": "Vena anastomotica inferior",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Superior sagittal sinus",
+   "cls": "strong",
+   "cid": 24749,
+   "match": "Superior Sagittal Sinus",
+   "sname": "Sinus sagittalis superior",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Inferior sagittal sinus",
+   "cls": "strong",
+   "cid": 24797,
+   "match": "Inferior Sagittal Sinus",
+   "sname": "Sinus sagittalis inferior",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Straight sinus",
+   "cls": "strong",
+   "cid": 23351,
+   "match": "Straight Sinus",
+   "sname": "Sinus rectus",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Occipital sinus",
+   "cls": "strong",
+   "cid": 20582,
+   "match": "Occipital Sinus",
+   "sname": "Sinus occipitalis",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Confluence of sinuses",
+   "cls": "none",
+   "cid": 20582,
+   "match": "Occipital Sinus",
+   "sname": "Sinus occipitalis",
+   "sc": 50
+  },
+  {
+   "group": "d2",
+   "term": "Transverse sinus",
+   "cls": "strong",
+   "cid": 17654,
+   "match": "Transverse Sinus",
+   "sname": "Sinus transversus",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Falx cerebri",
+   "cls": "strong",
+   "cid": 19169,
+   "match": "Falx Cerebri",
+   "sname": "Falx cerebri",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Falx cerebelli",
+   "cls": "strong",
+   "cid": 20967,
+   "match": "Falx Cerebelli",
+   "sname": "Falx cerebelli",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Tentorium cerebelli",
+   "cls": "strong",
+   "cid": 22396,
+   "match": "Tentorium Cerebelli",
+   "sname": "Tentorium cerebelli",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Dura mater",
+   "cls": "none",
+   "cid": 18297,
+   "match": "Spinal Dura (Sacral)",
+   "sname": "Dura spinalis",
+   "sc": 50
+  },
+  {
+   "group": "d2",
+   "term": "Middle meningeal artery",
+   "cls": "strong",
+   "cid": 17918,
+   "match": "Middle Meningeal Artery",
+   "sname": "Arteria meningea media",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Arachnoid mater",
+   "cls": "none",
+   "cid": 22470,
+   "match": "Spinal Arachnoid",
+   "sname": "Arachnoidea spinalis",
+   "sc": 50
+  },
+  {
+   "group": "d2",
+   "term": "Arachnoid granulations",
+   "cls": "none",
+   "cid": 22470,
+   "match": "Spinal Arachnoid",
+   "sname": "Arachnoidea spinalis",
+   "sc": 50
+  },
+  {
+   "group": "d2",
+   "term": "Pia mater",
+   "cls": "none",
+   "cid": 20277,
+   "match": "Spinal Pia (Thoracic)",
+   "sname": "Pia spinalis",
+   "sc": 50
+  },
+  {
+   "group": "d2",
+   "term": "Lateral ventricles",
+   "cls": "medium",
+   "cid": 20179,
+   "match": "Central Part of Lateral Ventricle",
+   "sname": "Pars centralis ventriculi lateralis",
+   "sc": 80
+  },
+  {
+   "group": "d2",
+   "term": "Anterior (Frontal) horn of lateral ventricle",
+   "cls": "strong",
+   "cid": 21857,
+   "match": "Frontal Horn of Lateral Ventricle",
+   "sname": "Cornu frontale ventriculi lateralis",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Body (Central part) of lateral ventricle",
+   "cls": "strong",
+   "cid": 20179,
+   "match": "Central Part of Lateral Ventricle",
+   "sname": "Pars centralis ventriculi lateralis",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Posterior (Occipital) horn of lateral ventricle",
+   "cls": "strong",
+   "cid": 20265,
+   "match": "Occipital Horn of Lateral Ventricle",
+   "sname": "Cornu occipitale ventriculi lateralis",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Inferior (Temporal) horn of lateral ventricle",
+   "cls": "strong",
+   "cid": 22660,
+   "match": "Temporal Horn of Lateral Ventricle",
+   "sname": "Cornu temporale ventriculi lateralis",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Septum pellucidum",
+   "cls": "strong",
+   "cid": 20081,
+   "match": "Septum Pellucidum",
+   "sname": "Septum Pellucidum",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Choroid plexus of lateral ventricle",
+   "cls": "strong",
+   "cid": 21035,
+   "match": "Choroid Plexus of Lateral Ventricle",
+   "sname": "Plexus choroideus ventriculi lateralis",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Choroid plexus of 3rd ventricle",
+   "cls": "strong",
+   "cid": 23689,
+   "match": "Choroid Plexus of Third and Fourth Ventricles",
+   "sname": "Plexus chorioideus venticule tertii et quarti",
+   "sc": 89
+  },
+  {
+   "group": "d2",
+   "term": "Choroid plexus of 4th ventricle",
+   "cls": "strong",
+   "cid": 23689,
+   "match": "Choroid Plexus of Third and Fourth Ventricles",
+   "sname": "Plexus chorioideus venticule tertii et quarti",
+   "sc": 89
+  },
+  {
+   "group": "d2",
+   "term": "Head of caudate nucleus",
+   "cls": "medium",
+   "cid": 23898,
+   "match": "Caudate Nucleus",
+   "sname": "Nucleus caudatus",
+   "sc": 80
+  },
+  {
+   "group": "d2",
+   "term": "Body of caudate nucleus",
+   "cls": "medium",
+   "cid": 23898,
+   "match": "Caudate Nucleus",
+   "sname": "Nucleus caudatus",
+   "sc": 80
+  },
+  {
+   "group": "d2",
+   "term": "Tail of caudate nucleus",
+   "cls": "medium",
+   "cid": 23898,
+   "match": "Caudate Nucleus",
+   "sname": "Nucleus caudatus",
+   "sc": 80
+  },
+  {
+   "group": "d2",
+   "term": "Interventricular foramen (of Monro)",
+   "cls": "strong",
+   "cid": 19734,
+   "match": "Interventricular Foramen",
+   "sname": "Foramen interventriculare",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "3rd ventricle",
+   "cls": "strong",
+   "cid": 20649,
+   "match": "Third Ventricle",
+   "sname": "Ventriculus tertius",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Cerebral aqueduct (of Sylvius)",
+   "cls": "strong",
+   "cid": 23355,
+   "match": "Mesencephalic Aqueduct",
+   "sname": "Aqueductus mesencephali",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "4th ventricle",
+   "cls": "strong",
+   "cid": 22702,
+   "match": "Fourth Ventricle",
+   "sname": "Ventriculus quartus",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "foramen of Luschka",
+   "cls": "strong",
+   "cid": 18208,
+   "match": "Lateral Aperture of Fourth Ventricle",
+   "sname": "Apertura lateralis ventriculi quarti",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "foramen of Magendie",
+   "cls": "strong",
+   "cid": 18296,
+   "match": "Median Aperture of Fourth Ventricle",
+   "sname": "Apertura mediana ventriculi quarti",
+   "sc": 100
+  },
+  {
+   "group": "d2",
+   "term": "Superior medullary velum",
+   "cls": "none",
+   "cid": 18882,
+   "match": "Superior Colliculus",
+   "sname": "Colliculus superior",
+   "sc": 40
+  },
+  {
+   "group": "d2",
+   "term": "Inferior medullary velum",
+   "cls": "none",
+   "cid": 20376,
+   "match": "Inferior Colliculus",
+   "sname": "Colliculus inferior",
+   "sc": 40
+  },
+  {
+   "group": "d3",
+   "term": "Paraterminal gyrus",
+   "cls": "strong",
+   "cid": 20809,
+   "match": "Paraterminal Gyrus",
+   "sname": "Gyrus paraterminalis",
+   "sc": 100
+  },
+  {
+   "group": "d3",
+   "term": "Septal area",
+   "cls": "strong",
+   "cid": 20809,
+   "match": "Paraterminal Gyrus",
+   "sname": "Gyrus paraterminalis",
+   "sc": 100
+  },
+  {
+   "group": "d3",
+   "term": "Cingulate gyrus",
+   "cls": "strong",
+   "cid": 19395,
+   "match": "Cingulate Gyrus",
+   "sname": "Gyrus cinguli",
+   "sc": 100
+  },
+  {
+   "group": "d3",
+   "term": "Isthmus of cingulate gyrus",
+   "cls": "medium",
+   "cid": 19395,
+   "match": "Cingulate Gyrus",
+   "sname": "Gyrus cinguli",
+   "sc": 80
+  },
+  {
+   "group": "d3",
+   "term": "Parahippocampal gyrus",
+   "cls": "none",
+   "cid": 18066,
+   "match": "Precentral Gyrus",
+   "sname": "Gyrus praecentralis",
+   "sc": 50
+  },
+  {
+   "group": "d3",
+   "term": "Uncus",
+   "cls": "none",
+   "cid": 16452,
+   "match": "Articular Capsules of Proximal Interphalangeal Joints of Hand",
+   "sname": "Capsulae articulares articulationum interphalangearum proximalium manus",
+   "sc": 0
+  },
+  {
+   "group": "d3",
+   "term": "Cingulum",
+   "cls": "medium",
+   "cid": 20884,
+   "match": "Cerebrum",
+   "sname": "Cerebrum",
+   "sc": 67
+  },
+  {
+   "group": "d3",
+   "term": "Pes hippocampus",
+   "cls": "strong",
+   "cid": 19709,
+   "match": "Hippocampus",
+   "sname": "Hippocampus",
+   "sc": 100
+  },
+  {
+   "group": "d3",
+   "term": "Fimbria of hippocampus",
+   "cls": "medium",
+   "cid": 19709,
+   "match": "Hippocampus",
+   "sname": "Hippocampus",
+   "sc": 67
+  },
+  {
+   "group": "d3",
+   "term": "Fornix",
+   "cls": "medium",
+   "cid": 16874,
+   "match": "Crus of Fornix",
+   "sname": "Crus fornicis",
+   "sc": 67
+  },
+  {
+   "group": "d3",
+   "term": "Crus of fornix",
+   "cls": "strong",
+   "cid": 16874,
+   "match": "Crus of Fornix",
+   "sname": "Crus fornicis",
+   "sc": 100
+  },
+  {
+   "group": "d3",
+   "term": "Commissure of fornix",
+   "cls": "strong",
+   "cid": 24358,
+   "match": "Hippocampal Commissure",
+   "sname": "Commissura hippocampi",
+   "sc": 100
+  },
+  {
+   "group": "d3",
+   "term": "Body of fornix",
+   "cls": "strong",
+   "cid": 17209,
+   "match": "Body of Fornix",
+   "sname": "Corpus fornicis",
+   "sc": 100
+  },
+  {
+   "group": "d3",
+   "term": "Columns of fornix",
+   "cls": "strong",
+   "cid": 18959,
+   "match": "Column of Fornix",
+   "sname": "Columna fornicis",
+   "sc": 100
+  },
+  {
+   "group": "d3",
+   "term": "Mammillary body",
+   "cls": "strong",
+   "cid": 17740,
+   "match": "Mammillary Body",
+   "sname": "Corpus mamillare",
+   "sc": 100
+  },
+  {
+   "group": "d3",
+   "term": "Mammillothalamic tract",
+   "cls": "none",
+   "cid": 17689,
+   "match": "Iliotibial Tract",
+   "sname": "Tractus iliotibialis",
+   "sc": 50
+  },
+  {
+   "group": "d3",
+   "term": "Mammillotegmental tract",
+   "cls": "none",
+   "cid": 17689,
+   "match": "Iliotibial Tract",
+   "sname": "Tractus iliotibialis",
+   "sc": 50
+  },
+  {
+   "group": "d3",
+   "term": "Dentate gyrus",
+   "cls": "none",
+   "cid": 18066,
+   "match": "Precentral Gyrus",
+   "sname": "Gyrus praecentralis",
+   "sc": 50
+  },
+  {
+   "group": "d3",
+   "term": "Medial longitudinal stria",
+   "cls": "none",
+   "cid": 17830,
+   "match": "Medial Tubercle",
+   "sname": "Tuberculum mediale",
+   "sc": 40
+  },
+  {
+   "group": "d3",
+   "term": "Lateral longitudinal stria",
+   "cls": "none",
+   "cid": 23001,
+   "match": "Lateral Sulcus",
+   "sname": "Sulcus lateralis",
+   "sc": 40
+  },
+  {
+   "group": "d3",
+   "term": "Indusium griseum",
+   "cls": "strong",
+   "cid": 17103,
+   "match": "Indusium Griseum",
+   "sname": "Indusium griseum",
+   "sc": 100
+  },
+  {
+   "group": "d3",
+   "term": "Amygdaloid body",
+   "cls": "strong",
+   "cid": 22284,
+   "match": "Amygdaloid Body",
+   "sname": "Corpus amygdaloideum",
+   "sc": 100
+  },
+  {
+   "group": "d3",
+   "term": "Stria terminalis",
+   "cls": "none",
+   "cid": 18249,
+   "match": "Terminal Nerve",
+   "sname": "Nervus terminalis",
+   "sc": 50
+  },
+  {
+   "group": "d3",
+   "term": "Stria medullaris thalami",
+   "cls": "none",
+   "cid": 21133,
+   "match": "Thalamus",
+   "sname": "",
+   "sc": 50
+  },
+  {
+   "group": "d3",
+   "term": "Habenular trigone",
+   "cls": "none",
+   "cid": 20644,
+   "match": "Right Fibrous Trigone",
+   "sname": "Trigonum fibrosum dextrum",
+   "sc": 50
+  },
+  {
+   "group": "d3",
+   "term": "Cortex of insula",
+   "cls": "none",
+   "cid": 16569,
+   "match": "Ovarian Cortex (Left; Superior)",
+   "sname": "Cortex ovarii",
+   "sc": 50
+  },
+  {
+   "group": "d3",
+   "term": "Extreme capsule",
+   "cls": "none",
+   "cid": 19590,
+   "match": "Capsule of Cricothyroid Joint",
+   "sname": "Capsula articularis cricothyroidea",
+   "sc": 40
+  },
+  {
+   "group": "d3",
+   "term": "Claustrum",
+   "cls": "none",
+   "cid": 16452,
+   "match": "Articular Capsules of Proximal Interphalangeal Joints of Hand",
+   "sname": "Capsulae articulares articulationum interphalangearum proximalium manus",
+   "sc": 0
+  },
+  {
+   "group": "d3",
+   "term": "External capsule",
+   "cls": "none",
+   "cid": 19590,
+   "match": "Capsule of Cricothyroid Joint",
+   "sname": "Capsula articularis cricothyroidea",
+   "sc": 40
+  },
+  {
+   "group": "d3",
+   "term": "Lentiform nucleus",
+   "cls": "none",
+   "cid": 24895,
+   "match": "Subthalamic Nucleus",
+   "sname": "Nucleus subthalamicus",
+   "sc": 50
+  },
+  {
+   "group": "d3",
+   "term": "Putamen",
+   "cls": "strong",
+   "cid": 22340,
+   "match": "Putamen",
+   "sname": "Putamen",
+   "sc": 100
+  },
+  {
+   "group": "d3",
+   "term": "Globus pallidus",
+   "cls": "medium",
+   "cid": 18097,
+   "match": "Lateral Segment of Globus Pallidus",
+   "sname": "Globus pallidus lateralis",
+   "sc": 80
+  },
+  {
+   "group": "d3",
+   "term": "Internal capsule",
+   "cls": "none",
+   "cid": 17919,
+   "match": "Internal Ear",
+   "sname": "Auris interna",
+   "sc": 50
+  },
+  {
+   "group": "d3",
+   "term": "Anterior limb of internal capsule",
+   "cls": "none",
+   "cid": 20709,
+   "match": "Anterior Limb of Stapes",
+   "sname": "Crus anterius stapedius",
+   "sc": 57
+  },
+  {
+   "group": "d3",
+   "term": "Posterior limb of internal capsule",
+   "cls": "none",
+   "cid": 19517,
+   "match": "Posterior Limb of Stapes",
+   "sname": "Crus posterius stapedius",
+   "sc": 57
+  },
+  {
+   "group": "d3",
+   "term": "Genu of internal capsule",
+   "cls": "none",
+   "cid": 17919,
+   "match": "Internal Ear",
+   "sname": "Auris interna",
+   "sc": 40
+  },
+  {
+   "group": "d3",
+   "term": "Caudate nucleus",
+   "cls": "strong",
+   "cid": 23898,
+   "match": "Caudate Nucleus",
+   "sname": "Nucleus caudatus",
+   "sc": 100
+  },
+  {
+   "group": "d3",
+   "term": "Forceps minor",
+   "cls": "none",
+   "cid": 22900,
+   "match": "Lesser Occipital Nerve",
+   "sname": "Nervus occipitalis minor",
+   "sc": 40
+  },
+  {
+   "group": "d3",
+   "term": "Forceps major",
+   "cls": "none",
+   "cid": 20989,
+   "match": "Greater Occipital Nerve",
+   "sname": "Nervus occipitalis major",
+   "sc": 40
+  },
+  {
+   "group": "d3",
+   "term": "Thalamus",
+   "cls": "strong",
+   "cid": 21133,
+   "match": "Thalamus",
+   "sname": "",
+   "sc": 100
+  },
+  {
+   "group": "d3",
+   "term": "Anterior tubercle of thalamus",
+   "cls": "strong",
+   "cid": 21413,
+   "match": "Anterior Nuclei of Thalamus",
+   "sname": "Nuclei anteriores thalami",
+   "sc": 100
+  },
+  {
+   "group": "d3",
+   "term": "Pulvinar of thalamus",
+   "cls": "medium",
+   "cid": 18810,
+   "match": "Pulvinar Nuclei of Thalamus",
+   "sname": "Nuclei pulvinares thalami",
+   "sc": 80
+  },
+  {
+   "group": "d3",
+   "term": "Interthalamic adhesion (massa intermedia)",
+   "cls": "strong",
+   "cid": 18492,
+   "match": "Interthalamic Adhesion",
+   "sname": "Adhesio interthalamica",
+   "sc": 100
+  },
+  {
+   "group": "d3",
+   "term": "U fibers (arcuate)",
+   "cls": "none",
+   "cid": 23230,
+   "match": "Arcuate Eminence",
+   "sname": "Eminentia arcuata",
+   "sc": 50
+  },
+  {
+   "group": "d3",
+   "term": "Superior longitudinal fasciculus",
+   "cls": "none",
+   "cid": 18882,
+   "match": "Superior Colliculus",
+   "sname": "Colliculus superior",
+   "sc": 40
+  },
+  {
+   "group": "d3",
+   "term": "Inferior longitudinal fasciculus",
+   "cls": "none",
+   "cid": 20376,
+   "match": "Inferior Colliculus",
+   "sname": "Colliculus inferior",
+   "sc": 40
+  },
+  {
+   "group": "d3",
+   "term": "Uncinate fibers",
+   "cls": "none",
+   "cid": 23684,
+   "match": "Atrioventricular Bundle",
+   "sname": "Fasciculus atrioventricularis",
+   "sc": 50
+  },
+  {
+   "group": "d3",
+   "term": "Corpus callosum",
+   "cls": "strong",
+   "cid": 21002,
+   "match": "Corpus Callosum",
+   "sname": "Corpus callosum",
+   "sc": 100
+  },
+  {
+   "group": "d3",
+   "term": "Anterior commissure",
+   "cls": "strong",
+   "cid": 21078,
+   "match": "Anterior Commissure",
+   "sname": "Commissura anterior",
+   "sc": 100
+  },
+  {
+   "group": "d3",
+   "term": "Posterior commissure",
+   "cls": "none",
+   "cid": 16428,
+   "match": "Posterior Part of Peritoneum",
+   "sname": "Pars posterior peritonei",
+   "sc": 50
+  },
+  {
+   "group": "d3",
+   "term": "Habenular commissure",
+   "cls": "none",
+   "cid": 24358,
+   "match": "Hippocampal Commissure",
+   "sname": "Commissura hippocampi",
+   "sc": 50
+  },
+  {
+   "group": "d3",
+   "term": "Pineal body",
+   "cls": "none",
+   "cid": 20574,
+   "match": "Pineal Gland",
+   "sname": "Glandula pinealis",
+   "sc": 50
+  },
+  {
+   "group": "d3",
+   "term": "Corona radiata",
+   "cls": "none",
+   "cid": 23210,
+   "match": "Radiate Sternochondral Ligaments",
+   "sname": "Ligamenta sternochondralia radiata",
+   "sc": 40
+  },
+  {
+   "group": "d3",
+   "term": "Cerebral crus",
+   "cls": "strong",
+   "cid": 24203,
+   "match": "Cerebral Peduncle",
+   "sname": "Pedunculus cerebri",
+   "sc": 100
+  },
+  {
+   "group": "d3",
+   "term": "Pyramid",
+   "cls": "none",
+   "cid": 24645,
+   "match": "Pyramid of Medulla Oblongata",
+   "sname": "Pyramis medullae oblongatae",
+   "sc": 50
+  },
+  {
+   "group": "d3",
+   "term": "Decussation of pyramids",
+   "cls": "none",
+   "cid": 20358,
+   "match": "Pyramidal Process",
+   "sname": "Processus pyramidalis",
+   "sc": 50
+  },
+  {
+   "group": "d4",
+   "term": "Vermis",
+   "cls": "medium",
+   "cid": 20663,
+   "match": "Vermis of Cerebellum",
+   "sname": "Vermis cerebelli",
+   "sc": 67
+  },
+  {
+   "group": "d4",
+   "term": "Primary fissure",
+   "cls": "none",
+   "cid": 16743,
+   "match": "Superior Orbital Fissure",
+   "sname": "Fissura orbitalis superior",
+   "sc": 40
+  },
+  {
+   "group": "d4",
+   "term": "Anterior lobe of cerebellum",
+   "cls": "strong",
+   "cid": 24545,
+   "match": "Anterior Lobe of Cerebellum",
+   "sname": "Lobus cerebelli anterior",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Posterior lobe of cerebellum",
+   "cls": "strong",
+   "cid": 23089,
+   "match": "Posterior Lobe of Cerebellum",
+   "sname": "Lobus cerebelli posterior",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Horizontal fissure",
+   "cls": "none",
+   "cid": 16743,
+   "match": "Superior Orbital Fissure",
+   "sname": "Fissura orbitalis superior",
+   "sc": 40
+  },
+  {
+   "group": "d4",
+   "term": "Tonsils",
+   "cls": "strong",
+   "cid": 22906,
+   "match": "Tonsil of Cerebellum",
+   "sname": "Tonsilla cerebelli",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Flocculus",
+   "cls": "strong",
+   "cid": 17123,
+   "match": "Flocculus",
+   "sname": "Flocculus",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Nodule",
+   "cls": "none",
+   "cid": 20663,
+   "match": "Vermis of Cerebellum",
+   "sname": "Vermis cerebelli",
+   "sc": 50
+  },
+  {
+   "group": "d4",
+   "term": "Flocculonodular lobe",
+   "cls": "none",
+   "cid": 22254,
+   "match": "Occipital Lobe",
+   "sname": "Lobus occipitalis",
+   "sc": 50
+  },
+  {
+   "group": "d4",
+   "term": "Superior cerebellar peduncle",
+   "cls": "medium",
+   "cid": 17336,
+   "match": "Superior Cerebellar Peduncle (Posterior; Right)",
+   "sname": "Pedunculus cerebellaris superior",
+   "sc": 86
+  },
+  {
+   "group": "d4",
+   "term": "Middle cerebellar peduncle",
+   "cls": "medium",
+   "cid": 17694,
+   "match": "Middle Cerebellar Peduncle (Posterior; Left)",
+   "sname": "Pedunculus cerebellaris medius",
+   "sc": 86
+  },
+  {
+   "group": "d4",
+   "term": "Inferior cerebellar peduncle",
+   "cls": "medium",
+   "cid": 19381,
+   "match": "Inferior Cerebellar Peduncle (Posterior; Left)",
+   "sname": "Pedunculus cerebellaris inferior",
+   "sc": 86
+  },
+  {
+   "group": "d4",
+   "term": "Dentate nucleus",
+   "cls": "none",
+   "cid": 24895,
+   "match": "Subthalamic Nucleus",
+   "sname": "Nucleus subthalamicus",
+   "sc": 50
+  },
+  {
+   "group": "d4",
+   "term": "Lingula",
+   "cls": "medium",
+   "cid": 17389,
+   "match": "Cerebellum",
+   "sname": "Cerebellum",
+   "sc": 67
+  },
+  {
+   "group": "d4",
+   "term": "Uvula",
+   "cls": "medium",
+   "cid": 17389,
+   "match": "Cerebellum",
+   "sname": "Cerebellum",
+   "sc": 67
+  },
+  {
+   "group": "d4",
+   "term": "Arbor vitae",
+   "cls": "strong",
+   "cid": 18943,
+   "match": "Arbor Vitae",
+   "sname": "Arbor vitae",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Folia",
+   "cls": "medium",
+   "cid": 17389,
+   "match": "Cerebellum",
+   "sname": "Cerebellum",
+   "sc": 67
+  },
+  {
+   "group": "d4",
+   "term": "Pyramid",
+   "cls": "none",
+   "cid": 24645,
+   "match": "Pyramid of Medulla Oblongata",
+   "sname": "Pyramis medullae oblongatae",
+   "sc": 50
+  },
+  {
+   "group": "d4",
+   "term": "Midbrain",
+   "cls": "strong",
+   "cid": 16911,
+   "match": "Mesencephalon",
+   "sname": "Mesencephalon",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Pons",
+   "cls": "strong",
+   "cid": 19076,
+   "match": "Pons",
+   "sname": "Pons",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Medulla oblongata",
+   "cls": "strong",
+   "cid": 20291,
+   "match": "Medulla Oblongata",
+   "sname": "Medulla Oblongata",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Tectum (lamina quadrigemina)",
+   "cls": "strong",
+   "cid": 20913,
+   "match": "Quadrigeminal Plate",
+   "sname": "Lamina tecti",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Tegmentum",
+   "cls": "none",
+   "cid": 16452,
+   "match": "Articular Capsules of Proximal Interphalangeal Joints of Hand",
+   "sname": "Capsulae articulares articulationum interphalangearum proximalium manus",
+   "sc": 0
+  },
+  {
+   "group": "d4",
+   "term": "Medial longitudinal fasciculus (MLF)",
+   "cls": "none",
+   "cid": 23684,
+   "match": "Atrioventricular Bundle",
+   "sname": "Fasciculus atrioventricularis",
+   "sc": 40
+  },
+  {
+   "group": "d4",
+   "term": "Crus cerebri (cerebral peduncle)",
+   "cls": "strong",
+   "cid": 24203,
+   "match": "Cerebral Peduncle",
+   "sname": "Pedunculus cerebri",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Interpeduncular fossa",
+   "cls": "none",
+   "cid": 17165,
+   "match": "Cerebral Fossa",
+   "sname": "Fossa cerebralis",
+   "sc": 50
+  },
+  {
+   "group": "d4",
+   "term": "Substantia nigra",
+   "cls": "strong",
+   "cid": 20981,
+   "match": "Substantia Nigra",
+   "sname": "Substantia nigra",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Red nucleus",
+   "cls": "none",
+   "cid": 24895,
+   "match": "Subthalamic Nucleus",
+   "sname": "Nucleus subthalamicus",
+   "sc": 50
+  },
+  {
+   "group": "d4",
+   "term": "Cerebral aqueduct (of Sylvius)",
+   "cls": "strong",
+   "cid": 23355,
+   "match": "Mesencephalic Aqueduct",
+   "sname": "Aqueductus mesencephali",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Periaqueductal grey matter",
+   "cls": "none",
+   "cid": 23857,
+   "match": "Gray Matter of Spinal Cord (Thoracic)",
+   "sname": "Substantia grisea medullae spinalis",
+   "sc": 57
+  },
+  {
+   "group": "d4",
+   "term": "Pineal body",
+   "cls": "none",
+   "cid": 20574,
+   "match": "Pineal Gland",
+   "sname": "Glandula pinealis",
+   "sc": 50
+  },
+  {
+   "group": "d4",
+   "term": "Superior colliculi",
+   "cls": "strong",
+   "cid": 18882,
+   "match": "Superior Colliculus",
+   "sname": "Colliculus superior",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Brachium of superior colliculus",
+   "cls": "medium",
+   "cid": 18882,
+   "match": "Superior Colliculus",
+   "sname": "Colliculus superior",
+   "sc": 80
+  },
+  {
+   "group": "d4",
+   "term": "Inferior colliculus",
+   "cls": "strong",
+   "cid": 20376,
+   "match": "Inferior Colliculus",
+   "sname": "Colliculus inferior",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Brachium of inferior colliculus",
+   "cls": "medium",
+   "cid": 20376,
+   "match": "Inferior Colliculus",
+   "sname": "Colliculus inferior",
+   "sc": 80
+  },
+  {
+   "group": "d4",
+   "term": "Pulvinar of thalamus",
+   "cls": "medium",
+   "cid": 18810,
+   "match": "Pulvinar Nuclei of Thalamus",
+   "sname": "Nuclei pulvinares thalami",
+   "sc": 80
+  },
+  {
+   "group": "d4",
+   "term": "Lateral geniculate body (LGB)",
+   "cls": "strong",
+   "cid": 23365,
+   "match": "Lateral Geniculate Nucleus of Thalamus",
+   "sname": "Corpus geniculatum laterale",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Optic radiation",
+   "cls": "none",
+   "cid": 18974,
+   "match": "Optic Chiasm",
+   "sname": "Chiasma opticum",
+   "sc": 50
+  },
+  {
+   "group": "d4",
+   "term": "Medial geniculate body (MGB)",
+   "cls": "medium",
+   "cid": 20678,
+   "match": "Medial Nuclei of Thalamus",
+   "sname": "Nuclei mediales thalami",
+   "sc": 67
+  },
+  {
+   "group": "d4",
+   "term": "Superior pontine sulcus",
+   "cls": "none",
+   "cid": 21753,
+   "match": "Central Sulcus",
+   "sname": "Sulcus centralis",
+   "sc": 40
+  },
+  {
+   "group": "d4",
+   "term": "Inferior pontine sulcus",
+   "cls": "none",
+   "cid": 21753,
+   "match": "Central Sulcus",
+   "sname": "Sulcus centralis",
+   "sc": 40
+  },
+  {
+   "group": "d4",
+   "term": "Basilary groove",
+   "cls": "none",
+   "cid": 21753,
+   "match": "Central Sulcus",
+   "sname": "Sulcus centralis",
+   "sc": 50
+  },
+  {
+   "group": "d4",
+   "term": "Transverse pontine fibers",
+   "cls": "none",
+   "cid": 17654,
+   "match": "Transverse Sinus",
+   "sname": "Sinus transversus",
+   "sc": 40
+  },
+  {
+   "group": "d4",
+   "term": "Pyramid",
+   "cls": "none",
+   "cid": 24645,
+   "match": "Pyramid of Medulla Oblongata",
+   "sname": "Pyramis medullae oblongatae",
+   "sc": 50
+  },
+  {
+   "group": "d4",
+   "term": "Decussation of pyramids",
+   "cls": "none",
+   "cid": 20358,
+   "match": "Pyramidal Process",
+   "sname": "Processus pyramidalis",
+   "sc": 50
+  },
+  {
+   "group": "d4",
+   "term": "Olive",
+   "cls": "strong",
+   "cid": 24873,
+   "match": "Olive",
+   "sname": "Oliva",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Olfactory nerve (CN-1)",
+   "cls": "strong",
+   "cid": 24741,
+   "match": "Olfactory Nerve",
+   "sname": "Nervus olfactorius",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Optic nerve (CN-2)",
+   "cls": "strong",
+   "cid": 21880,
+   "match": "Optic Nerve",
+   "sname": "Nervus opticus",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Oculomotor nerve (CN-3)",
+   "cls": "strong",
+   "cid": 18359,
+   "match": "Oculomotor Nerve",
+   "sname": "Nervus oculomotorius",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Trochlear nerve (CN-4)",
+   "cls": "strong",
+   "cid": 21469,
+   "match": "Trochlear Nerve",
+   "sname": "Nervus trochlearis",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Trigeminal nerve (CN-5)",
+   "cls": "strong",
+   "cid": 17993,
+   "match": "Trigeminal Nerve",
+   "sname": "Nervus trigeminus",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Abducent nerve (CN-6)",
+   "cls": "strong",
+   "cid": 19696,
+   "match": "Abducens Nerve",
+   "sname": "Nervus abducens",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Facial nerve (CN-7)",
+   "cls": "strong",
+   "cid": 18487,
+   "match": "Facial Nerve",
+   "sname": "Nervus facialis",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Vestibulocochlear nerve (CN-8)",
+   "cls": "strong",
+   "cid": 24834,
+   "match": "Vestibulocochlear Nerve",
+   "sname": "Nervus vestibulocochlearis",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Glossopharyngeal nerve (CN-9)",
+   "cls": "strong",
+   "cid": 21110,
+   "match": "Glossopharyngeal Nerve",
+   "sname": "Nervi glossopharyngeus",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Vagal nerve (CN-10)",
+   "cls": "strong",
+   "cid": 22197,
+   "match": "Vagus Nerve",
+   "sname": "Nervus vagus",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Accessory nerve (CN-11)",
+   "cls": "strong",
+   "cid": 18441,
+   "match": "Accessory Nerve",
+   "sname": "Nervus accessorius",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Hypoglossal nerve (CN-12)",
+   "cls": "strong",
+   "cid": 21068,
+   "match": "Hypoglossal Nerve",
+   "sname": "Nervus hypoglossus",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Superior medullary velum",
+   "cls": "none",
+   "cid": 18882,
+   "match": "Superior Colliculus",
+   "sname": "Colliculus superior",
+   "sc": 40
+  },
+  {
+   "group": "d4",
+   "term": "Inferior medullary velum",
+   "cls": "none",
+   "cid": 20376,
+   "match": "Inferior Colliculus",
+   "sname": "Colliculus inferior",
+   "sc": 40
+  },
+  {
+   "group": "d4",
+   "term": "Rhomboid fossa",
+   "cls": "none",
+   "cid": 17165,
+   "match": "Cerebral Fossa",
+   "sname": "Fossa cerebralis",
+   "sc": 50
+  },
+  {
+   "group": "d4",
+   "term": "Dorsal median sulcus",
+   "cls": "none",
+   "cid": 21753,
+   "match": "Central Sulcus",
+   "sname": "Sulcus centralis",
+   "sc": 40
+  },
+  {
+   "group": "d4",
+   "term": "Ventral median sulcus",
+   "cls": "none",
+   "cid": 21753,
+   "match": "Central Sulcus",
+   "sname": "Sulcus centralis",
+   "sc": 40
+  },
+  {
+   "group": "d4",
+   "term": "Sulcus limitans",
+   "cls": "none",
+   "cid": 21753,
+   "match": "Central Sulcus",
+   "sname": "Sulcus centralis",
+   "sc": 50
+  },
+  {
+   "group": "d4",
+   "term": "Medial eminence",
+   "cls": "none",
+   "cid": 18739,
+   "match": "Parietal Eminence",
+   "sname": "Eminentia parietalis",
+   "sc": 50
+  },
+  {
+   "group": "d4",
+   "term": "Facial colliculus",
+   "cls": "none",
+   "cid": 18882,
+   "match": "Superior Colliculus",
+   "sname": "Colliculus superior",
+   "sc": 50
+  },
+  {
+   "group": "d4",
+   "term": "Vestibular area",
+   "cls": "none",
+   "cid": 21023,
+   "match": "Subcallosal Area",
+   "sname": "Area subcallosa",
+   "sc": 50
+  },
+  {
+   "group": "d4",
+   "term": "Striae medullares",
+   "cls": "none",
+   "cid": 24280,
+   "match": "Olfactory Striae",
+   "sname": "Striae olfactoriae",
+   "sc": 50
+  },
+  {
+   "group": "d4",
+   "term": "Hypoglossal trigone",
+   "cls": "none",
+   "cid": 20644,
+   "match": "Right Fibrous Trigone",
+   "sname": "Trigonum fibrosum dextrum",
+   "sc": 50
+  },
+  {
+   "group": "d4",
+   "term": "Vagal trigone",
+   "cls": "none",
+   "cid": 20644,
+   "match": "Right Fibrous Trigone",
+   "sname": "Trigonum fibrosum dextrum",
+   "sc": 50
+  },
+  {
+   "group": "d4",
+   "term": "Obex",
+   "cls": "none",
+   "cid": 16452,
+   "match": "Articular Capsules of Proximal Interphalangeal Joints of Hand",
+   "sname": "Capsulae articulares articulationum interphalangearum proximalium manus",
+   "sc": 0
+  },
+  {
+   "group": "d4",
+   "term": "Cuneate tubercle",
+   "cls": "strong",
+   "cid": 18765,
+   "match": "Cuneate Tubercle",
+   "sname": "Tuberculum cuneatum",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Cuneate fasciculus",
+   "cls": "none",
+   "cid": 23684,
+   "match": "Atrioventricular Bundle",
+   "sname": "Fasciculus atrioventricularis",
+   "sc": 50
+  },
+  {
+   "group": "d4",
+   "term": "Gracile tubercle",
+   "cls": "strong",
+   "cid": 16500,
+   "match": "Gracile Tubercle",
+   "sname": "Tuberculum gracile",
+   "sc": 100
+  },
+  {
+   "group": "d4",
+   "term": "Gracile fasciculus",
+   "cls": "none",
+   "cid": 23684,
+   "match": "Atrioventricular Bundle",
+   "sname": "Fasciculus atrioventricularis",
+   "sc": 50
+  }
+ ]
+}
