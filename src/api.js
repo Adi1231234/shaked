@@ -149,42 +149,23 @@
   let currentSpoilerName = null;   // card heading of the organ under quiz right now
   let revealedThisQuestion = false;// learner has revealed this question's answer
   let lastName = null;             // last displayed heading, to detect structure changes
+  let lastShown = null;            // last "is the quiz organ on screen" value, for the hook
 
-  // The top-left selection card reveals the structure name via its heading.
-  function nameHeading() {
-    return [...document.querySelectorAll('h2')].find((h) => {
-      const t = (h.textContent || '').trim();
-      if (!t || /Cookie|Preference/i.test(t)) return false;
-      const r = h.getBoundingClientRect();
-      return r.left < 320 && r.top > 80 && r.top < 280;
-    });
-  }
+  // Stable app hooks (data-e2e) for the selection card, resilient to re-layout:
+  //   heading  = the English primary name       (the main spoiler)
+  //   nameWrap = wrapper holding name + Latin subtitle (blur target, no controls)
+  //   card     = the whole infobox panel        (hidden only while (re)selecting)
+  const nameHeading = () => document.querySelector('h2[data-e2e="StructureClusterNames_PrimaryName"]');
+  const nameWrap = () => document.querySelector('[data-e2e="StructureClusterNames_Names"]');
+  const cardPanel = () => document.querySelector('[data-e2e="InfoboxPanel_Component"]');
+  // The breadcrumb trail lives inside a <nav>; identify it by its trail elements.
+  const breadcrumbNavs = () =>
+    [...document.querySelectorAll('nav')].filter((n) => n.querySelector('[data-e2e^="BreadcrumbTrail"]'));
 
-  // Walk up from the name heading to the full card panel — the one that also
-  // holds the HIDE / Isolate controls.
-  function cardPanel(nameH2) {
-    let card = nameH2;
-    for (let i = 0; i < 10 && card && card !== document.body; i++) {
-      card = card.parentElement;
-      const r = card.getBoundingClientRect();
-      const t = card.textContent || '';
-      if (r.left < 40 && r.width > 140 && r.width < 380 && /HIDE/.test(t) && /Isolate/.test(t)) return card;
-    }
-    return null;
-  }
-
-  // Toggle blur on the name AND its Latin subtitle (both give the answer away)
-  // without touching the card's controls. They share a wrapper (name h2 + subtitle
-  // h3); blur that wrapper unless it also swallows the HIDE / Isolate controls.
-  function applyNameBlur(nameH2, on) {
-    const wrap = nameH2.parentElement;
-    if (wrap && !/HIDE|FADE|Isolate/i.test(wrap.textContent || '')) {
-      wrap.classList.toggle('caq-blur', on);
-    } else {
-      nameH2.classList.toggle('caq-blur', on);
-      const sub = nameH2.nextElementSibling;
-      if (sub && sub.tagName === 'H3') sub.classList.toggle('caq-blur', on);
-    }
+  // The name of the structure currently shown in the card (what the learner sees).
+  function shownName() {
+    const h = nameHeading();
+    return h ? h.textContent.trim() : null;
   }
 
   // Blur the breadcrumbs + card name ONLY while the CURRENT quiz organ is the one on
@@ -193,8 +174,7 @@
   // quiz organ re-blurs. While (re)selecting (cardSuppressed) we always blur, so the
   // name never flashes mid-transition.
   function tagSpoilers() {
-    const nameH2 = nameHeading();
-    const curName = nameH2 ? nameH2.textContent.trim() : null;
+    const curName = shownName();
     if (curName !== lastName) {
       // The displayed structure changed → drop stale per-structure manual reveals.
       document.querySelectorAll('.caq-reveal').forEach((e) => e.classList.remove('caq-reveal'));
@@ -202,17 +182,26 @@
     }
     const showingQuizOrgan = !!(curName && curName === currentSpoilerName);
     const blurIt = cardSuppressed || (showingQuizOrgan && !revealedThisQuestion);
-    if (nameH2) {
-      applyNameBlur(nameH2, blurIt);
-      const card = cardPanel(nameH2);
-      // Fully hidden only while (re)selecting; otherwise visible with the name blurred.
-      if (card) card.classList.toggle('caq-hide', cardSuppressed);
-    }
+    const wrap = nameWrap();
+    if (wrap) wrap.classList.toggle('caq-blur', blurIt); // name + Latin subtitle
+    const card = cardPanel();
+    if (card) card.classList.toggle('caq-hide', cardSuppressed);
     // Breadcrumbs mirror the selected structure — blur them under the same condition.
-    document.querySelectorAll('nav').forEach((n) => n.classList.toggle('caq-blur', blurIt));
+    breadcrumbNavs().forEach((n) => n.classList.toggle('caq-blur', blurIt));
+    // Notify listeners (the re-select button) when the quiz organ's visibility flips.
+    if (showingQuizOrgan !== lastShown) {
+      lastShown = showingQuizOrgan;
+      if (CAQ.onQuizOrganShown) CAQ.onQuizOrganShown(showingQuizOrgan);
+    }
     // Keep the search drawer fully hidden if it is open.
     hideSearchPanel();
   }
+
+  // Is the organ under quiz the one currently selected/shown on the model?
+  CAQ.isQuizOrganShown = function () {
+    const n = shownName();
+    return !!(n && n === currentSpoilerName);
+  };
 
   // Clicking a blurred app spoiler (breadcrumbs, or the card's name/subtitle) asks
   // before revealing it, so an accidental click can't spoil the answer. Our own
@@ -239,6 +228,7 @@
     currentSpoilerName = null;
     revealedThisQuestion = false;
     lastName = null;
+    lastShown = null;
     document.querySelectorAll('.caq-hide').forEach((e) => e.classList.remove('caq-hide'));
     document.querySelectorAll('.caq-blur').forEach((e) => e.classList.remove('caq-blur'));
     document.querySelectorAll('.caq-reveal').forEach((e) => e.classList.remove('caq-reveal'));

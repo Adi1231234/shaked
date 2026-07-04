@@ -110,6 +110,7 @@
         answer.style.cursor = 'pointer';
         hint.textContent = 'לחצי על המלבן המטושטש כדי לחשוף את האיבר';
         reselectBtn.style.display = '';
+        reselectBtn.disabled = CAQ.isQuizOrganShown(); // already selected → nothing to do
       } else {
         answer.className = 'caq-answer';
         answer.textContent = '—';
@@ -123,16 +124,21 @@
     let reselecting = false;
     async function reselect() {
       const item = quiz.current;
-      if (reselecting || !item) return;
+      if (reselecting || !item || CAQ.isQuizOrganShown()) return; // already selected
       reselecting = true;
       reselectBtn.disabled = true;
       const prevHint = hint.textContent;
       hint.textContent = 'מסמן מחדש את האיבר…';
       const ok = await CAQ.api.selectByCid(item.cid, item.model).catch(() => false);
       hint.textContent = ok ? prevHint : 'לא הצלחתי לסמן מחדש את האיבר';
-      reselectBtn.disabled = false;
       reselecting = false;
+      reselectBtn.disabled = CAQ.isQuizOrganShown(); // re-selected → disabled again
     }
+    // Live-update the button as the learner clicks around the model: disabled while
+    // the quiz organ is the current selection, enabled once they view something else.
+    CAQ.onQuizOrganShown = (shown) => {
+      if (!reselecting && reselectBtn.style.display !== 'none') reselectBtn.disabled = shown;
+    };
 
     function advance() {
       if (quiz.isDone) { renderDone(); return; }
@@ -141,6 +147,7 @@
     }
 
     function finish() {
+      CAQ.onQuizOrganShown = null;
       CAQ.stopSpoilerWatch();
       CAQ.api.closeSearchPanel();
       CAQ.showSpoilers();
