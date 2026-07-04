@@ -40,10 +40,13 @@
     },
     setBuiltins(groups) { builtins = groups.map((g) => ({ id: g.id, label: g.label, items: g.items })); },
     // All add targets in display order: built-in lists, then custom lists.
+    // `added` = how many items the user has added to a built-in list.
     targets() {
-      return builtins.map((b) => ({ id: b.id, label: b.label, builtin: true, items: itemsOf(b.id) }))
-        .concat(state.customLists.map((l) => ({ id: l.id, label: l.label, builtin: false, items: l.items })));
+      return builtins.map((b) => (
+        { id: b.id, label: b.label, builtin: true, items: itemsOf(b.id), added: (state.additions[b.id] || []).length }))
+        .concat(state.customLists.map((l) => ({ id: l.id, label: l.label, builtin: false, items: l.items, added: 0 })));
     },
+    clearAdditions(id) { delete state.additions[id]; persist(); },
     active() { return this.targets().find((t) => t.id === state.activeId) || null; },
     setActive(id) { state.activeId = id; persist(); },
     create(label) {

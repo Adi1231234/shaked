@@ -22,9 +22,9 @@
       const gh = h('div', 'caq-group__head');
       gh.appendChild(h('div', 'caq-group__title', g.label));
       const toggle = h('button', 'caq-linkbtn', 'נקה הכל');
-      if (g.custom && onDeleteList) {
-        const del = h('button', 'caq-group__del', 'מחק רשימה');
-        del.addEventListener('click', () => onDeleteList(g.id));
+      if (onDeleteList && (g.custom || g.added > 0)) {
+        const del = h('button', 'caq-group__del', g.custom ? 'מחק רשימה' : `נקה תוספות (${g.added})`);
+        del.addEventListener('click', () => onDeleteList(g));
         gh.appendChild(del);
       }
       gh.appendChild(toggle);
