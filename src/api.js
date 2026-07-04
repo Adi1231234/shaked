@@ -117,8 +117,9 @@
     // card holds the "Fade others" control and does not appear while search is open.
     closeSearchPanel();
     await sleep(300);
-    await fadeOthers();
-    CAQ.hideSpoilers();
+    CAQ.hideSpoilers();     // hide the name card immediately once it appears
+    await fadeOthers();     // still works: .click() operates on the hidden card
+    CAQ.hideSpoilers();     // re-hide (the card's menu changed while fading)
     return true;
   }
 
@@ -129,18 +130,21 @@
   let observer = null;
 
   function tagSpoilers() {
-    // Info card (name + HIDE/FADE/Isolate), shown when a structure is selected.
-    const isolate = [...document.querySelectorAll('button, span, div')].find(
-      (e) => e.childElementCount === 0 && (e.textContent || '').trim() === 'Isolate');
-    if (isolate) {
-      let card = isolate;
-      while (card && card !== document.body) {
-        const t = card.textContent || '';
-        if (/HIDE/.test(t) && /FADE/.test(t) && /Isolate/.test(t) &&
-            card.getBoundingClientRect().width < 400) break;
+    // The selection info card (top-left) reveals the structure name via its
+    // heading. Find that heading and hide the whole card panel around it.
+    const nameH2 = [...document.querySelectorAll('h2')].find((h) => {
+      const t = (h.textContent || '').trim();
+      if (!t || /Cookie|Preference/i.test(t)) return false;
+      const r = h.getBoundingClientRect();
+      return r.left < 320 && r.top > 80 && r.top < 280;
+    });
+    if (nameH2) {
+      let card = nameH2;
+      for (let i = 0; i < 8 && card && card !== document.body; i++) {
         card = card.parentElement;
+        const r = card.getBoundingClientRect();
+        if (r.left < 40 && r.width > 140 && r.width < 380) { card.classList.add('caq-hide'); break; }
       }
-      if (card && card !== document.body) card.classList.add('caq-hide');
     }
     // Keep the search drawer hidden if it is open.
     hideSearchPanel();
@@ -158,17 +162,16 @@
 
   CAQ.startSpoilerWatch = function () {
     if (observer) return;
+    // Re-hide spoilers (name card + search drawer) on DOM changes, batched to one
+    // pass per animation frame (runs before paint, so nothing flashes into view).
     let scheduled = false;
     observer = new MutationObserver(() => {
-      // Hide the search drawer synchronously the instant it (re)appears, so it
-      // never flashes into view when reopened for the next question.
-      if (document.documentElement.classList.contains('caq-quiz-active')) hideSearchPanel();
       if (scheduled) return;
       scheduled = true;
-      setTimeout(() => {
+      requestAnimationFrame(() => {
         scheduled = false;
         if (document.documentElement.classList.contains('caq-quiz-active')) tagSpoilers();
-      }, 150);
+      });
     });
     observer.observe(document.body, { childList: true, subtree: true });
   };

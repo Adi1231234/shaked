@@ -98,6 +98,7 @@
     const launch = document.querySelector('.caq-launch');
     if (launch) launch.style.display = 'none';
     CAQ.startSpoilerWatch();
+    CAQ.hideSpoilers(); // activate quiz mode up-front so spoilers never flash
     quiz.next();
     load();
     return panel;
