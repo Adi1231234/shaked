@@ -36,6 +36,22 @@ html.caq-quiz-active nav { opacity: 0 !important; pointer-events: none !importan
 .caq-launch:hover { border-color: var(--caq-accent); }
 .caq-launch svg { width: 18px; height: 18px; }
 
+/* --- Loading curtain (hides the search process during selection) --- */
+.caq-curtain {
+  position: fixed; inset: 0; z-index: 2147482400; display: flex;
+  align-items: center; justify-content: center; background: #0b0d11;
+  opacity: 0; visibility: hidden; transition: opacity .25s ease;
+}
+.caq-curtain--on { opacity: 1; visibility: visible; }
+.caq-curtain__box { text-align: center; direction: rtl; }
+.caq-curtain__txt { margin-top: 16px; font: 500 15px var(--caq-font); color: var(--caq-muted); }
+.caq-spinner {
+  width: 36px; height: 36px; margin: 0 auto; border-radius: 50%;
+  border: 3px solid var(--caq-line); border-top-color: var(--caq-accent);
+  animation: caq-spin .8s linear infinite;
+}
+@keyframes caq-spin { to { transform: rotate(360deg); } }
+
 /* --- Overlay for modals --- */
 .caq-overlay {
   position: fixed; inset: 0; z-index: 2147483000; display: flex; align-items: center;

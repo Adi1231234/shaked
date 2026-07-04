@@ -148,5 +148,26 @@
     if (observer) { observer.disconnect(); observer = null; }
   };
 
+  // --- Loading curtain --------------------------------------------------
+  // Opaque overlay shown while a structure is being selected, so the user never
+  // sees the app's search panel/typing/results (which reveal the answer).
+  CAQ.showCurtain = function (text) {
+    let c = document.getElementById('caq-curtain');
+    if (!c) {
+      c = document.createElement('div');
+      c.id = 'caq-curtain';
+      c.className = 'caq-root caq-curtain';
+      c.innerHTML = '<div class="caq-curtain__box"><div class="caq-spinner"></div>' +
+        '<div class="caq-curtain__txt"></div></div>';
+      document.body.appendChild(c);
+    }
+    c.querySelector('.caq-curtain__txt').textContent = text || 'טוען…';
+    c.classList.add('caq-curtain--on');
+  };
+  CAQ.hideCurtain = function () {
+    document.getElementById('caq-curtain')?.classList.remove('caq-curtain--on');
+  };
+  CAQ.removeCurtain = function () { document.getElementById('caq-curtain')?.remove(); };
+
   CAQ.api = { ready, selectByCid, ensureSearchOpen, closeSearchPanel, resetModel };
 })();
