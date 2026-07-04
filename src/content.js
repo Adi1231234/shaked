@@ -29,10 +29,12 @@
 
   async function openSetup() {
     const base = await loadStructures();
-    // Merge the user's custom lists in as extra (quizzable) groups.
-    const custom = (CAQ.lists ? CAQ.lists.all() : []).map((l) => (
-      { id: l.id, label: '★ ' + l.label, items: l.items, custom: true }));
-    const data = { ...base, groups: [...base.groups, ...custom] };
+    // Built-in dissection lists (with your additions) + custom lists, as quizzable groups.
+    const groups = CAQ.lists
+      ? CAQ.lists.targets().map((t) => (
+        { id: t.id, label: (t.builtin ? '' : '★ ') + t.label, items: t.items, custom: !t.builtin }))
+      : base.groups;
+    const data = { ...base, groups };
     const progress = CAQ.store ? await CAQ.store.load() : {};
     closeModal();
     modalEl = CAQ.setup.openModal(data, progress, startQuiz, closeModal, deleteList);
@@ -40,8 +42,8 @@
 
   async function init() {
     if (!(await CAQ.api.ready())) return;
-    if (CAQ.lists) await CAQ.lists.init();
-    await loadStructures();
+    const base = await loadStructures();
+    if (CAQ.lists) { await CAQ.lists.init(); CAQ.lists.setBuiltins(base.groups); }
     CAQ.setup.mountLauncher(openSetup);
     if (CAQ.searchAdd) CAQ.searchAdd.start();
   }
