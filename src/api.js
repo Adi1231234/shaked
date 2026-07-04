@@ -101,6 +101,7 @@
     // never flashes readable mid-render. Once the selection settles we reveal the
     // card again with only its name blurred.
     cardSuppressed = true;
+    revealedThisQuestion = false; // fresh question — answer is hidden again
     // Drop any manual reveals from the previous structure so they don't carry over.
     document.querySelectorAll('.caq-reveal').forEach((e) => e.classList.remove('caq-reveal'));
     await resetModel();
@@ -127,6 +128,10 @@
     await fadeOthers();     // still works: .click() operates on the hidden card
     CAQ.hideSpoilers();     // re-hide (the card's menu changed while fading)
     cardSuppressed = false; // selection settled → reveal the card (name stays blurred)
+    // Remember this organ's heading so we only blur while IT is the one on screen.
+    const h = nameHeading();
+    currentSpoilerName = (h && h.textContent.trim()) || name;
+    lastName = currentSpoilerName;
     tagSpoilers();
     return true;
   }
@@ -140,7 +145,10 @@
   // name never flashes readable mid-render. A MutationObserver re-applies this
   // across the app's re-renders.
   let observer = null;
-  let cardSuppressed = false; // true → hide the whole info card during a selection
+  let cardSuppressed = false;      // true → hide the whole info card during a selection
+  let currentSpoilerName = null;   // card heading of the organ under quiz right now
+  let revealedThisQuestion = false;// learner has revealed this question's answer
+  let lastName = null;             // last displayed heading, to detect structure changes
 
   // The top-left selection card reveals the structure name via its heading.
   function nameHeading() {
@@ -165,28 +173,43 @@
     return null;
   }
 
-  // Blur the name AND its Latin subtitle (both give the answer away) without
-  // touching the card's controls. They share a wrapper (name h2 + subtitle h3);
-  // blur that wrapper unless it also swallows the HIDE / Isolate controls.
-  function blurNameBlock(nameH2) {
+  // Toggle blur on the name AND its Latin subtitle (both give the answer away)
+  // without touching the card's controls. They share a wrapper (name h2 + subtitle
+  // h3); blur that wrapper unless it also swallows the HIDE / Isolate controls.
+  function applyNameBlur(nameH2, on) {
     const wrap = nameH2.parentElement;
     if (wrap && !/HIDE|FADE|Isolate/i.test(wrap.textContent || '')) {
-      wrap.classList.add('caq-blur');
+      wrap.classList.toggle('caq-blur', on);
     } else {
-      nameH2.classList.add('caq-blur');
+      nameH2.classList.toggle('caq-blur', on);
       const sub = nameH2.nextElementSibling;
-      if (sub && sub.tagName === 'H3') sub.classList.add('caq-blur');
+      if (sub && sub.tagName === 'H3') sub.classList.toggle('caq-blur', on);
     }
   }
 
+  // Blur the breadcrumbs + card name ONLY while the CURRENT quiz organ is the one on
+  // screen and its answer hasn't been revealed. If the learner clicks a different
+  // structure, its name isn't a spoiler, so leave it readable; coming back to the
+  // quiz organ re-blurs. While (re)selecting (cardSuppressed) we always blur, so the
+  // name never flashes mid-transition.
   function tagSpoilers() {
     const nameH2 = nameHeading();
+    const curName = nameH2 ? nameH2.textContent.trim() : null;
+    if (curName !== lastName) {
+      // The displayed structure changed → drop stale per-structure manual reveals.
+      document.querySelectorAll('.caq-reveal').forEach((e) => e.classList.remove('caq-reveal'));
+      lastName = curName;
+    }
+    const showingQuizOrgan = !!(curName && curName === currentSpoilerName);
+    const blurIt = cardSuppressed || (showingQuizOrgan && !revealedThisQuestion);
     if (nameH2) {
-      blurNameBlock(nameH2); // blur name + Latin subtitle, leave the card in place
+      applyNameBlur(nameH2, blurIt);
       const card = cardPanel(nameH2);
       // Fully hidden only while (re)selecting; otherwise visible with the name blurred.
       if (card) card.classList.toggle('caq-hide', cardSuppressed);
     }
+    // Breadcrumbs mirror the selected structure — blur them under the same condition.
+    document.querySelectorAll('nav').forEach((n) => n.classList.toggle('caq-blur', blurIt));
     // Keep the search drawer fully hidden if it is open.
     hideSearchPanel();
   }
@@ -197,7 +220,8 @@
   function onSpoilerClick(e) {
     if (!document.documentElement.classList.contains('caq-quiz-active')) return;
     if (e.target.closest('.caq-root')) return;
-    const el = e.target.closest('.caq-blur, nav');
+    // Only currently-blurred spoilers prompt; a readable (non-quiz) structure doesn't.
+    const el = e.target.closest('.caq-blur');
     if (!el || el.classList.contains('caq-reveal')) return;
     e.preventDefault();
     e.stopPropagation();
@@ -212,6 +236,9 @@
   CAQ.showSpoilers = function () {
     document.documentElement.classList.remove('caq-quiz-active');
     cardSuppressed = false;
+    currentSpoilerName = null;
+    revealedThisQuestion = false;
+    lastName = null;
     document.querySelectorAll('.caq-hide').forEach((e) => e.classList.remove('caq-hide'));
     document.querySelectorAll('.caq-blur').forEach((e) => e.classList.remove('caq-blur'));
     document.querySelectorAll('.caq-reveal').forEach((e) => e.classList.remove('caq-reveal'));
@@ -219,8 +246,10 @@
 
   // Reveal every blurred spoiler at once (name, subtitle, breadcrumbs). Called when
   // the learner reveals the answer — once the answer is out, hiding the rest is moot.
+  // This holds for the rest of the question even if they revisit the organ.
   CAQ.revealAllSpoilers = function () {
-    document.querySelectorAll('.caq-blur, nav').forEach((e) => e.classList.add('caq-reveal'));
+    revealedThisQuestion = true;
+    tagSpoilers();
   };
 
   CAQ.startSpoilerWatch = function () {
