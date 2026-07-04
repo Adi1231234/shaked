@@ -51,13 +51,16 @@
       chips[s.key] = chip;
       filterRow.appendChild(chip);
     });
+    const hint = h('span', 'caq-filter__label', 'לחצי על הנקודה שליד איבר כדי לשנות סטטוס: אפור ← ירוק (זכרתי) ← אדום (לא זכרתי)');
+    hint.style.flexBasis = '100%';
+    filterRow.appendChild(hint);
     modal.appendChild(filterRow);
 
     const body = h('div', 'caq-modal__body');
     modal.appendChild(body);
     const allNote = h('p', 'caq-modal__sub',
       'המבחן יכלול את כל האיברים שתואמים לפילטר שלמעלה, בסדר אקראי וללא חזרות.');
-    const list = CAQ._buildPickList(structures, statusOf, updateCount);
+    const list = CAQ._buildPickList(structures, statusOf, updateCount, cycleStatus);
     list.el.style.display = 'none';
     body.appendChild(allNote);
     body.appendChild(list.el);
@@ -78,6 +81,15 @@
     const selectedItems = () => (mode === 'all'
       ? allItems : list.boxes.filter((c) => c.checked).map((c) => c._item))
       .filter((it) => active.has(statusOf(it)));
+    const ORDER = ['unmarked', 'known', 'unknown'];
+    function cycleStatus(it) {
+      const next = ORDER[(ORDER.indexOf(statusOf(it)) + 1) % ORDER.length];
+      if (next === 'unmarked') delete progress[it.cid];
+      else progress[it.cid] = next;
+      if (CAQ.store) CAQ.store.set(it.cid, next === 'unmarked' ? null : next);
+      list.repaintDots();
+      updateCount();
+    }
     function statusCounts() {
       const seen = new Set(); const c = { known: 0, unknown: 0, unmarked: 0 };
       allItems.forEach((it) => { if (seen.has(it.cid)) return; seen.add(it.cid); c[statusOf(it)]++; });
@@ -96,6 +108,7 @@
       tabAll.classList.toggle('caq-tab--active', m === 'all');
       tabPick.classList.toggle('caq-tab--active', m === 'pick');
       allNote.style.display = m === 'all' ? '' : 'none';
+      hint.style.display = m === 'pick' ? '' : 'none';
       list.el.style.display = m === 'pick' ? '' : 'none';
       updateCount();
     }

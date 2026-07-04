@@ -8,8 +8,9 @@
     return el;
   };
 
-  // statusOf(it) -> 'known' | 'unknown' | 'unmarked'; onChange fires on any toggle.
-  CAQ._buildPickList = function (structures, statusOf, onChange) {
+  // statusOf(it) -> 'known' | 'unknown' | 'unmarked'; onChange fires on any toggle;
+  // onCycle(it) is called when a status dot is clicked (to advance its status).
+  CAQ._buildPickList = function (structures, statusOf, onChange, onCycle) {
     const wrap = h('div');
     const boxes = [];
     const dotEls = [];
@@ -29,7 +30,10 @@
         const label = h('label', 'caq-item');
         const cb = h('input');
         cb.type = 'checkbox'; cb.checked = true; cb._item = it;
-        const dot = h('span', `caq-dot caq-dot--${statusOf(it)}`);
+        const dot = h('button', `caq-dot caq-dot--${statusOf(it)}`);
+        dot.type = 'button'; dot._item = it;
+        dot.title = 'שינוי סטטוס: לא סומן ← זכרתי ← לא זכרתי';
+        dot.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); onCycle(it); });
         label.appendChild(cb);
         label.appendChild(dot);
         label.appendChild(h('span', 'caq-item__term', it.term));
@@ -64,6 +68,11 @@
       });
     }
 
-    return { el: wrap, boxes, dotEls, applyFilter };
+    // Re-colour every dot from the current saved status (after a status change).
+    function repaintDots() {
+      dotEls.forEach((d) => (d.className = `caq-dot caq-dot--${statusOf(d._item)}`));
+    }
+
+    return { el: wrap, boxes, dotEls, applyFilter, repaintDots };
   };
 })();
