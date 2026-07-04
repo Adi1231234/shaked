@@ -22,9 +22,12 @@
     CAQ.quizUI.run(quiz, () => {});
   }
 
-  function deleteList(id) {
-    if (CAQ.lists) CAQ.lists.remove(id);
-    openSetup(); // re-render so the removed list disappears
+  function deleteList(group) {
+    if (!CAQ.lists) return;
+    // Custom lists are removed whole; for built-ins we only drop the user's additions.
+    if (group.custom) CAQ.lists.remove(group.id);
+    else CAQ.lists.clearAdditions(group.id);
+    openSetup(); // re-render to reflect the change
   }
 
   async function openSetup() {
@@ -32,7 +35,7 @@
     // Built-in dissection lists (with your additions) + custom lists, as quizzable groups.
     const groups = CAQ.lists
       ? CAQ.lists.targets().map((t) => (
-        { id: t.id, label: (t.builtin ? '' : '★ ') + t.label, items: t.items, custom: !t.builtin }))
+        { id: t.id, label: (t.builtin ? '' : '★ ') + t.label, items: t.items, custom: !t.builtin, added: t.added }))
       : base.groups;
     const data = { ...base, groups };
     const progress = CAQ.store ? await CAQ.store.load() : {};
