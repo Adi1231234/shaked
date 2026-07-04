@@ -16,12 +16,10 @@
     exit.style.padding = '6px 12px';
     top.appendChild(progress); top.appendChild(exit);
     const bar = h('div', 'caq-bar');
-    const fill = h('div', 'caq-bar__fill');
-    bar.appendChild(fill);
+    const fill = h('div', 'caq-bar__fill'); bar.appendChild(fill);
     const prompt = h('div', 'caq-prompt', 'מהו האיבר המסומן על המודל?');
     const answer = h('div', 'caq-answer');
     const hint = h('div', 'caq-hint', '');
-    const loading = h('div', 'caq-loading', '');
     const foot = h('div', 'caq-quiz__foot');
     // After revealing, the learner can optionally mark whether they remembered it.
     const wrongBtn = h('button', 'caq-btn caq-btn--wrong', '✗ לא זכרתי');
@@ -29,7 +27,7 @@
     const rightBtn = h('button', 'caq-btn caq-btn--right', '✓ זכרתי');
     const nextBtn = h('button', 'caq-btn', 'המשך');
     [wrongBtn, skipBtn, rightBtn, nextBtn].forEach((b) => foot.appendChild(b));
-    [top, bar, prompt, answer, hint, loading, foot].forEach((e) => panel.appendChild(e));
+    [top, bar, prompt, answer, hint, foot].forEach((e) => panel.appendChild(e));
     document.body.appendChild(panel);
 
     let revealed = false;
@@ -70,7 +68,8 @@
     }
 
     function reveal() {
-      if (revealed) return;
+      // Reveal only a genuinely-shown (blurred) answer - not the spinner or a failed "—".
+      if (revealed || !answer.classList.contains('caq-answer--blurred')) return;
       revealed = true;
       answer.classList.remove('caq-answer--blurred');
       answer.classList.add('caq-answer--revealed');
@@ -91,7 +90,8 @@
       prompt.style.visibility = 'hidden';
       hint.textContent = '';
       footMode('blurred');
-      const ok = await CAQ.api.selectByCid(item.cid, item.model);
+      // .catch → false so one erroring structure can't hang the quiz on the spinner.
+      const ok = await CAQ.api.selectByCid(item.cid, item.model).catch(() => false);
       prompt.style.visibility = '';
       if (ok) {
         answer.className = 'caq-answer caq-answer--blurred';
