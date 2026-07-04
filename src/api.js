@@ -112,7 +112,11 @@
     }
     if (!row) return false;
     (row.querySelector('button') || row).click();
-    await sleep(500);
+    await sleep(450);
+    // Close the (already hidden) search so the selection info card renders — the
+    // card holds the "Fade others" control and does not appear while search is open.
+    closeSearchPanel();
+    await sleep(300);
     await fadeOthers();
     CAQ.hideSpoilers();
     return true;
@@ -156,6 +160,9 @@
     if (observer) return;
     let scheduled = false;
     observer = new MutationObserver(() => {
+      // Hide the search drawer synchronously the instant it (re)appears, so it
+      // never flashes into view when reopened for the next question.
+      if (document.documentElement.classList.contains('caq-quiz-active')) hideSearchPanel();
       if (scheduled) return;
       scheduled = true;
       setTimeout(() => {
