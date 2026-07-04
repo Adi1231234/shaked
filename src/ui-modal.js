@@ -13,7 +13,7 @@
     { key: 'unmarked', label: 'לא סומן' },
   ];
 
-  CAQ._buildSetupModal = function (structures, progress, onStart, onClose, onDeleteList) {
+  CAQ._buildSetupModal = function (structures, progress, onStart, onClose, actions) {
     const allItems = structures.groups.flatMap((g) => g.items);
     const statusOf = (it) => progress[it.cid] || 'unmarked';
     const active = new Set(STATUSES.map((s) => s.key));
@@ -60,7 +60,7 @@
     modal.appendChild(body);
     const allNote = h('p', 'caq-modal__sub',
       'המבחן יכלול את כל האיברים שתואמים לפילטר שלמעלה, בסדר אקראי וללא חזרות.');
-    const list = CAQ._buildPickList(structures, statusOf, updateCount, cycleStatus, onDeleteList);
+    const list = CAQ._buildPickList(structures, statusOf, updateCount, cycleStatus, actions);
     list.el.style.display = 'none';
     body.appendChild(allNote);
     body.appendChild(list.el);

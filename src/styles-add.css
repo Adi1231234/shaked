@@ -38,6 +38,33 @@
 }
 .caq-add-menu__input:focus { outline: none; border-color: var(--caq-accent); }
 
-/* Delete link on custom-list group headers in the setup modal */
+/* Delete/hide/clear links on group headers in the setup modal */
 .caq-group__del { background: none; border: 0; color: var(--caq-muted); cursor: pointer; font: 600 12px var(--caq-font); }
 .caq-group__del:hover { color: #e0533d; }
+
+/* Group header: title + rename, and the action links */
+.caq-group__titlewrap { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.caq-group__actions { display: flex; align-items: center; gap: 12px; flex: none; }
+.caq-group__icon { background: none; border: 0; color: var(--caq-muted); cursor: pointer; font-size: 13px; padding: 2px; line-height: 1; }
+.caq-group__icon:hover { color: var(--caq-accent); }
+.caq-group__rename {
+  background: var(--caq-bg2); border: 1px solid var(--caq-accent); color: var(--caq-text);
+  border-radius: 5px; padding: 3px 7px; font: 700 14px var(--caq-font); min-width: 0; flex: 1;
+}
+.caq-group__rename:focus { outline: none; }
+
+/* Restore area for hidden built-in lists */
+.caq-hidden {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px;
+  padding: 12px 2px 2px; margin-top: 6px; border-top: 1px dashed var(--caq-line);
+}
+.caq-hidden__label { font-size: 12px; color: var(--caq-muted); }
+
+/* Themed scrollbar for the add-to-list popover (match the dark app theme) */
+.caq-add-menu { scrollbar-width: thin; scrollbar-color: var(--caq-line) transparent; }
+.caq-add-menu::-webkit-scrollbar { width: 10px; }
+.caq-add-menu::-webkit-scrollbar-track { background: transparent; }
+.caq-add-menu::-webkit-scrollbar-thumb {
+  background: var(--caq-line); border-radius: 8px; border: 2px solid transparent; background-clip: padding-box;
+}
+.caq-add-menu::-webkit-scrollbar-thumb:hover { background: var(--caq-muted); background-clip: padding-box; }
