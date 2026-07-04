@@ -1,8 +1,9 @@
 {
  "modelId": "964db2dd4f98052f03baa9ca5f2dbcae",
  "bodyRegion": 3,
- "totalTerms": 291,
- "presentTerms": 120,
+ "totalTerms": 295,
+ "presentTerms": 134,
+ "uniqueStructures": 120,
  "groups": [
   {
    "id": "d1",
@@ -396,6 +397,11 @@
      "model": "Subcallosal Area"
     },
     {
+     "term": "Cingulate gyrus",
+     "cid": 19395,
+     "model": "Cingulate Gyrus"
+    },
+    {
      "term": "Pes hippocampus",
      "cid": 19709,
      "model": "Hippocampus"
@@ -419,6 +425,11 @@
      "term": "Columns of fornix",
      "cid": 18959,
      "model": "Column of Fornix"
+    },
+    {
+     "term": "Mammillary body",
+     "cid": 17740,
+     "model": "Mammillary Body"
     },
     {
      "term": "Indusium griseum",
@@ -461,6 +472,11 @@
      "model": "Interthalamic Adhesion"
     },
     {
+     "term": "Corpus callosum",
+     "cid": 21002,
+     "model": "Corpus Callosum"
+    },
+    {
      "term": "Anterior commissure",
      "cid": 21078,
      "model": "Anterior Commissure"
@@ -469,6 +485,11 @@
      "term": "Pineal body",
      "cid": 20574,
      "model": "Pineal Gland"
+    },
+    {
+     "term": "Commissure of fornix",
+     "cid": 24358,
+     "model": "Hippocampal Commissure"
     },
     {
      "term": "Cerebral crus",
@@ -532,14 +553,49 @@
      "model": "Arbor Vitae"
     },
     {
+     "term": "Pyramid",
+     "cid": 24645,
+     "model": "Pyramid of Medulla Oblongata"
+    },
+    {
+     "term": "Midbrain",
+     "cid": 16911,
+     "model": "Mesencephalon"
+    },
+    {
+     "term": "Pons",
+     "cid": 19076,
+     "model": "Pons"
+    },
+    {
+     "term": "Medulla oblongata",
+     "cid": 20291,
+     "model": "Medulla Oblongata"
+    },
+    {
      "term": "Tectum (lamina quadrigemina)",
      "cid": 20913,
      "model": "Quadrigeminal Plate"
     },
     {
+     "term": "Crus cerebri (cerebral peduncle)",
+     "cid": 24203,
+     "model": "Cerebral Peduncle"
+    },
+    {
      "term": "Substantia nigra",
      "cid": 20981,
      "model": "Substantia Nigra"
+    },
+    {
+     "term": "Cerebral aqueduct (of Sylvius)",
+     "cid": 23355,
+     "model": "Mesencephalic Aqueduct"
+    },
+    {
+     "term": "Pineal body",
+     "cid": 20574,
+     "model": "Pineal Gland"
     },
     {
      "term": "Superior colliculi",
@@ -552,9 +608,19 @@
      "model": "Inferior Colliculus"
     },
     {
+     "term": "Pulvinar of thalamus",
+     "cid": 18810,
+     "model": "Pulvinar Nuclei of Thalamus"
+    },
+    {
      "term": "Lateral geniculate body (LGB)",
      "cid": 23365,
      "model": "Lateral Geniculate Nucleus of Thalamus"
+    },
+    {
+     "term": "Pyramid",
+     "cid": 24645,
+     "model": "Pyramid of Medulla Oblongata"
     },
     {
      "term": "Olive",
@@ -565,6 +631,11 @@
      "term": "Olfactory nerve (CN-1)",
      "cid": 24741,
      "model": "Olfactory Nerve"
+    },
+    {
+     "term": "Optic nerve (CN-2)",
+     "cid": 21880,
+     "model": "Optic Nerve"
     },
     {
      "term": "Oculomotor nerve (CN-3)",
@@ -1088,15 +1159,23 @@
   },
   {
    "group": "d3",
-   "term": "Superior longitudinal fasciculus"
+   "term": "Frontooccipital fibers (superior longitudinal fasciculus)"
   },
   {
    "group": "d3",
-   "term": "Inferior longitudinal fasciculus"
+   "term": "Temporooccipital fibers (inferior longitudinal fasciculus)"
+  },
+  {
+   "group": "d3",
+   "term": "Frontotemporal fibers (superior longitudinal fasciculus)"
   },
   {
    "group": "d3",
    "term": "Uncinate fibers"
+  },
+  {
+   "group": "d3",
+   "term": "Cingulum"
   },
   {
    "group": "d3",
@@ -1109,6 +1188,10 @@
   {
    "group": "d3",
    "term": "Corona radiata"
+  },
+  {
+   "group": "d3",
+   "term": "Internal capsule"
   },
   {
    "group": "d3",
