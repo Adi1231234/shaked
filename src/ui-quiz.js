@@ -83,7 +83,7 @@
     function finish() {
       CAQ.stopSpoilerWatch();
       CAQ.showSpoilers();
-      CAQ.api.exitIsolate();
+      CAQ.api.resetModel();
       panel.remove();
       const launch = document.querySelector('.caq-launch');
       if (launch) launch.style.display = '';

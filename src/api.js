@@ -44,30 +44,40 @@
     if (btn) btn.click();
   }
 
-  const isolateTitleEl = () =>
-    [...document.querySelectorAll('h1, h2, div, span')].find(
-      (e) => e.childElementCount === 0 && /^Isolate:/.test((e.textContent || '').trim()));
-
-  function isIsolated() { return !!isolateTitleEl(); }
-
-  // Exit the app's Isolate view (Escape) so the next structure can be selected.
-  async function exitIsolate() {
-    if (!isIsolated()) return;
-    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', code: 'Escape', bubbles: true }));
-    for (let i = 0; i < 12; i++) { await sleep(120); if (!isIsolated()) break; }
-    await sleep(200);
+  // Reset the model to its original state: un-fades/un-hides everything,
+  // deselects, and restores the default camera. Used before each question (for a
+  // clean, consistent view) and on quiz exit (to restore the model).
+  function resetBtn() {
+    return [...document.querySelectorAll('button')].find(
+      (b) => /Reset model to original/i.test(b.getAttribute('aria-label') || ''));
+  }
+  async function resetModel() {
+    const b = resetBtn();
+    if (b) { b.click(); await sleep(1400); }
   }
 
-  function isolateBtn() {
-    return [...document.querySelectorAll('button, span, div')].find(
-      (e) => e.childElementCount === 0 && (e.textContent || '').trim() === 'Isolate');
+  // Fade all structures except the selected one, so a deep/occluded structure is
+  // clearly visible in context ON the main 3D model (no isolate modal). This
+  // lives behind the selection card's "More view controls" (⋮) menu.
+  async function fadeOthers() {
+    const more = [...document.querySelectorAll('button')].find(
+      (b) => /More view contr/i.test(b.getAttribute('aria-label') || b.textContent || ''));
+    if (!more) return false;
+    more.click();
+    await sleep(450);
+    const fo = [...document.querySelectorAll('button')].find(
+      (b) => /^Fade others$/i.test((b.textContent || '').trim()));
+    if (!fo) return false;
+    fo.click();
+    await sleep(1200);
+    return true;
   }
 
-  // Select a structure by its content id, then Isolate it so it is clearly
-  // visible on its own regardless of the current camera/occlusion. `name` is the
-  // exact model name used as the search query so the matching row appears.
+  // Select a structure by content id and reveal it on the main model: reset for a
+  // clean base, select it, then fade everything else so it stands out in context.
+  // `name` is the exact model name used as the search query so the row appears.
   async function selectByCid(cid, name) {
-    await exitIsolate();
+    await resetModel();
     if (!(await ensureSearchOpen())) return false;
     const input = searchInput();
     nativeSetValue.call(input, name);
@@ -83,8 +93,7 @@
     await sleep(500);
     closeSearchPanel();
     await sleep(250);
-    const iso = isolateBtn();
-    if (iso) { iso.click(); await sleep(1300); }
+    await fadeOthers();
     CAQ.hideSpoilers();
     return true;
   }
@@ -109,9 +118,6 @@
       }
       if (card && card !== document.body) card.classList.add('caq-hide');
     }
-    // "Isolate: <name>" title shown at the top of the Isolate view.
-    const title = isolateTitleEl();
-    if (title) title.classList.add('caq-hide');
   }
 
   CAQ.hideSpoilers = function () {
@@ -142,5 +148,5 @@
     if (observer) { observer.disconnect(); observer = null; }
   };
 
-  CAQ.api = { ready, selectByCid, ensureSearchOpen, closeSearchPanel, exitIsolate };
+  CAQ.api = { ready, selectByCid, ensureSearchOpen, closeSearchPanel, resetModel };
 })();
