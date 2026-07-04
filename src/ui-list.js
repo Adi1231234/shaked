@@ -22,15 +22,20 @@
       const inp = h('input', 'caq-group__rename');
       inp.value = orig;
       let done = false;
+      // Commit on Enter / click-outside, cancel on Escape. We use an outside-click
+      // (not blur) so the app stealing focus - e.g. an open search - can't tear the
+      // field down before the user finishes typing.
       const finish = (save) => {
         if (done) return; done = true;
+        document.removeEventListener('mousedown', onDoc, true);
         const v = inp.value.trim();
         inp.replaceWith(title);
         if (save && v && v !== orig && actions.rename) actions.rename(g, v);
       };
+      const onDoc = (e) => { if (e.target !== inp) finish(true); };
       inp.addEventListener('keydown', (e) => { if (e.key === 'Enter') finish(true); else if (e.key === 'Escape') finish(false); });
-      inp.addEventListener('blur', () => finish(true));
       title.replaceWith(inp); inp.focus(); inp.select();
+      setTimeout(() => document.addEventListener('mousedown', onDoc, true), 0);
     }
 
     function header(g) {
