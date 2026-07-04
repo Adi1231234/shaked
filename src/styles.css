@@ -58,6 +58,15 @@ html.caq-quiz-active nav { opacity: 0 !important; pointer-events: none !importan
 }
 .caq-tab--active { color: #fff; border-color: var(--caq-accent); background: rgba(59,158,255,.14); }
 .caq-modal__body { padding: 14px 22px; overflow-y: auto; }
+/* Custom scrollbar to match the dark theme */
+.caq-modal__body { scrollbar-width: thin; scrollbar-color: var(--caq-line) transparent; }
+.caq-modal__body::-webkit-scrollbar { width: 10px; }
+.caq-modal__body::-webkit-scrollbar-track { background: transparent; }
+.caq-modal__body::-webkit-scrollbar-thumb {
+  background: var(--caq-line); border-radius: 8px;
+  border: 2px solid transparent; background-clip: padding-box;
+}
+.caq-modal__body::-webkit-scrollbar-thumb:hover { background: var(--caq-muted); background-clip: padding-box; }
 .caq-group { margin-bottom: 14px; }
 .caq-group__head {
   display: flex; align-items: center; justify-content: space-between; gap: 8px;
