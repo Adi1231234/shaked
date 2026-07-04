@@ -62,11 +62,9 @@
       answer.className = 'caq-answer caq-answer--blurred';
       hint.textContent = '';
       nextBtn.disabled = true;
-      CAQ.showCurtain('טוען את האיבר הבא…');
       loading.textContent = 'מסמן את האיבר על המודל…';
       const ok = await CAQ.api.selectByCid(item.cid, item.model);
       loading.textContent = '';
-      CAQ.hideCurtain();
       if (ok) {
         hint.textContent = 'לחצי על המלבן המטושטש כדי לחשוף את השם';
         answer.style.cursor = 'pointer';
@@ -84,8 +82,8 @@
 
     function finish() {
       CAQ.stopSpoilerWatch();
+      CAQ.api.closeSearchPanel();
       CAQ.showSpoilers();
-      CAQ.removeCurtain();
       CAQ.api.resetModel();
       panel.remove();
       const launch = document.querySelector('.caq-launch');
