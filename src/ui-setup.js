@@ -27,9 +27,11 @@
     const head = h('div', 'caq-modal__head');
     head.appendChild(h('h2', 'caq-modal__title', 'מבחן אנטומיה - מוח'));
     const excl = structures.excluded ? structures.excluded.length : 0;
+    const uniq = structures.uniqueStructures || structures.presentTerms;
     head.appendChild(h('p', 'caq-modal__sub',
-      `${structures.presentTerms} איברים מהרשימה זמינים לבחירה על המודל הזה. ` +
-      `(${excl} איברים מהרשימה אינם קיימים כמבנה נבחר במודל ולכן הושמטו.)`));
+      `מתוך ${structures.totalTerms} האיברים ברשימה, ${structures.presentTerms} קיימים במודל וזמינים לתרגול ` +
+      `(${uniq} מבנים ייחודיים - המבחן לא חוזר על אותו מבנה). ` +
+      `${excl} האחרים אינם מסומנים במודל הזה.`));
     modal.appendChild(head);
 
     const tabs = h('div', 'caq-tabs');
@@ -96,7 +98,7 @@
         : boxes.filter((c) => c.checked).map((c) => c._item);
     }
     function updateCount() {
-      const n = selectedItems().length;
+      const n = new Set(selectedItems().map((it) => it.cid)).size;
       count.textContent = `${n} איברים נבחרו`;
       start.disabled = n === 0;
     }

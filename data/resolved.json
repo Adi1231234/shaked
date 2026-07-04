@@ -9,8 +9,8 @@
    "present": 50
   },
   "d3": {
-   "total": 56,
-   "present": 22
+   "total": 60,
+   "present": 23
   },
   "d4": {
    "total": 75,
@@ -761,6 +761,14 @@
    "cid": 20574,
    "model": "Pineal Gland",
    "via": "rescue"
+  },
+  {
+   "group": "d3",
+   "term": "Commissure of fornix",
+   "present": true,
+   "cid": 24358,
+   "model": "Hippocampal Commissure",
+   "via": "hippocampal commissure"
   },
   {
    "group": "d3",
@@ -1998,7 +2006,7 @@
   },
   {
    "group": "d3",
-   "term": "Superior longitudinal fasciculus",
+   "term": "Frontooccipital fibers (superior longitudinal fasciculus)",
    "present": false,
    "cid": null,
    "model": null,
@@ -2006,7 +2014,15 @@
   },
   {
    "group": "d3",
-   "term": "Inferior longitudinal fasciculus",
+   "term": "Temporooccipital fibers (inferior longitudinal fasciculus)",
+   "present": false,
+   "cid": null,
+   "model": null,
+   "via": null
+  },
+  {
+   "group": "d3",
+   "term": "Frontotemporal fibers (superior longitudinal fasciculus)",
    "present": false,
    "cid": null,
    "model": null,
@@ -2015,6 +2031,14 @@
   {
    "group": "d3",
    "term": "Uncinate fibers",
+   "present": false,
+   "cid": null,
+   "model": null,
+   "via": null
+  },
+  {
+   "group": "d3",
+   "term": "Cingulum",
    "present": false,
    "cid": null,
    "model": null,
@@ -2039,6 +2063,14 @@
   {
    "group": "d3",
    "term": "Corona radiata",
+   "present": false,
+   "cid": null,
+   "model": null,
+   "via": null
+  },
+  {
+   "group": "d3",
+   "term": "Internal capsule",
    "present": false,
    "cid": null,
    "model": null,

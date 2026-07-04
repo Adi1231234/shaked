@@ -49,20 +49,22 @@ const absent = results.filter(r=>!r.present);
 const byGroup={};
 for(const g of terms.groups) byGroup[g.id]={total:g.terms.length, present:results.filter(r=>r.group===g.id&&r.present).length};
 fs.writeFileSync(new URL('../data/resolved.json', import.meta.url), JSON.stringify({byGroup, present, absent}, null, 1));
-// Build final extension data: present items per group (drop duplicate terms mapping
-// to a cid already used by an EARLIER term, to avoid identical highlights with two answers)
-const usedCid = new Set();
+// Build final extension data: EVERY present term is kept (including duplicates that
+// appear more than once in the source list), so the data stays faithful to the 295
+// items. The quiz engine de-duplicates by cid at runtime so the same structure is
+// never asked twice.
 const outGroups = terms.groups.map(g => ({
   id: g.id, label: g.label,
   items: results.filter(r => r.group===g.id && r.present)
-    .filter(r => { if(usedCid.has(r.cid)) return false; usedCid.add(r.cid); return true; })
     .map(r => ({ term: r.term, cid: r.cid, model: r.model }))
 }));
+const allPresent = outGroups.flatMap(g => g.items);
 const structures = {
   modelId: '964db2dd4f98052f03baa9ca5f2dbcae',
   bodyRegion: 3,
   totalTerms: results.length,
-  presentTerms: outGroups.reduce((n,g)=>n+g.items.length,0),
+  presentTerms: allPresent.length,
+  uniqueStructures: new Set(allPresent.map((i) => i.cid)).size,
   groups: outGroups,
   excluded: absent.map(a => ({ group:a.group, term:a.term }))
 };
