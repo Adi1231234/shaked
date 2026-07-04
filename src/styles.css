@@ -11,7 +11,10 @@
 }
 
 /* --- Spoiler hiding while a quiz is running --- */
-html.caq-quiz-active nav { opacity: 0 !important; pointer-events: none !important; }
+/* Breadcrumbs + the selection card name stay visible but unreadable (blurred);
+   .caq-hide fully hides the search drawer and the card only while (re)selecting. */
+html.caq-quiz-active nav,
+.caq-blur { filter: blur(8px) !important; pointer-events: none !important; user-select: none !important; }
 .caq-hide { opacity: 0 !important; pointer-events: none !important; }
 
 /* --- Shared --- */
@@ -140,6 +143,7 @@ html.caq-quiz-active nav { opacity: 0 !important; pointer-events: none !importan
 }
 @keyframes caq-spin { to { transform: rotate(360deg); } }
 .caq-hint { text-align: center; font-size: 12px; color: var(--caq-muted); margin: 8px 0 0; height: 14px; }
+.caq-reselect { width: 100%; margin-top: 10px; padding: 8px 14px; font-size: 13px; }
 .caq-quiz__foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 14px; }
 .caq-quiz__foot .caq-btn { flex: 1; }
 .caq-loading { text-align: center; font-size: 13px; color: var(--caq-muted); padding: 4px 0; height: 14px; }

@@ -20,6 +20,9 @@
     const prompt = h('div', 'caq-prompt', 'מהו האיבר המסומן על המודל?');
     const answer = h('div', 'caq-answer');
     const hint = h('div', 'caq-hint', '');
+    // Re-marks the current structure as SELECTED on the model (useful after the
+    // learner has clicked HIDE / Isolate / Fade on the now-visible info card).
+    const reselectBtn = h('button', 'caq-btn caq-btn--ghost caq-reselect', '🎯 סמן שוב את האיבר');
     const foot = h('div', 'caq-quiz__foot');
     // After revealing, the learner can optionally mark whether they remembered it.
     const wrongBtn = h('button', 'caq-btn caq-btn--wrong', '✗ לא זכרתי');
@@ -27,7 +30,7 @@
     const rightBtn = h('button', 'caq-btn caq-btn--right', '✓ זכרתי');
     const nextBtn = h('button', 'caq-btn', 'המשך');
     [wrongBtn, skipBtn, rightBtn, nextBtn].forEach((b) => foot.appendChild(b));
-    [top, bar, prompt, answer, hint, foot].forEach((e) => panel.appendChild(e));
+    [top, bar, prompt, answer, hint, reselectBtn, foot].forEach((e) => panel.appendChild(e));
     document.body.appendChild(panel);
 
     let revealed = false;
@@ -89,6 +92,7 @@
         '<span class="caq-spinner"></span><span class="caq-loading-txt">מסמן את האיבר על המודל…</span>';
       prompt.style.visibility = 'hidden';
       hint.textContent = '';
+      reselectBtn.style.display = 'none'; // only offered once a structure is marked
       footMode('blurred');
       // .catch → false so one erroring structure can't hang the quiz on the spinner.
       const ok = await CAQ.api.selectByCid(item.cid, item.model).catch(() => false);
@@ -98,12 +102,29 @@
         answer.textContent = item.term;
         answer.style.cursor = 'pointer';
         hint.textContent = 'לחצי על המלבן המטושטש כדי לחשוף את האיבר';
+        reselectBtn.style.display = '';
       } else {
         answer.className = 'caq-answer';
         answer.textContent = '—';
         hint.textContent = 'לא הצלחתי לסמן את האיבר - אפשר להמשיך';
         footMode('skip');
       }
+    }
+
+    // Re-run the selection for the current structure so it is SELECTED again on
+    // the model, without touching the quiz progress or the reveal state.
+    let reselecting = false;
+    async function reselect() {
+      const item = quiz.current;
+      if (reselecting || !item) return;
+      reselecting = true;
+      reselectBtn.disabled = true;
+      const prevHint = hint.textContent;
+      hint.textContent = 'מסמן מחדש את האיבר…';
+      const ok = await CAQ.api.selectByCid(item.cid, item.model).catch(() => false);
+      hint.textContent = ok ? prevHint : 'לא הצלחתי לסמן מחדש את האיבר';
+      reselectBtn.disabled = false;
+      reselecting = false;
     }
 
     function advance() {
@@ -130,6 +151,7 @@
       advance();
     }
     answer.addEventListener('click', reveal);
+    reselectBtn.addEventListener('click', reselect);
     rightBtn.addEventListener('click', () => mark('known'));
     wrongBtn.addEventListener('click', () => mark('unknown'));
     skipBtn.addEventListener('click', advance);
