@@ -58,17 +58,24 @@
       revealed = false;
       progress.innerHTML = `<b>${quiz.position}</b> / ${quiz.total}`;
       fill.style.width = `${(quiz.position / quiz.total) * 100}%`;
-      answer.textContent = item.term;
-      answer.className = 'caq-answer caq-answer--blurred';
+      // Clear loading state inside the answer box so it is obvious we are working.
+      answer.className = 'caq-answer caq-answer--loading';
+      answer.style.cursor = 'default';
+      answer.innerHTML =
+        '<span class="caq-spinner"></span><span class="caq-loading-txt">מסמן את האיבר על המודל…</span>';
+      prompt.style.visibility = 'hidden';
       hint.textContent = '';
       nextBtn.disabled = true;
-      loading.textContent = 'מסמן את האיבר על המודל…';
       const ok = await CAQ.api.selectByCid(item.cid, item.model);
-      loading.textContent = '';
+      prompt.style.visibility = '';
       if (ok) {
-        hint.textContent = 'לחצי על המלבן המטושטש כדי לחשוף את השם';
+        answer.className = 'caq-answer caq-answer--blurred';
+        answer.textContent = item.term;
         answer.style.cursor = 'pointer';
+        hint.textContent = 'לחצי על המלבן המטושטש כדי לחשוף את השם';
       } else {
+        answer.className = 'caq-answer';
+        answer.textContent = '—';
         hint.textContent = 'לא הצלחתי לסמן את האיבר - אפשר להמשיך';
         nextBtn.disabled = false;
       }

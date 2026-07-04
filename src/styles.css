@@ -106,6 +106,14 @@ html.caq-quiz-active nav { opacity: 0 !important; pointer-events: none !importan
 }
 .caq-answer--blurred { filter: blur(9px); }
 .caq-answer--revealed { border-style: solid; border-color: var(--caq-green); color: var(--caq-green); cursor: default; }
+.caq-answer--loading { gap: 12px; border-style: solid; border-color: var(--caq-line); cursor: default; }
+.caq-loading-txt { font-size: 14px; font-weight: 500; color: var(--caq-muted); }
+.caq-spinner {
+  width: 22px; height: 22px; flex: none; border-radius: 50%;
+  border: 3px solid var(--caq-line); border-top-color: var(--caq-accent);
+  animation: caq-spin .8s linear infinite;
+}
+@keyframes caq-spin { to { transform: rotate(360deg); } }
 .caq-hint { text-align: center; font-size: 12px; color: var(--caq-muted); margin: 8px 0 0; height: 14px; }
 .caq-quiz__foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 14px; }
 .caq-quiz__foot .caq-btn { flex: 1; }
