@@ -24,8 +24,9 @@
 
   async function openSetup() {
     const data = await loadStructures();
+    const progress = CAQ.store ? await CAQ.store.load() : {};
     closeModal();
-    modalEl = CAQ.setup.openModal(data, startQuiz, closeModal);
+    modalEl = CAQ.setup.openModal(data, progress, startQuiz, closeModal);
   }
 
   async function init() {

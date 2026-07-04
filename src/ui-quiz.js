@@ -23,12 +23,26 @@
     const hint = h('div', 'caq-hint', '');
     const loading = h('div', 'caq-loading', '');
     const foot = h('div', 'caq-quiz__foot');
+    // After revealing, the learner can optionally mark whether they remembered it.
+    const wrongBtn = h('button', 'caq-btn caq-btn--wrong', '✗ לא זכרתי');
+    const skipBtn = h('button', 'caq-btn caq-btn--ghost caq-btn--skip', 'דלג');
+    const rightBtn = h('button', 'caq-btn caq-btn--right', '✓ זכרתי');
     const nextBtn = h('button', 'caq-btn', 'המשך');
-    foot.appendChild(nextBtn);
+    [wrongBtn, skipBtn, rightBtn, nextBtn].forEach((b) => foot.appendChild(b));
     [top, bar, prompt, answer, hint, loading, foot].forEach((e) => panel.appendChild(e));
     document.body.appendChild(panel);
 
     let revealed = false;
+
+    // Foot layouts: 'blurred' (waiting to reveal), 'answered' (mark buttons), 'skip'.
+    function footMode(mode) {
+      const marks = mode === 'answered';
+      wrongBtn.style.display = marks ? '' : 'none';
+      skipBtn.style.display = marks ? '' : 'none';
+      rightBtn.style.display = marks ? '' : 'none';
+      nextBtn.style.display = marks ? 'none' : '';
+      nextBtn.disabled = mode === 'blurred';
+    }
 
     function renderDone() {
       panel.innerHTML = '';
@@ -49,8 +63,8 @@
       revealed = true;
       answer.classList.remove('caq-answer--blurred');
       answer.classList.add('caq-answer--revealed');
-      hint.textContent = '';
-      nextBtn.disabled = false;
+      hint.textContent = 'סמני אם זכרת (לא חובה)';
+      footMode('answered');
     }
 
     async function load() {
@@ -65,7 +79,7 @@
         '<span class="caq-spinner"></span><span class="caq-loading-txt">מסמן את האיבר על המודל…</span>';
       prompt.style.visibility = 'hidden';
       hint.textContent = '';
-      nextBtn.disabled = true;
+      footMode('blurred');
       const ok = await CAQ.api.selectByCid(item.cid, item.model);
       prompt.style.visibility = '';
       if (ok) {
@@ -77,7 +91,7 @@
         answer.className = 'caq-answer';
         answer.textContent = '—';
         hint.textContent = 'לא הצלחתי לסמן את האיבר - אפשר להמשיך';
-        nextBtn.disabled = false;
+        footMode('skip');
       }
     }
 
@@ -98,7 +112,15 @@
       if (onExit) onExit();
     }
 
+    function mark(status) {
+      const cur = quiz.current;
+      if (cur && CAQ.store) CAQ.store.set(cur.cid, status);
+      advance();
+    }
     answer.addEventListener('click', reveal);
+    rightBtn.addEventListener('click', () => mark('known'));
+    wrongBtn.addEventListener('click', () => mark('unknown'));
+    skipBtn.addEventListener('click', advance);
     nextBtn.addEventListener('click', advance);
     exit.addEventListener('click', finish);
 
