@@ -1,0 +1,43 @@
+/* styles-add.css - controls injected onto the app's search rows + the add-to-list popover. */
+
+/* Per-row add controls (quick add + list menu) */
+.caq-row { position: relative !important; }
+.caq-add {
+  position: absolute; top: 50%; right: 10px; transform: translateY(-50%);
+  display: flex; gap: 5px; z-index: 5;
+}
+.caq-add__quick, .caq-add__menu {
+  border: 1px solid var(--caq-line); background: var(--caq-bg2); color: var(--caq-text);
+  border-radius: 6px; width: 26px; height: 26px; padding: 0; line-height: 1; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; font-weight: 700;
+  transition: border-color .12s, color .12s, background .12s;
+}
+.caq-add__quick { font-size: 17px; }
+.caq-add__menu { font-size: 11px; }
+.caq-add__quick:hover, .caq-add__menu:hover { border-color: var(--caq-green); color: var(--caq-green); }
+.caq-add__quick--done { background: var(--caq-green); color: #16250a; border-color: var(--caq-green); }
+
+/* Shared add-to-list popover (anchored to the clicked menu button) */
+.caq-add-menu {
+  position: fixed; z-index: 2147483600; width: 220px; max-height: 270px; overflow-y: auto;
+  background: var(--caq-bg); color: var(--caq-text); border: 1px solid var(--caq-line);
+  border-radius: 10px; box-shadow: 0 12px 40px rgba(0,0,0,.55); direction: rtl; padding: 6px;
+}
+.caq-add-menu__head { font-size: 12px; color: var(--caq-muted); padding: 6px 8px 8px; }
+.caq-add-menu__item {
+  display: flex; justify-content: space-between; gap: 8px; align-items: center; width: 100%;
+  background: transparent; border: 0; color: var(--caq-text); font: 600 13px var(--caq-font);
+  padding: 8px; border-radius: 6px; cursor: pointer; text-align: right;
+}
+.caq-add-menu__item:hover { background: var(--caq-bg2); }
+.caq-add-menu__sub { font-size: 11px; color: var(--caq-muted); flex: none; }
+.caq-add-menu__new { color: var(--caq-accent); }
+.caq-add-menu__input {
+  width: 100%; box-sizing: border-box; background: var(--caq-bg2); border: 1px solid var(--caq-line);
+  color: var(--caq-text); border-radius: 6px; padding: 8px; font: 13px var(--caq-font); margin-bottom: 6px;
+}
+.caq-add-menu__input:focus { outline: none; border-color: var(--caq-accent); }
+
+/* Delete link on custom-list group headers in the setup modal */
+.caq-group__del { background: none; border: 0; color: var(--caq-muted); cursor: pointer; font: 600 12px var(--caq-font); }
+.caq-group__del:hover { color: #e0533d; }

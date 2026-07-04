@@ -22,17 +22,28 @@
     CAQ.quizUI.run(quiz, () => {});
   }
 
+  function deleteList(id) {
+    if (CAQ.lists) CAQ.lists.remove(id);
+    openSetup(); // re-render so the removed list disappears
+  }
+
   async function openSetup() {
-    const data = await loadStructures();
+    const base = await loadStructures();
+    // Merge the user's custom lists in as extra (quizzable) groups.
+    const custom = (CAQ.lists ? CAQ.lists.all() : []).map((l) => (
+      { id: l.id, label: '★ ' + l.label, items: l.items, custom: true }));
+    const data = { ...base, groups: [...base.groups, ...custom] };
     const progress = CAQ.store ? await CAQ.store.load() : {};
     closeModal();
-    modalEl = CAQ.setup.openModal(data, progress, startQuiz, closeModal);
+    modalEl = CAQ.setup.openModal(data, progress, startQuiz, closeModal, deleteList);
   }
 
   async function init() {
     if (!(await CAQ.api.ready())) return;
+    if (CAQ.lists) await CAQ.lists.init();
     await loadStructures();
     CAQ.setup.mountLauncher(openSetup);
+    if (CAQ.searchAdd) CAQ.searchAdd.start();
   }
 
   init();

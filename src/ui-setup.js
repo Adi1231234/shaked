@@ -16,8 +16,8 @@
 
   CAQ.setup = {
     mountLauncher(onOpen) { document.body.appendChild(launcher(onOpen)); },
-    openModal(structures, progress, onStart, onClose) {
-      const el = CAQ._buildSetupModal(structures, progress || {}, onStart, onClose);
+    openModal(structures, progress, onStart, onClose, onDeleteList) {
+      const el = CAQ._buildSetupModal(structures, progress || {}, onStart, onClose, onDeleteList);
       document.body.appendChild(el);
       return el;
     },

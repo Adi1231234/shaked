@@ -10,7 +10,7 @@
 
   // statusOf(it) -> 'known' | 'unknown' | 'unmarked'; onChange fires on any toggle;
   // onCycle(it) is called when a status dot is clicked (to advance its status).
-  CAQ._buildPickList = function (structures, statusOf, onChange, onCycle) {
+  CAQ._buildPickList = function (structures, statusOf, onChange, onCycle, onDeleteList) {
     const wrap = h('div');
     const boxes = [];
     const dotEls = [];
@@ -22,6 +22,11 @@
       const gh = h('div', 'caq-group__head');
       gh.appendChild(h('div', 'caq-group__title', g.label));
       const toggle = h('button', 'caq-linkbtn', 'נקה הכל');
+      if (g.custom && onDeleteList) {
+        const del = h('button', 'caq-group__del', 'מחק רשימה');
+        del.addEventListener('click', () => onDeleteList(g.id));
+        gh.appendChild(del);
+      }
       gh.appendChild(toggle);
       grp.appendChild(gh);
       const items = h('div', 'caq-items');
