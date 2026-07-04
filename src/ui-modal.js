@@ -1,4 +1,4 @@
-// ui-modal.js - the setup modal: pick the quiz set + filter by saved progress.
+// ui-modal.js - the setup modal shell: tabs, saved-progress filter, and wiring.
 (function () {
   const CAQ = (window.CAQ = window.CAQ || {});
   const h = (tag, cls, txt) => {
@@ -17,7 +17,6 @@
     const allItems = structures.groups.flatMap((g) => g.items);
     const statusOf = (it) => progress[it.cid] || 'unmarked';
     const active = new Set(STATUSES.map((s) => s.key));
-    const dotEls = [];
 
     const overlay = h('div', 'caq-root caq-overlay');
     const modal = h('div', 'caq-modal');
@@ -58,43 +57,10 @@
     modal.appendChild(body);
     const allNote = h('p', 'caq-modal__sub',
       'המבחן יכלול את כל האיברים שתואמים לפילטר שלמעלה, בסדר אקראי וללא חזרות.');
-    const pickWrap = h('div');
-    pickWrap.style.display = 'none';
+    const list = CAQ._buildPickList(structures, statusOf, updateCount);
+    list.el.style.display = 'none';
     body.appendChild(allNote);
-    body.appendChild(pickWrap);
-
-    const boxes = [];
-    structures.groups.forEach((g) => {
-      if (!g.items.length) return;
-      const grp = h('div', 'caq-group');
-      const gh = h('div', 'caq-group__head');
-      gh.appendChild(h('div', 'caq-group__title', g.label));
-      const toggle = h('button', 'caq-linkbtn', 'נקה הכל');
-      gh.appendChild(toggle);
-      grp.appendChild(gh);
-      const items = h('div', 'caq-items');
-      const groupBoxes = [];
-      g.items.forEach((it) => {
-        const label = h('label', 'caq-item');
-        const cb = h('input');
-        cb.type = 'checkbox'; cb.checked = true; cb._item = it;
-        const dot = h('span', `caq-dot caq-dot--${statusOf(it)}`);
-        dotEls.push({ dot });
-        label.appendChild(cb);
-        label.appendChild(dot);
-        label.appendChild(h('span', null, it.term));
-        items.appendChild(label);
-        boxes.push(cb); groupBoxes.push(cb);
-      });
-      toggle.addEventListener('click', () => {
-        const anyOff = groupBoxes.some((c) => !c.checked);
-        groupBoxes.forEach((c) => (c.checked = anyOff));
-        toggle.textContent = anyOff ? 'נקה הכל' : 'בחר הכל';
-        updateCount();
-      });
-      grp.appendChild(items);
-      pickWrap.appendChild(grp);
-    });
+    body.appendChild(list.el);
 
     const foot = h('div', 'caq-modal__foot');
     const left = h('div', 'caq-modal__footleft');
@@ -110,7 +76,7 @@
 
     let mode = 'all';
     const selectedItems = () => (mode === 'all'
-      ? allItems : boxes.filter((c) => c.checked).map((c) => c._item))
+      ? allItems : list.boxes.filter((c) => c.checked).map((c) => c._item))
       .filter((it) => active.has(statusOf(it)));
     function statusCounts() {
       const seen = new Set(); const c = { known: 0, unknown: 0, unmarked: 0 };
@@ -118,6 +84,7 @@
       return c;
     }
     function updateCount() {
+      list.applyFilter(active);
       const n = new Set(selectedItems().map((it) => it.cid)).size;
       count.textContent = `${n} איברים במבחן`;
       start.disabled = n === 0;
@@ -129,16 +96,15 @@
       tabAll.classList.toggle('caq-tab--active', m === 'all');
       tabPick.classList.toggle('caq-tab--active', m === 'pick');
       allNote.style.display = m === 'all' ? '' : 'none';
-      pickWrap.style.display = m === 'pick' ? '' : 'none';
+      list.el.style.display = m === 'pick' ? '' : 'none';
       updateCount();
     }
     tabAll.addEventListener('click', () => setMode('all'));
     tabPick.addEventListener('click', () => setMode('pick'));
-    boxes.forEach((c) => c.addEventListener('change', updateCount));
     reset.addEventListener('click', () => {
       if (CAQ.store) CAQ.store.clear();
       Object.keys(progress).forEach((k) => delete progress[k]);
-      dotEls.forEach(({ dot }) => (dot.className = 'caq-dot caq-dot--unmarked'));
+      list.dotEls.forEach((dot) => (dot.className = 'caq-dot caq-dot--unmarked'));
       updateCount();
     });
     cancel.addEventListener('click', onClose);
