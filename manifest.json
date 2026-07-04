@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Complete Anatomy - מבחן מוח",
   "description": "כלי תרגול עצמי: בוחר איבר אקראי מרשימת המבחן, מסמן אותו על המודל התלת-ממדי ומסתיר את שמו עד שלוחצים לחשיפה.",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "permissions": ["storage"],
   "content_scripts": [
     {
