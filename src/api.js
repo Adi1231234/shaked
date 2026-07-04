@@ -139,11 +139,17 @@
       return r.left < 320 && r.top > 80 && r.top < 280;
     });
     if (nameH2) {
+      // Walk up to the full card panel — the one that also holds the HIDE / Isolate
+      // controls — and hide the whole thing (not just the name sub-section).
       let card = nameH2;
-      for (let i = 0; i < 8 && card && card !== document.body; i++) {
+      for (let i = 0; i < 10 && card && card !== document.body; i++) {
         card = card.parentElement;
         const r = card.getBoundingClientRect();
-        if (r.left < 40 && r.width > 140 && r.width < 380) { card.classList.add('caq-hide'); break; }
+        const t = card.textContent || '';
+        if (r.left < 40 && r.width > 140 && r.width < 380 && /HIDE/.test(t) && /Isolate/.test(t)) {
+          card.classList.add('caq-hide');
+          break;
+        }
       }
     }
     // Keep the search drawer hidden if it is open.
