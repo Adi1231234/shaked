@@ -49,7 +49,7 @@
       revealed = true;
       answer.classList.remove('caq-answer--blurred');
       answer.classList.add('caq-answer--revealed');
-      hint.textContent = 'לחצי "המשך" למעבר לאיבר הבא';
+      hint.textContent = '';
       nextBtn.disabled = false;
     }
 
@@ -72,7 +72,7 @@
         answer.className = 'caq-answer caq-answer--blurred';
         answer.textContent = item.term;
         answer.style.cursor = 'pointer';
-        hint.textContent = 'לחצי על המלבן המטושטש כדי לחשוף את השם';
+        hint.textContent = 'לחצי על המלבן המטושטש כדי לחשוף את האיבר';
       } else {
         answer.className = 'caq-answer';
         answer.textContent = '—';
