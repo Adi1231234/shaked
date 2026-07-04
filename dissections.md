@@ -215,7 +215,7 @@
 43. Interthalamic adhesion (massa intemedia)
 44. U fibers (arcuate)
 45. Frontooccipital fibers (superior longitudinal fasciculus)
-46. Temporooccipital fibers (inferior longitudinal fasciculus)
+46. Temprooccipital fibers (inferior longitudinal fasciculus)
 47. Frontotemporal fibers (superior longitudinal fasciculus)
 48. Uncinate fibers
 49. Cingulum
