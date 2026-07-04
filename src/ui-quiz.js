@@ -99,8 +99,14 @@
       const ok = await CAQ.api.selectByCid(item.cid, item.model).catch(() => false);
       prompt.style.visibility = '';
       if (ok) {
-        answer.className = 'caq-answer caq-answer--blurred';
+        // Blur the term instantly, with NO transition, so the name never flashes
+        // readable while the filter would otherwise animate in from 0. The .2s
+        // transition is restored right after — only for the click-to-reveal.
         answer.textContent = item.term;
+        answer.style.transition = 'none';
+        answer.className = 'caq-answer caq-answer--blurred';
+        void answer.offsetWidth; // commit the un-transitioned blur before painting
+        answer.style.transition = '';
         answer.style.cursor = 'pointer';
         hint.textContent = 'לחצי על המלבן המטושטש כדי לחשוף את האיבר';
         reselectBtn.style.display = '';
