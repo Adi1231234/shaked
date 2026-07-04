@@ -16,6 +16,14 @@
 html.caq-quiz-active nav,
 .caq-blur { filter: blur(8px) !important; pointer-events: none !important; user-select: none !important; }
 .caq-hide { opacity: 0 !important; pointer-events: none !important; }
+/* Hide the native search drawer from its first paint — before JS can tag it — so
+   the query + result names never flash while the extension drives the search. The
+   drawer animates open (growing height), which defeats the JS size heuristic for
+   ~150ms; this CSS doesn't depend on size. Anchored on the drawer's fixed nesting
+   above the app's stable data-e2e search hook; JS .caq-hide stays as a fallback. */
+html.caq-quiz-active div:has(> div > div > [data-e2e="SearchField_Container"]) {
+  opacity: 0 !important; pointer-events: none !important;
+}
 
 /* --- Shared --- */
 .caq-root, .caq-root * { box-sizing: border-box; font-family: var(--caq-font); }
