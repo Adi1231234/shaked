@@ -114,7 +114,12 @@
       });
     }
     function repaintDots() { dotEls.forEach((d) => (d.className = `caq-dot caq-dot--${statusOf(d._item)}`)); }
+    // Checkboxes whose row is currently visible under the active status filter.
+    function visibleBoxes() {
+      return groups.flatMap((g) => g.rows)
+        .filter((r) => r.label.style.display !== 'none').map((r) => r.cb);
+    }
 
-    return { el: wrap, boxes, dotEls, applyFilter, repaintDots };
+    return { el: wrap, boxes, dotEls, applyFilter, repaintDots, visibleBoxes };
   };
 })();

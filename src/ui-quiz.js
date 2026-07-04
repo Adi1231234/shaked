@@ -20,6 +20,9 @@
     const prompt = h('div', 'caq-prompt', 'מהו האיבר המסומן על המודל?');
     const answer = h('div', 'caq-answer');
     const hint = h('div', 'caq-hint', '');
+    // Re-marks the current structure as SELECTED on the model (useful after the
+    // learner has clicked HIDE / Isolate / Fade on the now-visible info card).
+    const reselectBtn = h('button', 'caq-btn caq-btn--ghost caq-reselect', '🎯 סמן שוב את האיבר');
     const foot = h('div', 'caq-quiz__foot');
     // After revealing, the learner can optionally mark whether they remembered it.
     const wrongBtn = h('button', 'caq-btn caq-btn--wrong', '✗ לא זכרתי');
@@ -27,7 +30,7 @@
     const rightBtn = h('button', 'caq-btn caq-btn--right', '✓ זכרתי');
     const nextBtn = h('button', 'caq-btn', 'המשך');
     [wrongBtn, skipBtn, rightBtn, nextBtn].forEach((b) => foot.appendChild(b));
-    [top, bar, prompt, answer, hint, foot].forEach((e) => panel.appendChild(e));
+    [top, bar, prompt, answer, hint, reselectBtn, foot].forEach((e) => panel.appendChild(e));
     document.body.appendChild(panel);
 
     let revealed = false;
@@ -73,6 +76,7 @@
       revealed = true;
       answer.classList.remove('caq-answer--blurred');
       answer.classList.add('caq-answer--revealed');
+      CAQ.revealAllSpoilers(); // answer is out → reveal the name, subtitle & breadcrumbs too
       hint.textContent = 'סמני אם זכרת (לא חובה)';
       footMode('answered');
     }
@@ -89,15 +93,24 @@
         '<span class="caq-spinner"></span><span class="caq-loading-txt">מסמן את האיבר על המודל…</span>';
       prompt.style.visibility = 'hidden';
       hint.textContent = '';
+      reselectBtn.style.display = 'none'; // only offered once a structure is marked
       footMode('blurred');
       // .catch → false so one erroring structure can't hang the quiz on the spinner.
       const ok = await CAQ.api.selectByCid(item.cid, item.model).catch(() => false);
       prompt.style.visibility = '';
       if (ok) {
-        answer.className = 'caq-answer caq-answer--blurred';
+        // Blur the term instantly, with NO transition, so the name never flashes
+        // readable while the filter would otherwise animate in from 0. The .2s
+        // transition is restored right after — only for the click-to-reveal.
         answer.textContent = item.term;
+        answer.style.transition = 'none';
+        answer.className = 'caq-answer caq-answer--blurred';
+        void answer.offsetWidth; // commit the un-transitioned blur before painting
+        answer.style.transition = '';
         answer.style.cursor = 'pointer';
         hint.textContent = 'לחצי על המלבן המטושטש כדי לחשוף את האיבר';
+        reselectBtn.style.display = '';
+        reselectBtn.disabled = CAQ.isQuizOrganShown(); // already selected → nothing to do
       } else {
         answer.className = 'caq-answer';
         answer.textContent = '—';
@@ -106,6 +119,30 @@
       }
     }
 
+    // Re-run the selection for the current structure so it is SELECTED again on
+    // the model, without touching the quiz progress or the reveal state.
+    let reselecting = false;
+    async function reselect() {
+      const item = quiz.current;
+      if (reselecting || !item || CAQ.isQuizOrganShown()) return; // already selected
+      reselecting = true;
+      reselectBtn.disabled = true;
+      const prevHint = hint.textContent;
+      hint.textContent = 'מסמן מחדש את האיבר…';
+      const ok = await CAQ.api.selectByCid(item.cid, item.model).catch(() => false);
+      hint.textContent = ok ? prevHint : 'לא הצלחתי לסמן מחדש את האיבר';
+      reselecting = false;
+      reselectBtn.disabled = CAQ.isQuizOrganShown(); // re-selected → disabled again
+    }
+    // Live-update the button as the learner clicks around the model: disabled while
+    // the quiz organ is the current selection, enabled once they view something else.
+    CAQ.onQuizOrganShown = (shown) => {
+      if (!reselecting && reselectBtn.style.display !== 'none') reselectBtn.disabled = shown;
+    };
+    // Single source of truth for "is this question's answer revealed" — read by the
+    // spoiler logic so re-selecting the organ never re-blurs an already-revealed name.
+    CAQ.isAnswerRevealed = () => revealed;
+
     function advance() {
       if (quiz.isDone) { renderDone(); return; }
       quiz.next();
@@ -113,6 +150,8 @@
     }
 
     function finish() {
+      CAQ.onQuizOrganShown = null;
+      CAQ.isAnswerRevealed = null;
       CAQ.stopSpoilerWatch();
       CAQ.api.closeSearchPanel();
       CAQ.showSpoilers();
@@ -130,6 +169,7 @@
       advance();
     }
     answer.addEventListener('click', reveal);
+    reselectBtn.addEventListener('click', reselect);
     rightBtn.addEventListener('click', () => mark('known'));
     wrongBtn.addEventListener('click', () => mark('unknown'));
     skipBtn.addEventListener('click', advance);

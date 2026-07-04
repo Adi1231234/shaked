@@ -11,8 +11,22 @@
 }
 
 /* --- Spoiler hiding while a quiz is running --- */
-html.caq-quiz-active nav { opacity: 0 !important; pointer-events: none !important; }
+/* Breadcrumbs + the selection card name/subtitle stay visible but unreadable when
+   blurred; clickable so the learner can choose to reveal via the prompt. The blur is
+   applied by JS (caq-blur) only while the quiz organ is on screen — see tagSpoilers.
+   .caq-hide fully hides the search drawer and the card only while (re)selecting. */
+.caq-blur { filter: blur(8px) !important; user-select: none !important; cursor: pointer !important; pointer-events: auto !important; }
+/* A blurred spoiler the learner chose to reveal (defined after .caq-blur to win). */
+.caq-reveal { filter: none !important; user-select: text !important; cursor: auto !important; }
 .caq-hide { opacity: 0 !important; pointer-events: none !important; }
+/* Hide the native search drawer from its first paint — before JS can tag it — so
+   the query + result names never flash while the extension drives the search. The
+   drawer animates open (growing height), which defeats the JS size heuristic for
+   ~150ms; this CSS doesn't depend on size. Anchored on the drawer's fixed nesting
+   above the app's stable data-e2e search hook; JS .caq-hide stays as a fallback. */
+html.caq-quiz-active div:has(> div > div > [data-e2e="SearchField_Container"]) {
+  opacity: 0 !important; pointer-events: none !important;
+}
 
 /* --- Shared --- */
 .caq-root, .caq-root * { box-sizing: border-box; font-family: var(--caq-font); }
@@ -140,6 +154,7 @@ html.caq-quiz-active nav { opacity: 0 !important; pointer-events: none !importan
 }
 @keyframes caq-spin { to { transform: rotate(360deg); } }
 .caq-hint { text-align: center; font-size: 12px; color: var(--caq-muted); margin: 8px 0 0; height: 14px; }
+.caq-reselect { width: 100%; margin-top: 10px; padding: 8px 14px; font-size: 13px; }
 .caq-quiz__foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 14px; }
 .caq-quiz__foot .caq-btn { flex: 1; }
 .caq-loading { text-align: center; font-size: 13px; color: var(--caq-muted); padding: 4px 0; height: 14px; }
