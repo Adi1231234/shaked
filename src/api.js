@@ -44,6 +44,26 @@
     if (btn) btn.click();
   }
 
+  // The search drawer (left panel with the input + results). We hide it while a
+  // quiz runs so the user never sees the query being typed or the result names.
+  // Hidden via opacity/pointer-events (caq-hide) — the extension still drives it
+  // programmatically (setting the value and .click() work on invisible elements).
+  function searchPanel() {
+    const input = searchInput();
+    if (!input) return null;
+    let el = input;
+    for (let i = 0; i < 10 && el && el !== document.body; i++) {
+      el = el.parentElement;
+      const r = el.getBoundingClientRect();
+      if (r.left < 50 && r.width > 280 && r.width < 780 && r.height > 380) return el;
+    }
+    return null;
+  }
+  function hideSearchPanel() {
+    const p = searchPanel();
+    if (p) p.classList.add('caq-hide');
+  }
+
   // Reset the model to its original state: un-fades/un-hides everything,
   // deselects, and restores the default camera. Used before each question (for a
   // clean, consistent view) and on quiz exit (to restore the model).
@@ -79,20 +99,20 @@
   async function selectByCid(cid, name) {
     await resetModel();
     if (!(await ensureSearchOpen())) return false;
+    hideSearchPanel();
     const input = searchInput();
     nativeSetValue.call(input, name);
     input.dispatchEvent(new Event('input', { bubbles: true }));
     let row = null;
     for (let i = 0; i < 30; i++) {
       await sleep(120);
+      hideSearchPanel();
       row = document.querySelector(`li[data-testid="structure-item-${cid}"]`);
       if (row) break;
     }
     if (!row) return false;
     (row.querySelector('button') || row).click();
     await sleep(500);
-    closeSearchPanel();
-    await sleep(250);
     await fadeOthers();
     CAQ.hideSpoilers();
     return true;
@@ -118,6 +138,8 @@
       }
       if (card && card !== document.body) card.classList.add('caq-hide');
     }
+    // Keep the search drawer hidden if it is open.
+    hideSearchPanel();
   }
 
   CAQ.hideSpoilers = function () {
@@ -147,27 +169,6 @@
   CAQ.stopSpoilerWatch = function () {
     if (observer) { observer.disconnect(); observer = null; }
   };
-
-  // --- Loading curtain --------------------------------------------------
-  // Opaque overlay shown while a structure is being selected, so the user never
-  // sees the app's search panel/typing/results (which reveal the answer).
-  CAQ.showCurtain = function (text) {
-    let c = document.getElementById('caq-curtain');
-    if (!c) {
-      c = document.createElement('div');
-      c.id = 'caq-curtain';
-      c.className = 'caq-root caq-curtain';
-      c.innerHTML = '<div class="caq-curtain__box"><div class="caq-spinner"></div>' +
-        '<div class="caq-curtain__txt"></div></div>';
-      document.body.appendChild(c);
-    }
-    c.querySelector('.caq-curtain__txt').textContent = text || 'טוען…';
-    c.classList.add('caq-curtain--on');
-  };
-  CAQ.hideCurtain = function () {
-    document.getElementById('caq-curtain')?.classList.remove('caq-curtain--on');
-  };
-  CAQ.removeCurtain = function () { document.getElementById('caq-curtain')?.remove(); };
 
   CAQ.api = { ready, selectByCid, ensureSearchOpen, closeSearchPanel, resetModel };
 })();
