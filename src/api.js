@@ -101,7 +101,6 @@
     // never flashes readable mid-render. Once the selection settles we reveal the
     // card again with only its name blurred.
     cardSuppressed = true;
-    revealedThisQuestion = false; // fresh question — answer is hidden again
     // Drop any manual reveals from the previous structure so they don't carry over.
     document.querySelectorAll('.caq-reveal').forEach((e) => e.classList.remove('caq-reveal'));
     await resetModel();
@@ -147,9 +146,12 @@
   let observer = null;
   let cardSuppressed = false;      // true → hide the whole info card during a selection
   let currentSpoilerName = null;   // card heading of the organ under quiz right now
-  let revealedThisQuestion = false;// learner has revealed this question's answer
   let lastName = null;             // last displayed heading, to detect structure changes
   let lastShown = null;            // last "is the quiz organ on screen" value, for the hook
+  // Whether the current question's answer is revealed lives in ui-quiz (its `revealed`
+  // flag), read via this hook — so re-selecting the SAME organ never re-hides a name
+  // the learner already revealed. Defaults to "not revealed" before a quiz sets it.
+  const answerRevealed = () => !!(CAQ.isAnswerRevealed && CAQ.isAnswerRevealed());
 
   // Stable app hooks (data-e2e) for the selection card, resilient to re-layout:
   //   heading  = the English primary name       (the main spoiler)
@@ -181,11 +183,14 @@
       lastName = curName;
     }
     const showingQuizOrgan = !!(curName && curName === currentSpoilerName);
-    const blurIt = cardSuppressed || (showingQuizOrgan && !revealedThisQuestion);
+    // The name is only a spoiler until it's revealed; once revealed, never re-blur
+    // it — not even while re-selecting the same organ.
+    const spoiler = !answerRevealed();
+    const blurIt = spoiler && (cardSuppressed || showingQuizOrgan);
     const wrap = nameWrap();
     if (wrap) wrap.classList.toggle('caq-blur', blurIt); // name + Latin subtitle
     const card = cardPanel();
-    if (card) card.classList.toggle('caq-hide', cardSuppressed);
+    if (card) card.classList.toggle('caq-hide', spoiler && cardSuppressed);
     // Breadcrumbs mirror the selected structure — blur them under the same condition.
     breadcrumbNavs().forEach((n) => n.classList.toggle('caq-blur', blurIt));
     // Notify listeners (the re-select button) when the quiz organ's visibility flips.
@@ -226,7 +231,6 @@
     document.documentElement.classList.remove('caq-quiz-active');
     cardSuppressed = false;
     currentSpoilerName = null;
-    revealedThisQuestion = false;
     lastName = null;
     lastShown = null;
     document.querySelectorAll('.caq-hide').forEach((e) => e.classList.remove('caq-hide'));
@@ -234,11 +238,10 @@
     document.querySelectorAll('.caq-reveal').forEach((e) => e.classList.remove('caq-reveal'));
   };
 
-  // Reveal every blurred spoiler at once (name, subtitle, breadcrumbs). Called when
-  // the learner reveals the answer — once the answer is out, hiding the rest is moot.
-  // This holds for the rest of the question even if they revisit the organ.
+  // Reveal every blurred spoiler at once (name, subtitle, breadcrumbs). Called by
+  // ui-quiz right after it flips `revealed` true — tagSpoilers then reads that via
+  // answerRevealed() and unblurs. Holds for the rest of the question, re-selects too.
   CAQ.revealAllSpoilers = function () {
-    revealedThisQuestion = true;
     tagSpoilers();
   };
 

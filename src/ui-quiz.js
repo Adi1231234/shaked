@@ -139,6 +139,9 @@
     CAQ.onQuizOrganShown = (shown) => {
       if (!reselecting && reselectBtn.style.display !== 'none') reselectBtn.disabled = shown;
     };
+    // Single source of truth for "is this question's answer revealed" — read by the
+    // spoiler logic so re-selecting the organ never re-blurs an already-revealed name.
+    CAQ.isAnswerRevealed = () => revealed;
 
     function advance() {
       if (quiz.isDone) { renderDone(); return; }
@@ -148,6 +151,7 @@
 
     function finish() {
       CAQ.onQuizOrganShown = null;
+      CAQ.isAnswerRevealed = null;
       CAQ.stopSpoilerWatch();
       CAQ.api.closeSearchPanel();
       CAQ.showSpoilers();
