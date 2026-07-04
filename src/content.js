@@ -22,25 +22,27 @@
     CAQ.quizUI.run(quiz, () => {});
   }
 
-  function deleteList(group) {
-    if (!CAQ.lists) return;
-    // Custom lists are removed whole; for built-ins we only drop the user's additions.
-    if (group.custom) CAQ.lists.remove(group.id);
-    else CAQ.lists.clearAdditions(group.id);
-    openSetup(); // re-render to reflect the change
-  }
+  // List management from the setup modal. Each re-renders so the change shows.
+  const actions = {
+    rename: (g, label) => { CAQ.lists.rename(g.id, label); openSetup(); },
+    // Custom lists are removed whole; built-in lists are hidden (base is bundled).
+    remove: (g) => { g.custom ? CAQ.lists.remove(g.id) : CAQ.lists.hide(g.id); openSetup(); },
+    clearAdditions: (g) => { CAQ.lists.clearAdditions(g.id); openSetup(); },
+    restore: (id) => { CAQ.lists.show(id); openSetup(); },
+  };
 
   async function openSetup() {
     const base = await loadStructures();
     // Built-in dissection lists (with your additions) + custom lists, as quizzable groups.
     const groups = CAQ.lists
       ? CAQ.lists.targets().map((t) => (
-        { id: t.id, label: (t.builtin ? '' : '★ ') + t.label, items: t.items, custom: !t.builtin, added: t.added }))
+        { id: t.id, label: (t.builtin ? '' : '★ ') + t.label, rawLabel: t.label, items: t.items, custom: !t.builtin, added: t.added }))
       : base.groups;
-    const data = { ...base, groups };
+    const hidden = CAQ.lists ? CAQ.lists.hiddenBuiltins() : [];
+    const data = { ...base, groups, hidden };
     const progress = CAQ.store ? await CAQ.store.load() : {};
     closeModal();
-    modalEl = CAQ.setup.openModal(data, progress, startQuiz, closeModal, deleteList);
+    modalEl = CAQ.setup.openModal(data, progress, startQuiz, closeModal, actions);
   }
 
   async function init() {
