@@ -76,6 +76,7 @@
       revealed = true;
       answer.classList.remove('caq-answer--blurred');
       answer.classList.add('caq-answer--revealed');
+      CAQ.revealAllSpoilers(); // answer is out → reveal the name, subtitle & breadcrumbs too
       hint.textContent = 'סמני אם זכרת (לא חובה)';
       footMode('answered');
     }

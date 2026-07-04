@@ -217,6 +217,12 @@
     document.querySelectorAll('.caq-reveal').forEach((e) => e.classList.remove('caq-reveal'));
   };
 
+  // Reveal every blurred spoiler at once (name, subtitle, breadcrumbs). Called when
+  // the learner reveals the answer — once the answer is out, hiding the rest is moot.
+  CAQ.revealAllSpoilers = function () {
+    document.querySelectorAll('.caq-blur, nav').forEach((e) => e.classList.add('caq-reveal'));
+  };
+
   CAQ.startSpoilerWatch = function () {
     if (observer) return;
     document.addEventListener('click', onSpoilerClick, true);
