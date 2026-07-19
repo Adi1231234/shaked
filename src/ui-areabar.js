@@ -32,6 +32,15 @@
       if (name && actions.addArea) actions.addArea(name);
     });
     strip.appendChild(add);
+
+    // Import a word list into the active area (grouped with ＋אזור as the content
+    // actions, so the modal footer stays a clean start/cancel bar).
+    const imp = h('button', 'caq-areatab caq-areatab--import', '⬆ ייבוא רשימה');
+    imp.title = 'הדביקי רשימת מונחים, נתאים כל אחד למבנה במודל ונוסיף אותם לאזור הפעיל';
+    imp.addEventListener('click', () => {
+      if (CAQ._openImport) CAQ._openImport(activeArea ? activeArea.label : '', (label, items) => actions.importList && actions.importList(label, items));
+    });
+    strip.appendChild(imp);
     bar.appendChild(strip);
 
     // Rename / delete controls, only for a user-created active area.

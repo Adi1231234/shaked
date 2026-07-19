@@ -38,6 +38,14 @@
     const filter = CAQ._buildFilterRow(active, () => updateCount());
     const chips = filter.chips;
     const hint = filter.hint;
+    // Low-emphasis list utilities belong with the status row, not the terminal
+    // action bar: bulk select/clear (pick mode only) + reset progress. They sit at
+    // the end of the chips line (before the full-width hint).
+    const tools = h('div', 'caq-filter__tools');
+    const selAll = h('button', 'caq-toolbtn caq-selall', 'נקה הכל');
+    const reset = h('button', 'caq-toolbtn caq-reset', '↺ אפס התקדמות');
+    tools.appendChild(selAll); tools.appendChild(reset);
+    filter.el.insertBefore(tools, hint);
     modal.appendChild(filter.el);
 
     const body = h('div', 'caq-modal__body');
@@ -51,19 +59,12 @@
     body.appendChild(list.el);
     if (CAQ._buildExcluded) body.appendChild(CAQ._buildExcluded(structures.excluded));
 
+    // Terminal action bar: just the count (status) and the dialog actions, so the
+    // primary is unmistakable. Content utilities live in the area bar / status row.
     const foot = h('div', 'caq-modal__foot');
     const left = h('div', 'caq-modal__footleft');
     const count = h('span', 'caq-selcount', '');
-    // Global select/clear toggle (pick mode only) — clear everything, then tick the
-    // few you want, instead of un-ticking pre-checked items.
-    const selAll = h('button', 'caq-linkbtn caq-selall', 'נקה הכל');
-    const importBtn = h('button', 'caq-linkbtn caq-import', '⬆ ייבוא רשימה');
-    importBtn.title = 'הדביקי רשימת מונחים, נתאים כל אחד למבנה במודל ונוסיף אותם לאזור הזה';
-    importBtn.addEventListener('click', () => {
-      if (CAQ._openImport) CAQ._openImport(structures.areaLabel, (label, items) => actions.importList && actions.importList(label, items));
-    });
-    const reset = h('button', 'caq-linkbtn caq-reset', 'אפס התקדמות');
-    left.appendChild(count); left.appendChild(selAll); left.appendChild(importBtn); left.appendChild(reset);
+    left.appendChild(count);
     const right = h('div', 'caq-modal__footright');
     const cancel = h('button', 'caq-btn caq-btn--ghost', 'ביטול');
     const start = h('button', 'caq-btn', 'התחל מבחן');

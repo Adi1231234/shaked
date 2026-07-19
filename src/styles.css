@@ -115,8 +115,6 @@ html.caq-quiz-active div:has(> div > div > [data-e2e="SearchField_Container"]) {
 .caq-chip--unmarked.caq-chip--on { color: var(--caq-text); border-color: var(--caq-muted); }
 .caq-modal__footleft { display: flex; gap: 14px; align-items: center; }
 .caq-modal__footright { display: flex; gap: 10px; }
-.caq-reset { color: var(--caq-muted); }
-.caq-reset:hover { color: #e0533d; }
 .caq-modal__foot {
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
   padding: 14px 22px; border-top: 1px solid var(--caq-line);
@@ -134,7 +132,10 @@ html.caq-quiz-active div:has(> div > div > [data-e2e="SearchField_Container"]) {
 }
 .caq-areatab:hover { color: var(--caq-text); border-color: var(--caq-muted); }
 .caq-areatab--active { color: #fff; border-color: var(--caq-accent); background: rgba(59,158,255,.18); }
-.caq-areatab--add { color: var(--caq-accent); border-style: dashed; background: transparent; }
+/* The two content-add actions (add area / import list) read as dashed "add"
+   affordances, distinct from the solid area tabs. */
+.caq-areatab--add, .caq-areatab--import { color: var(--caq-accent); border-style: dashed; background: transparent; }
+.caq-areatab--add:hover, .caq-areatab--import:hover { color: var(--caq-accent); border-color: var(--caq-accent); background: rgba(59,158,255,.10); }
 .caq-areatools { display: flex; gap: 14px; margin-top: 8px; }
 .caq-areatools__del { color: var(--caq-muted); }
 .caq-areatools__del:hover { color: #e0533d; }
@@ -153,7 +154,13 @@ html.caq-quiz-active div:has(> div > div > [data-e2e="SearchField_Container"]) {
 .caq-excl__item { display: flex; gap: 8px; align-items: baseline; padding: 3px 0; min-width: 0; }
 .caq-excl__term { direction: ltr; text-align: left; font-size: 12.5px; color: var(--caq-text); }
 .caq-excl__near { direction: ltr; text-align: left; font-size: 11px; color: var(--caq-muted); flex: 1; min-width: 0; }
-.caq-import { color: var(--caq-green); }
+
+/* Low-emphasis list utilities at the end of the status row (one muted treatment,
+   no competing accent colors). */
+.caq-filter__tools { display: flex; align-items: center; gap: 16px; margin-inline-start: auto; }
+.caq-toolbtn { background: none; border: 0; padding: 0; cursor: pointer; color: var(--caq-muted); font: 600 12.5px var(--caq-font); transition: color .12s; }
+.caq-toolbtn:hover { color: var(--caq-text); }
+.caq-reset:hover { color: #e0533d; }
 
 /* --- Import dialog --- */
 .caq-overlay--top { z-index: 2147483500; background: rgba(0,0,0,.4); }
