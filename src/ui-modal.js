@@ -1,4 +1,6 @@
-// ui-modal.js - the setup modal shell: tabs, saved-progress filter, and wiring.
+// ui-modal.js - the setup modal shell: area tabs, all/pick mode, saved-progress
+// filter, excluded section, and wiring. One area's content is shown at a time;
+// switching areas re-opens the modal (content.js) scoped to the chosen area.
 (function () {
   const CAQ = (window.CAQ = window.CAQ || {});
   const h = (tag, cls, txt) => {
@@ -7,13 +9,10 @@
     if (txt != null) el.textContent = txt;
     return el;
   };
-  const STATUSES = [
-    { key: 'known', label: 'זכרתי' },
-    { key: 'unknown', label: 'לא זכרתי' },
-    { key: 'unmarked', label: 'לא סומן' },
-  ];
+  const STATUSES = CAQ._STATUSES;
 
   CAQ._buildSetupModal = function (structures, progress, onStart, onClose, actions) {
+    actions = actions || {};
     const allItems = structures.groups.flatMap((g) => g.items);
     const statusOf = (it) => progress[it.cid] || 'unmarked';
     const active = new Set(STATUSES.map((s) => s.key));
@@ -22,13 +21,12 @@
     const modal = h('div', 'caq-modal');
     overlay.appendChild(modal);
 
+    // Study-area tab strip (מוח / ראש צוואר / user areas).
+    if (structures.areas && CAQ._buildAreaBar) modal.appendChild(CAQ._buildAreaBar(structures.areas, structures.activeAreaId, actions));
+
     const head = h('div', 'caq-modal__head');
-    head.appendChild(h('h2', 'caq-modal__title', 'מבחן אנטומיה - מוח'));
-    const excl = structures.excluded ? structures.excluded.length : 0;
-    const uniq = structures.uniqueStructures || structures.presentTerms;
-    head.appendChild(h('p', 'caq-modal__sub',
-      `מתוך ${structures.totalTerms} האיברים ברשימה, ${structures.presentTerms} קיימים במודל וזמינים לתרגול ` +
-      `(${uniq} מבנים ייחודיים - המבחן לא חוזר על אותו מבנה). ${excl} האחרים אינם מסומנים במודל הזה.`));
+    head.appendChild(h('h2', 'caq-modal__title', 'מבחן אנטומיה - ' + (structures.areaLabel || '')));
+    head.appendChild(h('p', 'caq-modal__sub', CAQ._areaSubtitle(structures)));
     modal.appendChild(head);
 
     const tabs = h('div', 'caq-tabs');
@@ -37,24 +35,10 @@
     tabs.appendChild(tabAll); tabs.appendChild(tabPick);
     modal.appendChild(tabs);
 
-    const filterRow = h('div', 'caq-filter');
-    filterRow.appendChild(h('span', 'caq-filter__label', 'הצג:'));
-    const chips = {};
-    STATUSES.forEach((s) => {
-      const chip = h('button', `caq-chip caq-chip--on caq-chip--${s.key}`, s.label);
-      chip.addEventListener('click', () => {
-        active.has(s.key) ? active.delete(s.key) : active.add(s.key);
-        if (!active.size) active.add(s.key);
-        chip.classList.toggle('caq-chip--on', active.has(s.key));
-        updateCount();
-      });
-      chips[s.key] = chip;
-      filterRow.appendChild(chip);
-    });
-    const hint = h('span', 'caq-filter__label', 'לחצי על הנקודה שליד איבר כדי לשנות סטטוס: אפור ← ירוק (זכרתי) ← אדום (לא זכרתי)');
-    hint.style.flexBasis = '100%';
-    filterRow.appendChild(hint);
-    modal.appendChild(filterRow);
+    const filter = CAQ._buildFilterRow(active, () => updateCount());
+    const chips = filter.chips;
+    const hint = filter.hint;
+    modal.appendChild(filter.el);
 
     const body = h('div', 'caq-modal__body');
     modal.appendChild(body);
@@ -63,16 +47,23 @@
     const list = CAQ._buildPickList(structures, statusOf, updateCount, cycleStatus, actions);
     list.el.style.display = 'none';
     body.appendChild(allNote);
+    if (!allItems.length) body.appendChild(h('p', 'caq-modal__sub', 'האזור הזה עדיין ריק. ייבאי רשימת מונחים או הוסיפי מבנים מהחיפוש של האפליקציה.'));
     body.appendChild(list.el);
+    if (CAQ._buildExcluded) body.appendChild(CAQ._buildExcluded(structures.excluded));
 
     const foot = h('div', 'caq-modal__foot');
     const left = h('div', 'caq-modal__footleft');
     const count = h('span', 'caq-selcount', '');
     // Global select/clear toggle (pick mode only) — clear everything, then tick the
-    // few you want, instead of un-ticking ~130 pre-checked items.
+    // few you want, instead of un-ticking pre-checked items.
     const selAll = h('button', 'caq-linkbtn caq-selall', 'נקה הכל');
+    const importBtn = h('button', 'caq-linkbtn caq-import', '⬆ ייבוא רשימה');
+    importBtn.title = 'הדביקי רשימת מונחים, נתאים כל אחד למבנה במודל ונוסיף אותם לאזור הזה';
+    importBtn.addEventListener('click', () => {
+      if (CAQ._openImport) CAQ._openImport(structures.areaLabel, (label, items) => actions.importList && actions.importList(label, items));
+    });
     const reset = h('button', 'caq-linkbtn caq-reset', 'אפס התקדמות');
-    left.appendChild(count); left.appendChild(selAll); left.appendChild(reset);
+    left.appendChild(count); left.appendChild(selAll); left.appendChild(importBtn); left.appendChild(reset);
     const right = h('div', 'caq-modal__footright');
     const cancel = h('button', 'caq-btn caq-btn--ghost', 'ביטול');
     const start = h('button', 'caq-btn', 'התחל מבחן');
