@@ -1,0 +1,12 @@
+# Upstream atlases (large, re-downloadable via tools/fetch_sources.sh)
+vendor/
+
+# Her photos and any derived scan data - never commit
+photos/
+capture/frames/
+capture/*.mp4
+capture/*.mov
+
+# Blender noise
+*.blend1
+__pycache__/

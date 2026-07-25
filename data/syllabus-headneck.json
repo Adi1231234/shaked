@@ -1,0 +1,2195 @@
+{
+ "modelId": "964db2dd4f98052f03baa9ca5f2dbcae",
+ "bodyRegion": 3,
+ "totalTerms": 405,
+ "presentTerms": 342,
+ "groups": [
+  {
+   "id": "hn1",
+   "label": "ניתוח 1 - גולגולת וחוליות",
+   "items": [
+    {
+     "term": "frontal bone",
+     "cid": 20545,
+     "model": "Frontal Bone"
+    },
+    {
+     "term": "parietal bone",
+     "cid": 20161,
+     "model": "Parietal Bone"
+    },
+    {
+     "term": "occipital bone",
+     "cid": 17991,
+     "model": "Occipital Bone"
+    },
+    {
+     "term": "temporal bone",
+     "cid": 21461,
+     "model": "Temporal Bone"
+    },
+    {
+     "term": "Zygomatic bone",
+     "cid": 23297,
+     "model": "Zygomatic Bone"
+    },
+    {
+     "term": "maxilla",
+     "cid": 24695,
+     "model": "Maxilla"
+    },
+    {
+     "term": "mandible",
+     "cid": 22122,
+     "model": "Mandible"
+    },
+    {
+     "term": "ethmoid bone",
+     "cid": 23626,
+     "model": "Ethmoid Bone"
+    },
+    {
+     "term": "sphenoid bone",
+     "cid": 16931,
+     "model": "Sphenoid Bone"
+    },
+    {
+     "term": "nasal bone",
+     "cid": 19739,
+     "model": "Nasal Bone"
+    },
+    {
+     "term": "zygomatic process of maxilla",
+     "cid": 17112,
+     "model": "Zygomatic Process of Maxilla"
+    },
+    {
+     "term": "alveolar process of maxilla",
+     "cid": 21677,
+     "model": "Alveolar Process of Maxilla"
+    },
+    {
+     "term": "frontal process of maxilla",
+     "cid": 24899,
+     "model": "Frontal Process of Maxilla"
+    },
+    {
+     "term": "temporal process of zygomatic bone",
+     "cid": 22436,
+     "model": "Temporal Process of Zygomatic Bone"
+    },
+    {
+     "term": "zygomatic arch",
+     "cid": 19884,
+     "model": "Zygomatic Arch (Zygomatic Part)"
+    },
+    {
+     "term": "frontal process of zygomatic bone",
+     "cid": 18886,
+     "model": "Frontal Process of Zygomatic Bone"
+    },
+    {
+     "term": "glabella",
+     "cid": 22186,
+     "model": "Glabella"
+    },
+    {
+     "term": "pterion",
+     "cid": 19522,
+     "model": "Pterion (Frontal Part)"
+    },
+    {
+     "term": "temporal fossa",
+     "cid": 17601,
+     "model": "Temporal Fossa (Frontal Part)"
+    },
+    {
+     "term": "squamous part of temporal bone",
+     "cid": 18135,
+     "model": "Squamous Part of Temporal Bone"
+    },
+    {
+     "term": "petrous part of temporal bone",
+     "cid": 23012,
+     "model": "Petrous Part of Temporal Bone"
+    },
+    {
+     "term": "mastoid process",
+     "cid": 20773,
+     "model": "Mastoid Process"
+    },
+    {
+     "term": "mandibular fossa",
+     "cid": 21934,
+     "model": "Mandibular Fossa"
+    },
+    {
+     "term": "bregma",
+     "cid": 18353,
+     "model": "Bregma (Left Parietal Part)"
+    },
+    {
+     "term": "lambda",
+     "cid": 19019,
+     "model": "Lambda (Occipital Part)"
+    },
+    {
+     "term": "pterygopalatine fossa",
+     "cid": 18889,
+     "model": "Pterygoid Fossa"
+    },
+    {
+     "term": "pterygoid hamulus",
+     "cid": 22249,
+     "model": "Pterygoid Hamulus"
+    },
+    {
+     "term": "sella turcica",
+     "cid": 23552,
+     "model": "Sella Turcica"
+    },
+    {
+     "term": "anterior clinoid process",
+     "cid": 24976,
+     "model": "Anterior Clinoid Process"
+    },
+    {
+     "term": "posterior clinoid process",
+     "cid": 18617,
+     "model": "Posterior Clinoid Process"
+    },
+    {
+     "term": "body of sphenoid bone",
+     "cid": 20789,
+     "model": "Body of Sphenoid Bone"
+    },
+    {
+     "term": "occipital condyle",
+     "cid": 20950,
+     "model": "Occipital Condyle"
+    },
+    {
+     "term": "basilar part of occipital bone",
+     "cid": 17512,
+     "model": "Basilar Part of Occipital Bone"
+    },
+    {
+     "term": "clivus",
+     "cid": 17945,
+     "model": "Clivus (Occipital Part)"
+    },
+    {
+     "term": "crista galli",
+     "cid": 18981,
+     "model": "Crista Galli"
+    },
+    {
+     "term": "inferior nuchal line",
+     "cid": 23929,
+     "model": "Inferior Nuchal Line"
+    },
+    {
+     "term": "superior nuchal line",
+     "cid": 18042,
+     "model": "Superior Nuchal Line"
+    },
+    {
+     "term": "external occipital crest",
+     "cid": 17376,
+     "model": "External Occipital Crest"
+    },
+    {
+     "term": "internal occipital crest",
+     "cid": 24012,
+     "model": "Internal Occipital Crest"
+    },
+    {
+     "term": "external occipital protuberance",
+     "cid": 23877,
+     "model": "External Occipital Protuberance"
+    },
+    {
+     "term": "internal occipital protuberance",
+     "cid": 19518,
+     "model": "Internal Occipital Protuberance"
+    },
+    {
+     "term": "ramus",
+     "cid": 21245,
+     "model": "Ramus of Mandible"
+    },
+    {
+     "term": "body",
+     "cid": 20732,
+     "model": "Body"
+    },
+    {
+     "term": "angle",
+     "cid": 17020,
+     "model": "Angle of Mandible"
+    },
+    {
+     "term": "mental tubercle",
+     "cid": 17222,
+     "model": "Mental Tubercle"
+    },
+    {
+     "term": "mental foramen",
+     "cid": 21639,
+     "model": "Mental Foramen"
+    },
+    {
+     "term": "mental protuberance",
+     "cid": 20799,
+     "model": "Mental Protuberance"
+    },
+    {
+     "term": "mental spine",
+     "cid": 17695,
+     "model": "Superior Mental Spine"
+    },
+    {
+     "term": "oblique line",
+     "cid": 18134,
+     "model": "Oblique Line of Mandible"
+    },
+    {
+     "term": "mandibular notch",
+     "cid": 19738,
+     "model": "Mandibular Notch"
+    },
+    {
+     "term": "coronoid process",
+     "cid": 20748,
+     "model": "Coronoid Process of Mandible"
+    },
+    {
+     "term": "pterygoid fovea",
+     "cid": 22777,
+     "model": "Pterygoid Fovea"
+    },
+    {
+     "term": "lingula",
+     "cid": 24422,
+     "model": "Lingula of Mandible"
+    },
+    {
+     "term": "submandibular fossa",
+     "cid": 20866,
+     "model": "Submandibular Fossa"
+    },
+    {
+     "term": "sublingual fossa",
+     "cid": 21847,
+     "model": "Sublingual Fossa"
+    },
+    {
+     "term": "digastric fossa",
+     "cid": 19323,
+     "model": "Digastric Fossa"
+    },
+    {
+     "term": "mylohyoid line",
+     "cid": 23855,
+     "model": "Mylohyoid Line"
+    },
+    {
+     "term": "mylohyoid groove",
+     "cid": 20156,
+     "model": "Mylohyoid Groove"
+    },
+    {
+     "term": "lacrimal bone",
+     "cid": 20076,
+     "model": "Lacrimal Bone"
+    },
+    {
+     "term": "vomer",
+     "cid": 17804,
+     "model": "Vomer"
+    },
+    {
+     "term": "inferior nasal concha",
+     "cid": 20297,
+     "model": "Inferior Nasal Concha Bone"
+    },
+    {
+     "term": "middle nasal concha",
+     "cid": 19003,
+     "model": "Bony Middle Nasal Concha"
+    },
+    {
+     "term": "superior nasal concha",
+     "cid": 21444,
+     "model": "Bony Superior Nasal Concha"
+    },
+    {
+     "term": "nasal surface of maxilla",
+     "cid": 20455,
+     "model": "Nasal Surface of Maxilla"
+    },
+    {
+     "term": "sphenoidal sinus",
+     "cid": 17867,
+     "model": "Sphenoidal Sinus"
+    },
+    {
+     "term": "frontal sinus",
+     "cid": 16471,
+     "model": "Frontal Sinus"
+    },
+    {
+     "term": "maxillary sinus",
+     "cid": 20296,
+     "model": "Maxillary Sinus"
+    },
+    {
+     "term": "foramen magnum",
+     "cid": 18432,
+     "model": "Foramen Magnum"
+    },
+    {
+     "term": "foramen ovale",
+     "cid": 17084,
+     "model": "Foramen Ovale"
+    },
+    {
+     "term": "foramen spinosum",
+     "cid": 21600,
+     "model": "Foramen Spinosum"
+    },
+    {
+     "term": "foramen lacerum",
+     "cid": 19939,
+     "model": "Foramen Lacerum"
+    },
+    {
+     "term": "foramen rotundum",
+     "cid": 22336,
+     "model": "Foramen Rotundum"
+    },
+    {
+     "term": "internal acoustic meatus",
+     "cid": 20482,
+     "model": "Internal Acoustic Meatus"
+    },
+    {
+     "term": "external acoustic meatus",
+     "cid": 19259,
+     "model": "Bony External Acoustic Meatus"
+    },
+    {
+     "term": "sphenopalatine foramen",
+     "cid": 24043,
+     "model": "Sphenopalatine Foramen"
+    },
+    {
+     "term": "hypoglossal canal",
+     "cid": 20650,
+     "model": "Hypoglossal Canal"
+    },
+    {
+     "term": "jugular fossa",
+     "cid": 20128,
+     "model": "Jugular Fossa"
+    },
+    {
+     "term": "jugular foramen",
+     "cid": 21137,
+     "model": "Jugular Foramen"
+    },
+    {
+     "term": "carotid canal",
+     "cid": 16669,
+     "model": "Carotid Canal"
+    },
+    {
+     "term": "anterior arch of atlas",
+     "cid": 18481,
+     "model": "Anterior Arch of Atlas"
+    },
+    {
+     "term": "posterior arch of atlas",
+     "cid": 17712,
+     "model": "Posterior Arch of Atlas"
+    },
+    {
+     "term": "anterior tubercle",
+     "cid": 16769,
+     "model": "Anterior Tubercle of Fourth Cervical Vertebra"
+    },
+    {
+     "term": "posterior tubercle",
+     "cid": 16555,
+     "model": "Posterior Tubercle of Sixth Cervical Vertebra"
+    },
+    {
+     "term": "lateral mass of atlas",
+     "cid": 19973,
+     "model": "Lateral Mass"
+    },
+    {
+     "term": "transverse foramen",
+     "cid": 16954,
+     "model": "Foramen Transversarium of Sixth Cervical Vertebra"
+    },
+    {
+     "term": "dens of axis",
+     "cid": 22287,
+     "model": "Dens Axis"
+    },
+    {
+     "term": "transverse process",
+     "cid": 16483,
+     "model": "Transverse Process of Fifth Lumbar Vertebra"
+    },
+    {
+     "term": "spinous process",
+     "cid": 16444,
+     "model": "Spinous Process of Twelfth Thoracic Vertebra"
+    }
+   ]
+  },
+  {
+   "id": "hn23",
+   "label": "ניתוח 2-3 - משולשי הצוואר",
+   "items": [
+    {
+     "term": "hyoid bone",
+     "cid": 20872,
+     "model": "Hyoid Bone"
+    },
+    {
+     "term": "thyroid cartilage",
+     "cid": 24058,
+     "model": "Thyroid Cartilage"
+    },
+    {
+     "term": "cricoid cartilage",
+     "cid": 16543,
+     "model": "Cricoid Cartilage"
+    },
+    {
+     "term": "carotid sheath",
+     "cid": 18160,
+     "model": "Carotid Sheath"
+    },
+    {
+     "term": "trachea",
+     "cid": 17685,
+     "model": "Trachea"
+    },
+    {
+     "term": "platysma",
+     "cid": 22196,
+     "model": "Platysma"
+    },
+    {
+     "term": "splenius",
+     "cid": 18089,
+     "model": "Splenius Colli Muscle"
+    },
+    {
+     "term": "levator scapulae",
+     "cid": 18540,
+     "model": "Levator Scapulae"
+    },
+    {
+     "term": "anterior scalene",
+     "cid": 18322,
+     "model": "Scalene Tubercle"
+    },
+    {
+     "term": "posterior scalene",
+     "cid": 22158,
+     "model": "Scalenus Posterior Muscle"
+    },
+    {
+     "term": "sternocleidomastoid",
+     "cid": 19084,
+     "model": "Sternocleidomastoid Muscle"
+    },
+    {
+     "term": "posterior belly of digastric",
+     "cid": 24813,
+     "model": "Posterior Belly of Digastric Muscle"
+    },
+    {
+     "term": "anterior belly of digastric",
+     "cid": 22863,
+     "model": "Anterior Belly of Digastric Muscle"
+    },
+    {
+     "term": "stylohyoid",
+     "cid": 17182,
+     "model": "Stylohyoid Muscle"
+    },
+    {
+     "term": "longus capitis",
+     "cid": 19819,
+     "model": "Longus Capitis Muscle"
+    },
+    {
+     "term": "thyrohyoid",
+     "cid": 22497,
+     "model": "Thyrohyoid Muscle"
+    },
+    {
+     "term": "superior belly of omohyoid",
+     "cid": 21182,
+     "model": "Superior Belly of Omohyoid Muscle"
+    },
+    {
+     "term": "inferior belly of omohyoid",
+     "cid": 20211,
+     "model": "Inferior Belly of Omohyoid Muscle"
+    },
+    {
+     "term": "sternohyoid",
+     "cid": 17301,
+     "model": "Sternohyoid Muscle"
+    },
+    {
+     "term": "sternothyroid",
+     "cid": 20022,
+     "model": "Sternothyroid Muscle"
+    },
+    {
+     "term": "trapezius",
+     "cid": 17803,
+     "model": "Trapezius Muscle"
+    },
+    {
+     "term": "common carotid artery",
+     "cid": 21744,
+     "model": "Left Common Carotid Artery"
+    },
+    {
+     "term": "internal carotid artery",
+     "cid": 16830,
+     "model": "Internal Carotid Artery"
+    },
+    {
+     "term": "external carotid artery",
+     "cid": 16922,
+     "model": "External Carotid Artery"
+    },
+    {
+     "term": "internal jugular vein",
+     "cid": 18458,
+     "model": "Internal Jugular Vein"
+    },
+    {
+     "term": "vagus nerve",
+     "cid": 22197,
+     "model": "Vagus Nerve"
+    },
+    {
+     "term": "external jugular vein",
+     "cid": 17826,
+     "model": "External Jugular Vein"
+    },
+    {
+     "term": "anterior jugular vein",
+     "cid": 24197,
+     "model": "Anterior Jugular Vein"
+    },
+    {
+     "term": "facial vein",
+     "cid": 16872,
+     "model": "Facial Vein"
+    },
+    {
+     "term": "facial artery",
+     "cid": 18755,
+     "model": "Facial Artery"
+    },
+    {
+     "term": "ansa cervicalis",
+     "cid": 20160,
+     "model": "Ansa Cervicalis"
+    },
+    {
+     "term": "brachial plexus",
+     "cid": 19097,
+     "model": "Brachial Plexus"
+    },
+    {
+     "term": "accessory nerve",
+     "cid": 18441,
+     "model": "Accessory Nerve"
+    },
+    {
+     "term": "phrenic nerve",
+     "cid": 17051,
+     "model": "Phrenic Nerve"
+    },
+    {
+     "term": "subclavian artery",
+     "cid": 17955,
+     "model": "Subclavian Artery"
+    },
+    {
+     "term": "subclavian vein",
+     "cid": 21094,
+     "model": "Subclavian Vein"
+    },
+    {
+     "term": "thyrocervical trunk",
+     "cid": 24825,
+     "model": "Thyrocervical Trunk"
+    },
+    {
+     "term": "vertebral artery",
+     "cid": 18792,
+     "model": "Vertebral Artery"
+    },
+    {
+     "term": "costocervical trunk",
+     "cid": 21960,
+     "model": "Costocervical Trunk"
+    },
+    {
+     "term": "suprascapular artery",
+     "cid": 24095,
+     "model": "Suprascapular Artery"
+    },
+    {
+     "term": "transverse cervical artery",
+     "cid": 17494,
+     "model": "Transverse Cervical Artery"
+    },
+    {
+     "term": "inferior thyroid artery",
+     "cid": 21221,
+     "model": "Inferior Thyroid Artery"
+    },
+    {
+     "term": "superior thyroid artery",
+     "cid": 19296,
+     "model": "Superior Thyroid Artery"
+    },
+    {
+     "term": "inferior thyroid vein",
+     "cid": 16777,
+     "model": "Inferior Thyroid Vein"
+    },
+    {
+     "term": "middle thyroid vein",
+     "cid": 24196,
+     "model": "Middle Thyroid Vein"
+    },
+    {
+     "term": "superior thyroid vein",
+     "cid": 22985,
+     "model": "Superior Thyroid Vein"
+    },
+    {
+     "term": "ascending pharyngeal artery",
+     "cid": 18335,
+     "model": "Ascending Pharyngeal Artery"
+    },
+    {
+     "term": "occipital artery",
+     "cid": 18594,
+     "model": "Occipital Artery"
+    },
+    {
+     "term": "lingual artery",
+     "cid": 17665,
+     "model": "Lingual Artery"
+    },
+    {
+     "term": "maxillary artery",
+     "cid": 17311,
+     "model": "Maxillary Artery"
+    },
+    {
+     "term": "posterior auricular artery",
+     "cid": 23172,
+     "model": "Posterior Auricular Artery"
+    },
+    {
+     "term": "superior laryngeal artery",
+     "cid": 22094,
+     "model": "Superior Laryngeal Artery"
+    },
+    {
+     "term": "retromandibular vein",
+     "cid": 16525,
+     "model": "Retromandibular Vein"
+    },
+    {
+     "term": "lingual vein",
+     "cid": 24790,
+     "model": "Lingual Vein"
+    },
+    {
+     "term": "sympathetic trunk",
+     "cid": 17823,
+     "model": "Sympathetic Trunk"
+    }
+   ]
+  },
+  {
+   "id": "hn4",
+   "label": "ניתוח 4 - סינוסים ורידיים ועצבים קרניאליים",
+   "items": [
+    {
+     "term": "superior sagittal sinus",
+     "cid": 24749,
+     "model": "Superior Sagittal Sinus"
+    },
+    {
+     "term": "inferior sagittal sinus",
+     "cid": 24797,
+     "model": "Inferior Sagittal Sinus"
+    },
+    {
+     "term": "transverse sinus",
+     "cid": 17654,
+     "model": "Transverse Sinus"
+    },
+    {
+     "term": "straight sinus",
+     "cid": 23351,
+     "model": "Straight Sinus"
+    },
+    {
+     "term": "occipital sinus",
+     "cid": 20582,
+     "model": "Occipital Sinus"
+    },
+    {
+     "term": "superior petrosal sinus",
+     "cid": 23714,
+     "model": "Superior Petrosal Sinus"
+    },
+    {
+     "term": "inferior petrosal sinus",
+     "cid": 21743,
+     "model": "Inferior Petrosal Sinus"
+    },
+    {
+     "term": "cavernous sinus",
+     "cid": 19457,
+     "model": "Cavernous Sinus"
+    },
+    {
+     "term": "sphenoparietal sinus",
+     "cid": 18195,
+     "model": "Sphenoparietal Sinus"
+    },
+    {
+     "term": "sigmoid sinus",
+     "cid": 20952,
+     "model": "Sigmoid Sinus"
+    },
+    {
+     "term": "great cerebral vein",
+     "cid": 17125,
+     "model": "Great Cerebral Vein"
+    },
+    {
+     "term": "olfactory nerve",
+     "cid": 24741,
+     "model": "Olfactory Nerve"
+    },
+    {
+     "term": "optic nerve",
+     "cid": 21880,
+     "model": "Optic Nerve"
+    },
+    {
+     "term": "oculomotor nerve",
+     "cid": 18359,
+     "model": "Oculomotor Nerve"
+    },
+    {
+     "term": "trochlear nerve",
+     "cid": 21469,
+     "model": "Trochlear Nerve"
+    },
+    {
+     "term": "trigeminal nerve",
+     "cid": 17993,
+     "model": "Trigeminal Nerve"
+    },
+    {
+     "term": "abducent nerve",
+     "cid": 19696,
+     "model": "Abducens Nerve"
+    },
+    {
+     "term": "facial nerve",
+     "cid": 18487,
+     "model": "Facial Nerve"
+    },
+    {
+     "term": "vestibulocochlear nerve",
+     "cid": 24834,
+     "model": "Vestibulocochlear Nerve"
+    },
+    {
+     "term": "glossopharyngeal nerve",
+     "cid": 21110,
+     "model": "Glossopharyngeal Nerve"
+    },
+    {
+     "term": "vagus nerve",
+     "cid": 22197,
+     "model": "Vagus Nerve"
+    },
+    {
+     "term": "accessory nerve",
+     "cid": 18441,
+     "model": "Accessory Nerve"
+    },
+    {
+     "term": "hypoglossal nerve",
+     "cid": 21068,
+     "model": "Hypoglossal Nerve"
+    },
+    {
+     "term": "ophthalmic nerve",
+     "cid": 20059,
+     "model": "Ophthalmic Nerve"
+    },
+    {
+     "term": "maxillary nerve",
+     "cid": 23994,
+     "model": "Maxillary Nerve"
+    },
+    {
+     "term": "mandibular nerve",
+     "cid": 18298,
+     "model": "Mandibular Nerve"
+    }
+   ]
+  },
+  {
+   "id": "hn5",
+   "label": "ניתוח 5 - פנים, פרוטיד ועצב הפנים",
+   "items": [
+    {
+     "term": "frontalis",
+     "cid": 18057,
+     "model": "Frontalis Muscle"
+    },
+    {
+     "term": "orbital part of orbicularis oculi",
+     "cid": 23847,
+     "model": "Orbital Part of Orbicularis Oculi"
+    },
+    {
+     "term": "palpebral part of orbicularis oculi",
+     "cid": 21807,
+     "model": "Palpebral Part of Orbicularis Oculi"
+    },
+    {
+     "term": "levator anguli oris",
+     "cid": 22297,
+     "model": "Levator Anguli Oris"
+    },
+    {
+     "term": "depressor anguli oris",
+     "cid": 22268,
+     "model": "Depressor Anguli Oris"
+    },
+    {
+     "term": "buccinator",
+     "cid": 16650,
+     "model": "Origin of Buccinator Muscle"
+    },
+    {
+     "term": "risorius",
+     "cid": 20342,
+     "model": "Risorius Muscle"
+    },
+    {
+     "term": "orbicularis oris",
+     "cid": 23373,
+     "model": "Orbicularis Oris Muscle"
+    },
+    {
+     "term": "procerus",
+     "cid": 18373,
+     "model": "Procerus Muscle"
+    },
+    {
+     "term": "corrugator supercilii",
+     "cid": 16419,
+     "model": "Corrugator Supercilii"
+    },
+    {
+     "term": "levator labii superioris",
+     "cid": 18177,
+     "model": "Levator Labii Superioris"
+    },
+    {
+     "term": "transverse part of nasalis",
+     "cid": 22526,
+     "model": "Transverse Part of Nasalis Muscle"
+    },
+    {
+     "term": "alar part of nasalis",
+     "cid": 18117,
+     "model": "Alar Part of Nasalis Muscle"
+    },
+    {
+     "term": "anterior auricular muscle",
+     "cid": 23524,
+     "model": "Auricularis Anterior Muscle"
+    },
+    {
+     "term": "posterior auricular muscle",
+     "cid": 22262,
+     "model": "Auricularis Posterior Muscle"
+    },
+    {
+     "term": "superior auricular muscle",
+     "cid": 19126,
+     "model": "Auricularis Superior Muscle"
+    },
+    {
+     "term": "zygomaticus major",
+     "cid": 21402,
+     "model": "Zygomaticus Major Muscle"
+    },
+    {
+     "term": "zygomaticus minor",
+     "cid": 21818,
+     "model": "Zygomaticus Minor Muscle"
+    },
+    {
+     "term": "depressor septi nasi",
+     "cid": 21925,
+     "model": "Depressor Septi Nasi"
+    },
+    {
+     "term": "depressor labii inferioris",
+     "cid": 22387,
+     "model": "Depressor Labii Inferioris"
+    },
+    {
+     "term": "mentalis",
+     "cid": 23337,
+     "model": "Mentalis Muscle"
+    },
+    {
+     "term": "facial artery",
+     "cid": 18755,
+     "model": "Facial Artery"
+    },
+    {
+     "term": "angular artery",
+     "cid": 18905,
+     "model": "Angular Artery"
+    },
+    {
+     "term": "dorsal nasal artery",
+     "cid": 19685,
+     "model": "Dorsal Nasal Artery"
+    },
+    {
+     "term": "transverse facial artery",
+     "cid": 24053,
+     "model": "Transverse Facial Artery"
+    },
+    {
+     "term": "external carotid artery",
+     "cid": 16922,
+     "model": "External Carotid Artery"
+    },
+    {
+     "term": "inferior labial artery",
+     "cid": 20835,
+     "model": "Inferior Labial Artery"
+    },
+    {
+     "term": "superior labial artery",
+     "cid": 19639,
+     "model": "Superior Labial Artery"
+    },
+    {
+     "term": "zygomaticofacial artery",
+     "cid": 22656,
+     "model": "Zygomaticofacial Artery"
+    },
+    {
+     "term": "zygomaticotemporal artery",
+     "cid": 20882,
+     "model": "Zygomaticotemporal Artery"
+    },
+    {
+     "term": "supratrochlear artery",
+     "cid": 19429,
+     "model": "Supratrochlear Artery"
+    },
+    {
+     "term": "supraorbital artery",
+     "cid": 22781,
+     "model": "Supraorbital Artery"
+    },
+    {
+     "term": "helix",
+     "cid": 19811,
+     "model": "Helicis Major Muscle"
+    },
+    {
+     "term": "tragus",
+     "cid": 21371,
+     "model": "Tragicus Muscle"
+    },
+    {
+     "term": "facial nerve",
+     "cid": 18487,
+     "model": "Facial Nerve"
+    },
+    {
+     "term": "posterior auricular nerve",
+     "cid": 23625,
+     "model": "Posterior Auricular Nerve"
+    },
+    {
+     "term": "temporal branch",
+     "cid": 23884,
+     "model": "Temporal Branches of Facial Nerve"
+    },
+    {
+     "term": "zygomatic branch",
+     "cid": 17926,
+     "model": "Zygomatic Branches of Facial Nerve"
+    },
+    {
+     "term": "buccal branch",
+     "cid": 17032,
+     "model": "Buccal Branches of Facial Nerve"
+    },
+    {
+     "term": "marginal mandibular branch",
+     "cid": 22049,
+     "model": "Marginal Mandibular Branch of Facial Nerve"
+    },
+    {
+     "term": "cervical branch",
+     "cid": 19007,
+     "model": "Cervical Branch of Facial Nerve"
+    },
+    {
+     "term": "parotid gland",
+     "cid": 22948,
+     "model": "Parotid Gland"
+    },
+    {
+     "term": "parotid duct",
+     "cid": 23078,
+     "model": "Parotid Duct"
+    }
+   ]
+  },
+  {
+   "id": "hn6",
+   "label": "ניתוח 6 - האזור הטמפורלי",
+   "items": [
+    {
+     "term": "temporalis muscle",
+     "cid": 17924,
+     "model": "Temporalis Muscle"
+    },
+    {
+     "term": "masseter muscle",
+     "cid": 19980,
+     "model": "Masseter"
+    },
+    {
+     "term": "lateral pterygoid muscle",
+     "cid": 18240,
+     "model": "Lateral Pterygoid Muscle"
+    },
+    {
+     "term": "medial pterygoid muscle",
+     "cid": 23497,
+     "model": "Medial Pterygoid Muscle"
+    },
+    {
+     "term": "buccinator muscle",
+     "cid": 16650,
+     "model": "Origin of Buccinator Muscle"
+    },
+    {
+     "term": "sphenomandibular ligament",
+     "cid": 21457,
+     "model": "Sphenomandibular Ligament"
+    },
+    {
+     "term": "stylomandibular ligament",
+     "cid": 16980,
+     "model": "Stylomandibular Ligament"
+    },
+    {
+     "term": "superior pharyngeal constrictor muscle",
+     "cid": 22493,
+     "model": "Superior Pharyngeal Constrictor"
+    },
+    {
+     "term": "superficial temporal artery",
+     "cid": 19243,
+     "model": "Superficial Temporal Artery"
+    },
+    {
+     "term": "deep temporal artery",
+     "cid": 17800,
+     "model": "Posterior Deep Temporal Artery"
+    },
+    {
+     "term": "maxillary artery",
+     "cid": 17311,
+     "model": "Maxillary Artery"
+    },
+    {
+     "term": "middle meningeal artery",
+     "cid": 17918,
+     "model": "Middle Meningeal Artery"
+    },
+    {
+     "term": "inferior alveolar artery",
+     "cid": 16886,
+     "model": "Inferior Alveolar Artery"
+    },
+    {
+     "term": "inferior alveolar nerve",
+     "cid": 17296,
+     "model": "Inferior Alveolar Nerve"
+    },
+    {
+     "term": "lingual nerve",
+     "cid": 22992,
+     "model": "Lingual Nerve"
+    },
+    {
+     "term": "mylohyoid nerve",
+     "cid": 18403,
+     "model": "Nerve to Mylohyoid Muscle"
+    },
+    {
+     "term": "mandibular nerve",
+     "cid": 18298,
+     "model": "Mandibular Nerve"
+    },
+    {
+     "term": "facial nerve",
+     "cid": 18487,
+     "model": "Facial Nerve"
+    },
+    {
+     "term": "auriculotemporal nerve",
+     "cid": 19509,
+     "model": "Auriculotemporal Nerve"
+    },
+    {
+     "term": "masseteric artery",
+     "cid": 22935,
+     "model": "Masseteric Artery"
+    }
+   ]
+  },
+  {
+   "id": "hn7",
+   "label": "ניתוח 7 - פה, לסת ולשון",
+   "items": [
+    {
+     "term": "anterior belly of digastric muscle",
+     "cid": 22863,
+     "model": "Anterior Belly of Digastric Muscle"
+    },
+    {
+     "term": "posterior belly of digastric muscle",
+     "cid": 24813,
+     "model": "Posterior Belly of Digastric Muscle"
+    },
+    {
+     "term": "mylohyoid muscle",
+     "cid": 18562,
+     "model": "Mylohyoid Muscle"
+    },
+    {
+     "term": "stylohyoid muscle",
+     "cid": 17182,
+     "model": "Stylohyoid Muscle"
+    },
+    {
+     "term": "geniohyoid muscle",
+     "cid": 21048,
+     "model": "Geniohyoid Muscle"
+    },
+    {
+     "term": "genioglossus muscle",
+     "cid": 17818,
+     "model": "Genioglossus Muscle"
+    },
+    {
+     "term": "palatoglossus muscle",
+     "cid": 16478,
+     "model": "Palatoglossus Muscle"
+    },
+    {
+     "term": "styloglossus muscle",
+     "cid": 24587,
+     "model": "Styloglossus Muscle"
+    },
+    {
+     "term": "palatopharyngeus muscle",
+     "cid": 17297,
+     "model": "Palatopharyngeus Muscle"
+    },
+    {
+     "term": "styloid process",
+     "cid": 17699,
+     "model": "Sheath of Styloid Process"
+    },
+    {
+     "term": "mandible",
+     "cid": 22122,
+     "model": "Mandible"
+    },
+    {
+     "term": "superior mental spine",
+     "cid": 17695,
+     "model": "Superior Mental Spine"
+    },
+    {
+     "term": "lingual nerve",
+     "cid": 22992,
+     "model": "Lingual Nerve"
+    },
+    {
+     "term": "submandibular gland",
+     "cid": 16667,
+     "model": "Submandibular Gland"
+    },
+    {
+     "term": "submandibular duct",
+     "cid": 24378,
+     "model": "Submandibular Duct"
+    },
+    {
+     "term": "sublingual gland",
+     "cid": 18433,
+     "model": "Sublingual Gland"
+    },
+    {
+     "term": "submandibular ganglion",
+     "cid": 17953,
+     "model": "Submandibular Ganglion"
+    },
+    {
+     "term": "sublingual artery",
+     "cid": 19476,
+     "model": "Sublingual Artery"
+    },
+    {
+     "term": "hypoglossal nerve",
+     "cid": 21068,
+     "model": "Hypoglossal Nerve"
+    },
+    {
+     "term": "palatoglossal arch",
+     "cid": 24609,
+     "model": "Palatoglossal Arch"
+    },
+    {
+     "term": "palatopharyngeal arch",
+     "cid": 16906,
+     "model": "Palatopharyngeal Arch"
+    },
+    {
+     "term": "palatine tonsil",
+     "cid": 19565,
+     "model": "Palatine Tonsil"
+    },
+    {
+     "term": "foramen cecum",
+     "cid": 24412,
+     "model": "Foramen Cecum of Frontal Bone"
+    },
+    {
+     "term": "uvula",
+     "cid": 18270,
+     "model": "Uvula of Palate"
+    },
+    {
+     "term": "soft palate",
+     "cid": 20771,
+     "model": "Muscles of Soft Palate"
+    },
+    {
+     "term": "hard palate",
+     "cid": 20653,
+     "model": "Mucosa of Hard Palate"
+    },
+    {
+     "term": "vallecula",
+     "cid": 18457,
+     "model": "Epiglottic Vallecula"
+    }
+   ]
+  },
+  {
+   "id": "hn8",
+   "label": "ניתוח 8 - לארינגס, פארינגס וחלל האף",
+   "items": [
+    {
+     "term": "epiglottis",
+     "cid": 24870,
+     "model": "Epiglottic Cartilage"
+    },
+    {
+     "term": "cricoid cartilage",
+     "cid": 16543,
+     "model": "Cricoid Cartilage"
+    },
+    {
+     "term": "arytenoid cartilage",
+     "cid": 23244,
+     "model": "Arytenoid Cartilage"
+    },
+    {
+     "term": "corniculate cartilage",
+     "cid": 22334,
+     "model": "Corniculate Cartilage"
+    },
+    {
+     "term": "vocal fold",
+     "cid": 23488,
+     "model": "Vocal Fold"
+    },
+    {
+     "term": "vocal ligament",
+     "cid": 16957,
+     "model": "Vocal Ligament"
+    },
+    {
+     "term": "thyrohyoid membrane",
+     "cid": 21437,
+     "model": "Thyrohyoid Membrane"
+    },
+    {
+     "term": "cricothyroid ligament",
+     "cid": 21342,
+     "model": "Median Cricothyroid Ligament"
+    },
+    {
+     "term": "hyoid bone",
+     "cid": 20872,
+     "model": "Hyoid Bone"
+    },
+    {
+     "term": "cuneiform tubercle",
+     "cid": 18765,
+     "model": "Cuneate Tubercle"
+    },
+    {
+     "term": "vestibular fold",
+     "cid": 24401,
+     "model": "Vestibular Fold"
+    },
+    {
+     "term": "greater horn of hyoid bone",
+     "cid": 19301,
+     "model": "Greater Horn of Hyoid Bone"
+    },
+    {
+     "term": "lesser horn of hyoid bone",
+     "cid": 22830,
+     "model": "Lesser Horn of Hyoid Bone"
+    },
+    {
+     "term": "aryepiglottic muscle",
+     "cid": 19707,
+     "model": "Aryepiglottic Part of Oblique Arytenoid Muscle"
+    },
+    {
+     "term": "oblique arytenoid muscle",
+     "cid": 17120,
+     "model": "Oblique Arytenoid Muscle"
+    },
+    {
+     "term": "transverse arytenoid muscle",
+     "cid": 18549,
+     "model": "Transverse Arytenoid Muscle"
+    },
+    {
+     "term": "posterior cricoarytenoid muscle",
+     "cid": 21366,
+     "model": "Posterior Cricoarytenoid Muscle"
+    },
+    {
+     "term": "lateral cricoarytenoid muscle",
+     "cid": 20961,
+     "model": "Lateral Cricoarytenoid Muscle"
+    },
+    {
+     "term": "cricothyroid muscle",
+     "cid": 19294,
+     "model": "Cricothyroid Muscle"
+    },
+    {
+     "term": "thyroarytenoid muscle",
+     "cid": 17347,
+     "model": "Thyroarytenoid Muscle"
+    },
+    {
+     "term": "vocalis muscle",
+     "cid": 19754,
+     "model": "Vocalis Muscle"
+    },
+    {
+     "term": "superior laryngeal nerve",
+     "cid": 24593,
+     "model": "Superior Laryngeal Nerve"
+    },
+    {
+     "term": "recurrent laryngeal nerve",
+     "cid": 17967,
+     "model": "Recurrent Laryngeal Nerve"
+    },
+    {
+     "term": "nasopharynx",
+     "cid": 24533,
+     "model": "Nasopharynx"
+    },
+    {
+     "term": "oropharynx",
+     "cid": 22955,
+     "model": "Oropharynx"
+    },
+    {
+     "term": "laryngopharynx",
+     "cid": 21258,
+     "model": "Laryngopharynx"
+    },
+    {
+     "term": "trachea",
+     "cid": 17685,
+     "model": "Trachea"
+    },
+    {
+     "term": "esophagus",
+     "cid": 20745,
+     "model": "Esophagus"
+    },
+    {
+     "term": "pharyngeal tonsil",
+     "cid": 17774,
+     "model": "Pharyngeal Tonsil"
+    },
+    {
+     "term": "sphenoidal sinus",
+     "cid": 17867,
+     "model": "Sphenoidal Sinus"
+    },
+    {
+     "term": "tensor veli palatini muscle",
+     "cid": 19033,
+     "model": "Tensor Veli Palatini"
+    },
+    {
+     "term": "levator veli palatini muscle",
+     "cid": 16696,
+     "model": "Levator Veli Palatini"
+    },
+    {
+     "term": "pterygoid hamulus",
+     "cid": 22249,
+     "model": "Pterygoid Hamulus"
+    },
+    {
+     "term": "middle pharyngeal constrictor muscle",
+     "cid": 22222,
+     "model": "Middle Pharyngeal Constrictor"
+    },
+    {
+     "term": "inferior pharyngeal constrictor muscle",
+     "cid": 16523,
+     "model": "Inferior Pharyngeal Constrictor"
+    },
+    {
+     "term": "atlas",
+     "cid": 21687,
+     "model": "Atlas"
+    },
+    {
+     "term": "axis",
+     "cid": 19193,
+     "model": "Axis"
+    },
+    {
+     "term": "dens",
+     "cid": 22287,
+     "model": "Dens Axis"
+    },
+    {
+     "term": "pituitary gland",
+     "cid": 21359,
+     "model": "Pituitary Gland"
+    }
+   ]
+  },
+  {
+   "id": "hn9",
+   "label": "ניתוח 9 - העין",
+   "items": [
+    {
+     "term": "sclera",
+     "cid": 18420,
+     "model": "Sclera"
+    },
+    {
+     "term": "pupil",
+     "cid": 23800,
+     "model": "Pupil"
+    },
+    {
+     "term": "iris",
+     "cid": 20112,
+     "model": "Iris"
+    },
+    {
+     "term": "lacrimal caruncle",
+     "cid": 21017,
+     "model": "Lacrimal Caruncle"
+    },
+    {
+     "term": "superior tarsus",
+     "cid": 24680,
+     "model": "Superior Tarsus"
+    },
+    {
+     "term": "inferior tarsus",
+     "cid": 24253,
+     "model": "Inferior Tarsus"
+    },
+    {
+     "term": "medial palpebral ligament",
+     "cid": 24171,
+     "model": "Medial Palpebral Ligament"
+    },
+    {
+     "term": "lateral palpebral ligament",
+     "cid": 23385,
+     "model": "Lateral Palpebral Ligament"
+    },
+    {
+     "term": "lacrimal sac",
+     "cid": 18600,
+     "model": "Lacrimal Sac"
+    },
+    {
+     "term": "orbital septum",
+     "cid": 20063,
+     "model": "Orbital Septum"
+    },
+    {
+     "term": "nasolacrimal duct",
+     "cid": 17289,
+     "model": "Nasolacrimal Duct"
+    },
+    {
+     "term": "levator palpebrae superioris",
+     "cid": 23949,
+     "model": "Levator Palpebrae Superioris"
+    },
+    {
+     "term": "superior rectus",
+     "cid": 19092,
+     "model": "Superior Rectus Muscle"
+    },
+    {
+     "term": "inferior rectus",
+     "cid": 17669,
+     "model": "Inferior Rectus Muscle"
+    },
+    {
+     "term": "medial rectus",
+     "cid": 23409,
+     "model": "Medial Rectus Muscle"
+    },
+    {
+     "term": "lateral rectus",
+     "cid": 24363,
+     "model": "Lateral Rectus Muscle"
+    },
+    {
+     "term": "superior oblique",
+     "cid": 22893,
+     "model": "Superior Oblique Muscle"
+    },
+    {
+     "term": "inferior oblique",
+     "cid": 21654,
+     "model": "Inferior Oblique Muscle"
+    },
+    {
+     "term": "trochlea",
+     "cid": 20154,
+     "model": "Trochlea of Talus"
+    },
+    {
+     "term": "common tendinous ring",
+     "cid": 21222,
+     "model": "Common Tendinous Ring"
+    },
+    {
+     "term": "optic nerve",
+     "cid": 21880,
+     "model": "Optic Nerve"
+    },
+    {
+     "term": "oculomotor nerve",
+     "cid": 18359,
+     "model": "Oculomotor Nerve"
+    },
+    {
+     "term": "trochlear nerve",
+     "cid": 21469,
+     "model": "Trochlear Nerve"
+    },
+    {
+     "term": "abducent nerve",
+     "cid": 19696,
+     "model": "Abducens Nerve"
+    },
+    {
+     "term": "ophthalmic nerve",
+     "cid": 20059,
+     "model": "Ophthalmic Nerve"
+    },
+    {
+     "term": "frontal nerve",
+     "cid": 21190,
+     "model": "Frontal Nerve"
+    },
+    {
+     "term": "supraorbital nerve",
+     "cid": 22316,
+     "model": "Supraorbital Nerve"
+    },
+    {
+     "term": "supratrochlear nerve",
+     "cid": 20662,
+     "model": "Supratrochlear Nerve"
+    },
+    {
+     "term": "infratrochlear nerve",
+     "cid": 22592,
+     "model": "Infratrochlear Nerve"
+    },
+    {
+     "term": "lacrimal nerve",
+     "cid": 20687,
+     "model": "Lacrimal Nerve"
+    },
+    {
+     "term": "anterior ethmoidal nerve",
+     "cid": 17345,
+     "model": "Anterior Ethmoidal Nerve"
+    },
+    {
+     "term": "posterior ethmoidal nerve",
+     "cid": 21032,
+     "model": "Posterior Ethmoidal Nerve"
+    },
+    {
+     "term": "nasociliary nerve",
+     "cid": 18497,
+     "model": "Nasociliary Nerve"
+    },
+    {
+     "term": "long ciliary nerve",
+     "cid": 21482,
+     "model": "Long Ciliary Nerves"
+    },
+    {
+     "term": "short ciliary nerve",
+     "cid": 24239,
+     "model": "Short Ciliary Nerves"
+    },
+    {
+     "term": "ciliary ganglion",
+     "cid": 18201,
+     "model": "Ciliary Ganglion"
+    },
+    {
+     "term": "ophthalmic artery",
+     "cid": 20642,
+     "model": "Ophthalmic Artery"
+    },
+    {
+     "term": "central retinal artery",
+     "cid": 23866,
+     "model": "Central Retinal Artery"
+    },
+    {
+     "term": "posterior ciliary artery",
+     "cid": 16689,
+     "model": "Short Posterior Ciliary Arteries"
+    },
+    {
+     "term": "lacrimal artery",
+     "cid": 17604,
+     "model": "Lacrimal Artery"
+    },
+    {
+     "term": "supraorbital artery",
+     "cid": 22781,
+     "model": "Supraorbital Artery"
+    },
+    {
+     "term": "anterior ethmoidal artery",
+     "cid": 24700,
+     "model": "Anterior Ethmoidal Artery"
+    },
+    {
+     "term": "posterior ethmoidal artery",
+     "cid": 17859,
+     "model": "Posterior Ethmoidal Artery"
+    },
+    {
+     "term": "supratrochlear artery",
+     "cid": 19429,
+     "model": "Supratrochlear Artery"
+    }
+   ]
+  }
+ ],
+ "excluded": [
+  {
+   "term": "anterior cranial fossa",
+   "d": "1",
+   "cat": "Skull",
+   "closest": "Periosteal Cranial Dura (Anterior Cranial Fossa; Left)",
+   "score": 66
+  },
+  {
+   "term": "middle cranial fossa",
+   "d": "1",
+   "cat": "Skull",
+   "closest": "Meningeal Cranial Dura (Middle Cranial Fossa; Left)",
+   "score": 66
+  },
+  {
+   "term": "posterior cranial fossa",
+   "d": "1",
+   "cat": "Skull",
+   "closest": "Meningeal Cranial Dura (Posterior Cranial Fossa; Left)",
+   "score": 66
+  },
+  {
+   "term": "greater wing of sphenoid bone",
+   "d": "1",
+   "cat": "Skull",
+   "closest": "Greater Wing",
+   "score": 37
+  },
+  {
+   "term": "lesser wing of sphenoid bone",
+   "d": "1",
+   "cat": "Skull",
+   "closest": "Lesser Wing",
+   "score": 37
+  },
+  {
+   "term": "granular foveolae",
+   "d": "1",
+   "cat": "Skull",
+   "closest": null,
+   "score": -999
+  },
+  {
+   "term": "mandibular foramen",
+   "d": "1",
+   "cat": "Mandible",
+   "closest": "Mandibular Node",
+   "score": 36
+  },
+  {
+   "term": "fossa for lacrimal sac",
+   "d": "1",
+   "cat": "Orbit",
+   "closest": "Fossa for Lacrimal Gland",
+   "score": 41
+  },
+  {
+   "term": "ala of vomer",
+   "d": "1",
+   "cat": "Nasal",
+   "closest": "Vomer",
+   "score": 28
+  },
+  {
+   "term": "palatine process of maxilla",
+   "d": "1",
+   "cat": "Nasal",
+   "closest": "Maxillary Process of Inferior Nasal Concha",
+   "score": 41
+  },
+  {
+   "term": "optic foramen",
+   "d": "1",
+   "cat": "Foramina",
+   "closest": "Nasal Foramen",
+   "score": 36
+  },
+  {
+   "term": "choanae",
+   "d": "1",
+   "cat": "Foramina",
+   "closest": null,
+   "score": -999
+  },
+  {
+   "term": "right lobe of thyroid gland",
+   "d": "2+3",
+   "cat": "General",
+   "closest": "Inferior Lobe of Right Lung",
+   "score": 35
+  },
+  {
+   "term": "left lobe of thyroid gland",
+   "d": "2+3",
+   "cat": "General",
+   "closest": "Superior Lobe of Left Lung",
+   "score": 35
+  },
+  {
+   "term": "pyramidal lobe of thyroid gland",
+   "d": "2+3",
+   "cat": "General",
+   "closest": "Pyramidalis Muscle",
+   "score": 18
+  },
+  {
+   "term": "isthmus of thyroid gland",
+   "d": "2+3",
+   "cat": "General",
+   "closest": "Veins of Thyroid Gland",
+   "score": 28
+  },
+  {
+   "term": "middle scalene",
+   "d": "2+3",
+   "cat": "Muscles",
+   "closest": "Scalene Muscles",
+   "score": 36
+  },
+  {
+   "term": "confluence of sinuses",
+   "d": "4",
+   "cat": "Sinus",
+   "closest": "Paranasal Sinuses",
+   "score": 36
+  },
+  {
+   "term": "levator labii superioris alaeque nasi",
+   "d": "5",
+   "cat": "Muscles",
+   "closest": "Levator Labii Superioris",
+   "score": 33
+  },
+  {
+   "term": "crus of helix",
+   "d": "5",
+   "cat": "External ear",
+   "closest": "Crus of Fornix",
+   "score": 28
+  },
+  {
+   "term": "antihelix",
+   "d": "5",
+   "cat": "External ear",
+   "closest": null,
+   "score": -999
+  },
+  {
+   "term": "crura of antihelix",
+   "d": "5",
+   "cat": "External ear",
+   "closest": "Crural Fascia",
+   "score": 28
+  },
+  {
+   "term": "auricular tubercle",
+   "d": "5",
+   "cat": "External ear",
+   "closest": "Adductor Tubercle",
+   "score": 28
+  },
+  {
+   "term": "scapha",
+   "d": "5",
+   "cat": "External ear",
+   "closest": null,
+   "score": -999
+  },
+  {
+   "term": "triangular fossa",
+   "d": "5",
+   "cat": "External ear",
+   "closest": "Retromolar Fossa",
+   "score": 28
+  },
+  {
+   "term": "antitragus",
+   "d": "5",
+   "cat": "External ear",
+   "closest": null,
+   "score": -999
+  },
+  {
+   "term": "intertragic notch",
+   "d": "5",
+   "cat": "External ear",
+   "closest": "Fibular Notch",
+   "score": 28
+  },
+  {
+   "term": "concha of auricle",
+   "d": "5",
+   "cat": "External ear",
+   "closest": "Auricular Cartilage",
+   "score": 28
+  },
+  {
+   "term": "lobule of auricle",
+   "d": "5",
+   "cat": "External ear",
+   "closest": "Auricular Cartilage",
+   "score": 28
+  },
+  {
+   "term": "chorda tympani nerve",
+   "d": "6",
+   "cat": "Vessels",
+   "closest": "Chorda Tympani",
+   "score": 37
+  },
+  {
+   "term": "inferior longitudinal muscle of tongue",
+   "d": "7",
+   "cat": "Muscles",
+   "closest": "Inferior Longitudinal Lingual Muscle",
+   "score": 37
+  },
+  {
+   "term": "superior longitudinal muscle of tongue",
+   "d": "7",
+   "cat": "Muscles",
+   "closest": "Superior Longitudinal Lingual Muscle",
+   "score": 37
+  },
+  {
+   "term": "root of tongue",
+   "d": "7",
+   "cat": "Mouth & Tongue",
+   "closest": "Mucosa of Tongue",
+   "score": 36
+  },
+  {
+   "term": "body of tongue",
+   "d": "7",
+   "cat": "Mouth & Tongue",
+   "closest": "Mucosa of Tongue",
+   "score": 36
+  },
+  {
+   "term": "apex of tongue",
+   "d": "7",
+   "cat": "Mouth & Tongue",
+   "closest": "Mucosa of Tongue",
+   "score": 36
+  },
+  {
+   "term": "frenulum of tongue",
+   "d": "7",
+   "cat": "Mouth & Tongue",
+   "closest": "Mucosa of Tongue",
+   "score": 36
+  },
+  {
+   "term": "median glossoepiglottic fold",
+   "d": "7",
+   "cat": "Mouth & Tongue",
+   "closest": "Median Cubital Vein",
+   "score": 18
+  },
+  {
+   "term": "lateral glossoepiglottic fold",
+   "d": "7",
+   "cat": "Mouth & Tongue",
+   "closest": "Lateral Orbitofrontal Artery",
+   "score": 18
+  },
+  {
+   "term": "thyroid cartilage lamina",
+   "d": "8",
+   "cat": "Larynx",
+   "closest": "Cribriform Plate",
+   "score": 28
+  },
+  {
+   "term": "superior thyroid notch",
+   "d": "8",
+   "cat": "Larynx",
+   "closest": "Superior Thyroid Artery",
+   "score": 37
+  },
+  {
+   "term": "superior horn of thyroid cartilage",
+   "d": "8",
+   "cat": "Larynx",
+   "closest": "Superior Thyroid Artery",
+   "score": 37
+  },
+  {
+   "term": "inferior horn of thyroid cartilage",
+   "d": "8",
+   "cat": "Larynx",
+   "closest": "Inferior Thyroid Vein",
+   "score": 37
+  },
+  {
+   "term": "oblique line of thyroid cartilage",
+   "d": "8",
+   "cat": "Larynx",
+   "closest": "Oblique Line of Mandible",
+   "score": 37
+  },
+  {
+   "term": "laryngeal prominence",
+   "d": "8",
+   "cat": "Larynx",
+   "closest": "Laryngeal Cavity",
+   "score": 36
+  },
+  {
+   "term": "aryepiglottic fold",
+   "d": "8",
+   "cat": "Larynx",
+   "closest": "Ileocecal Fold",
+   "score": 28
+  },
+  {
+   "term": "corniculate tubercle",
+   "d": "8",
+   "cat": "Larynx",
+   "closest": "Adductor Tubercle",
+   "score": 28
+  },
+  {
+   "term": "interarytenoid notch",
+   "d": "8",
+   "cat": "Larynx",
+   "closest": "Fibular Notch",
+   "score": 28
+  },
+  {
+   "term": "laryngeal vestibule",
+   "d": "8",
+   "cat": "Larynx",
+   "closest": "Laryngeal Cavity",
+   "score": 36
+  },
+  {
+   "term": "laryngeal inlet",
+   "d": "8",
+   "cat": "Pharynx",
+   "closest": "Pharyngeal Branches of Recurrent Laryngeal Nerve",
+   "score": 30
+  },
+  {
+   "term": "torus tubarius",
+   "d": "8",
+   "cat": "Pharynx",
+   "closest": "Tubal Branch of Uterine Artery",
+   "score": 24
+  },
+  {
+   "term": "opening of auditory tube",
+   "d": "8",
+   "cat": "Pharynx",
+   "closest": "Cartilage of Auditory Tube",
+   "score": 37
+  },
+  {
+   "term": "bulbar conjunctiva",
+   "d": "9",
+   "cat": "External eye",
+   "closest": "Fascial Sheath of the Eyeball",
+   "score": 26
+  },
+  {
+   "term": "superior palpebral conjunctiva",
+   "d": "9",
+   "cat": "External eye",
+   "closest": "Superior Palpebral Arch",
+   "score": 37
+  },
+  {
+   "term": "inferior palpebral conjunctiva",
+   "d": "9",
+   "cat": "External eye",
+   "closest": "Inferior Palpebral Arch",
+   "score": 37
+  },
+  {
+   "term": "superior conjunctival fornix",
+   "d": "9",
+   "cat": "External eye",
+   "closest": "Superior Extensor Retinaculum of Ankle",
+   "score": 24
+  },
+  {
+   "term": "inferior conjunctival fornix",
+   "d": "9",
+   "cat": "External eye",
+   "closest": "Inferior Extensor Retinaculum of Ankle",
+   "score": 24
+  },
+  {
+   "term": "corneal limbus",
+   "d": "9",
+   "cat": "External eye",
+   "closest": "Limbus of Sphenoid",
+   "score": 28
+  },
+  {
+   "term": "plica semilunaris",
+   "d": "9",
+   "cat": "External eye",
+   "closest": "Ileocecal Fold",
+   "score": 28
+  },
+  {
+   "term": "lacrimal lake",
+   "d": "9",
+   "cat": "External eye",
+   "closest": "Lacrimal Hamulus",
+   "score": 28
+  },
+  {
+   "term": "superior lacrimal papilla",
+   "d": "9",
+   "cat": "External eye",
+   "closest": "Superior Border of Lacrimal Bone",
+   "score": 37
+  },
+  {
+   "term": "inferior lacrimal papilla",
+   "d": "9",
+   "cat": "External eye",
+   "closest": "Inferior Border of Lacrimal Bone",
+   "score": 37
+  }
+ ]
+}
