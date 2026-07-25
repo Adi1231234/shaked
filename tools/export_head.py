@@ -14,6 +14,7 @@ import bpy
 from mathutils import Vector
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import hierarchy        # noqa: E402
 import layers as L      # noqa: E402
 import zalandmarks      # noqa: E402
 import zalib            # noqa: E402
@@ -34,23 +35,26 @@ def head_origin():
     return (lo + hi) / 2
 
 
-def build_layers(solids):
+def build_layers(solids, parents):
     """Move every classified object into its layer collection."""
     groups = {}
     for name in L.LAYER_ORDER:
         target = zalib.ensure_collection(name)
         mat = zalib.flat_material(f"mat_{name}", L.LAYER_COLOURS[name])
         for obj in solids[name]:
+            structure = L.structure_name(obj.name)
+            path = hierarchy.path_for(obj, parents, name, structure)
             zalib.move_to(obj, target)
             zalib.apply_material(obj, mat)
-            zalib.tag(obj, structure=L.structure_name(obj.name),
-                      side=L.side_of(obj.name), layer=name, kind="structure")
+            zalib.tag(obj, structure=structure,
+                      side=L.side_of(obj.name), layer=name, kind="structure",
+                      path="/".join(path))
         groups[name] = solids[name]
         print(f"  {name:11s}: {len(solids[name]):4d} structures")
     return groups
 
 
-def build_landmarks(groups, labels):
+def build_landmarks(groups, labels, parents):
     """Snap every .j label onto the bone and return the hotspot spheres."""
     surfaces = [o for o in groups.get(L.LANDMARK_LAYER, []) if zalib.is_solid(o)]
     if not labels:
@@ -60,10 +64,11 @@ def build_landmarks(groups, labels):
     spheres = []
     for obj in labels:
         name, side = L.structure_name(obj.name), L.side_of(obj.name)
+        path = hierarchy.path_for(obj, parents, L.layer_of(obj) or "landmarks", name)
         sphere = zalandmarks.landmark_sphere(obj, coll, surfaces)
         zalib.apply_material(sphere, mat)
         zalib.tag(sphere, structure=name, side=side, layer="landmarks",
-                  kind="landmark")
+                  kind="landmark", path="/".join(path))
         spheres.append(sphere)
     print(f"  {'landmarks':11s}: {len(spheres):4d} hotspots")
     return spheres
@@ -91,9 +96,10 @@ def export(keep, groups):
 
 def main():
     origin = head_origin()
+    parents = hierarchy.parent_map()
     solids, labels = L.classify()
-    groups = build_layers(solids)
-    groups["landmarks"] = build_landmarks(groups, labels)
+    groups = build_layers(solids, parents)
+    groups["landmarks"] = build_landmarks(groups, labels, parents)
 
     keep = [o for members in groups.values() for o in members]
     keep_set = set(keep)

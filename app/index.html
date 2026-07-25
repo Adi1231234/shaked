@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#080b12">
+<title>ראש וצוואר</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<div id="stage"></div>
+
+<aside id="panel">
+  <header>
+    <h1>ראש וצוואר</h1>
+    <p class="sub"><span id="count">…</span> מבנים · לחצי על כל חלק כדי לראות את שמו</p>
+    <input id="search" type="search" placeholder="חיפוש מבנה…" autocomplete="off">
+    <div class="bulk">
+      <button id="show-all" type="button">הצג הכל</button>
+      <button id="hide-all" type="button">הסתר הכל</button>
+    </div>
+  </header>
+  <div id="tree"></div>
+</aside>
+
+<div id="picked">
+  <div id="picked-name"></div>
+  <div id="picked-path"></div>
+</div>
+
+<div id="boot">
+  <p>טוען את המודל…</p>
+  <div class="track"><div class="bar"></div></div>
+</div>
+
+<script type="importmap">
+{"imports":{"three":"https://unpkg.com/three@0.169.0/build/three.module.js",
+            "three/addons/":"https://unpkg.com/three@0.169.0/examples/jsm/"}}
+</script>
+<script type="module" src="main.js"></script>
+</body>
+</html>
