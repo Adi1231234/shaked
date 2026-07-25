@@ -1,0 +1,104 @@
+<!doctype html>
+<!-- Bare geometry check for models/head.glb. Not the gift UI: this exists so a
+     build can be eyeballed for alignment, scale and layer separation. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>head.glb debug</title>
+<style>
+  body { margin:0; background:#11141c; color:#cfd6e4; font:13px ui-monospace,monospace; }
+  #hud { position:fixed; top:8px; left:8px; z-index:2; background:#0009; padding:8px 10px;
+         border-radius:6px; line-height:1.7; }
+  #hud label { display:block; cursor:pointer; }
+  #pick { position:fixed; bottom:8px; left:8px; z-index:2; background:#0009; padding:6px 10px;
+          border-radius:6px; min-height:1.2em; }
+</style>
+</head>
+<body>
+<div id="hud"></div>
+<div id="pick">click a structure</div>
+<script type="importmap">
+{"imports":{"three":"https://unpkg.com/three@0.169.0/build/three.module.js",
+            "three/addons/":"https://unpkg.com/three@0.169.0/examples/jsm/"}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(innerWidth, innerHeight);
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x11141c);
+const camera = new THREE.PerspectiveCamera(35, innerWidth / innerHeight, 0.01, 10);
+camera.position.set(0.05, 0.02, 0.55);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+
+scene.add(new THREE.HemisphereLight(0xffffff, 0x333344, 2.0));
+const key = new THREE.DirectionalLight(0xffffff, 2.2);
+key.position.set(0.4, 0.6, 0.8);
+scene.add(key);
+const rim = new THREE.DirectionalLight(0x88bbff, 1.0);
+rim.position.set(-0.5, 0.2, -0.6);
+scene.add(rim);
+
+const draco = new DRACOLoader().setDecoderPath(
+  'https://unpkg.com/three@0.169.0/examples/jsm/libs/draco/');
+const loader = new GLTFLoader().setDRACOLoader(draco);
+
+const hud = document.getElementById('hud');
+const pick = document.getElementById('pick');
+const layers = {};
+
+loader.load('../models/head.glb', (gltf) => {
+  scene.add(gltf.scene);
+
+  const box = new THREE.Box3().setFromObject(gltf.scene);
+  const size = box.getSize(new THREE.Vector3());
+  const centre = box.getCenter(new THREE.Vector3());
+  controls.target.copy(centre);
+
+  for (const child of gltf.scene.children) {
+    let n = 0;
+    child.traverse((o) => { if (o.isMesh) n++; });
+    layers[child.name] = child;
+    const row = document.createElement('label');
+    row.innerHTML = `<input type="checkbox" checked> ${child.name} (${n})`;
+    row.querySelector('input').onchange = (e) => { child.visible = e.target.checked; };
+    hud.appendChild(row);
+  }
+  const info = document.createElement('div');
+  info.textContent = `bbox ${size.x.toFixed(3)} x ${size.y.toFixed(3)} x ${size.z.toFixed(3)} m`;
+  hud.appendChild(info);
+  window.__ready = { size: size.toArray(), centre: centre.toArray(),
+                     layers: Object.keys(layers) };
+});
+
+const ray = new THREE.Raycaster();
+addEventListener('pointerdown', (e) => {
+  ray.setFromCamera(new THREE.Vector2(
+    (e.clientX / innerWidth) * 2 - 1, -(e.clientY / innerHeight) * 2 + 1), camera);
+  const hit = ray.intersectObjects(scene.children, true)[0];
+  pick.textContent = hit ? hit.object.name : 'click a structure';
+});
+
+addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+
+(function tick() {
+  requestAnimationFrame(tick);
+  controls.update();
+  renderer.render(scene, camera);
+})();
+</script>
+</body>
+</html>
