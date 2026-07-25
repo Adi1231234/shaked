@@ -9,11 +9,40 @@ face instead of an atlas model.
 
 ## Layers
 
-1. **Skin** - her face, reconstructed from photos (see `capture/`)
-2. **Myology** - facial and masticatory muscles
-3. **Osteology** - cranium, mandible, teeth, and named bony landmarks
-4. **Neuro** - brain and cranial nerves
-5. **Angiology** - arteries and veins of the head and neck
+`models/head.glb` ships each layer as one glTF node holding its named
+structures, so the viewer can peel a layer and click a structure to identify
+it. Current build: 1123 nodes, 804 distinct structures, 4.8 MB Draco-compressed.
+
+- **skin** - her face, reconstructed from photos (see `capture/`). Not built yet.
+- **eyes** (36) - globe, cornea to retina, plus tarsal plates and the lacrimal apparatus
+- **myology** (183) - facial, masticatory, suprahyoid, cervical and upper back muscles
+- **viscera** (27) - pharynx, larynx, tongue, salivary glands, thyroid, trachea
+- **lymphoid** (51) - cervical node groups and the tonsils
+- **osteology** (117) - cranium, mandible, teeth, hyoid, laryngeal cartilages, cervical spine
+- **neuro** (286) - brain, brainstem, cranial nerves, ear and other sense organs
+- **angiology** (4) - everything Z-Anatomy has in the head, which is almost nothing
+- **landmarks** (419) - clickable hotspots for named bony landmarks
+
+### Names come from `extras`, not from node names
+
+three.js strips dots and spaces when it loads a glTF, so `Cornea.l` arrives as
+`Corneal` and `Sclera.l` as `Scleral`. Every node therefore carries glTF
+`extras` with `structure`, `side` and `layer`, and the viewer reads those.
+
+### Known gaps
+
+Measured with `tools/match_syllabus.py` against her 342-term head and neck
+syllabus: the build covers 156, which is everything Z-Anatomy has. The
+shortfall is not the export, it is the atlas.
+
+- **Vasculature** is the big one. The whole head has 4 vessel objects. The
+  dural venous sinuses (26 syllabus terms) are absent from Z-Anatomy *and*
+  from BodyParts3D upstream, and no free downloadable model exists. Plan is to
+  model them along the bony grooves Z-Anatomy does have
+  (`Groove for transverse sinus`, `Groove for occipital sinus`, `Carotid sulcus`).
+- Arteries can come from "Arteries of head & neck" (CC-BY) on Sketchfab.
+- Some cranial landmarks are genuinely missing: pterion, bregma, lambda,
+  clivus, crista galli, zygomatic arch.
 
 ## Sources
 

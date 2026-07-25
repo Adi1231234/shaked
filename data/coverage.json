@@ -1,0 +1,2263 @@
+{
+ "hits": [
+  {
+   "term": "frontal bone",
+   "group": 0,
+   "match": "Frontal bone",
+   "how": "exact"
+  },
+  {
+   "term": "parietal bone",
+   "group": 0,
+   "match": "Parietal bone.l",
+   "how": "exact"
+  },
+  {
+   "term": "occipital bone",
+   "group": 0,
+   "match": "Occipital bone",
+   "how": "exact"
+  },
+  {
+   "term": "temporal bone",
+   "group": 0,
+   "match": "Temporal bone.l",
+   "how": "exact"
+  },
+  {
+   "term": "Zygomatic bone",
+   "group": 0,
+   "match": "Zygomatic bone.l",
+   "how": "exact"
+  },
+  {
+   "term": "maxilla",
+   "group": 0,
+   "match": "Maxilla.l",
+   "how": "exact"
+  },
+  {
+   "term": "mandible",
+   "group": 0,
+   "match": "Mandible",
+   "how": "exact"
+  },
+  {
+   "term": "ethmoid bone",
+   "group": 0,
+   "match": "Ethmoid bone",
+   "how": "exact"
+  },
+  {
+   "term": "sphenoid bone",
+   "group": 0,
+   "match": "Sphenoid bone",
+   "how": "exact"
+  },
+  {
+   "term": "nasal bone",
+   "group": 0,
+   "match": "Nasal bone.l",
+   "how": "exact"
+  },
+  {
+   "term": "frontal process of zygomatic bone",
+   "group": 0,
+   "match": "Zygomatic process of frontal bone",
+   "how": "normalised"
+  },
+  {
+   "term": "glabella",
+   "group": 0,
+   "match": "Glabella",
+   "how": "exact"
+  },
+  {
+   "term": "squamous part of temporal bone",
+   "group": 0,
+   "match": "Squamous part of temporal bone",
+   "how": "exact"
+  },
+  {
+   "term": "petrous part of temporal bone",
+   "group": 0,
+   "match": "Petrous part of temporal bone",
+   "how": "exact"
+  },
+  {
+   "term": "mastoid process",
+   "group": 0,
+   "match": "Mastoid process",
+   "how": "exact"
+  },
+  {
+   "term": "mandibular fossa",
+   "group": 0,
+   "match": "Mandibular nerve",
+   "how": "substring"
+  },
+  {
+   "term": "pterygoid hamulus",
+   "group": 0,
+   "match": "Pterygoid hamulus",
+   "how": "exact"
+  },
+  {
+   "term": "sella turcica",
+   "group": 0,
+   "match": "Sella turcica",
+   "how": "exact"
+  },
+  {
+   "term": "anterior clinoid process",
+   "group": 0,
+   "match": "Anterior clinoid process",
+   "how": "exact"
+  },
+  {
+   "term": "posterior clinoid process",
+   "group": 0,
+   "match": "Posterior clinoid process",
+   "how": "exact"
+  },
+  {
+   "term": "body of sphenoid bone",
+   "group": 0,
+   "match": "Body of sphenoid bone",
+   "how": "exact"
+  },
+  {
+   "term": "occipital condyle",
+   "group": 0,
+   "match": "Occipital condyle",
+   "how": "exact"
+  },
+  {
+   "term": "basilar part of occipital bone",
+   "group": 0,
+   "match": "Basilar part of occipital bone",
+   "how": "exact"
+  },
+  {
+   "term": "inferior nuchal line",
+   "group": 0,
+   "match": "Inferior nuchal line",
+   "how": "exact"
+  },
+  {
+   "term": "superior nuchal line",
+   "group": 0,
+   "match": "Superior nuchal line",
+   "how": "exact"
+  },
+  {
+   "term": "external occipital crest",
+   "group": 0,
+   "match": "(External occipital crest)",
+   "how": "exact"
+  },
+  {
+   "term": "internal occipital crest",
+   "group": 0,
+   "match": "(Internal occipital crest)",
+   "how": "exact"
+  },
+  {
+   "term": "external occipital protuberance",
+   "group": 0,
+   "match": "External occipital protuberance",
+   "how": "exact"
+  },
+  {
+   "term": "internal occipital protuberance",
+   "group": 0,
+   "match": "Internal occipital protuberance",
+   "how": "exact"
+  },
+  {
+   "term": "mental tubercle",
+   "group": 0,
+   "match": "Mental tubercle",
+   "how": "exact"
+  },
+  {
+   "term": "mental foramen",
+   "group": 0,
+   "match": "Mental foramen",
+   "how": "exact"
+  },
+  {
+   "term": "mental protuberance",
+   "group": 0,
+   "match": "Mental protuberance",
+   "how": "exact"
+  },
+  {
+   "term": "oblique line",
+   "group": 0,
+   "match": "Oblique line of thyroid cartilage",
+   "how": "substring"
+  },
+  {
+   "term": "mandibular notch",
+   "group": 0,
+   "match": "Mandibular nerve",
+   "how": "substring"
+  },
+  {
+   "term": "sublingual fossa",
+   "group": 0,
+   "match": "Sublingual fossa",
+   "how": "exact"
+  },
+  {
+   "term": "digastric fossa",
+   "group": 0,
+   "match": "Digastric fossa",
+   "how": "exact"
+  },
+  {
+   "term": "mylohyoid line",
+   "group": 0,
+   "match": "Mylohyoid line",
+   "how": "exact"
+  },
+  {
+   "term": "lacrimal bone",
+   "group": 0,
+   "match": "Lacrimal bone.l",
+   "how": "exact"
+  },
+  {
+   "term": "vomer",
+   "group": 0,
+   "match": "Vomer",
+   "how": "exact"
+  },
+  {
+   "term": "inferior nasal concha",
+   "group": 0,
+   "match": "Inferior nasal concha bone.l",
+   "how": "normalised"
+  },
+  {
+   "term": "frontal sinus",
+   "group": 0,
+   "match": "Frontal bone",
+   "how": "normalised"
+  },
+  {
+   "term": "foramen magnum",
+   "group": 0,
+   "match": "Foramen magnum",
+   "how": "exact"
+  },
+  {
+   "term": "foramen ovale",
+   "group": 0,
+   "match": "Foramen ovale",
+   "how": "exact"
+  },
+  {
+   "term": "foramen spinosum",
+   "group": 0,
+   "match": "Foramen spinosum",
+   "how": "exact"
+  },
+  {
+   "term": "foramen rotundum",
+   "group": 0,
+   "match": "Foramen rotundum",
+   "how": "exact"
+  },
+  {
+   "term": "hypoglossal canal",
+   "group": 0,
+   "match": "Hypoglossal canal",
+   "how": "exact"
+  },
+  {
+   "term": "anterior arch of atlas",
+   "group": 0,
+   "match": "Anterior arch of atlas",
+   "how": "exact"
+  },
+  {
+   "term": "posterior arch of atlas",
+   "group": 0,
+   "match": "Posterior arch of atlas",
+   "how": "exact"
+  },
+  {
+   "term": "posterior tubercle",
+   "group": 0,
+   "match": "Posterior tubercle of atlas",
+   "how": "substring"
+  },
+  {
+   "term": "hyoid bone",
+   "group": 1,
+   "match": "Hyoid bone",
+   "how": "exact"
+  },
+  {
+   "term": "thyroid cartilage",
+   "group": 1,
+   "match": "Thyroid cartilage",
+   "how": "exact"
+  },
+  {
+   "term": "cricoid cartilage",
+   "group": 1,
+   "match": "Cricoid cartilage",
+   "how": "exact"
+  },
+  {
+   "term": "trachea",
+   "group": 1,
+   "match": "Trachea",
+   "how": "exact"
+  },
+  {
+   "term": "platysma",
+   "group": 1,
+   "match": "Platysma.l",
+   "how": "exact"
+  },
+  {
+   "term": "levator scapulae",
+   "group": 1,
+   "match": "Levator scapulae.l",
+   "how": "exact"
+  },
+  {
+   "term": "sternocleidomastoid",
+   "group": 1,
+   "match": "Sternocleidomastoid muscle.l",
+   "how": "normalised"
+  },
+  {
+   "term": "posterior belly of digastric",
+   "group": 1,
+   "match": "Posterior belly of digastric muscle.l",
+   "how": "normalised"
+  },
+  {
+   "term": "anterior belly of digastric",
+   "group": 1,
+   "match": "Anterior belly of digastric muscle.l",
+   "how": "normalised"
+  },
+  {
+   "term": "stylohyoid",
+   "group": 1,
+   "match": "Stylohyoid ligament.l",
+   "how": "normalised"
+  },
+  {
+   "term": "longus capitis",
+   "group": 1,
+   "match": "Longus capitis muscle.l",
+   "how": "normalised"
+  },
+  {
+   "term": "thyrohyoid",
+   "group": 1,
+   "match": "Thyrohyoid muscle.l",
+   "how": "normalised"
+  },
+  {
+   "term": "sternohyoid",
+   "group": 1,
+   "match": "Sternohyoid muscle.l",
+   "how": "normalised"
+  },
+  {
+   "term": "sternothyroid",
+   "group": 1,
+   "match": "Sternothyroid muscle.l",
+   "how": "normalised"
+  },
+  {
+   "term": "brachial plexus",
+   "group": 1,
+   "match": "Brachial plexus",
+   "how": "exact"
+  },
+  {
+   "term": "occipital artery",
+   "group": 1,
+   "match": "Occipital bone",
+   "how": "normalised"
+  },
+  {
+   "term": "retromandibular vein",
+   "group": 1,
+   "match": "Mandibular nerve",
+   "how": "substring"
+  },
+  {
+   "term": "occipital sinus",
+   "group": 2,
+   "match": "Occipital bone",
+   "how": "normalised"
+  },
+  {
+   "term": "cavernous sinus",
+   "group": 2,
+   "match": "Cavernous sinus.l",
+   "how": "exact"
+  },
+  {
+   "term": "great cerebral vein",
+   "group": 2,
+   "match": "Cerebral surface of greater wing",
+   "how": "substring"
+  },
+  {
+   "term": "mandibular nerve",
+   "group": 2,
+   "match": "Mandibular nerve",
+   "how": "exact"
+  },
+  {
+   "term": "frontalis",
+   "group": 3,
+   "match": "Frontalis muscle.l",
+   "how": "normalised"
+  },
+  {
+   "term": "orbital part of orbicularis oculi",
+   "group": 3,
+   "match": "Orbital part of orbicularis oculi.l",
+   "how": "exact"
+  },
+  {
+   "term": "palpebral part of orbicularis oculi",
+   "group": 3,
+   "match": "Palpebral part of orbicularis oculi.l",
+   "how": "exact"
+  },
+  {
+   "term": "levator anguli oris",
+   "group": 3,
+   "match": "Levator anguli oris.l",
+   "how": "exact"
+  },
+  {
+   "term": "depressor anguli oris",
+   "group": 3,
+   "match": "Depressor anguli oris.l",
+   "how": "exact"
+  },
+  {
+   "term": "risorius",
+   "group": 3,
+   "match": "Risorius muscle.l",
+   "how": "normalised"
+  },
+  {
+   "term": "orbicularis oris",
+   "group": 3,
+   "match": "Orbicularis oris muscle.l",
+   "how": "normalised"
+  },
+  {
+   "term": "procerus",
+   "group": 3,
+   "match": "Procerus muscle.l",
+   "how": "normalised"
+  },
+  {
+   "term": "corrugator supercilii",
+   "group": 3,
+   "match": "Corrugator supercilii.l",
+   "how": "exact"
+  },
+  {
+   "term": "levator labii superioris",
+   "group": 3,
+   "match": "Levator labii superioris.l",
+   "how": "exact"
+  },
+  {
+   "term": "zygomaticus major",
+   "group": 3,
+   "match": "Zygomaticus major muscle.l",
+   "how": "normalised"
+  },
+  {
+   "term": "zygomaticus minor",
+   "group": 3,
+   "match": "Zygomaticus minor muscle.l",
+   "how": "normalised"
+  },
+  {
+   "term": "depressor septi nasi",
+   "group": 3,
+   "match": "Depressor septi nasi.l",
+   "how": "exact"
+  },
+  {
+   "term": "depressor labii inferioris",
+   "group": 3,
+   "match": "Depressor labii inferioris.l",
+   "how": "exact"
+  },
+  {
+   "term": "mentalis",
+   "group": 3,
+   "match": "Mentalis muscle.l",
+   "how": "normalised"
+  },
+  {
+   "term": "supratrochlear artery",
+   "group": 3,
+   "match": "Ear",
+   "how": "substring"
+  },
+  {
+   "term": "helix",
+   "group": 3,
+   "match": "Helix.l",
+   "how": "exact"
+  },
+  {
+   "term": "tragus",
+   "group": 3,
+   "match": "Tragus.l",
+   "how": "exact"
+  },
+  {
+   "term": "marginal mandibular branch",
+   "group": 3,
+   "match": "Mandibular nerve",
+   "how": "substring"
+  },
+  {
+   "term": "parotid gland",
+   "group": 3,
+   "match": "Parotid gland.l",
+   "how": "exact"
+  },
+  {
+   "term": "temporalis muscle",
+   "group": 4,
+   "match": "Temporalis muscle.l",
+   "how": "exact"
+  },
+  {
+   "term": "medial pterygoid muscle",
+   "group": 4,
+   "match": "Medial pterygoid muscle.l",
+   "how": "exact"
+  },
+  {
+   "term": "sphenomandibular ligament",
+   "group": 4,
+   "match": "Sphenomandibular ligament.l",
+   "how": "exact"
+  },
+  {
+   "term": "stylomandibular ligament",
+   "group": 4,
+   "match": "Stylomandibular ligament.l",
+   "how": "exact"
+  },
+  {
+   "term": "superior pharyngeal constrictor muscle",
+   "group": 4,
+   "match": "Superior pharyngeal constrictor.l",
+   "how": "normalised"
+  },
+  {
+   "term": "middle meningeal artery",
+   "group": 4,
+   "match": "Groove for middle meningeal artery",
+   "how": "substring"
+  },
+  {
+   "term": "mylohyoid nerve",
+   "group": 4,
+   "match": "Mylohyoid muscle.l",
+   "how": "normalised"
+  },
+  {
+   "term": "mandibular nerve",
+   "group": 4,
+   "match": "Mandibular nerve",
+   "how": "exact"
+  },
+  {
+   "term": "anterior belly of digastric muscle",
+   "group": 5,
+   "match": "Anterior belly of digastric muscle.l",
+   "how": "exact"
+  },
+  {
+   "term": "posterior belly of digastric muscle",
+   "group": 5,
+   "match": "Posterior belly of digastric muscle.l",
+   "how": "exact"
+  },
+  {
+   "term": "mylohyoid muscle",
+   "group": 5,
+   "match": "Mylohyoid muscle.l",
+   "how": "exact"
+  },
+  {
+   "term": "stylohyoid muscle",
+   "group": 5,
+   "match": "Stylohyoid muscle.l",
+   "how": "exact"
+  },
+  {
+   "term": "geniohyoid muscle",
+   "group": 5,
+   "match": "Geniohyoid muscle.l",
+   "how": "exact"
+  },
+  {
+   "term": "genioglossus muscle",
+   "group": 5,
+   "match": "Genioglossus muscle.l",
+   "how": "exact"
+  },
+  {
+   "term": "palatopharyngeus muscle",
+   "group": 5,
+   "match": "Palatopharyngeus muscle.l",
+   "how": "exact"
+  },
+  {
+   "term": "styloid process",
+   "group": 5,
+   "match": "Styloid process of temporal bone",
+   "how": "substring"
+  },
+  {
+   "term": "mandible",
+   "group": 5,
+   "match": "Mandible",
+   "how": "exact"
+  },
+  {
+   "term": "superior mental spine",
+   "group": 5,
+   "match": "Superior mental spine",
+   "how": "exact"
+  },
+  {
+   "term": "submandibular gland",
+   "group": 5,
+   "match": "Submandibular gland.l",
+   "how": "exact"
+  },
+  {
+   "term": "sublingual gland",
+   "group": 5,
+   "match": "Sublingual gland.l",
+   "how": "exact"
+  },
+  {
+   "term": "sublingual artery",
+   "group": 5,
+   "match": "Sublingual gland.l",
+   "how": "normalised"
+  },
+  {
+   "term": "palatine tonsil",
+   "group": 5,
+   "match": "Palatine tonsil.l",
+   "how": "exact"
+  },
+  {
+   "term": "soft palate",
+   "group": 5,
+   "match": "Soft palate",
+   "how": "exact"
+  },
+  {
+   "term": "hard palate",
+   "group": 5,
+   "match": "Palate",
+   "how": "substring"
+  },
+  {
+   "term": "epiglottis",
+   "group": 6,
+   "match": "Epiglottis",
+   "how": "exact"
+  },
+  {
+   "term": "cricoid cartilage",
+   "group": 6,
+   "match": "Cricoid cartilage",
+   "how": "exact"
+  },
+  {
+   "term": "arytenoid cartilage",
+   "group": 6,
+   "match": "Arytenoid cartilage.l",
+   "how": "exact"
+  },
+  {
+   "term": "corniculate cartilage",
+   "group": 6,
+   "match": "Corniculate cartilage.l",
+   "how": "exact"
+  },
+  {
+   "term": "vocal ligament",
+   "group": 6,
+   "match": "Vocal process",
+   "how": "substring"
+  },
+  {
+   "term": "hyoid bone",
+   "group": 6,
+   "match": "Hyoid bone",
+   "how": "exact"
+  },
+  {
+   "term": "greater horn of hyoid bone",
+   "group": 6,
+   "match": "Greater horn of hyoid bone",
+   "how": "exact"
+  },
+  {
+   "term": "lesser horn of hyoid bone",
+   "group": 6,
+   "match": "Lesser horn of hyoid bone",
+   "how": "exact"
+  },
+  {
+   "term": "transverse arytenoid muscle",
+   "group": 6,
+   "match": "Transverse arytenoid muscle",
+   "how": "exact"
+  },
+  {
+   "term": "nasopharynx",
+   "group": 6,
+   "match": "Nasopharynx",
+   "how": "exact"
+  },
+  {
+   "term": "oropharynx",
+   "group": 6,
+   "match": "Oropharynx",
+   "how": "exact"
+  },
+  {
+   "term": "laryngopharynx",
+   "group": 6,
+   "match": "Laryngopharynx",
+   "how": "exact"
+  },
+  {
+   "term": "trachea",
+   "group": 6,
+   "match": "Trachea",
+   "how": "exact"
+  },
+  {
+   "term": "pterygoid hamulus",
+   "group": 6,
+   "match": "Pterygoid hamulus",
+   "how": "exact"
+  },
+  {
+   "term": "middle pharyngeal constrictor muscle",
+   "group": 6,
+   "match": "Middle pharyngeal constrictor.l",
+   "how": "normalised"
+  },
+  {
+   "term": "inferior pharyngeal constrictor muscle",
+   "group": 6,
+   "match": "Inferior pharyngeal constrictor.l",
+   "how": "normalised"
+  },
+  {
+   "term": "atlas",
+   "group": 6,
+   "match": "Atlas",
+   "how": "exact"
+  },
+  {
+   "term": "sclera",
+   "group": 7,
+   "match": "Sclera.l",
+   "how": "exact"
+  },
+  {
+   "term": "pupil",
+   "group": 7,
+   "match": "Pupil",
+   "how": "exact"
+  },
+  {
+   "term": "iris",
+   "group": 7,
+   "match": "Iris.l",
+   "how": "exact"
+  },
+  {
+   "term": "superior tarsus",
+   "group": 7,
+   "match": "Superior tarsus.l",
+   "how": "exact"
+  },
+  {
+   "term": "inferior tarsus",
+   "group": 7,
+   "match": "Inferior tarsus.l",
+   "how": "exact"
+  },
+  {
+   "term": "lacrimal sac",
+   "group": 7,
+   "match": "Lacrimal sac.l",
+   "how": "exact"
+  },
+  {
+   "term": "nasolacrimal duct",
+   "group": 7,
+   "match": "Nasolacrimal duct.l",
+   "how": "exact"
+  },
+  {
+   "term": "levator palpebrae superioris",
+   "group": 7,
+   "match": "Levator palpebrae superioris.l",
+   "how": "exact"
+  },
+  {
+   "term": "superior rectus",
+   "group": 7,
+   "match": "Superior rectus muscle.l",
+   "how": "normalised"
+  },
+  {
+   "term": "inferior rectus",
+   "group": 7,
+   "match": "Inferior rectus muscle.l",
+   "how": "normalised"
+  },
+  {
+   "term": "medial rectus",
+   "group": 7,
+   "match": "Medial rectus muscle.l",
+   "how": "normalised"
+  },
+  {
+   "term": "lateral rectus",
+   "group": 7,
+   "match": "Lateral rectus muscle.l",
+   "how": "normalised"
+  },
+  {
+   "term": "superior oblique",
+   "group": 7,
+   "match": "Superior oblique muscle.l",
+   "how": "normalised"
+  },
+  {
+   "term": "inferior oblique",
+   "group": 7,
+   "match": "Inferior oblique muscle.l",
+   "how": "normalised"
+  },
+  {
+   "term": "common tendinous ring",
+   "group": 7,
+   "match": "Common tendinous ring.l",
+   "how": "exact"
+  },
+  {
+   "term": "frontal nerve",
+   "group": 7,
+   "match": "Frontal bone",
+   "how": "normalised"
+  },
+  {
+   "term": "supratrochlear nerve",
+   "group": 7,
+   "match": "Ear",
+   "how": "substring"
+  },
+  {
+   "term": "infratrochlear nerve",
+   "group": 7,
+   "match": "Ear",
+   "how": "substring"
+  },
+  {
+   "term": "lacrimal nerve",
+   "group": 7,
+   "match": "Lacrimal bone.l",
+   "how": "normalised"
+  },
+  {
+   "term": "anterior ethmoidal nerve",
+   "group": 7,
+   "match": "Ethmoid bone",
+   "how": "substring"
+  },
+  {
+   "term": "posterior ethmoidal nerve",
+   "group": 7,
+   "match": "Ethmoid bone",
+   "how": "substring"
+  },
+  {
+   "term": "lacrimal artery",
+   "group": 7,
+   "match": "Lacrimal bone.l",
+   "how": "normalised"
+  },
+  {
+   "term": "anterior ethmoidal artery",
+   "group": 7,
+   "match": "Ethmoid bone",
+   "how": "substring"
+  },
+  {
+   "term": "posterior ethmoidal artery",
+   "group": 7,
+   "match": "Ethmoid bone",
+   "how": "substring"
+  },
+  {
+   "term": "supratrochlear artery",
+   "group": 7,
+   "match": "Ear",
+   "how": "substring"
+  }
+ ],
+ "misses": [
+  {
+   "term": "zygomatic process of maxilla",
+   "group": 0,
+   "candidates": [
+    "Maxilla.l",
+    "Maxilla.r",
+    "Zygomatic bone.l",
+    "Zygomatic bone.r"
+   ]
+  },
+  {
+   "term": "alveolar process of maxilla",
+   "group": 0,
+   "candidates": [
+    "Maxilla.l",
+    "Maxilla.r"
+   ]
+  },
+  {
+   "term": "frontal process of maxilla",
+   "group": 0,
+   "candidates": [
+    "Frontal bone",
+    "Maxilla.l",
+    "Maxilla.r"
+   ]
+  },
+  {
+   "term": "temporal process of zygomatic bone",
+   "group": 0,
+   "candidates": [
+    "Temporal bone.l",
+    "Temporal bone.r",
+    "Zygomatic bone.l",
+    "Zygomatic bone.r"
+   ]
+  },
+  {
+   "term": "zygomatic arch",
+   "group": 0,
+   "candidates": [
+    "Zygomatic bone.l",
+    "Zygomatic bone.r"
+   ]
+  },
+  {
+   "term": "pterion",
+   "group": 0,
+   "candidates": []
+  },
+  {
+   "term": "temporal fossa",
+   "group": 0,
+   "candidates": [
+    "Temporal bone.l",
+    "Temporal bone.r"
+   ]
+  },
+  {
+   "term": "bregma",
+   "group": 0,
+   "candidates": []
+  },
+  {
+   "term": "lambda",
+   "group": 0,
+   "candidates": []
+  },
+  {
+   "term": "pterygopalatine fossa",
+   "group": 0,
+   "candidates": [
+    "Palatine bone.l",
+    "Palatine bone.r"
+   ]
+  },
+  {
+   "term": "clivus",
+   "group": 0,
+   "candidates": []
+  },
+  {
+   "term": "crista galli",
+   "group": 0,
+   "candidates": []
+  },
+  {
+   "term": "ramus",
+   "group": 0,
+   "candidates": []
+  },
+  {
+   "term": "body",
+   "group": 0,
+   "candidates": [
+    "Amygdaloid body.l",
+    "Amygdaloid body.r",
+    "Body of hyoid bone",
+    "Body of incus"
+   ]
+  },
+  {
+   "term": "angle",
+   "group": 0,
+   "candidates": [
+    "Frontal angle of parietal bone",
+    "Mastoid angle of parietal bone",
+    "Occipital angle of parietal bone",
+    "Sphenoidal angle of parietal bone"
+   ]
+  },
+  {
+   "term": "mental spine",
+   "group": 0,
+   "candidates": [
+    "Inferior mental spine",
+    "Superior mental spine"
+   ]
+  },
+  {
+   "term": "coronoid process",
+   "group": 0,
+   "candidates": []
+  },
+  {
+   "term": "pterygoid fovea",
+   "group": 0,
+   "candidates": []
+  },
+  {
+   "term": "lingula",
+   "group": 0,
+   "candidates": [
+    "Lingula of cerebellum",
+    "Sphenoidal lingula"
+   ]
+  },
+  {
+   "term": "submandibular fossa",
+   "group": 0,
+   "candidates": [
+    "Mandibular nerve",
+    "Submandibular gland.l",
+    "Submandibular gland.r"
+   ]
+  },
+  {
+   "term": "mylohyoid groove",
+   "group": 0,
+   "candidates": [
+    "Hyoid bone",
+    "Mylohyoid muscle.l",
+    "Mylohyoid muscle.r"
+   ]
+  },
+  {
+   "term": "middle nasal concha",
+   "group": 0,
+   "candidates": [
+    "Nasal bone.l",
+    "Nasal bone.r"
+   ]
+  },
+  {
+   "term": "superior nasal concha",
+   "group": 0,
+   "candidates": [
+    "Nasal bone.l",
+    "Nasal bone.r"
+   ]
+  },
+  {
+   "term": "nasal surface of maxilla",
+   "group": 0,
+   "candidates": [
+    "Maxilla.l",
+    "Maxilla.r",
+    "Nasal bone.l",
+    "Nasal bone.r"
+   ]
+  },
+  {
+   "term": "sphenoidal sinus",
+   "group": 0,
+   "candidates": [
+    "Septum of sphenoidal sinuses",
+    "Sphenoid bone",
+    "Sphenoidal angle of parietal bone",
+    "Sphenoidal crest"
+   ]
+  },
+  {
+   "term": "maxillary sinus",
+   "group": 0,
+   "candidates": [
+    "Maxilla.l",
+    "Maxilla.r",
+    "Maxillary dental arch",
+    "Maxillary surface of greater wing"
+   ]
+  },
+  {
+   "term": "foramen lacerum",
+   "group": 0,
+   "candidates": []
+  },
+  {
+   "term": "internal acoustic meatus",
+   "group": 0,
+   "candidates": []
+  },
+  {
+   "term": "external acoustic meatus",
+   "group": 0,
+   "candidates": []
+  },
+  {
+   "term": "sphenopalatine foramen",
+   "group": 0,
+   "candidates": [
+    "Palatine bone.l",
+    "Palatine bone.r"
+   ]
+  },
+  {
+   "term": "jugular fossa",
+   "group": 0,
+   "candidates": []
+  },
+  {
+   "term": "jugular foramen",
+   "group": 0,
+   "candidates": []
+  },
+  {
+   "term": "carotid canal",
+   "group": 0,
+   "candidates": []
+  },
+  {
+   "term": "anterior tubercle",
+   "group": 0,
+   "candidates": []
+  },
+  {
+   "term": "lateral mass of atlas",
+   "group": 0,
+   "candidates": [
+    "Atlas",
+    "Lateral mass"
+   ]
+  },
+  {
+   "term": "transverse foramen",
+   "group": 0,
+   "candidates": []
+  },
+  {
+   "term": "dens of axis",
+   "group": 0,
+   "candidates": [
+    "Apex of dens axis",
+    "Dens axis"
+   ]
+  },
+  {
+   "term": "transverse process",
+   "group": 0,
+   "candidates": [
+    "Anterior tubercle of transverse process",
+    "Posterior tubercle of transverse process"
+   ]
+  },
+  {
+   "term": "spinous process",
+   "group": 0,
+   "candidates": []
+  },
+  {
+   "term": "carotid sheath",
+   "group": 1,
+   "candidates": []
+  },
+  {
+   "term": "splenius",
+   "group": 1,
+   "candidates": [
+    "Splenius capitis muscle.l",
+    "Splenius capitis muscle.r",
+    "Splenius colli muscle.l",
+    "Splenius colli muscle.r"
+   ]
+  },
+  {
+   "term": "anterior scalene",
+   "group": 1,
+   "candidates": []
+  },
+  {
+   "term": "posterior scalene",
+   "group": 1,
+   "candidates": []
+  },
+  {
+   "term": "superior belly of omohyoid",
+   "group": 1,
+   "candidates": [
+    "Hyoid bone",
+    "Omohyoid muscle.l",
+    "Omohyoid muscle.r"
+   ]
+  },
+  {
+   "term": "inferior belly of omohyoid",
+   "group": 1,
+   "candidates": [
+    "Hyoid bone",
+    "Omohyoid muscle.l",
+    "Omohyoid muscle.r"
+   ]
+  },
+  {
+   "term": "trapezius",
+   "group": 1,
+   "candidates": [
+    "Ascending part of trapezius muscle.l",
+    "Ascending part of trapezius muscle.r",
+    "Transverse part of trapezius muscle.l",
+    "Transverse part of trapezius muscle.r"
+   ]
+  },
+  {
+   "term": "common carotid artery",
+   "group": 1,
+   "candidates": []
+  },
+  {
+   "term": "internal carotid artery",
+   "group": 1,
+   "candidates": []
+  },
+  {
+   "term": "external carotid artery",
+   "group": 1,
+   "candidates": []
+  },
+  {
+   "term": "internal jugular vein",
+   "group": 1,
+   "candidates": []
+  },
+  {
+   "term": "vagus nerve",
+   "group": 1,
+   "candidates": [
+    "Posterior nucleus of vagus nerve.l",
+    "Posterior nucleus of vagus nerve.r"
+   ]
+  },
+  {
+   "term": "external jugular vein",
+   "group": 1,
+   "candidates": []
+  },
+  {
+   "term": "anterior jugular vein",
+   "group": 1,
+   "candidates": []
+  },
+  {
+   "term": "facial vein",
+   "group": 1,
+   "candidates": [
+    "Facial bones",
+    "Facial muscles",
+    "Facial nodes",
+    "Motor nucleus of facial nerve.l"
+   ]
+  },
+  {
+   "term": "facial artery",
+   "group": 1,
+   "candidates": [
+    "Facial bones",
+    "Facial muscles",
+    "Facial nodes",
+    "Motor nucleus of facial nerve.l"
+   ]
+  },
+  {
+   "term": "ansa cervicalis",
+   "group": 1,
+   "candidates": []
+  },
+  {
+   "term": "accessory nerve",
+   "group": 1,
+   "candidates": [
+    "(Accessory parotid gland).l",
+    "(Accessory parotid gland).r",
+    "Accessory nucleus of oculomotor nerve.l",
+    "Accessory nucleus of oculomotor nerve.r"
+   ]
+  },
+  {
+   "term": "phrenic nerve",
+   "group": 1,
+   "candidates": []
+  },
+  {
+   "term": "subclavian artery",
+   "group": 1,
+   "candidates": []
+  },
+  {
+   "term": "subclavian vein",
+   "group": 1,
+   "candidates": []
+  },
+  {
+   "term": "thyrocervical trunk",
+   "group": 1,
+   "candidates": []
+  },
+  {
+   "term": "vertebral artery",
+   "group": 1,
+   "candidates": [
+    "(Canal for vertebral artery)",
+    "Groove for vertebral artery",
+    "Intervertebral disc C2-C3",
+    "Intervertebral disc C3-C4"
+   ]
+  },
+  {
+   "term": "costocervical trunk",
+   "group": 1,
+   "candidates": []
+  },
+  {
+   "term": "suprascapular artery",
+   "group": 1,
+   "candidates": []
+  },
+  {
+   "term": "transverse cervical artery",
+   "group": 1,
+   "candidates": []
+  },
+  {
+   "term": "inferior thyroid artery",
+   "group": 1,
+   "candidates": [
+    "Inferior thyroid tubercle",
+    "Thyroid cartilage",
+    "Thyroid gland"
+   ]
+  },
+  {
+   "term": "superior thyroid artery",
+   "group": 1,
+   "candidates": [
+    "Superior horn of thyroid cartilage",
+    "Superior thyroid notch",
+    "Superior thyroid tubercle",
+    "Thyroid cartilage"
+   ]
+  },
+  {
+   "term": "inferior thyroid vein",
+   "group": 1,
+   "candidates": [
+    "Inferior thyroid tubercle",
+    "Thyroid cartilage",
+    "Thyroid gland"
+   ]
+  },
+  {
+   "term": "middle thyroid vein",
+   "group": 1,
+   "candidates": [
+    "Thyroid cartilage",
+    "Thyroid gland"
+   ]
+  },
+  {
+   "term": "superior thyroid vein",
+   "group": 1,
+   "candidates": [
+    "Superior horn of thyroid cartilage",
+    "Superior thyroid notch",
+    "Superior thyroid tubercle",
+    "Thyroid cartilage"
+   ]
+  },
+  {
+   "term": "ascending pharyngeal artery",
+   "group": 1,
+   "candidates": []
+  },
+  {
+   "term": "lingual artery",
+   "group": 1,
+   "candidates": [
+    "Lingual gyrus.l",
+    "Lingual gyrus.r",
+    "Lingual surface of tooth",
+    "Sublingual fossa"
+   ]
+  },
+  {
+   "term": "maxillary artery",
+   "group": 1,
+   "candidates": [
+    "Maxilla.l",
+    "Maxilla.r",
+    "Maxillary dental arch",
+    "Maxillary surface of greater wing"
+   ]
+  },
+  {
+   "term": "posterior auricular artery",
+   "group": 1,
+   "candidates": []
+  },
+  {
+   "term": "superior laryngeal artery",
+   "group": 1,
+   "candidates": []
+  },
+  {
+   "term": "lingual vein",
+   "group": 1,
+   "candidates": [
+    "Lingual gyrus.l",
+    "Lingual gyrus.r",
+    "Lingual surface of tooth",
+    "Sublingual fossa"
+   ]
+  },
+  {
+   "term": "sympathetic trunk",
+   "group": 1,
+   "candidates": []
+  },
+  {
+   "term": "superior sagittal sinus",
+   "group": 2,
+   "candidates": []
+  },
+  {
+   "term": "inferior sagittal sinus",
+   "group": 2,
+   "candidates": []
+  },
+  {
+   "term": "transverse sinus",
+   "group": 2,
+   "candidates": [
+    " Posterior transverse collateral sulcus.l",
+    " Posterior transverse collateral sulcus.r",
+    "Anterior tubercle of transverse process",
+    "Groove for transverse sinus"
+   ]
+  },
+  {
+   "term": "straight sinus",
+   "group": 2,
+   "candidates": [
+    "Straight gyrus (Gyrus rectus).l",
+    "Straight gyrus (Gyrus rectus).r",
+    "Straight part of cricothyroid muscle.l",
+    "Straight part of cricothyroid muscle.r"
+   ]
+  },
+  {
+   "term": "superior petrosal sinus",
+   "group": 2,
+   "candidates": []
+  },
+  {
+   "term": "inferior petrosal sinus",
+   "group": 2,
+   "candidates": []
+  },
+  {
+   "term": "sphenoparietal sinus",
+   "group": 2,
+   "candidates": [
+    "Parietal bone.l",
+    "Parietal bone.r"
+   ]
+  },
+  {
+   "term": "sigmoid sinus",
+   "group": 2,
+   "candidates": []
+  },
+  {
+   "term": "olfactory nerve",
+   "group": 2,
+   "candidates": [
+    "Olfactory sulcus.l",
+    "Olfactory sulcus.r"
+   ]
+  },
+  {
+   "term": "optic nerve",
+   "group": 2,
+   "candidates": [
+    "Optic axis",
+    "Optic canal",
+    "Optic chiasm.l",
+    "Optic chiasm.r"
+   ]
+  },
+  {
+   "term": "oculomotor nerve",
+   "group": 2,
+   "candidates": [
+    "Accessory nucleus of oculomotor nerve.l",
+    "Accessory nucleus of oculomotor nerve.r",
+    "Nucleus of oculomotor nerve.l",
+    "Nucleus of oculomotor nerve.r"
+   ]
+  },
+  {
+   "term": "trochlear nerve",
+   "group": 2,
+   "candidates": [
+    "Ear",
+    "Nucleus of trochlear nerve.l",
+    "Nucleus of trochlear nerve.r",
+    "Trochlear fovea"
+   ]
+  },
+  {
+   "term": "trigeminal nerve",
+   "group": 2,
+   "candidates": [
+    "Motor root of trigeminal nerve.l",
+    "Motor root of trigeminal nerve.r",
+    "Sensory root of trigeminal nerve.l",
+    "Sensory root of trigeminal nerve.r"
+   ]
+  },
+  {
+   "term": "abducent nerve",
+   "group": 2,
+   "candidates": []
+  },
+  {
+   "term": "facial nerve",
+   "group": 2,
+   "candidates": [
+    "Facial bones",
+    "Facial muscles",
+    "Facial nodes",
+    "Motor nucleus of facial nerve.l"
+   ]
+  },
+  {
+   "term": "vestibulocochlear nerve",
+   "group": 2,
+   "candidates": [
+    "Cochlea.l",
+    "Cochlea.r",
+    "Cochlear nerve",
+    "Ear"
+   ]
+  },
+  {
+   "term": "glossopharyngeal nerve",
+   "group": 2,
+   "candidates": []
+  },
+  {
+   "term": "vagus nerve",
+   "group": 2,
+   "candidates": [
+    "Posterior nucleus of vagus nerve.l",
+    "Posterior nucleus of vagus nerve.r"
+   ]
+  },
+  {
+   "term": "accessory nerve",
+   "group": 2,
+   "candidates": [
+    "(Accessory parotid gland).l",
+    "(Accessory parotid gland).r",
+    "Accessory nucleus of oculomotor nerve.l",
+    "Accessory nucleus of oculomotor nerve.r"
+   ]
+  },
+  {
+   "term": "hypoglossal nerve",
+   "group": 2,
+   "candidates": [
+    "Hypoglossal canal",
+    "Nucleus of hypoglossal nerve.l",
+    "Nucleus of hypoglossal nerve.r"
+   ]
+  },
+  {
+   "term": "ophthalmic nerve",
+   "group": 2,
+   "candidates": []
+  },
+  {
+   "term": "maxillary nerve",
+   "group": 2,
+   "candidates": [
+    "Maxilla.l",
+    "Maxilla.r",
+    "Maxillary dental arch",
+    "Maxillary surface of greater wing"
+   ]
+  },
+  {
+   "term": "buccinator",
+   "group": 3,
+   "candidates": []
+  },
+  {
+   "term": "transverse part of nasalis",
+   "group": 3,
+   "candidates": [
+    "Nasal bone.l",
+    "Nasal bone.r",
+    "Nasalis muscle.l",
+    "Nasalis muscle.r"
+   ]
+  },
+  {
+   "term": "alar part of nasalis",
+   "group": 3,
+   "candidates": [
+    "Nasal bone.l",
+    "Nasal bone.r",
+    "Nasalis muscle.l",
+    "Nasalis muscle.r"
+   ]
+  },
+  {
+   "term": "anterior auricular muscle",
+   "group": 3,
+   "candidates": []
+  },
+  {
+   "term": "posterior auricular muscle",
+   "group": 3,
+   "candidates": []
+  },
+  {
+   "term": "superior auricular muscle",
+   "group": 3,
+   "candidates": []
+  },
+  {
+   "term": "facial artery",
+   "group": 3,
+   "candidates": [
+    "Facial bones",
+    "Facial muscles",
+    "Facial nodes",
+    "Motor nucleus of facial nerve.l"
+   ]
+  },
+  {
+   "term": "angular artery",
+   "group": 3,
+   "candidates": [
+    "Angular gyrus.l",
+    "Angular gyrus.r",
+    "Anterior quadrangular lobule.l",
+    "Anterior quadrangular lobule.r"
+   ]
+  },
+  {
+   "term": "dorsal nasal artery",
+   "group": 3,
+   "candidates": [
+    "Nasal bone.l",
+    "Nasal bone.r"
+   ]
+  },
+  {
+   "term": "transverse facial artery",
+   "group": 3,
+   "candidates": []
+  },
+  {
+   "term": "external carotid artery",
+   "group": 3,
+   "candidates": []
+  },
+  {
+   "term": "inferior labial artery",
+   "group": 3,
+   "candidates": []
+  },
+  {
+   "term": "superior labial artery",
+   "group": 3,
+   "candidates": []
+  },
+  {
+   "term": "zygomaticofacial artery",
+   "group": 3,
+   "candidates": [
+    "Zygomatic bone.l",
+    "Zygomatic bone.r"
+   ]
+  },
+  {
+   "term": "zygomaticotemporal artery",
+   "group": 3,
+   "candidates": [
+    "Temporal bone.l",
+    "Temporal bone.r",
+    "Zygomatic bone.l",
+    "Zygomatic bone.r"
+   ]
+  },
+  {
+   "term": "supraorbital artery",
+   "group": 3,
+   "candidates": []
+  },
+  {
+   "term": "facial nerve",
+   "group": 3,
+   "candidates": [
+    "Facial bones",
+    "Facial muscles",
+    "Facial nodes",
+    "Motor nucleus of facial nerve.l"
+   ]
+  },
+  {
+   "term": "posterior auricular nerve",
+   "group": 3,
+   "candidates": []
+  },
+  {
+   "term": "temporal branch",
+   "group": 3,
+   "candidates": [
+    "Temporal bone.l",
+    "Temporal bone.r"
+   ]
+  },
+  {
+   "term": "zygomatic branch",
+   "group": 3,
+   "candidates": [
+    "Zygomatic bone.l",
+    "Zygomatic bone.r"
+   ]
+  },
+  {
+   "term": "buccal branch",
+   "group": 3,
+   "candidates": []
+  },
+  {
+   "term": "cervical branch",
+   "group": 3,
+   "candidates": []
+  },
+  {
+   "term": "parotid duct",
+   "group": 3,
+   "candidates": [
+    "Parotid gland.l",
+    "Parotid gland.r"
+   ]
+  },
+  {
+   "term": "masseter muscle",
+   "group": 4,
+   "candidates": [
+    "Deep part of masseter.l",
+    "Deep part of masseter.r",
+    "Masseteric fascia.l",
+    "Masseteric fascia.r"
+   ]
+  },
+  {
+   "term": "lateral pterygoid muscle",
+   "group": 4,
+   "candidates": []
+  },
+  {
+   "term": "buccinator muscle",
+   "group": 4,
+   "candidates": []
+  },
+  {
+   "term": "superficial temporal artery",
+   "group": 4,
+   "candidates": [
+    "Superficial layer of temporal fascia.l",
+    "Superficial layer of temporal fascia.r",
+    "Temporal bone.l",
+    "Temporal bone.r"
+   ]
+  },
+  {
+   "term": "deep temporal artery",
+   "group": 4,
+   "candidates": [
+    "Temporal bone.l",
+    "Temporal bone.r"
+   ]
+  },
+  {
+   "term": "maxillary artery",
+   "group": 4,
+   "candidates": [
+    "Maxilla.l",
+    "Maxilla.r",
+    "Maxillary dental arch",
+    "Maxillary surface of greater wing"
+   ]
+  },
+  {
+   "term": "inferior alveolar artery",
+   "group": 4,
+   "candidates": []
+  },
+  {
+   "term": "inferior alveolar nerve",
+   "group": 4,
+   "candidates": []
+  },
+  {
+   "term": "lingual nerve",
+   "group": 4,
+   "candidates": [
+    "Lingual gyrus.l",
+    "Lingual gyrus.r",
+    "Lingual surface of tooth",
+    "Sublingual fossa"
+   ]
+  },
+  {
+   "term": "facial nerve",
+   "group": 4,
+   "candidates": [
+    "Facial bones",
+    "Facial muscles",
+    "Facial nodes",
+    "Motor nucleus of facial nerve.l"
+   ]
+  },
+  {
+   "term": "auriculotemporal nerve",
+   "group": 4,
+   "candidates": [
+    "Temporal bone.l",
+    "Temporal bone.r"
+   ]
+  },
+  {
+   "term": "masseteric artery",
+   "group": 4,
+   "candidates": [
+    "Masseteric fascia.l",
+    "Masseteric fascia.r"
+   ]
+  },
+  {
+   "term": "palatoglossus muscle",
+   "group": 5,
+   "candidates": []
+  },
+  {
+   "term": "styloglossus muscle",
+   "group": 5,
+   "candidates": []
+  },
+  {
+   "term": "lingual nerve",
+   "group": 5,
+   "candidates": [
+    "Lingual gyrus.l",
+    "Lingual gyrus.r",
+    "Lingual surface of tooth",
+    "Sublingual fossa"
+   ]
+  },
+  {
+   "term": "submandibular duct",
+   "group": 5,
+   "candidates": [
+    "Mandibular nerve",
+    "Submandibular gland.l",
+    "Submandibular gland.r"
+   ]
+  },
+  {
+   "term": "submandibular ganglion",
+   "group": 5,
+   "candidates": [
+    "Mandibular nerve",
+    "Submandibular gland.l",
+    "Submandibular gland.r"
+   ]
+  },
+  {
+   "term": "hypoglossal nerve",
+   "group": 5,
+   "candidates": [
+    "Hypoglossal canal",
+    "Nucleus of hypoglossal nerve.l",
+    "Nucleus of hypoglossal nerve.r"
+   ]
+  },
+  {
+   "term": "palatoglossal arch",
+   "group": 5,
+   "candidates": []
+  },
+  {
+   "term": "palatopharyngeal arch",
+   "group": 5,
+   "candidates": []
+  },
+  {
+   "term": "foramen cecum",
+   "group": 5,
+   "candidates": []
+  },
+  {
+   "term": "uvula",
+   "group": 5,
+   "candidates": [
+    "Uvula of palate",
+    "Uvula of vermis"
+   ]
+  },
+  {
+   "term": "vallecula",
+   "group": 5,
+   "candidates": []
+  },
+  {
+   "term": "vocal fold",
+   "group": 6,
+   "candidates": []
+  },
+  {
+   "term": "thyrohyoid membrane",
+   "group": 6,
+   "candidates": [
+    "Hyoid bone",
+    "Thyrohyoid muscle.l",
+    "Thyrohyoid muscle.r"
+   ]
+  },
+  {
+   "term": "cricothyroid ligament",
+   "group": 6,
+   "candidates": [
+    "Median cricothyroid ligament",
+    "Oblique part of cricothyroid muscle.l",
+    "Oblique part of cricothyroid muscle.r",
+    "Straight part of cricothyroid muscle.l"
+   ]
+  },
+  {
+   "term": "cuneiform tubercle",
+   "group": 6,
+   "candidates": []
+  },
+  {
+   "term": "vestibular fold",
+   "group": 6,
+   "candidates": []
+  },
+  {
+   "term": "aryepiglottic muscle",
+   "group": 6,
+   "candidates": []
+  },
+  {
+   "term": "oblique arytenoid muscle",
+   "group": 6,
+   "candidates": [
+    "Arytenoid cartilage.l",
+    "Arytenoid cartilage.r"
+   ]
+  },
+  {
+   "term": "posterior cricoarytenoid muscle",
+   "group": 6,
+   "candidates": [
+    "Arytenoid cartilage.l",
+    "Arytenoid cartilage.r"
+   ]
+  },
+  {
+   "term": "lateral cricoarytenoid muscle",
+   "group": 6,
+   "candidates": [
+    "Arytenoid cartilage.l",
+    "Arytenoid cartilage.r"
+   ]
+  },
+  {
+   "term": "cricothyroid muscle",
+   "group": 6,
+   "candidates": [
+    "Median cricothyroid ligament",
+    "Oblique part of cricothyroid muscle.l",
+    "Oblique part of cricothyroid muscle.r",
+    "Straight part of cricothyroid muscle.l"
+   ]
+  },
+  {
+   "term": "thyroarytenoid muscle",
+   "group": 6,
+   "candidates": [
+    "Arytenoid cartilage.l",
+    "Arytenoid cartilage.r"
+   ]
+  },
+  {
+   "term": "vocalis muscle",
+   "group": 6,
+   "candidates": []
+  },
+  {
+   "term": "superior laryngeal nerve",
+   "group": 6,
+   "candidates": []
+  },
+  {
+   "term": "recurrent laryngeal nerve",
+   "group": 6,
+   "candidates": []
+  },
+  {
+   "term": "esophagus",
+   "group": 6,
+   "candidates": []
+  },
+  {
+   "term": "pharyngeal tonsil",
+   "group": 6,
+   "candidates": []
+  },
+  {
+   "term": "sphenoidal sinus",
+   "group": 6,
+   "candidates": [
+    "Septum of sphenoidal sinuses",
+    "Sphenoid bone",
+    "Sphenoidal angle of parietal bone",
+    "Sphenoidal crest"
+   ]
+  },
+  {
+   "term": "tensor veli palatini muscle",
+   "group": 6,
+   "candidates": []
+  },
+  {
+   "term": "levator veli palatini muscle",
+   "group": 6,
+   "candidates": []
+  },
+  {
+   "term": "axis",
+   "group": 6,
+   "candidates": [
+    "Anterior articular facet of dens axis",
+    "Apex of dens axis",
+    "Axis (C2)",
+    "Axis (C2).001"
+   ]
+  },
+  {
+   "term": "dens",
+   "group": 6,
+   "candidates": [
+    "Anterior articular facet of dens axis",
+    "Apex of dens axis",
+    "Dens axis",
+    "Facet for dens"
+   ]
+  },
+  {
+   "term": "pituitary gland",
+   "group": 6,
+   "candidates": []
+  },
+  {
+   "term": "lacrimal caruncle",
+   "group": 7,
+   "candidates": [
+    "Lacrimal bone.l",
+    "Lacrimal bone.r",
+    "Lacrimal gland.l",
+    "Lacrimal gland.r"
+   ]
+  },
+  {
+   "term": "medial palpebral ligament",
+   "group": 7,
+   "candidates": []
+  },
+  {
+   "term": "lateral palpebral ligament",
+   "group": 7,
+   "candidates": []
+  },
+  {
+   "term": "orbital septum",
+   "group": 7,
+   "candidates": []
+  },
+  {
+   "term": "trochlea",
+   "group": 7,
+   "candidates": [
+    "Nucleus of trochlear nerve.l",
+    "Nucleus of trochlear nerve.r",
+    "Trochlea of superior oblique muscle.l",
+    "Trochlea of superior oblique muscle.r"
+   ]
+  },
+  {
+   "term": "optic nerve",
+   "group": 7,
+   "candidates": [
+    "Optic axis",
+    "Optic canal",
+    "Optic chiasm.l",
+    "Optic chiasm.r"
+   ]
+  },
+  {
+   "term": "oculomotor nerve",
+   "group": 7,
+   "candidates": [
+    "Accessory nucleus of oculomotor nerve.l",
+    "Accessory nucleus of oculomotor nerve.r",
+    "Nucleus of oculomotor nerve.l",
+    "Nucleus of oculomotor nerve.r"
+   ]
+  },
+  {
+   "term": "trochlear nerve",
+   "group": 7,
+   "candidates": [
+    "Ear",
+    "Nucleus of trochlear nerve.l",
+    "Nucleus of trochlear nerve.r",
+    "Trochlear fovea"
+   ]
+  },
+  {
+   "term": "abducent nerve",
+   "group": 7,
+   "candidates": []
+  },
+  {
+   "term": "ophthalmic nerve",
+   "group": 7,
+   "candidates": []
+  },
+  {
+   "term": "supraorbital nerve",
+   "group": 7,
+   "candidates": []
+  },
+  {
+   "term": "nasociliary nerve",
+   "group": 7,
+   "candidates": []
+  },
+  {
+   "term": "long ciliary nerve",
+   "group": 7,
+   "candidates": []
+  },
+  {
+   "term": "short ciliary nerve",
+   "group": 7,
+   "candidates": []
+  },
+  {
+   "term": "ciliary ganglion",
+   "group": 7,
+   "candidates": []
+  },
+  {
+   "term": "ophthalmic artery",
+   "group": 7,
+   "candidates": []
+  },
+  {
+   "term": "central retinal artery",
+   "group": 7,
+   "candidates": [
+    "Retina.l",
+    "Retina.r"
+   ]
+  },
+  {
+   "term": "posterior ciliary artery",
+   "group": 7,
+   "candidates": []
+  },
+  {
+   "term": "supraorbital artery",
+   "group": 7,
+   "candidates": []
+  }
+ ]
+}

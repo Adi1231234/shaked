@@ -78,14 +78,48 @@ loader.load('../models/head.glb', (gltf) => {
   hud.appendChild(info);
   window.__ready = { size: size.toArray(), centre: centre.toArray(),
                      layers: Object.keys(layers) };
+  // Exposed so a build can be probed from the console: hide individual
+  // structures, re-aim the camera, measure things.
+  window.__dbg = { scene, camera, controls, root: gltf.scene, layers,
+                   find(structure, side) {
+                     let hit = null;
+                     gltf.scene.traverse((o) => {
+                       const u = o.userData;
+                       if (u.structure === structure && (!side || u.side === side)) hit = o;
+                     });
+                     return hit;
+                   },
+                   look(structure, dist = 0.05, side) {
+                     const o = this.find(structure, side);
+                     if (!o) return 'no such structure';
+                     const p = new THREE.Box3().setFromObject(o)
+                       .getCenter(new THREE.Vector3());
+                     controls.target.copy(p);
+                     camera.position.set(p.x + dist * 0.4, p.y + dist * 0.2, p.z + dist);
+                     return p.toArray();
+                   },
+                   hide(re, side) {
+                     let n = 0;
+                     gltf.scene.traverse((o) => {
+                       const u = o.userData;
+                       if (!o.isMesh || !u.structure) return;
+                       if (re.test(u.structure) && (!side || u.side === side)) {
+                         o.visible = false; n++;
+                       }
+                     });
+                     return n;
+                   } };
 });
 
 const ray = new THREE.Raycaster();
 addEventListener('pointerdown', (e) => {
   ray.setFromCamera(new THREE.Vector2(
     (e.clientX / innerWidth) * 2 - 1, -(e.clientY / innerHeight) * 2 + 1), camera);
-  const hit = ray.intersectObjects(scene.children, true)[0];
-  pick.textContent = hit ? hit.object.name : 'click a structure';
+  const hit = ray.intersectObjects(scene.children, true).find((h) => h.object.visible);
+  if (!hit) { pick.textContent = 'click a structure'; return; }
+  const u = hit.object.userData;
+  pick.textContent = `${u.structure || hit.object.name}`
+    + (u.side ? ` (${u.side})` : '') + `  [${u.layer || '?'}]`;
 });
 
 addEventListener('resize', () => {
