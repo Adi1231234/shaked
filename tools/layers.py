@@ -12,6 +12,7 @@ at once.
 """
 import bpy
 
+import region
 import zalib
 
 SYSTEM_LAYER = {
@@ -68,57 +69,6 @@ LAYER_ORDER = ["eyes", "myology", "viscera", "lymphoid", "osteology",
 
 LANDMARK_LAYER = "osteology"   # whose surfaces the .j hotspots snap onto
 
-# Clutter that adds polygons without ever being asked about in an exam, plus
-# thoracic organs that reach up past the neck cut. Checked against the
-# syllabus first: "carotid sheath" and "orbital septum" are on it, so plain
-# "sheath" and "septum" are deliberately not skipped.
-SKIP_SUBSTRINGS = (
-    "bursa", "retinaculum", "aponeurosis", "compartment", "tendon sheath",
-    "reference line", "reference plane", "median plane", "coronal plane",
-    "sagittal plane", "movement", "orientation",
-    "lung", "pleura", "azygos", "pulmonary", "valve", "leaflet", "heart",
-)
-
-KEEP_ANYWAY = ("carotid sheath", "orbital septum")
-
-# Region collections that mean "this belongs to the trunk or the arm".
-# A box around the head and neck is not enough on its own: the clavicle's
-# centre sits at x 0.083, z 1.407 and the first ribs are narrower still, so a
-# purely geometric filter pulled the whole ribcage and shoulder girdle in.
-NOT_HEAD_NECK = {
-    "Thorax", "Thoracic skeleton", "Sternum", "Costal cartilages",
-    "Bones of pectoral girdle", "Appendicular skeleton",
-    "Bones of upper limb", "Left upper limb", "Right upper limb",
-}
-
-# Z-Anatomy tags the trachea as thoracic only, but the cervical trachea is a
-# neck structure and it is on the syllabus, so it overrides the exclusion.
-CERVICAL_ANYWAY = {"Trachea"}
-
-# Long structures whose centre lands in the neck but whose body runs down the
-# trunk: the sympathetic trunk, mediastinal node chains, pectoralis minor,
-# rhomboids, thymus. Judged on how far down the object actually reaches.
-#
-# Absolute Blender z, where the head origin is 1.6009 and the chin is ~1.50.
-HARD_FLOOR = 1.20   # nothing reaching this deep belongs to a head model
-SOFT_FLOOR = 1.35   # root of the neck; below it, a Head/Neck tag is required
-
-REGION_TAGS = {"Head", "Neck"}
-
-
-def within_depth(obj, collections):
-    """Reject structures that descend past the root of the neck.
-
-    Z-Anatomy's own region tags do most of the work (splenius and longissimus
-    colli are tagged Neck; pectoralis minor and the thymus are not), but the
-    sympathetic trunk is tagged Neck and still runs the length of the thorax,
-    hence the hard floor underneath.
-    """
-    bottom = zalib.world_bbox(obj)[0].z
-    if bottom < HARD_FLOOR:
-        return False
-    return bottom >= SOFT_FLOOR or bool(collections & REGION_TAGS)
-
 SIDES = {".l": "left", ".r": "right"}
 
 
@@ -153,9 +103,9 @@ def layer_of(obj):
     if base in AURICLE:
         return "neuro"
     collections = {c.name for c in obj.users_collection}
-    if collections & NOT_HEAD_NECK and base not in CERVICAL_ANYWAY:
+    if region.excluded(collections, base):
         return None
-    if not within_depth(obj, collections):
+    if not region.within_depth(obj, collections):
         return None
     for system, layer in SYSTEM_LAYER.items():
         if system in collections:
@@ -163,19 +113,14 @@ def layer_of(obj):
     return None
 
 
-def wanted(obj):
-    low = obj.name.lower()
-    if any(k in low for k in KEEP_ANYWAY):
-        return True
-    return not any(s in low for s in SKIP_SUBSTRINGS)
-
-
 def classify():
     """Split the whole head/neck region into {layer: [objects]} plus labels."""
     solids = {name: [] for name in LAYER_ORDER}
     landmarks = []
     for obj in bpy.data.objects:
-        if obj.type != 'MESH' or not len(obj.data.vertices) or not wanted(obj):
+        if obj.type != 'MESH' or not len(obj.data.vertices):
+            continue
+        if not region.wanted(obj):
             continue
         if not zalib.in_region(obj, zalib.NECK_CUT):
             continue
