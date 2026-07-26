@@ -21,7 +21,9 @@ it. Current build: 1133 nodes, 805 distinct structures, 5.6 MB Draco-compressed.
 - **myology** (183) - facial, masticatory, suprahyoid, cervical and upper back muscles
 - **viscera** (27) - pharynx, larynx, tongue, salivary glands, thyroid, trachea
 - **lymphoid** (51) - cervical node groups and the tonsils
-- **osteology** (117) - cranium, mandible, teeth, hyoid, laryngeal cartilages, cervical spine
+- **osteology** (117) - cranium, mandible, teeth, hyoid, laryngeal cartilages, cervical spine.
+  The 28 teeth carry her own enamel colour as vertex colours, measured off her
+  photographs; see `capture/README.md`
 - **neuro** (286) - brain, brainstem, cranial nerves, ear and other sense organs
 - **angiology** (4) - everything Z-Anatomy has in the head, which is almost nothing
 - **landmarks** (419) - clickable hotspots for named bony landmarks
@@ -110,4 +112,10 @@ models/    built GLB output
 tools/fetch_sources.sh                                   # download Z-Anatomy
 blender vendor/Z-Anatomy/Startup.blend -b -P tools/dump_inventory.py -- data/za-headneck-inventory.json
 python tools/match_syllabus.py data/syllabus-headneck.json data/za-headneck-inventory.json data/match-report.json
+
+# her face and her teeth, then the GLB that carries both
+python capture/bake_texture.py photos/raw --triage capture/triage-cam/triage.json --count 8
+blender vendor/Z-Anatomy/Startup.blend -b -P tools/dump_teeth.py -- models/teeth.npz
+python capture/teeth_colour.py photos/raw --triage capture/triage-cam/triage.json --count 10
+blender vendor/Z-Anatomy/Startup.blend -b -P tools/export_head.py
 ```

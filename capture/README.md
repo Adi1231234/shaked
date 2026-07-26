@@ -16,6 +16,41 @@ The whole budget is one 359 px face. About 15% of its detail survives the warp
 into the atlas, and 468 vertices cannot carry cheekbone or jaw definition, so
 the texture is doing most of the work of looking like her.
 
+## Her teeth
+
+`teeth_colour.py` measures her own enamel and `tools/teethpaint.py` puts it on
+the atlas dentition as vertex colours. The shape stays Z-Anatomy's: it is what
+she is examined on, and no free method reconstructs a dentition from smiling
+snapshots. The colour is hers, and colour is most of what makes a mouth read as
+a particular person's.
+
+The camera is solved per photo with `solvePnP` against the rigid part of her
+face only - eye corners, nose bridge, sides of the head. Solving it from a
+smiling mouth would put the teeth wherever the smile went. Only the upper arch
+is sampled, because the mandible drops when she smiles and the lower teeth are
+then not rigid with the skull the pose came from.
+
+Three things had to be right:
+
+- **Gate on the pixel, not the geometry.** Reprojection lands within 3 to 7 px
+  and her whole visible tooth row is about sixty across, so accepting anything
+  inside the lip contour sampled her lip: the median came back (166, 129, 120)
+  RGB. Requiring the pixel to look like enamel - bright and unsaturated, unlike
+  a lip or the dark behind the teeth - makes the misalignment harmless, because
+  a vertex that misses simply finds nothing to take. 98 samples survive, which
+  is few but they are all really enamel.
+- **White balance off the sclera.** The illuminant across her photos runs from
+  (71, 70, 70) to (150, 128, 110) BGR. Without correcting it her teeth measure
+  distinctly yellow, which is the afternoon, not her.
+- **De-shade before storing.** Everything sampled was photographed inside a
+  mouth and the viewer lights the model again, so keeping the photographed
+  level would apply that shadow twice.
+
+The result is edge (230, 221, 210) and neck (225, 215, 193) RGB, which is the
+real shape of a tooth's colour: greyer where the enamel is thin at the biting
+edge, warmer where dentine shows through at the neck. Roots are tinted towards
+dentine from there, because you can hide the maxilla and look straight at them.
+
 ## Findings worth keeping
 
 These were each paid for with a measurement. The code carries the detail; this

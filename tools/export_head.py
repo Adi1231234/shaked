@@ -17,6 +17,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import hierarchy        # noqa: E402
 import layers as L      # noqa: E402
 import skinlayer       # noqa: E402
+import teethpaint       # noqa: E402
 import zalandmarks      # noqa: E402
 import zalib            # noqa: E402
 
@@ -90,6 +91,9 @@ def export(keep, groups):
         export_draco_mesh_compression_enable=True,
         export_draco_mesh_compression_level=6,
         export_materials='EXPORT',
+        # Her tooth colour rides on the mesh, not on a texture. 'MATERIAL'
+        # only exports the attribute if a node reads it, which mat_teeth does.
+        export_vertex_color='MATERIAL',
         export_cameras=False,
         export_lights=False,
         export_extras=True,   # carries the structure/side/layer tags
@@ -118,6 +122,8 @@ def main():
     solids, labels = L.classify()
     groups = build_layers(solids, parents)
     groups["landmarks"] = build_landmarks(groups, labels, parents)
+    # After build_layers, which gives every bone the same flat material.
+    teethpaint.paint()
     add_skin(groups)
 
     keep = [o for members in groups.values() for o in members]

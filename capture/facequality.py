@@ -125,10 +125,11 @@ def _looking_away(m, centre, max_dev, max_gap):
 # Eye and mouth contours, from MediaPipe's documented landmark map. A triangle
 # touching any of these is only allowed to take colour from a photo where that
 # feature is in the right state.
-EYE_RING = {
-    33, 7, 163, 144, 145, 153, 154, 155, 133, 246, 161, 160, 159, 158, 157, 173,
-    263, 249, 390, 373, 374, 380, 381, 382, 362, 466, 388, 387, 386, 385, 384, 398,
-}
+LEFT_EYE_RING = (33, 7, 163, 144, 145, 153, 154, 155, 133,
+                 246, 161, 160, 159, 158, 157, 173)
+RIGHT_EYE_RING = (263, 249, 390, 373, 374, 380, 381, 382, 362,
+                  466, 388, 387, 386, 385, 384, 398)
+EYE_RING = set(LEFT_EYE_RING) | set(RIGHT_EYE_RING)
 MOUTH_RING = {
     61, 146, 91, 181, 84, 17, 314, 405, 321, 375, 291,
     78, 95, 88, 178, 87, 14, 317, 402, 318, 324, 308,

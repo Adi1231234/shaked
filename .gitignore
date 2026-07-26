@@ -16,3 +16,6 @@ capture/triage*/
 capture/verify/
 capture/fit-preview*.png
 .sweep/
+
+# Projection previews are her face with the fit drawn over it
+capture/teeth-preview/
