@@ -13,3 +13,4 @@ __pycache__/
 
 # Triage output contains crops of her face
 capture/triage*/
+capture/verify/
