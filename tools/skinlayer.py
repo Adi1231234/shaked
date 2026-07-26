@@ -11,6 +11,8 @@ from pathlib import Path
 import bpy
 import numpy as np
 
+NORMAL_STRENGTH = 0.0
+
 
 def load_fit(path):
     data = json.loads(Path(path).read_text(encoding="utf-8"))
@@ -70,20 +72,41 @@ def import_face(obj_path, fit_path, name="Skin"):
 
 
 def skin_material(texture_path, name="mat_skin"):
+    """Albedo plus a normal map baked from the same photos.
+
+    The mesh has 468 vertices, far too few for lids, lip edges or the crease
+    beside the nose. Those live in the normal map, which is derived from the
+    photographs' own fine detail, so the relief is hers and not invented.
+    """
     mat = bpy.data.materials.new(name)
     mat.use_nodes = True
     nodes, links = mat.node_tree.nodes, mat.node_tree.links
     bsdf = nodes["Principled BSDF"]
-    bsdf.inputs["Roughness"].default_value = 0.62
+    bsdf.inputs["Roughness"].default_value = 0.58
     if "Specular IOR Level" in bsdf.inputs:
-        bsdf.inputs["Specular IOR Level"].default_value = 0.35
+        bsdf.inputs["Specular IOR Level"].default_value = 0.32
 
     path = Path(texture_path)
-    if path.exists():
-        tex = nodes.new("ShaderNodeTexImage")
-        tex.image = bpy.data.images.load(str(path.resolve()))
-        tex.image.colorspace_settings.name = 'sRGB'
-        links.new(tex.outputs["Color"], bsdf.inputs["Base Color"])
-    else:
+    if not path.exists():
         bsdf.inputs["Base Color"].default_value = (0.86, 0.68, 0.60, 1.0)
+        return mat
+
+    tex = nodes.new("ShaderNodeTexImage")
+    tex.image = bpy.data.images.load(str(path.resolve()))
+    tex.image.colorspace_settings.name = 'sRGB'
+    links.new(tex.outputs["Color"], bsdf.inputs["Base Color"])
+
+    # Off by default. The high-frequency content of this atlas is blend seams
+    # and compression noise, not skin relief, so turning it into normals drew
+    # crow's feet and nasolabial lines that are in neither her face nor the
+    # photographs. There is not enough signal in a 359 px source to fake it.
+    normals = path.with_name(path.stem + "_normal.png")
+    if NORMAL_STRENGTH > 0 and normals.exists():
+        nrm_tex = nodes.new("ShaderNodeTexImage")
+        nrm_tex.image = bpy.data.images.load(str(normals.resolve()))
+        nrm_tex.image.colorspace_settings.name = 'Non-Color'
+        nrm_map = nodes.new("ShaderNodeNormalMap")
+        nrm_map.inputs["Strength"].default_value = NORMAL_STRENGTH
+        links.new(nrm_tex.outputs["Color"], nrm_map.inputs["Color"])
+        links.new(nrm_map.outputs["Normal"], bsdf.inputs["Normal"])
     return mat

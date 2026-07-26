@@ -15,6 +15,7 @@ from pathlib import Path
 import cv2
 import numpy as np
 
+import albedo
 import landmarks as lm
 import meshlib
 
@@ -140,9 +141,10 @@ def pick(rows, count):
     left = [r for r in good if r["yaw"] < -0.04]
     right = [r for r in good if r["yaw"] > 0.04]
     centre = [r for r in good if abs(r["yaw"]) <= 0.04]
-    half = max(count // 3, 1)
-    chosen = centre[:half] + left[:half] + right[:half]
-    return chosen or good[:count]
+    # Over-select: expression is only known once the landmarker has run, so
+    # the calm ones are chosen afterwards, in main().
+    take = max(count, 1)
+    return centre[:take] + left[:take] + right[:take]
 
 
 def main():
@@ -151,6 +153,8 @@ def main():
     ap.add_argument("--triage", required=True)
     ap.add_argument("--out", default="photos/fit/shaked_face.png")
     ap.add_argument("--count", type=int, default=12)
+    ap.add_argument("--deshade", type=float, default=0.75,
+                    help="how much of the photos' own lighting to remove")
     args = ap.parse_args()
 
     _, uvs, faces, uv_faces = meshlib.load_obj(CANONICAL)
@@ -169,16 +173,25 @@ def main():
         image = cv2.imread(str(Path(args.folder) / r["file"]))
         if image is None:
             continue
-        pts, _ = lm.landmarks_for(landmarker, image, r["box"])
+        pts, load = lm.landmarks_for(landmarker, image, r["box"])
         if pts is None:
             continue
-        loaded.append((r, image, pts, *face_stats(image, pts)))
+        loaded.append((load, r, image, pts, *face_stats(image, pts)))
     if not loaded:
         raise SystemExit("no usable photos")
+
+    # Keep the calmest. A broad smile creases the skin, and those creases were
+    # being baked into the colour and then painted onto a mesh that is not
+    # smiling, so the face wore crow's feet and nasolabial folds with no smile
+    # to explain them. Same mistake as the geometry made, one layer along.
+    loaded.sort(key=lambda t: t[0])
+    loaded = loaded[:args.count]
+    print(f"keeping the {len(loaded)} calmest, expression load "
+          f"{loaded[0][0]:.2f} to {loaded[-1][0]:.2f}")
     ref_mean = np.median([m for *_, m, _ in loaded], axis=0)
     ref_std = np.median([s for *_, s in loaded], axis=0)
 
-    for r, image, pts, _, _ in loaded:
+    for _, r, image, pts, _, _ in loaded:
         image = colour_match(image, pts, ref_mean, ref_std)
         texture, covered = bake_one(image, pts, uvs, faces, uv_faces, SIZE)
         # Frontal and sharp photos contribute more; nothing is discarded.
@@ -193,10 +206,19 @@ def main():
                                        cv2.COLOR_BGR2GRAY), cv2.CV_64F).var()
     print(f"texture sharpness (Laplacian variance): {sharp:.0f}")
     filled = fill_holes(baked.astype(np.uint8), (weight[..., 0] > 1e-6))
-    Path(args.out).parent.mkdir(parents=True, exist_ok=True)
-    cv2.imwrite(args.out, filled)
+
+    before = albedo.shading_range(filled)
+    skin = albedo.flatten(filled, strength=args.deshade)
+    print(f"baked-in shading {before:.0f}% of mean brightness, "
+          f"{albedo.shading_range(skin):.0f}% after de-shading")
+
+    out = Path(args.out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    cv2.imwrite(str(out), skin)
+    normals = out.with_name(out.stem + "_normal.png")
+    cv2.imwrite(str(normals), albedo.normal_map(filled))
     coverage = float((weight > 1e-6).mean())
-    print(f"\nUV coverage {coverage * 100:.1f}%  ->  {args.out}")
+    print(f"UV coverage {coverage * 100:.1f}%  ->  {out.name} + {normals.name}")
 
 
 def unsharp(texture, radius=1.6, amount=0.55):
