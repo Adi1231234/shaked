@@ -9,7 +9,8 @@ const DRACO_PATH = 'https://unpkg.com/three@0.169.0/examples/jsm/libs/draco/';
 export function createScene(canvasHost) {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(innerWidth, innerHeight);
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  // A phone GPU gains nothing from 3x here and loses frames.
+  renderer.setPixelRatio(Math.min(devicePixelRatio, innerWidth < 861 ? 1.75 : 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   canvasHost.appendChild(renderer.domElement);
 
@@ -24,23 +25,30 @@ export function createScene(canvasHost) {
   controls.dampingFactor = 0.08;
   controls.minDistance = 0.08;
   controls.maxDistance = 1.2;
+  controls.enablePan = false;          // panning on a phone is an accident
+  controls.rotateSpeed = 0.85;
+  controls.zoomSpeed = 0.9;
+  controls.touches = { ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY_ROTATE };
 
   // Three lights: a soft fill so nothing reads as a black silhouette, a warm
   // key from the front right, and a cool rim so the skull separates from the
   // near-black background.
-  scene.add(new THREE.HemisphereLight(0xdfe8ff, 0x1a1f2e, 1.5));
-  const key = new THREE.DirectionalLight(0xfff2e0, 2.1);
-  key.position.set(0.5, 0.65, 0.9);
+  scene.add(new THREE.HemisphereLight(0xe8eeff, 0x20222c, 1.25));
+  const key = new THREE.DirectionalLight(0xfff0dc, 2.4);
+  key.position.set(0.45, 0.55, 1.0);
   scene.add(key);
-  const rim = new THREE.DirectionalLight(0x7fc9e8, 1.1);
-  rim.position.set(-0.7, 0.15, -0.7);
+  const rim = new THREE.DirectionalLight(0x8fc5e8, 0.75);
+  rim.position.set(-0.8, 0.25, -0.55);
   scene.add(rim);
 
-  addEventListener('resize', () => {
+  const onResize = () => {
     camera.aspect = innerWidth / innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(innerWidth, innerHeight);
-  });
+    scene.userData.onResize?.();
+  };
+  addEventListener('resize', onResize);
+  addEventListener('orientationchange', () => setTimeout(onResize, 120));
 
   (function tick() {
     requestAnimationFrame(tick);
@@ -70,16 +78,31 @@ export function loadHead(url, onProgress) {
   });
 }
 
-/** Frame an object (or the whole model) in view. */
-export function focusOn(object, camera, controls, padding = 2.6) {
-  const box = new THREE.Box3().setFromObject(object);
+/**
+ * Frame an object (or the whole model) in view.
+ *
+ * The distance has to respect both fields of view. A phone in portrait has a
+ * far narrower horizontal fov than a desktop window, so a single factor tuned
+ * on a wide screen crops the head badly on a tall one.
+ */
+export function focusOn(object, camera, controls, padding = 1.25) {
+  const box = Array.isArray(object)
+    ? object.reduce((acc, o) => acc.union(new THREE.Box3().setFromObject(o)),
+                    new THREE.Box3())
+    : new THREE.Box3().setFromObject(object);
   if (box.isEmpty()) return;
   const centre = box.getCenter(new THREE.Vector3());
-  const radius = Math.max(box.getSize(new THREE.Vector3()).length() / 2, 0.01);
-  const distance = radius * padding;
+  const size = box.getSize(new THREE.Vector3());
+
+  const vFov = THREE.MathUtils.degToRad(camera.fov);
+  const hFov = 2 * Math.atan(Math.tan(vFov / 2) * camera.aspect);
+  const fitHeight = (size.y / 2) / Math.tan(vFov / 2);
+  const fitWidth = (Math.max(size.x, size.z) / 2) / Math.tan(hFov / 2);
+  const distance = Math.max(fitHeight, fitWidth, 0.05) * padding;
 
   const direction = camera.position.clone().sub(controls.target).normalize();
   controls.target.copy(centre);
   camera.position.copy(centre).addScaledVector(direction, distance);
+  controls.maxDistance = Math.max(controls.maxDistance, distance * 2.5);
   controls.update();
 }

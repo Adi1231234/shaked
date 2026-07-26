@@ -2,23 +2,37 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
 <meta name="theme-color" content="#080b12">
+<meta name="color-scheme" content="dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>ראש וצוואר</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="layers.css">
+<link rel="stylesheet" href="panel.css">
 </head>
 <body>
 
 <div id="stage"></div>
 
+<nav id="layerbar" aria-label="שכבות"></nav>
+
+<div id="picked" role="status" aria-live="polite">
+  <div id="picked-name"></div>
+  <div id="picked-path"></div>
+</div>
+
 <aside id="panel">
+  <button id="grip" type="button" aria-label="פתיחת רשימת המבנים"></button>
   <header>
     <h1>ראש וצוואר</h1>
     <p class="sub"><span id="count">…</span> מבנים · לחצי על כל חלק כדי לראות את שמו</p>
-    <input id="search" type="search" placeholder="חיפוש מבנה…" autocomplete="off">
+    <input id="search" type="search" placeholder="חיפוש מבנה…" autocomplete="off"
+           enterkeyhint="search" aria-label="חיפוש מבנה">
     <div class="bulk">
       <button id="show-all" type="button">הצג הכל</button>
       <button id="hide-all" type="button">הסתר הכל</button>
@@ -26,11 +40,6 @@
   </header>
   <div id="tree"></div>
 </aside>
-
-<div id="picked">
-  <div id="picked-name"></div>
-  <div id="picked-path"></div>
-</div>
 
 <div id="boot">
   <p>טוען את המודל…</p>

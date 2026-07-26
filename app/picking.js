@@ -25,8 +25,12 @@ export function createPicker({ camera, meshes, onPick, onHover }) {
     return true;
   }
 
-  function paint(list, colour) {
-    for (const m of list) m.material.color.copy(colour);
+  // Blend toward the highlight rather than replacing the colour. A full swap
+  // turned her whole textured face flat orange when the skin was selected.
+  function paint(list, colour, amount = 0.45) {
+    for (const m of list) {
+      m.material.color.copy(m.userData.baseColor).lerp(colour, amount);
+    }
   }
 
   function restore(list) {
@@ -43,7 +47,7 @@ export function createPicker({ camera, meshes, onPick, onHover }) {
   function select(list, label) {
     restore(selected);
     selected = list || [];
-    paint(selected, SELECT);
+    paint(selected, SELECT, 0.55);
     onPick?.(selected, label);
   }
 
@@ -67,7 +71,7 @@ export function createPicker({ camera, meshes, onPick, onHover }) {
           if (same(next, hovered)) return;
           restore(hovered.filter((x) => !selected.includes(x)));
           hovered = next.filter((x) => !selected.includes(x));
-          paint(hovered, HOVER);
+          paint(hovered, HOVER, 0.35);
           onHover?.(m ? m.userData : null);
         }, 30);
       });
