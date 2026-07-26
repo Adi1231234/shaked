@@ -4,6 +4,7 @@ import { buildTree, renderTree, revealRow } from './tree.js';
 import { createPicker } from './picking.js';
 import { buildLayerBar, tintBranches, showOnlySkin } from './layerbar.js';
 import { attachSheet } from './sheet.js';
+import { showGreeting } from './greeting.js';
 
 const MODEL = '../models/head.glb';
 
@@ -63,6 +64,8 @@ loadHead(MODEL, (e) => {
   el('show-all').onclick = () => setAll(treeHost, true);
   el('hide-all').onclick = () => setAll(treeHost, false);
   document.body.classList.add('ready');
+  // After the boot overlay clears, so the card sits over her face.
+  setTimeout(showGreeting, 400);
 });
 
 /**
