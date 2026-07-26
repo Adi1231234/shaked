@@ -1,0 +1,57 @@
+# Licence
+
+## The anatomy
+
+The anatomical models in `models/head.glb` are derived from **Z-Anatomy**,
+which is licensed **Creative Commons Attribution-ShareAlike 4.0 International**
+(CC BY-SA 4.0). Full text: https://creativecommons.org/licenses/by-sa/4.0/
+
+Because CC BY-SA is share-alike, this derivative is published under the same
+licence, and so must anything derived from it.
+
+Required attribution, reproduced from Z-Anatomy's own terms:
+
+> "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan"
+> "Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0"
+> "Cranial Nerves and Foramina - by University of Dundee, CAHID - CC-BY 4.0"
+
+Anatomical definitions in Z-Anatomy derive from Wikipedia, CC BY-SA 3.0.
+
+## The code
+
+The code in `app/`, `tools/` and `capture/` is released under the MIT licence.
+
+Copyright (c) 2026 Adi Aharoni
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+## The face
+
+The face reconstruction is of a real person and is not covered by either
+licence above. It is included with her partner's permission and may not be
+reused.
+
+## Third-party models used at runtime
+
+- MediaPipe face landmarker and canonical face model, Google, Apache 2.0
+- YuNet face detection and SFace recognition, OpenCV Zoo, Apache 2.0
+- three.js, MIT
+
+These are used by the build tools; none of their weights are redistributed
+here.

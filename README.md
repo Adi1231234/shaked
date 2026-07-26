@@ -1,19 +1,22 @@
 # shaked-face
 
-An interactive 3D head for Shaked's head & neck anatomy exam: her own face as the
-outer skin layer, with anatomically correct layers underneath that you can peel
-away and click to identify.
+**Live: https://adi1231234.github.io/shaked-face/**
 
-Same idea as `shaked-legs`, but the outer surface is a real reconstruction of her
-face instead of an atlas model.
+An interactive 3D head for a head & neck anatomy exam: a real face as the outer
+skin layer, with anatomically correct layers underneath that you can peel away
+and click to identify. Opens on the face; tap a system to reveal what is under
+it; tap any structure to name it.
+
+Built entirely from free sources. No paid tool is used anywhere in the
+pipeline, and nothing is uploaded: every step runs locally.
 
 ## Layers
 
 `models/head.glb` ships each layer as one glTF node holding its named
 structures, so the viewer can peel a layer and click a structure to identify
-it. Current build: 1123 nodes, 804 distinct structures, 4.8 MB Draco-compressed.
+it. Current build: 1133 nodes, 805 distinct structures, 5.6 MB Draco-compressed.
 
-- **skin** - her face, reconstructed from photos (see `capture/`). Not built yet.
+- **skin** (1) - the face, reconstructed from photographs (see `capture/`)
 - **eyes** (36) - globe, cornea to retina, plus tarsal plates and the lacrimal apparatus
 - **myology** (183) - facial, masticatory, suprahyoid, cervical and upper back muscles
 - **viscera** (27) - pharynx, larynx, tongue, salivary glands, thyroid, trachea
