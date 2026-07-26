@@ -46,8 +46,11 @@ def expression_load(blendshapes):
     return float(sum(scores.get(name, 0.0) for name in EXPRESSION))
 
 
-def landmarks_for(landmarker, image_bgr, box):
+def landmarks_for(landmarker, image_bgr, box, keep_iris=False):
     """Landmarks and expression load for the face nearest `box`, else (None, None).
+
+    With keep_iris the full 478 points come back, including the iris centres at
+    468 and 473. Those are the only direct measure of where she is looking.
 
     MediaPipe scales z like x, so multiplying all three by the image width
     keeps the axes consistent and the shape undistorted.
@@ -59,9 +62,10 @@ def landmarks_for(landmarker, image_bgr, box):
     h, w = image_bgr.shape[:2]
     cx, cy = box[0] + box[2] / 2, box[1] + box[3] / 2
 
+    limit = None if keep_iris else N_CANONICAL
     best, best_d, best_i = None, 1e18, -1
     for i, face in enumerate(result.face_landmarks):
-        pts = np.array([[p.x * w, p.y * h, p.z * w] for p in face[:N_CANONICAL]])
+        pts = np.array([[p.x * w, p.y * h, p.z * w] for p in face[:limit]])
         d = (pts[:, 0].mean() - cx) ** 2 + (pts[:, 1].mean() - cy) ** 2
         if d < best_d:
             best, best_d, best_i = pts, d, i

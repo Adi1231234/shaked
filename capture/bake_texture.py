@@ -16,6 +16,7 @@ import cv2
 import numpy as np
 
 import albedo
+import facequality as fq
 import landmarks as lm
 import meshlib
 
@@ -109,14 +110,23 @@ def facing(pts, faces):
     return cos
 
 
-def bake_one(image, pts, uvs, faces, uv_faces, size, min_cos=0.30):
-    """One photo warped into UV space, plus a per-triangle confidence mask."""
+def bake_one(image, pts, uvs, faces, uv_faces, size, min_cos=0.30,
+             allow=None):
+    """One photo warped into UV space, plus a per-triangle confidence mask.
+
+    `allow` masks out triangles this photo is not trusted for: the eye and
+    mouth regions only take colour from photos where the eyes are open and
+    the mouth is closed, while cheeks and forehead take colour from all of
+    them. Gating whole photos instead dropped coverage to 57% and left a
+    bright patch where one region had a single contributor."""
     texture = np.zeros((size, size, 3), np.float32)
     covered = np.zeros((size, size), np.float32)
     # OBJ UVs put the origin bottom-left; images are top-left.
     uv_px = np.column_stack([uvs[:, 0] * size, (1 - uvs[:, 1]) * size])
     cos = facing(pts, faces)
-    for tri, uvtri, c in zip(faces, uv_faces, cos):
+    for i, (tri, uvtri, c) in enumerate(zip(faces, uv_faces, cos)):
+        if allow is not None and not allow[i]:
+            continue
         if c < min_cos:
             continue                      # seen edge-on: contributes nothing
         warp_triangle(image.astype(np.float32), texture,
@@ -173,27 +183,49 @@ def main():
         image = cv2.imread(str(Path(args.folder) / r["file"]))
         if image is None:
             continue
-        pts, load = lm.landmarks_for(landmarker, image, r["box"])
-        if pts is None:
+        full, load = lm.landmarks_for(landmarker, image, r["box"],
+                                      keep_iris=True)
+        if full is None:
             continue
-        loaded.append((load, r, image, pts, *face_stats(image, pts)))
+        pts = full[:lm.N_CANONICAL]
+        loaded.append((load, r, image, pts, fq.measure(full),
+                       *face_stats(image, pts)))
     if not loaded:
         raise SystemExit("no usable photos")
 
-    # Keep the calmest. A broad smile creases the skin, and those creases were
-    # being baked into the colour and then painted onto a mesh that is not
-    # smiling, so the face wore crow's feet and nasolabial folds with no smile
-    # to explain them. Same mistake as the geometry made, one layer along.
-    loaded.sort(key=lambda t: t[0])
-    loaded = loaded[:args.count]
-    print(f"keeping the {len(loaded)} calmest, expression load "
-          f"{loaded[0][0]:.2f} to {loaded[-1][0]:.2f}")
-    ref_mean = np.median([m for *_, m, _ in loaded], axis=0)
-    ref_std = np.median([s for *_, s in loaded], axis=0)
+    # Gate on eyes and mouth before anything else. Her eye opening across
+    # these photos ran from 0.043 to 0.416 and her mouth from shut to wide;
+    # averaging that gives a half-closed eye and a mouth that is neither open
+    # nor closed, which is what the squint and the wrong mouth actually were.
+    measures = [m for _, _, _, _, m, _, _ in loaded]
+    keep, baseline, centre, why = fq.gate(measures)
+    print(f"open-eye baseline EAR {baseline:.3f}, gaze centre "
+          f"{'n/a' if centre is None else f'{centre:.3f}'}")
+    print(f"eyes/mouth/gaze gate keeps {int(keep.sum())} of {len(loaded)};"
+          f" rejected: {why['blink']} blinking, {why['mouth']} open mouth,"
+          f" {why['gaze']} looking away")
+    # Keep every photo for the skin, but remember which may touch the eyes and
+    # the mouth. Cheeks and forehead do not care whether she blinked.
+    order = sorted(range(len(loaded)), key=lambda i: loaded[i][0])
+    order = order[:args.count * 2]
+    trusted = [i for i in order if keep[i]][:args.count]
+    if not trusted:
+        trusted = order[:args.count]
+    chosen_idx = sorted(set(order[:args.count]) | set(trusted))
+    eye_tris, mouth_tris = fq.region_masks(faces)
+    print(f"{eye_tris.sum()} eye and {mouth_tris.sum()} mouth triangles of "
+          f"{len(faces)} are restricted to the {len(trusted)} clean photos")
+    loaded = [(loaded[i], i in trusted) for i in chosen_idx]
+    ref_mean = np.median([t[0][-2] for t in loaded], axis=0)
+    ref_std = np.median([t[0][-1] for t in loaded], axis=0)
 
-    for _, r, image, pts, _, _ in loaded:
+    for (_, r, image, pts, _, _, _), clean in loaded:
+        allow = np.ones(len(faces), bool)
+        if not clean:
+            allow &= ~eye_tris & ~mouth_tris
         image = colour_match(image, pts, ref_mean, ref_std)
-        texture, covered = bake_one(image, pts, uvs, faces, uv_faces, SIZE)
+        texture, covered = bake_one(image, pts, uvs, faces, uv_faces, SIZE,
+                                    allow=allow)
         # Frontal and sharp photos contribute more; nothing is discarded.
         w = r["sharpness"] ** 0.5
         total += texture * covered[..., None] * w
