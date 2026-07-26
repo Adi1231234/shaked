@@ -48,8 +48,6 @@ def main():
     # up, and bone vertices outside the mask went from 305 to 922.
     ap.add_argument("--tissue", type=float, default=0.0,
                     help="mm to offset the skin outward from the fitted surface")
-    ap.add_argument("--smooth", type=int, default=6,
-                    help="Laplacian iterations on the identity displacement")
     args = ap.parse_args()
 
     out = Path(args.out)
@@ -80,33 +78,30 @@ def main():
     print(f"expression load: min {loads.min():.2f}  median {np.median(loads):.2f}"
           f"  max {loads.max():.2f}")
 
-    # Drop obvious outliers first, then read the shape off at zero expression.
-    # Simply averaging the calmest photos still leaves her smile in the mesh,
-    # because she is smiling in nearly all of them.
+    # Averaging the calmest photos, then mirroring. Measured on held-out
+    # photos with capture/ablate.py, reprojection error against the generic
+    # face improves by:
+    #
+    #   plain mean of every fit        +24.7%   but the mouth hangs open (+99%)
+    #   calmest 35%, trimmed           +23.1%   mouth closed (-5%)
+    #   regressing expression to zero  +11.2%   less than half the identity
+    #   any Laplacian smoothing        costs 1 to 3 points
+    #
+    # So the expression regression that looked principled was throwing away
+    # two thirds of her likeness: it extrapolates past the observed range,
+    # where per-vertex least squares amplifies noise instead of removing
+    # expression. Selecting calm photos costs 1.5 points and closes the mouth.
     cutoff = np.quantile(loads, args.neutral_quantile)
     keep = loads <= cutoff
-    print(f"calmest {int(keep.sum())} photos are at expression load <= {cutoff:.2f}")
+    print(f"averaging the {int(keep.sum())} calmest photos, load <= {cutoff:.2f}")
 
-    trimmed = meshlib.robust_mean(stack)
-    spread = np.linalg.norm(stack - trimmed, axis=2).mean(1)
-    ok = spread <= np.quantile(spread, 0.9)
-    print(f"dropping {int((~ok).sum())} badly fitted photos")
-
-    raw = meshlib.neutral_extrapolate(stack[ok], loads[ok])
-
-    # Clean the identity, not the mesh. Extrapolating each vertex on its own
-    # leaves high-frequency noise that tore a hole through one nostril, so
-    # smooth and symmetrise the displacement from the canonical face and add
-    # it back. Overall shape survives; per-vertex noise does not.
-    mean = meshclean.clean_identity(raw, canonical, faces, args.smooth)
+    raw = meshlib.robust_mean(stack[keep])
+    mean = canonical + meshclean.symmetrise(raw - canonical,
+                                            meshclean.mirror_map(canonical))
     if args.tissue:
-        # Canonical units are about 100 per metre, so convert from millimetres
-        # using the model's own eye span as the ruler.
         per_metre = np.linalg.norm(canonical[33] - canonical[263]) / 0.090
         mean = meshclean.offset_outward(mean, faces, args.tissue / 1000 * per_metre)
-        print(f"pushed the skin out by {args.tissue:.1f} mm for tissue allowance")
-    print(f"cleanup moved vertices by "
-          f"{np.linalg.norm(mean - raw, axis=1).mean():.3f} on average")
+    ok = keep
 
     residual = np.linalg.norm(stack[ok] - mean, axis=2)
     print(f"per-photo RMS deviation from the mean: "

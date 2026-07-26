@@ -27,7 +27,7 @@ loadHead(MODEL, (e) => {
   // framing on the mask alone crops the crown once the bone layer is on.
   const CROWN = /^(Skin|Frontal bone|Parietal bone|Occipital bone)$/;
   const head = meshes.filter((m) => CROWN.test(m.userData.structure || ''));
-  const frame = () => focusOn(head.length ? head : root, camera, controls, 1.32);
+  const frame = () => focusOn(head.length ? head : root, camera, controls, 1.12);
   frame();
   // Rotating the phone changes the horizontal field of view, so re-frame.
   scene.userData.onResize = frame;
