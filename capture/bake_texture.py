@@ -332,6 +332,7 @@ def main():
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
     cv2.imwrite(str(out), skin)
+    write_skin_colour(skin, weight[..., 0] > 1e-6)
     normals = out.with_name(out.stem + "_normal.png")
     cv2.imwrite(str(normals), albedo.normal_map(filled))
     coverage = float((weight > 1e-6).mean())
@@ -362,6 +363,29 @@ def blend(stack, cover):
     baked = np.where(weight > 1e-6, (stack * w).sum(axis=0)
                      / np.maximum(weight, 1e-6), 0)
     return baked, weight
+
+
+SKIN_COLOUR = "models/skin-colour.json"
+
+
+def write_skin_colour(texture, valid, out=SKIN_COLOUR):
+    """One number for her skin, for the parts of the head no photograph covers.
+
+    The face mask is a face-shaped oval, so the scalp, the temples, the ears
+    and the neck have to be painted flat, and they should be painted her
+    colour rather than a guess. The median of the atlas is the right statistic
+    for that: a mean would be dragged by the darkest corners of the mask, where
+    coverage thins out and the inpainting takes over.
+    """
+    bgr = np.median(texture[valid], axis=0)
+    linear = [float(c / 255) ** 2.2 for c in bgr[::-1]]
+    Path(out).parent.mkdir(parents=True, exist_ok=True)
+    Path(out).write_text(json.dumps({
+        "note": "her measured skin albedo; linear_rgb is what Blender wants",
+        "srgb_rgb": [round(float(c), 1) for c in bgr[::-1]],
+        "linear_rgb": [round(c, 4) for c in linear],
+    }, indent=1), encoding="utf-8")
+    print(f"skin colour {bgr[::-1].round(0)} RGB  ->  {out}")
 
 
 def unsharp(texture, radius=1.6, amount=0.55):

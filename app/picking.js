@@ -1,7 +1,6 @@
 // Click-to-identify: raycast against the visible model, highlight the hit
 // structure and report it.
 import * as THREE from 'three';
-import { SKIN_LAYER } from './scene.js';
 
 const SELECT = new THREE.Color(0xffc25c);
 const HOVER = new THREE.Color(0x6fd3e8);
@@ -21,9 +20,12 @@ export function createPicker({ camera, meshes, onPick, onHover }) {
     const visible = meshes.filter((m) => m.visible && isShown(m));
     const hits = ray.intersectObjects(visible, false);
     // Her face is painted over the anatomy, so a tap on it has to name the
-    // skin even though a tooth or an eyeball is physically a little nearer.
-    const face = hits.find((h) => h.object.layers.isEnabled(SKIN_LAYER));
-    return (face || hits[0])?.object || null;
+    // skin even though an eyeball or a cheekbone is physically a little
+    // nearer. The teeth are the exception: they are drawn in the same pass
+    // and what you can see of them really is in front of her lips.
+    const face = hits.find((h) => h.object.userData.kind === 'face');
+    return ((face && face.distance <= (hits[0]?.distance ?? 0) + 0.02)
+            ? face : hits[0])?.object || null;
   }
 
   function isShown(mesh) {

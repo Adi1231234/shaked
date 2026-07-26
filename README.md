@@ -4,8 +4,8 @@
 
 An interactive 3D head for a head & neck anatomy exam: a real face as the outer
 skin layer, with anatomically correct layers underneath that you can peel away
-and click to identify. Opens on the face; tap a system to reveal what is under
-it; tap any structure to name it.
+and click to identify. Opens with everything on, which reads as her face; take
+a system off to see under it, and tap any structure to name it.
 
 Built entirely from free sources. No paid tool is used anywhere in the
 pipeline, and nothing is uploaded: every step runs locally.
@@ -14,9 +14,10 @@ pipeline, and nothing is uploaded: every step runs locally.
 
 `models/head.glb` ships each layer as one glTF node holding its named
 structures, so the viewer can peel a layer and click a structure to identify
-it. Current build: 1133 nodes, 805 distinct structures, 5.6 MB Draco-compressed.
+it. Current build: 1217 nodes, 847 distinct structures, 5.8 MB Draco-compressed.
 
-- **skin** (1) - the face, reconstructed from photographs (see `capture/`)
+- **skin** (52) - her face, reconstructed from photographs (see `capture/`), plus
+  101 surface-region patches covering the scalp, ears and neck in her colour
 - **eyes** (36) - globe, cornea to retina, plus tarsal plates and the lacrimal apparatus
 - **myology** (183) - facial, masticatory, suprahyoid, cervical and upper back muscles
 - **viscera** (27) - pharynx, larynx, tongue, salivary glands, thyroid, trachea
@@ -24,11 +25,11 @@ it. Current build: 1133 nodes, 805 distinct structures, 5.6 MB Draco-compressed.
 - **osteology** (117) - cranium, mandible, teeth, hyoid, laryngeal cartilages, cervical spine.
   The 28 teeth carry her own enamel colour as vertex colours, measured off her
   photographs; see `capture/README.md`
-- **neuro** (286) - brain, brainstem, cranial nerves, ear and other sense organs
+- **neuro** (268) - brain, brainstem, cranial nerves, ear and other sense organs
 - **angiology** (4) - everything Z-Anatomy has in the head, which is almost nothing
 - **landmarks** (419) - clickable hotspots for named bony landmarks
 
-### Her face is drawn in a second pass, over a cleared depth buffer
+### The skin is drawn in passes of its own, over a cleared depth buffer
 
 Z-Anatomy's head is a generic adult's. Once it is scaled to her, several
 structures sit a few millimetres proud of her much thinner soft tissue, so
@@ -38,13 +39,39 @@ straight through her face. `tools/breaches.py` measures it: 93 structures and
 40.0 mm), the ear and the neck.
 
 Shrinking the anatomy to hide that would falsify the anatomy, which is the part
-she is being examined on. So `app/scene.js` renders twice instead: everything
-on layer 0, then `clearDepth()`, then the skin on layer 1. The skin still
-self-occludes correctly because the second pass depth-tests only against
-itself, and back-face culling keeps it from covering the anatomy when you
-rotate behind the head. Lights need `layers.enableAll()` or the second pass
-renders black, and the raycaster needs `layers.enableAll()` plus a preference
-for the skin, so a tap names what is actually on screen.
+she is being examined on. So `app/scene.js` renders three times instead:
+
+- **layer 0** the anatomy, and the teeth in their own right
+- `clearDepth()`, **layer 2** the rest of the head in her measured skin colour
+- `clearDepth()`, **layer 1** her face, and the teeth again
+
+Each pass still self-occludes correctly because it depth-tests only against
+itself, and back-face culling keeps the skin from covering the anatomy when you
+rotate behind the head. Her face goes last so it always wins against the
+generic surface underneath it, which is fuller than she is. The teeth appear in
+both the first and the last pass, so whatever stands proud of her lips reads as
+her smiling; the two extra passes are skipped entirely when the skin is off, or
+those teeth would float in front of the skull.
+
+Lights need `layers.enableAll()` or the later passes render black, and the
+raycaster needs `layers.enableAll()` plus a preference for her face, so a tap
+names what is actually on screen.
+
+### Skin over the rest of the head
+
+Her face mask is a face-shaped oval, so everything outside it - scalp, temples,
+ears, neck - used to render as bare muscle whenever the skin was on. Z-Anatomy
+has no integument mesh, but its "Regions of human body" collection is a set of
+surface patches that between them tile the body, and those are the outermost
+shell. 102 of them cover the head and neck; `tools/headskin.py` moves them into
+the skin layer and tints them with the skin colour measured off her photographs
+(195, 148, 133 RGB). They keep their own names - helix, tragus, mastoid region -
+so they stay clickable and searchable.
+
+They have to be claimed *before* `layers.classify()` runs: the auricle's surface
+features are tagged as sense organs as well as regions, so the helix and the
+tragus would otherwise go to the neuro layer and her ears would render as bare
+cartilage.
 
 ### Names come from `extras`, not from node names
 

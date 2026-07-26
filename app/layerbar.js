@@ -51,19 +51,20 @@ export function buildLayerBar(host, rootRows, onToggle) {
 }
 
 /**
- * Opening state: her face and nothing else.
+ * Opening state: everything on.
  *
- * With every system on, the muscles cover the face and the first thing you see
- * is a flayed head. The point of the thing is to start from her and peel.
+ * Turning every system on used to mean a flayed head, because the muscles won
+ * the depth test against her much thinner face. The viewer now draws her skin
+ * over the anatomy instead, so the whole model can be on from the start and
+ * peeling is a matter of taking layers off rather than putting them on.
  */
-export function showOnlySkin(rootRows) {
+export function showEverything(rootRows) {
   for (const sys of SYSTEMS) {
     const row = rootRows.get(sys.root);
     if (!row) continue;
     const input = row.querySelector('input');
-    const want = sys.root === 'Integument';
-    if (input.checked !== want) {
-      input.checked = want;
+    if (!input.checked) {
+      input.checked = true;
       input.dispatchEvent(new Event('change'));
     }
   }

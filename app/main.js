@@ -2,7 +2,7 @@
 import { createScene, loadHead, focusOn } from './scene.js';
 import { buildTree, renderTree, revealRow } from './tree.js';
 import { createPicker } from './picking.js';
-import { buildLayerBar, tintBranches, showOnlySkin } from './layerbar.js';
+import { buildLayerBar, tintBranches, showEverything } from './layerbar.js';
 import { attachSheet } from './sheet.js';
 import { showGreeting } from './greeting.js';
 
@@ -20,8 +20,10 @@ loadHead(MODEL, (e) => {
   if (e.lengthComputable) {
     boot.querySelector('.bar').style.width = `${(e.loaded / e.total) * 100}%`;
   }
-}).then(({ root, meshes }) => {
+}).then(({ root, meshes, skin }) => {
   scene.add(root);
+  // The extra skin passes only run while there is skin to draw.
+  scene.userData.skinOn = () => skin.some((m) => m.visible);
   // Frame the head, not the whole model: platysma and trapezius spread to
   // the shoulders and would push the head down to a third of the screen.
   // Her face plus the cranial vault: the skull rises above the mask, so
@@ -56,7 +58,7 @@ loadHead(MODEL, (e) => {
   const rootRows = new Map([...treeHost.querySelectorAll(':scope > .row')]
     .map((r) => [r.querySelector('.label').textContent, r]));
   tintBranches(rootRows);
-  showOnlySkin(rootRows);
+  showEverything(rootRows);
   buildLayerBar(el('layerbar'), rootRows);
 
   el('count').textContent = new Set(meshes.map((m) => m.userData.structure)).size;

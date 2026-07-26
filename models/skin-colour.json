@@ -1,0 +1,13 @@
+{
+ "note": "her measured skin albedo; linear_rgb is what Blender wants",
+ "srgb_rgb": [
+  195.0,
+  148.0,
+  133.0
+ ],
+ "linear_rgb": [
+  0.5542,
+  0.3021,
+  0.2388
+ ]
+}

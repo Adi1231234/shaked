@@ -6,15 +6,22 @@ import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
 const DRACO_PATH = 'https://unpkg.com/three@0.169.0/examples/jsm/libs/draco/';
 
-// Her face is drawn in a second pass over a cleared depth buffer, so it always
-// covers the anatomy instead of fighting it. It has to: Z-Anatomy's head is a
-// generic adult's, and once it is scaled to her the teeth, the eyeballs and
-// orbicularis oris all sit a few millimetres proud of her much thinner lips
-// and lids. Depth testing them against each other showed a mouthful of
-// stranger's teeth straight through her mouth. Layer 1 is that second pass.
+// The skin is drawn in passes of its own, each over a cleared depth buffer, so
+// it covers the anatomy instead of fighting it. It has to: Z-Anatomy's head is
+// a generic adult's, and once it is scaled to her the eyeballs, orbicularis
+// oris and most of the temple sit proud of her much thinner soft tissue.
+//
+//   0  the anatomy, and the teeth in their own right
+//   2  the rest of the head, in her measured skin colour
+//   1  her face, and the teeth again - so what shows past her lips is a smile
+//
+// Her face goes last and over its own cleared depth so it always wins against
+// the generic surface underneath it, which is fuller than she is.
 export const SKIN_LAYER = 1;
+export const HEAD_SKIN_LAYER = 2;
 const BASE_LAYER = 0;
 const BACKGROUND = 0x080b12;
+const TEETH = /\/Teeth(\/|$)/;
 
 export function createScene(canvasHost) {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -73,11 +80,17 @@ export function createScene(canvasHost) {
     camera.layers.set(BASE_LAYER);
     renderer.render(scene, camera);
     // Wiping only the depth keeps the anatomy on screen but stops it from
-    // occluding her face. The skin still self-occludes correctly, because the
-    // second pass depth-tests against nothing but itself.
-    renderer.clearDepth();
-    camera.layers.set(SKIN_LAYER);
-    renderer.render(scene, camera);
+    // occluding the skin. Each pass still self-occludes correctly, because it
+    // depth-tests against nothing but itself. Skipped entirely when the skin
+    // is switched off, or the teeth would float in front of the skull.
+    if (scene.userData.skinOn?.()) {
+      renderer.clearDepth();
+      camera.layers.set(HEAD_SKIN_LAYER);
+      renderer.render(scene, camera);
+      renderer.clearDepth();
+      camera.layers.set(SKIN_LAYER);
+      renderer.render(scene, camera);
+    }
   })();
 
   return { renderer, scene, camera, controls };
@@ -89,6 +102,7 @@ export function loadHead(url, onProgress) {
   return new Promise((resolve, reject) => {
     loader.load(url, (gltf) => {
       const meshes = [];
+      const skin = [];
       gltf.scene.traverse((o) => {
         if (!o.isMesh) return;
         // Each mesh gets its own material instance so one structure can be
@@ -96,15 +110,21 @@ export function loadHead(url, onProgress) {
         o.material = o.material.clone();
         o.userData.baseColor = o.material.color.clone();
         if (o.userData.layer === 'skin') {
-          o.layers.set(SKIN_LAYER);
-          // Blender exports it double-sided, and the pass below cannot depth
-          // test against the anatomy, so from behind the head the inside of
-          // her face would paint straight over the occiput. Cull it instead.
+          o.layers.set(o.userData.kind === 'face' ? SKIN_LAYER : HEAD_SKIN_LAYER);
+          // Blender exports these double-sided, and a pass over cleared depth
+          // cannot test against the anatomy, so from behind the head the
+          // inside of her face would paint over the occiput. Cull it instead.
           o.material.side = THREE.FrontSide;
+          skin.push(o);
+        } else if (TEETH.test(o.userData.path || '')) {
+          // Drawn a second time with her face, so that whatever stands proud
+          // of her lips reads as her showing her teeth.
+          o.layers.enable(SKIN_LAYER);
         }
         meshes.push(o);
       });
-      resolve({ root: gltf.scene, meshes });
+      gltf.scene.userData.skin = skin;
+      resolve({ root: gltf.scene, meshes, skin });
     }, onProgress, reject);
   });
 }
