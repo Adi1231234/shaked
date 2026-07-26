@@ -29,6 +29,23 @@ is the short version.
   where she is open-eyed and looking ahead, the mouth only from the five where
   it is properly shut, and the cheeks and forehead from all of them.
 
+- **Each eye is gated on its own, and only a few photos paint them.** Nothing
+  in the correspondence set pins an iris - the warp only knows the eyelid
+  contour - so every extra photo can only smear the iris further across its own
+  eye opening. Testing the *average* of the two eyes let a photo through where
+  she is looking hard to one side: one reads 0.627 left and 0.351 right, an
+  average of 0.489, comfortably inside a tolerance of 0.09 around 0.450. Three
+  of the eight photos feeding the eye region were like that, each iris ended up
+  somewhere different, and she came out cross-eyed. Now each eye must sit
+  within 0.05 of its own median and the two must agree to within 0.08, and the
+  four sharpest survivors paint the region.
+
+- **Regions are levelled against the skin they border.** Different photo sets
+  for the eyes, the mouth and the rest leave a step at each region's edge even
+  after every face has been matched into one LAB reference: the eyes needed
+  +11.6, +11.9, +14.5 BGR. Measured from skin either side of the boundary and
+  applied flat, which is what makes the step vanish rather than move.
+
 - **The mouth region has to be grown by a ring.** The lip contour is not where
   the mouth stops moving; the corners and the philtrum stretch when she smiles.
   Left on the general skin budget they took their colour from photos with her

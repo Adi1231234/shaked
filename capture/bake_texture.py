@@ -162,6 +162,43 @@ OCCLUDED = {
 }
 
 
+def texel_regions(uvs, uv_faces, masks, size):
+    """Each triangle mask painted into the atlas, as a texel mask."""
+    uv_px = np.column_stack([uvs[:, 0] * size, (1 - uvs[:, 1]) * size])
+    out = {}
+    for label, mask in masks.items():
+        canvas = np.zeros((size, size), np.uint8)
+        for tri in uv_faces[mask]:
+            cv2.fillConvexPoly(canvas, np.int32(uv_px[tri]), 1)
+        out[label] = canvas
+    return out
+
+
+def level_regions(baked, valid, regions, band=9):
+    """Lift each region onto the level of the skin it borders.
+
+    The eyes and the mouth are painted from a different set of photos to the
+    rest of the face, and even after every photo's face has been matched into
+    one LAB reference those sets still differ by a few levels. It showed as a
+    halo round each eye. The offset is measured from skin on both sides of the
+    boundary and applied flat across the region, which is what makes the step
+    vanish rather than move: feathering it would leave the two bands equally
+    corrected and the difference between them untouched.
+    """
+    out = baked.copy()
+    k = np.ones((band, band), np.uint8)
+    for label, mask in regions.items():
+        inside = (mask - cv2.erode(mask, k)).astype(bool) & valid
+        outside = (cv2.dilate(mask, k) - mask).astype(bool) & valid
+        if inside.sum() < 50 or outside.sum() < 50:
+            continue
+        offset = (np.median(baked[outside], axis=0)
+                  - np.median(baked[inside], axis=0))
+        out[mask.astype(bool)] += offset
+        print(f"  levelled {label} by {offset.round(1)} (BGR)")
+    return np.clip(out, 0, 255)
+
+
 def pick(rows, count):
     """Sharp, well exposed photos of her, balanced left and right.
 
@@ -224,7 +261,8 @@ def main():
     measures = [m for _, _, _, _, m, _, _ in loaded]
     eyes_ok, mouth_ok, baseline, centre, why = fq.gate(measures)
     print(f"open-eye baseline EAR {baseline:.3f}, gaze centre "
-          f"{'n/a' if centre is None else f'{centre:.3f}'}")
+          + ("n/a" if centre[0] is None else
+             f"{centre[0]:.3f} left / {centre[1]:.3f} right"))
     print(f"of {len(loaded)}: {int(eyes_ok.sum())} usable for the eyes, "
           f"{int(mouth_ok.sum())} for the mouth "
           f"({why['blink']} blinking, {why['gaze']} looking away, "
@@ -233,7 +271,12 @@ def main():
     # the mouth. Cheeks and forehead do not care whether she blinked.
     order = sorted(range(len(loaded)), key=lambda i: loaded[i][0])
     calm = order[:args.count]
-    eye_idx = [i for i in order if eyes_ok[i]][:args.count] or calm
+    # The eyes are ranked by sharpness, not by how calm her expression is, and
+    # only a few are taken. Nothing in the correspondence set pins an iris, so
+    # every extra photo can only blur it further across the eye opening; the
+    # gate has already established that these are all looking the same way.
+    sharpest = sorted(range(len(loaded)), key=lambda i: -loaded[i][1]["sharpness"])
+    eye_idx = [i for i in sharpest if eyes_ok[i]][:max(args.count // 2, 3)] or calm
     mouth_idx = [i for i in order if mouth_ok[i]][:args.count] or calm
 
     eye_tris, mouth_tris = fq.region_masks(faces)
@@ -271,6 +314,10 @@ def main():
         print(f"  {r['file'][:38]:40s} yaw {r['yaw']:+.2f} sharp {r['sharpness']:7.0f}")
 
     baked, weight = blend(np.array(stack), np.array(cover))
+    baked = level_regions(baked, weight[..., 0] > 1e-6,
+                          texel_regions(uvs, uv_faces,
+                                        {"eyes": eye_tris, "mouth": mouth_tris},
+                                        SIZE))
     baked = unsharp(baked)
     sharp = cv2.Laplacian(cv2.cvtColor(baked.astype(np.uint8),
                                        cv2.COLOR_BGR2GRAY), cv2.CV_64F).var()

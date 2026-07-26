@@ -61,18 +61,29 @@ def measure(pts):
     return {
         "ear": min(left, right),          # the worse eye decides
         "ear_gap": abs(left - right),
-        "gaze": None if gl is None or gr is None else (gl + gr) / 2,
-        "gaze_gap": None if gl is None or gr is None else abs(gl - gr),
+        "gaze_l": gl,
+        "gaze_r": gr,
         "mouth": mouth_open(pts),
     }
 
 
-def gate(measures, ear_frac=0.80, max_gaze_dev=0.09, max_mouth=0.03):
+def gate(measures, ear_frac=0.80, max_gaze_dev=0.05, max_gaze_gap=0.08,
+         max_mouth=0.03):
     """Two masks: photos trusted for the eyes, and photos trusted for the mouth.
 
     They are separate because the criteria are. An eye needs to be open and
     looking ahead; a mouth needs to be shut. Judging both at once forced one
     compromise threshold and left teeth painted across a closed lip line.
+
+    Each eye is judged on its own, against its own median. Averaging the two
+    and testing that instead let a photo through where she is looking hard to
+    one side: one of hers reads 0.627 on the left and 0.351 on the right, an
+    average of 0.489, which sat comfortably inside a tolerance of 0.09 around
+    a centre of 0.450. Three of the eight photos then feeding the eye region
+    were like that, and since no landmark pins the iris - the warp only knows
+    the eyelid contour - averaging them smeared each iris across its own eye
+    opening and left the residue in a different place on each side. That is
+    what made her look cross-eyed.
 
     ear_frac is a fraction of her own median open-eye EAR rather than an
     absolute number, because the paper that defines EAR warns the threshold is
@@ -81,14 +92,12 @@ def gate(measures, ear_frac=0.80, max_gaze_dev=0.09, max_mouth=0.03):
     """
     ears = np.array([m["ear"] for m in measures])
     open_baseline = float(np.median(ears[ears >= np.median(ears)]))
-    gazes = [m["gaze"] for m in measures if m["gaze"] is not None]
-    centre = float(np.median(gazes)) if gazes else None
+    centre = tuple(_median([m[k] for m in measures]) for k in ("gaze_l", "gaze_r"))
 
     eyes_ok, mouth_ok, why = [], [], {"blink": 0, "gaze": 0, "mouth": 0}
     for m in measures:
         blink = m["ear"] < open_baseline * ear_frac
-        away = (centre is not None and m["gaze"] is not None
-                and abs(m["gaze"] - centre) > max_gaze_dev)
+        away = _looking_away(m, centre, max_gaze_dev, max_gaze_gap)
         shut = m["mouth"] <= max_mouth
         why["blink"] += blink
         why["gaze"] += away and not blink
@@ -96,6 +105,21 @@ def gate(measures, ear_frac=0.80, max_gaze_dev=0.09, max_mouth=0.03):
         eyes_ok.append(not blink and not away)
         mouth_ok.append(shut)
     return np.array(eyes_ok), np.array(mouth_ok), open_baseline, centre, why
+
+
+def _median(values):
+    seen = [v for v in values if v is not None]
+    return float(np.median(seen)) if seen else None
+
+
+def _looking_away(m, centre, max_dev, max_gap):
+    """True when either iris is off its usual place, or the two disagree."""
+    gl, gr = m["gaze_l"], m["gaze_r"]
+    if gl is None or gr is None or centre[0] is None:
+        return False
+    if abs(gl - centre[0]) > max_dev or abs(gr - centre[1]) > max_dev:
+        return True
+    return abs((gl - centre[0]) - (gr - centre[1])) > max_gap
 
 
 # Eye and mouth contours, from MediaPipe's documented landmark map. A triangle
