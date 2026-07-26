@@ -10,8 +10,14 @@ import numpy as np
 
 
 def load_obj(path):
-    """Vertices, UVs and triangles (0-based) from a simple OBJ."""
-    verts, uvs, faces = [], [], []
+    """Vertices, UVs, vertex triangles and UV triangles from an OBJ.
+
+    The UV indices are kept separate on purpose. In MediaPipe's canonical face
+    model every one of the 2694 face corners has a different vertex index and
+    texture index, so treating them as the same number scrambles the texture
+    into unrecognisable shards.
+    """
+    verts, uvs, faces, uv_faces = [], [], [], []
     for line in open(path, encoding="utf-8"):
         parts = line.split()
         if not parts:
@@ -21,22 +27,27 @@ def load_obj(path):
         elif parts[0] == "vt":
             uvs.append([float(x) for x in parts[1:3]])
         elif parts[0] == "f":
-            faces.append([int(p.split("/")[0]) - 1 for p in parts[1:4]])
-    return np.array(verts, np.float64), np.array(uvs, np.float64), np.array(faces, np.int32)
+            corners = [p.split("/") for p in parts[1:4]]
+            faces.append([int(c[0]) - 1 for c in corners])
+            uv_faces.append([int(c[1]) - 1 if len(c) > 1 and c[1] else int(c[0]) - 1
+                             for c in corners])
+    return (np.array(verts, np.float64), np.array(uvs, np.float64),
+            np.array(faces, np.int32), np.array(uv_faces, np.int32))
 
 
-def save_obj(path, verts, faces, uvs=None):
+def save_obj(path, verts, faces, uvs=None, uv_faces=None):
     with open(path, "w", encoding="utf-8") as f:
         for v in verts:
             f.write(f"v {v[0]:.6f} {v[1]:.6f} {v[2]:.6f}\n")
-        if uvs is not None:
-            for t in uvs:
-                f.write(f"vt {t[0]:.6f} {t[1]:.6f}\n")
-        for tri in faces:
-            if uvs is not None:
-                f.write("f " + " ".join(f"{i+1}/{i+1}" for i in tri) + "\n")
-            else:
+        if uvs is None:
+            for tri in faces:
                 f.write("f " + " ".join(str(i + 1) for i in tri) + "\n")
+            return
+        for t in uvs:
+            f.write(f"vt {t[0]:.6f} {t[1]:.6f}\n")
+        uv_faces = faces if uv_faces is None else uv_faces
+        for tri, uvtri in zip(faces, uv_faces):
+            f.write("f " + " ".join(f"{v+1}/{t+1}" for v, t in zip(tri, uvtri)) + "\n")
 
 
 def similarity_transform(source, target, weights=None):

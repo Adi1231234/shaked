@@ -16,10 +16,14 @@ from mathutils import Vector
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import hierarchy        # noqa: E402
 import layers as L      # noqa: E402
+import skinlayer       # noqa: E402
 import zalandmarks      # noqa: E402
 import zalib            # noqa: E402
 
 OUT = sys.argv[sys.argv.index('--') + 1] if '--' in sys.argv else 'models/head.glb'
+FACE_OBJ = "photos/fit/shaked_face.obj"
+FACE_TEX = "photos/fit/shaked_face.png"
+FACE_FIT = "models/anatomy-fit.json"
 
 
 def head_origin():
@@ -94,12 +98,27 @@ def export(keep, groups):
     print(f"WROTE {OUT}  ({len(keep)} objects, {size:.1f} MB)")
 
 
+def add_skin(groups):
+    """Her face, moved into the anatomy's frame, as the outermost layer."""
+    if not (Path(FACE_OBJ).exists() and Path(FACE_FIT).exists()):
+        print("  skin       : no fitted face yet, skipping")
+        return
+    obj = skinlayer.import_face(FACE_OBJ, FACE_FIT)
+    zalib.move_to(obj, zalib.ensure_collection("skin"))
+    zalib.apply_material(obj, skinlayer.skin_material(FACE_TEX))
+    zalib.tag(obj, structure="Skin", side="", layer="skin", kind="structure",
+              path="Integument/Skin of face")
+    groups["skin"] = [obj]
+    print(f"  {'skin':11s}: 1 structure ({len(obj.data.vertices)} verts)")
+
+
 def main():
     origin = head_origin()
     parents = hierarchy.parent_map()
     solids, labels = L.classify()
     groups = build_layers(solids, parents)
     groups["landmarks"] = build_landmarks(groups, labels, parents)
+    add_skin(groups)
 
     keep = [o for members in groups.values() for o in members]
     keep_set = set(keep)

@@ -28,12 +28,18 @@ from mathutils import Vector
 from mathutils.bvhtree import BVHTree
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import craniometry  # noqa: E402
+import seating  # noqa: E402
 import skullfit  # noqa: E402
 import zalib  # noqa: E402
 
 argv = sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else []
 FACE = Path(argv[0] if argv else "photos/fit/shaked_face.obj").resolve()
 OUT = Path(argv[1] if len(argv) > 1 else "models/anatomy-fit.json").resolve()
+
+
+class args:
+    shrink = float(argv[2]) if len(argv) > 2 else 1.0
 
 def load_obj(path):
     verts, faces = [], []
@@ -47,36 +53,49 @@ def load_obj(path):
 
 
 def main():
-    objs = skullfit.skull_objects()
-    bvh = skullfit.skull_bvh(objs)
-    centre = skullfit.skull_centre(objs)
-    face, _ = load_obj(FACE)
+    objs = craniometry.skull_objects()
+    bvh = craniometry.skull_bvh(objs)
+    centre = craniometry.skull_centre(objs)
+    face, tris = load_obj(FACE)
 
     bone_pts, face_pts = [], []
-    for name, (spec, index, mm) in skullfit.FSTT.items():
-        bone = skullfit.bone_point(spec, bvh)
+    for name, (spec, index, mm) in craniometry.FSTT.items():
+        bone = craniometry.bone_point(spec, bvh)
         if bone is None:
             print(f"  {name}: missing, skipped")
             continue
-        normal = skullfit.outward(bvh, bone, bone - centre)
+        normal = craniometry.outward(bvh, bone, bone - centre)
         bone_pts.append([*(bone + normal * (mm / 1000.0))])
         face_pts.append(face[index])
         print(f"  {name:10s} bone ({bone.x:+.4f},{bone.y:+.4f},{bone.z:+.4f}) +{mm}mm")
 
-    rot, scale, trans = skullfit.similarity(np.array(bone_pts), np.array(face_pts))
+    rot, scale, trans = skullfit.sagittal_similarity(np.array(bone_pts),
+                                                    np.array(face_pts))
     print(f"\nanatomy -> her face: scale {scale:.4f}")
 
     fitted = (scale * (rot @ np.array(bone_pts).T)).T + trans
     err = np.linalg.norm(fitted - np.array(face_pts), axis=1)
     print("landmark residual: " + "  ".join(
-        f"{k} {e:.4f}" for k, e in zip(skullfit.FSTT, err)))
+        f"{k} {e:.4f}" for k, e in zip(craniometry.FSTT, err)))
 
     # Shrink the anatomy about the skull centre until no bone breaks the skin.
-    shrink, breaches = skullfit.fit_scale(face, bvh, centre, rot, scale, trans)
+    skin_tree = seating.skin_bvh(face, tris)
+    bone_pts = seating.skull_points(objs)
+    print(f"checking {len(bone_pts)} sampled bone vertices against the skin")
+    # The mask stops at the cheek contour, so the zygomatic arches lie outside
+    # it no matter how well the fit is solved. Shrinking until nothing is
+    # outside drove the skull down to 73% of life size, which is not a fit, it
+    # is a coverage limit. The anatomical scale from the midline is kept, and
+    # the penetration count is reported rather than acted on.
+    interior = set(seating.interior_triangles(tris))
+    shrink = args.shrink
+    breaches = seating.penetrating(bone_pts, skin_tree, centre, rot, scale,
+                                    trans, shrink, interior)
+    print(f"{len(interior)} of {len(tris)} skin triangles away from the rim")
     print(f"shrink {shrink:.4f}  ->  final scale {scale * shrink:.4f}"
-          f"   vertices with bone poking through: {breaches}")
+          f"   bone vertices outside the mask: {breaches}")
 
-    depths = skullfit.tissue_depths(face, bvh, centre, rot, scale, trans, shrink)
+    depths = seating.tissue_depths(face, bvh, centre, rot, scale, trans, shrink)
     # Her face is in canonical-model units; divide by the scale to get metres.
     d = np.array(sorted(depths)) / (scale * shrink) * 1000
     print(f"\nsoft tissue thickness over {len(d)} of {len(face)} face vertices:")

@@ -53,6 +53,29 @@ def symmetrise(field, mirror):
     return (field + flipped) / 2
 
 
+def vertex_normals(verts, faces):
+    """Area-weighted per-vertex normals."""
+    a, b, c = verts[faces[:, 0]], verts[faces[:, 1]], verts[faces[:, 2]]
+    face_n = np.cross(b - a, c - a)
+    out = np.zeros_like(verts)
+    for i in range(3):
+        np.add.at(out, faces[:, i], face_n)
+    lengths = np.linalg.norm(out, axis=1, keepdims=True)
+    return out / np.maximum(lengths, 1e-12)
+
+
+def offset_outward(verts, faces, distance):
+    """Push a surface out along its normals.
+
+    The landmark fit only guarantees soft tissue thickness at the three points
+    it was solved on. Between them the mask is a bare MediaPipe surface with no
+    tissue allowance at all, which is why the facial bones came through it in
+    the render even though the overall scale checked out against real facial
+    dimensions.
+    """
+    return verts + vertex_normals(verts, faces) * distance
+
+
 def clean_identity(raw, canonical, faces, iterations=6):
     """Smoothed, symmetric version of the fitted face."""
     displacement = raw - canonical

@@ -43,13 +43,18 @@ def main():
     ap.add_argument("--out", default="photos/fit")
     ap.add_argument("--neutral-quantile", type=float, default=0.35,
                     help="fraction of calmest photos, reported for reference")
+    # Off by default. The landmark targets already carry soft tissue depth, so
+    # an extra offset double-counts it: the fit answers by scaling the skull
+    # up, and bone vertices outside the mask went from 305 to 922.
+    ap.add_argument("--tissue", type=float, default=0.0,
+                    help="mm to offset the skin outward from the fitted surface")
     ap.add_argument("--smooth", type=int, default=6,
                     help="Laplacian iterations on the identity displacement")
     args = ap.parse_args()
 
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
-    canonical, uvs, faces = meshlib.load_obj(CANONICAL)
+    canonical, uvs, faces, uv_faces = meshlib.load_obj(CANONICAL)
     rows = json.loads(Path(args.triage).read_text(encoding="utf-8"))
     chosen = select(rows)
     print(f"selected {len(chosen)} of {len(rows)} photos")
@@ -94,6 +99,12 @@ def main():
     # smooth and symmetrise the displacement from the canonical face and add
     # it back. Overall shape survives; per-vertex noise does not.
     mean = meshclean.clean_identity(raw, canonical, faces, args.smooth)
+    if args.tissue:
+        # Canonical units are about 100 per metre, so convert from millimetres
+        # using the model's own eye span as the ruler.
+        per_metre = np.linalg.norm(canonical[33] - canonical[263]) / 0.090
+        mean = meshclean.offset_outward(mean, faces, args.tissue / 1000 * per_metre)
+        print(f"pushed the skin out by {args.tissue:.1f} mm for tissue allowance")
     print(f"cleanup moved vertices by "
           f"{np.linalg.norm(mean - raw, axis=1).mean():.3f} on average")
 
@@ -104,8 +115,8 @@ def main():
     print(f"identity vs canonical: mean vertex shift "
           f"{np.linalg.norm(mean - canonical, axis=1).mean():.3f}")
 
-    meshlib.save_obj(out / "shaked_face.obj", mean, faces, uvs)
-    meshlib.save_obj(out / "canonical_face.obj", canonical, faces, uvs)
+    meshlib.save_obj(out / "shaked_face.obj", mean, faces, uvs, uv_faces)
+    meshlib.save_obj(out / "canonical_face.obj", canonical, faces, uvs, uv_faces)
     (out / "fit.json").write_text(json.dumps(
         {"photos": [r["file"] for r, k in zip(used, ok) if k],
          "expression_load": [float(v) for v in loads],
