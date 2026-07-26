@@ -1,0 +1,5096 @@
+[
+ {
+  "file": "cam_000_9-2026_22-21-03.jpg",
+  "faces": 0
+ },
+ {
+  "file": "cam_001_9-2026_22-21-02.jpg",
+  "faces": 0
+ },
+ {
+  "file": "cam_002_9-2026_22-20-54.jpg",
+  "faces": 4,
+  "her": true,
+  "match": 0.73,
+  "face_px": 85,
+  "sharpness": 128.9,
+  "exposure": 0.002,
+  "yaw": 0.07,
+  "yaw_reliable": true,
+  "roll": 0.7,
+  "box": [
+   412,
+   730,
+   85,
+   111
+  ]
+ },
+ {
+  "file": "cam_003_9-2026_22-20-51.jpg",
+  "faces": 3,
+  "match": 0.262,
+  "her": false
+ },
+ {
+  "file": "cam_004_9-2026_22-20-47.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.416,
+  "face_px": 90,
+  "sharpness": 496.9,
+  "exposure": 0.033,
+  "yaw": 0.6,
+  "yaw_reliable": true,
+  "roll": 1.3,
+  "box": [
+   728,
+   691,
+   90,
+   125
+  ]
+ },
+ {
+  "file": "cam_005_8-2026_8-49-09.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.73,
+  "face_px": 181,
+  "sharpness": 72.2,
+  "exposure": 0.0,
+  "yaw": -0.23,
+  "yaw_reliable": true,
+  "roll": -11.8,
+  "box": [
+   227,
+   126,
+   181,
+   258
+  ]
+ },
+ {
+  "file": "cam_006_7-2026_21-45-19.jpg",
+  "faces": 1,
+  "match": 0.204,
+  "her": false
+ },
+ {
+  "file": "cam_007_1-2026_22-01-40.jpg",
+  "faces": 7,
+  "her": true,
+  "match": 0.632,
+  "face_px": 165,
+  "sharpness": 18.3,
+  "exposure": 0.004,
+  "yaw": -0.41,
+  "yaw_reliable": true,
+  "roll": 5.1,
+  "box": [
+   907,
+   787,
+   165,
+   238
+  ]
+ },
+ {
+  "file": "cam_008_1-2026_21-57-41.jpg",
+  "faces": 3,
+  "her": true,
+  "match": 0.841,
+  "face_px": 205,
+  "sharpness": 76.6,
+  "exposure": 0.049,
+  "yaw": 0.02,
+  "yaw_reliable": true,
+  "roll": -12.7,
+  "box": [
+   435,
+   550,
+   205,
+   266
+  ]
+ },
+ {
+  "file": "cam_009_30-2026_21-56-20.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.764,
+  "face_px": 289,
+  "sharpness": 286.9,
+  "exposure": 0.062,
+  "yaw": -0.32,
+  "yaw_reliable": true,
+  "roll": -19.5,
+  "box": [
+   616,
+   273,
+   289,
+   395
+  ]
+ },
+ {
+  "file": "cam_010_30-2026_21-48-36.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.794,
+  "face_px": 361,
+  "sharpness": 56.9,
+  "exposure": 0.0,
+  "yaw": 0.07,
+  "yaw_reliable": true,
+  "roll": 8.4,
+  "box": [
+   531,
+   498,
+   361,
+   493
+  ]
+ },
+ {
+  "file": "cam_011_29-2026_15-02-25.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.761,
+  "face_px": 355,
+  "sharpness": 514.1,
+  "exposure": 0.004,
+  "yaw": -0.13,
+  "yaw_reliable": true,
+  "roll": -16.9,
+  "box": [
+   316,
+   406,
+   355,
+   509
+  ]
+ },
+ {
+  "file": "cam_012_29-2026_15-02-25.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.77,
+  "face_px": 363,
+  "sharpness": 288.9,
+  "exposure": 0.007,
+  "yaw": -0.07,
+  "yaw_reliable": true,
+  "roll": -16.3,
+  "box": [
+   440,
+   377,
+   363,
+   492
+  ]
+ },
+ {
+  "file": "cam_013_29-2026_15-02-25.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.773,
+  "face_px": 367,
+  "sharpness": 645.3,
+  "exposure": 0.008,
+  "yaw": -0.13,
+  "yaw_reliable": true,
+  "roll": -17.8,
+  "box": [
+   346,
+   403,
+   367,
+   518
+  ]
+ },
+ {
+  "file": "cam_014_29-2026_15-02-25.jpg",
+  "faces": 10,
+  "her": true,
+  "match": 0.79,
+  "face_px": 119,
+  "sharpness": 66.5,
+  "exposure": 0.0,
+  "yaw": -0.15,
+  "yaw_reliable": true,
+  "roll": -1.2,
+  "box": [
+   647,
+   850,
+   119,
+   182
+  ]
+ },
+ {
+  "file": "cam_015_29-2026_15-02-24.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.8,
+  "face_px": 307,
+  "sharpness": 686.1,
+  "exposure": 0.021,
+  "yaw": -0.08,
+  "yaw_reliable": true,
+  "roll": -7.6,
+  "box": [
+   507,
+   561,
+   307,
+   426
+  ]
+ },
+ {
+  "file": "cam_016_29-2026_15-02-24.jpg",
+  "faces": 8,
+  "her": true,
+  "match": 0.778,
+  "face_px": 120,
+  "sharpness": 61.7,
+  "exposure": 0.0,
+  "yaw": -0.05,
+  "yaw_reliable": true,
+  "roll": -3.0,
+  "box": [
+   646,
+   663,
+   120,
+   175
+  ]
+ },
+ {
+  "file": "cam_017_29-2026_15-02-24.jpg",
+  "faces": 7,
+  "her": true,
+  "match": 0.737,
+  "face_px": 126,
+  "sharpness": 101.4,
+  "exposure": 0.0,
+  "yaw": -0.05,
+  "yaw_reliable": true,
+  "roll": -1.7,
+  "box": [
+   622,
+   769,
+   126,
+   181
+  ]
+ },
+ {
+  "file": "cam_018_29-2026_15-02-24.jpg",
+  "faces": 7,
+  "her": true,
+  "match": 0.775,
+  "face_px": 123,
+  "sharpness": 65.8,
+  "exposure": 0.0,
+  "yaw": -0.14,
+  "yaw_reliable": true,
+  "roll": -3.3,
+  "box": [
+   653,
+   850,
+   123,
+   185
+  ]
+ },
+ {
+  "file": "cam_019_29-2026_15-02-23.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.834,
+  "face_px": 423,
+  "sharpness": 1076.8,
+  "exposure": 0.015,
+  "yaw": -0.17,
+  "yaw_reliable": true,
+  "roll": -12.8,
+  "box": [
+   532,
+   285,
+   423,
+   550
+  ]
+ },
+ {
+  "file": "cam_020_29-2026_15-02-23.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.786,
+  "face_px": 351,
+  "sharpness": 302.0,
+  "exposure": 0.005,
+  "yaw": -0.13,
+  "yaw_reliable": true,
+  "roll": -18.5,
+  "box": [
+   80,
+   279,
+   351,
+   442
+  ]
+ },
+ {
+  "file": "cam_021_29-2026_15-02-23.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.855,
+  "face_px": 361,
+  "sharpness": 410.6,
+  "exposure": 0.011,
+  "yaw": -0.09,
+  "yaw_reliable": true,
+  "roll": 8.5,
+  "box": [
+   673,
+   602,
+   361,
+   452
+  ]
+ },
+ {
+  "file": "cam_022_29-2026_15-02-23.jpg",
+  "faces": 3,
+  "her": true,
+  "match": 0.501,
+  "face_px": 374,
+  "sharpness": 715.6,
+  "exposure": 0.002,
+  "yaw": -0.1,
+  "yaw_reliable": true,
+  "roll": -5.9,
+  "box": [
+   38,
+   388,
+   374,
+   448
+  ]
+ },
+ {
+  "file": "cam_023_29-2026_15-02-23.jpg",
+  "faces": 3,
+  "her": true,
+  "match": 0.772,
+  "face_px": 383,
+  "sharpness": 314.2,
+  "exposure": 0.003,
+  "yaw": -0.3,
+  "yaw_reliable": true,
+  "roll": -8.4,
+  "box": [
+   464,
+   321,
+   383,
+   559
+  ]
+ },
+ {
+  "file": "cam_024_29-2026_15-02-23.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.746,
+  "face_px": 352,
+  "sharpness": 275.9,
+  "exposure": 0.003,
+  "yaw": -0.15,
+  "yaw_reliable": true,
+  "roll": -17.1,
+  "box": [
+   56,
+   260,
+   352,
+   446
+  ]
+ },
+ {
+  "file": "cam_025_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.779,
+  "face_px": 320,
+  "sharpness": 709.6,
+  "exposure": 0.017,
+  "yaw": -0.24,
+  "yaw_reliable": true,
+  "roll": -23.6,
+  "box": [
+   556,
+   428,
+   320,
+   387
+  ]
+ },
+ {
+  "file": "cam_026_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.758,
+  "face_px": 467,
+  "sharpness": 838.3,
+  "exposure": 0.017,
+  "yaw": -0.13,
+  "yaw_reliable": true,
+  "roll": -17.2,
+  "box": [
+   -33,
+   291,
+   467,
+   550
+  ]
+ },
+ {
+  "file": "cam_027_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.697,
+  "face_px": 178,
+  "sharpness": 120.9,
+  "exposure": 0.001,
+  "yaw": 0.18,
+  "yaw_reliable": true,
+  "roll": -9.0,
+  "box": [
+   455,
+   508,
+   178,
+   256
+  ]
+ },
+ {
+  "file": "cam_028_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.812,
+  "face_px": 212,
+  "sharpness": 66.1,
+  "exposure": 0.003,
+  "yaw": 0.08,
+  "yaw_reliable": true,
+  "roll": -0.7,
+  "box": [
+   353,
+   500,
+   212,
+   323
+  ]
+ },
+ {
+  "file": "cam_029_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.617,
+  "face_px": 465,
+  "sharpness": 706.9,
+  "exposure": 0.01,
+  "yaw": -0.09,
+  "yaw_reliable": true,
+  "roll": -17.3,
+  "box": [
+   -28,
+   317,
+   465,
+   510
+  ]
+ },
+ {
+  "file": "cam_030_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.779,
+  "face_px": 214,
+  "sharpness": 121.6,
+  "exposure": 0.003,
+  "yaw": 0.12,
+  "yaw_reliable": true,
+  "roll": 3.5,
+  "box": [
+   346,
+   513,
+   214,
+   313
+  ]
+ },
+ {
+  "file": "cam_031_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.759,
+  "face_px": 195,
+  "sharpness": 119.6,
+  "exposure": 0.001,
+  "yaw": 0.1,
+  "yaw_reliable": true,
+  "roll": -3.0,
+  "box": [
+   344,
+   515,
+   195,
+   291
+  ]
+ },
+ {
+  "file": "cam_032_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.765,
+  "face_px": 209,
+  "sharpness": 61.0,
+  "exposure": 0.001,
+  "yaw": 0.02,
+  "yaw_reliable": true,
+  "roll": 2.0,
+  "box": [
+   391,
+   455,
+   209,
+   298
+  ]
+ },
+ {
+  "file": "cam_033_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.659,
+  "face_px": 76,
+  "sharpness": 70.2,
+  "exposure": 0.001,
+  "yaw": 0.1,
+  "yaw_reliable": true,
+  "roll": -0.5,
+  "box": [
+   538,
+   719,
+   76,
+   117
+  ]
+ },
+ {
+  "file": "cam_034_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.573,
+  "face_px": 86,
+  "sharpness": 76.0,
+  "exposure": 0.0,
+  "yaw": 0.41,
+  "yaw_reliable": true,
+  "roll": -12.4,
+  "box": [
+   544,
+   566,
+   86,
+   130
+  ]
+ },
+ {
+  "file": "cam_035_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.609,
+  "face_px": 103,
+  "sharpness": 85.4,
+  "exposure": 0.0,
+  "yaw": 0.1,
+  "yaw_reliable": true,
+  "roll": 5.0,
+  "box": [
+   464,
+   572,
+   103,
+   143
+  ]
+ },
+ {
+  "file": "cam_036_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.609,
+  "face_px": 109,
+  "sharpness": 62.6,
+  "exposure": 0.0,
+  "yaw": -0.03,
+  "yaw_reliable": true,
+  "roll": 2.6,
+  "box": [
+   488,
+   560,
+   109,
+   143
+  ]
+ },
+ {
+  "file": "cam_037_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.563,
+  "face_px": 310,
+  "sharpness": 620.9,
+  "exposure": 0.002,
+  "yaw": 0.07,
+  "yaw_reliable": true,
+  "roll": 25.3,
+  "box": [
+   183,
+   689,
+   310,
+   308
+  ]
+ },
+ {
+  "file": "cam_038_29-2026_2-54-44.jpg",
+  "faces": 3,
+  "her": true,
+  "match": 0.434,
+  "face_px": 185,
+  "sharpness": 86.7,
+  "exposure": 0.006,
+  "yaw": 0.21,
+  "yaw_reliable": true,
+  "roll": -21.7,
+  "box": [
+   499,
+   68,
+   185,
+   203
+  ]
+ },
+ {
+  "file": "cam_039_29-2026_2-54-43.jpg",
+  "faces": 3,
+  "her": true,
+  "match": 0.478,
+  "face_px": 191,
+  "sharpness": 68.3,
+  "exposure": 0.004,
+  "yaw": 0.07,
+  "yaw_reliable": true,
+  "roll": -18.6,
+  "box": [
+   476,
+   111,
+   191,
+   210
+  ]
+ },
+ {
+  "file": "cam_040_29-2026_2-41-02.jpg",
+  "faces": 1,
+  "match": 0.166,
+  "her": false
+ },
+ {
+  "file": "cam_041_28-2026_17-42-45.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.69,
+  "face_px": 346,
+  "sharpness": 183.0,
+  "exposure": 0.002,
+  "yaw": -0.34,
+  "yaw_reliable": true,
+  "roll": -17.1,
+  "box": [
+   5,
+   43,
+   346,
+   475
+  ]
+ },
+ {
+  "file": "cam_042_27-2026_23-08-37.jpg",
+  "faces": 0
+ },
+ {
+  "file": "cam_043_27-2026_23-08-31.jpg",
+  "faces": 0
+ },
+ {
+  "file": "cam_044_27-2026_23-08-13.jpg",
+  "faces": 2,
+  "match": 0.249,
+  "her": false
+ },
+ {
+  "file": "cam_045_27-2026_21-49-35.jpg",
+  "faces": 2,
+  "match": 0.357,
+  "her": false
+ },
+ {
+  "file": "cam_046_24-2026_14-41-57.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.45,
+  "face_px": 373,
+  "sharpness": 284.6,
+  "exposure": 0.0,
+  "yaw": 0.19,
+  "yaw_reliable": true,
+  "roll": 14.7,
+  "box": [
+   534,
+   275,
+   373,
+   537
+  ]
+ },
+ {
+  "file": "cam_047_19-2026_18-55-09.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.642,
+  "face_px": 310,
+  "sharpness": 132.8,
+  "exposure": 0.0,
+  "yaw": 0.25,
+  "yaw_reliable": true,
+  "roll": 18.9,
+  "box": [
+   583,
+   346,
+   310,
+   455
+  ]
+ },
+ {
+  "file": "cam_048_18-2026_8-42-18.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.557,
+  "face_px": 394,
+  "sharpness": 462.7,
+  "exposure": 0.02,
+  "yaw": 0.25,
+  "yaw_reliable": true,
+  "roll": 9.4,
+  "box": [
+   488,
+   362,
+   394,
+   540
+  ]
+ },
+ {
+  "file": "cam_049_17-2026_18-38-40.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.727,
+  "face_px": 359,
+  "sharpness": 1928.1,
+  "exposure": 0.047,
+  "yaw": -0.13,
+  "yaw_reliable": true,
+  "roll": -20.3,
+  "box": [
+   523,
+   511,
+   359,
+   421
+  ]
+ },
+ {
+  "file": "cam_050_16-2026_20-19-47.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.804,
+  "face_px": 134,
+  "sharpness": 20.2,
+  "exposure": 0.148,
+  "yaw": -0.03,
+  "yaw_reliable": true,
+  "roll": -12.9,
+  "box": [
+   406,
+   387,
+   134,
+   174
+  ]
+ },
+ {
+  "file": "cam_051_16-2026_20-19-45.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.805,
+  "face_px": 144,
+  "sharpness": 195.4,
+  "exposure": 0.001,
+  "yaw": -0.04,
+  "yaw_reliable": true,
+  "roll": -16.0,
+  "box": [
+   421,
+   390,
+   144,
+   188
+  ]
+ },
+ {
+  "file": "cam_052_14-2026_0-34-03.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.583,
+  "face_px": 436,
+  "sharpness": 127.9,
+  "exposure": 0.0,
+  "yaw": 0.27,
+  "yaw_reliable": true,
+  "roll": 1.2,
+  "box": [
+   489,
+   471,
+   436,
+   596
+  ]
+ },
+ {
+  "file": "cam_053_4-2026_23-43-30.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.471,
+  "face_px": 161,
+  "sharpness": 90.4,
+  "exposure": 0.033,
+  "yaw": -0.19,
+  "yaw_reliable": true,
+  "roll": -26.3,
+  "box": [
+   684,
+   700,
+   161,
+   178
+  ]
+ },
+ {
+  "file": "cam_054_4-2026_0-39-54.jpg",
+  "faces": 0
+ },
+ {
+  "file": "cam_055_3-2026_21-50-10.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.652,
+  "face_px": 360,
+  "sharpness": 95.3,
+  "exposure": 0.012,
+  "yaw": 0.1,
+  "yaw_reliable": true,
+  "roll": 19.4,
+  "box": [
+   563,
+   397,
+   360,
+   451
+  ]
+ },
+ {
+  "file": "cam_056_1-2026_21-01-36.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.633,
+  "face_px": 302,
+  "sharpness": 59.5,
+  "exposure": 0.0,
+  "yaw": -0.21,
+  "yaw_reliable": true,
+  "roll": -10.1,
+  "box": [
+   -22,
+   222,
+   302,
+   467
+  ]
+ },
+ {
+  "file": "cam_057_31-2026_15-20-14.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.758,
+  "face_px": 162,
+  "sharpness": 157.3,
+  "exposure": 0.0,
+  "yaw": 0.12,
+  "yaw_reliable": true,
+  "roll": 17.1,
+  "box": [
+   338,
+   259,
+   162,
+   228
+  ]
+ },
+ {
+  "file": "cam_058_29-2026_22-50-13.jpg",
+  "faces": 0
+ },
+ {
+  "file": "cam_059_29-2026_22-50-11.jpg",
+  "faces": 1,
+  "match": 0.236,
+  "her": false
+ },
+ {
+  "file": "cam_060_29-2026_22-50-09.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.657,
+  "face_px": 104,
+  "sharpness": 316.5,
+  "exposure": 0.003,
+  "yaw": 0.41,
+  "yaw_reliable": true,
+  "roll": -4.9,
+  "box": [
+   512,
+   698,
+   104,
+   137
+  ]
+ },
+ {
+  "file": "cam_061_29-2026_22-50-06.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.66,
+  "face_px": 109,
+  "sharpness": 400.2,
+  "exposure": 0.004,
+  "yaw": 0.39,
+  "yaw_reliable": true,
+  "roll": -4.1,
+  "box": [
+   516,
+   694,
+   109,
+   139
+  ]
+ },
+ {
+  "file": "cam_062_29-2026_20-31-05.jpg",
+  "faces": 3,
+  "her": true,
+  "match": 0.751,
+  "face_px": 321,
+  "sharpness": 84.4,
+  "exposure": 0.007,
+  "yaw": -0.11,
+  "yaw_reliable": true,
+  "roll": -7.7,
+  "box": [
+   1024,
+   215,
+   321,
+   418
+  ]
+ },
+ {
+  "file": "cam_063_26-2026_19-28-50.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.505,
+  "face_px": 230,
+  "sharpness": 9.6,
+  "exposure": 0.0,
+  "yaw": -0.26,
+  "yaw_reliable": true,
+  "roll": -18.5,
+  "box": [
+   483,
+   508,
+   230,
+   275
+  ]
+ },
+ {
+  "file": "cam_064_24-2026_8-00-39.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.59,
+  "face_px": 136,
+  "sharpness": 322.4,
+  "exposure": 0.003,
+  "yaw": 0.12,
+  "yaw_reliable": true,
+  "roll": -10.8,
+  "box": [
+   492,
+   458,
+   136,
+   177
+  ]
+ },
+ {
+  "file": "cam_065_24-2026_8-00-31.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.534,
+  "face_px": 179,
+  "sharpness": 269.8,
+  "exposure": 0.005,
+  "yaw": 0.81,
+  "yaw_reliable": true,
+  "roll": 0.8,
+  "box": [
+   618,
+   192,
+   179,
+   274
+  ]
+ },
+ {
+  "file": "cam_066_22-2026_20-59-38.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.771,
+  "face_px": 353,
+  "sharpness": 503.9,
+  "exposure": 0.003,
+  "yaw": 0.23,
+  "yaw_reliable": true,
+  "roll": 20.6,
+  "box": [
+   1192,
+   406,
+   353,
+   396
+  ]
+ },
+ {
+  "file": "cam_067_22-2026_20-40-59.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.674,
+  "face_px": 418,
+  "sharpness": 215.1,
+  "exposure": 0.006,
+  "yaw": -0.06,
+  "yaw_reliable": true,
+  "roll": -4.9,
+  "box": [
+   727,
+   420,
+   418,
+   529
+  ]
+ },
+ {
+  "file": "cam_068_22-2026_18-45-05.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.826,
+  "face_px": 211,
+  "sharpness": 940.5,
+  "exposure": 0.012,
+  "yaw": -0.12,
+  "yaw_reliable": true,
+  "roll": -22.8,
+  "box": [
+   576,
+   584,
+   211,
+   265
+  ]
+ },
+ {
+  "file": "cam_069_22-2026_18-45-03.jpg",
+  "faces": 3,
+  "her": true,
+  "match": 0.817,
+  "face_px": 240,
+  "sharpness": 893.5,
+  "exposure": 0.016,
+  "yaw": -0.04,
+  "yaw_reliable": true,
+  "roll": -18.1,
+  "box": [
+   451,
+   558,
+   240,
+   284
+  ]
+ },
+ {
+  "file": "cam_070_21-2026_20-22-54.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.786,
+  "face_px": 211,
+  "sharpness": 51.6,
+  "exposure": 0.001,
+  "yaw": 0.12,
+  "yaw_reliable": true,
+  "roll": 12.4,
+  "box": [
+   368,
+   425,
+   211,
+   274
+  ]
+ },
+ {
+  "file": "cam_071_21-2026_20-22-52.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.625,
+  "face_px": 155,
+  "sharpness": 153.2,
+  "exposure": 0.004,
+  "yaw": 0.35,
+  "yaw_reliable": true,
+  "roll": -3.4,
+  "box": [
+   290,
+   594,
+   155,
+   218
+  ]
+ },
+ {
+  "file": "cam_072_21-2026_20-22-52.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.788,
+  "face_px": 207,
+  "sharpness": 46.7,
+  "exposure": 0.0,
+  "yaw": 0.15,
+  "yaw_reliable": true,
+  "roll": 19.2,
+  "box": [
+   251,
+   617,
+   207,
+   261
+  ]
+ },
+ {
+  "file": "cam_073_-_-.jpg",
+  "faces": 3,
+  "her": true,
+  "match": 0.527,
+  "face_px": 97,
+  "sharpness": 132.1,
+  "exposure": 0.004,
+  "yaw": -0.12,
+  "yaw_reliable": true,
+  "roll": -0.8,
+  "box": [
+   537,
+   304,
+   97,
+   127
+  ]
+ },
+ {
+  "file": "cam_074_-_-.jpg",
+  "faces": 6,
+  "her": true,
+  "match": 0.472,
+  "face_px": 93,
+  "sharpness": 115.2,
+  "exposure": 0.04,
+  "yaw": -0.02,
+  "yaw_reliable": true,
+  "roll": 0.4,
+  "box": [
+   566,
+   380,
+   93,
+   125
+  ]
+ },
+ {
+  "file": "cam_075_-_-.jpg",
+  "faces": 5,
+  "her": true,
+  "match": 0.696,
+  "face_px": 107,
+  "sharpness": 111.6,
+  "exposure": 0.089,
+  "yaw": -0.03,
+  "yaw_reliable": true,
+  "roll": 6.6,
+  "box": [
+   913,
+   724,
+   107,
+   135
+  ]
+ },
+ {
+  "file": "cam_076_-_-.jpg",
+  "faces": 5,
+  "her": true,
+  "match": 0.734,
+  "face_px": 107,
+  "sharpness": 127.3,
+  "exposure": 0.089,
+  "yaw": 0.02,
+  "yaw_reliable": true,
+  "roll": 8.3,
+  "box": [
+   907,
+   707,
+   107,
+   141
+  ]
+ },
+ {
+  "file": "cam_077_-_-.jpg",
+  "faces": 5,
+  "her": true,
+  "match": 0.701,
+  "face_px": 105,
+  "sharpness": 116.3,
+  "exposure": 0.075,
+  "yaw": -0.02,
+  "yaw_reliable": true,
+  "roll": 6.6,
+  "box": [
+   911,
+   725,
+   105,
+   134
+  ]
+ },
+ {
+  "file": "cam_078_-_-.jpg",
+  "faces": 4,
+  "her": true,
+  "match": 0.777,
+  "face_px": 93,
+  "sharpness": 85.7,
+  "exposure": 0.028,
+  "yaw": -0.23,
+  "yaw_reliable": true,
+  "roll": 2.4,
+  "box": [
+   400,
+   678,
+   93,
+   133
+  ]
+ },
+ {
+  "file": "cam_079_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.775,
+  "face_px": 243,
+  "sharpness": 245.8,
+  "exposure": 0.009,
+  "yaw": -0.04,
+  "yaw_reliable": true,
+  "roll": -18.8,
+  "box": [
+   530,
+   536,
+   243,
+   308
+  ]
+ },
+ {
+  "file": "cam_080_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.741,
+  "face_px": 275,
+  "sharpness": 502.3,
+  "exposure": 0.001,
+  "yaw": -0.21,
+  "yaw_reliable": true,
+  "roll": -25.1,
+  "box": [
+   428,
+   195,
+   275,
+   324
+  ]
+ },
+ {
+  "file": "cam_081_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.733,
+  "face_px": 89,
+  "sharpness": 104.8,
+  "exposure": 0.047,
+  "yaw": -0.17,
+  "yaw_reliable": true,
+  "roll": 2.1,
+  "box": [
+   629,
+   894,
+   89,
+   113
+  ]
+ },
+ {
+  "file": "cam_082_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.698,
+  "face_px": 270,
+  "sharpness": 370.6,
+  "exposure": 0.002,
+  "yaw": -0.09,
+  "yaw_reliable": true,
+  "roll": -24.4,
+  "box": [
+   46,
+   545,
+   270,
+   273
+  ]
+ },
+ {
+  "file": "cam_083_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.856,
+  "face_px": 209,
+  "sharpness": 213.7,
+  "exposure": 0.001,
+  "yaw": -0.03,
+  "yaw_reliable": true,
+  "roll": -10.0,
+  "box": [
+   486,
+   615,
+   209,
+   290
+  ]
+ },
+ {
+  "file": "cam_084_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.761,
+  "face_px": 172,
+  "sharpness": 57.9,
+  "exposure": 0.0,
+  "yaw": 0.07,
+  "yaw_reliable": true,
+  "roll": 20.6,
+  "box": [
+   528,
+   263,
+   172,
+   210
+  ]
+ },
+ {
+  "file": "cam_085_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.58,
+  "face_px": 194,
+  "sharpness": 24.5,
+  "exposure": 0.0,
+  "yaw": 0.13,
+  "yaw_reliable": true,
+  "roll": 11.7,
+  "box": [
+   223,
+   138,
+   194,
+   279
+  ]
+ },
+ {
+  "file": "cam_086_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.729,
+  "face_px": 375,
+  "sharpness": 188.8,
+  "exposure": 0.007,
+  "yaw": 0.06,
+  "yaw_reliable": true,
+  "roll": 2.1,
+  "box": [
+   523,
+   612,
+   375,
+   593
+  ]
+ },
+ {
+  "file": "cam_087_-_-.jpg",
+  "faces": 8,
+  "her": true,
+  "match": 0.816,
+  "face_px": 131,
+  "sharpness": 59.6,
+  "exposure": 0.007,
+  "yaw": -0.1,
+  "yaw_reliable": true,
+  "roll": -5.6,
+  "box": [
+   456,
+   295,
+   131,
+   190
+  ]
+ },
+ {
+  "file": "cam_088_-_-.jpg",
+  "faces": 8,
+  "her": true,
+  "match": 0.814,
+  "face_px": 132,
+  "sharpness": 61.7,
+  "exposure": 0.007,
+  "yaw": -0.07,
+  "yaw_reliable": true,
+  "roll": -5.6,
+  "box": [
+   454,
+   296,
+   132,
+   188
+  ]
+ },
+ {
+  "file": "cam_089_-_-.jpg",
+  "faces": 16,
+  "her": true,
+  "match": 0.743,
+  "face_px": 98,
+  "sharpness": 39.3,
+  "exposure": 0.0,
+  "yaw": -0.25,
+  "yaw_reliable": true,
+  "roll": -9.4,
+  "box": [
+   957,
+   425,
+   98,
+   121
+  ]
+ },
+ {
+  "file": "cam_090_-_-.jpg",
+  "faces": 14,
+  "her": true,
+  "match": 0.756,
+  "face_px": 42,
+  "sharpness": 236.6,
+  "exposure": 0.035,
+  "yaw": -0.04,
+  "yaw_reliable": true,
+  "roll": -0.8,
+  "box": [
+   1130,
+   259,
+   42,
+   53
+  ]
+ },
+ {
+  "file": "cam_091_-_-.jpg",
+  "faces": 14,
+  "her": true,
+  "match": 0.753,
+  "face_px": 42,
+  "sharpness": 207.8,
+  "exposure": 0.046,
+  "yaw": -0.03,
+  "yaw_reliable": true,
+  "roll": -0.7,
+  "box": [
+   1168,
+   235,
+   42,
+   53
+  ]
+ },
+ {
+  "file": "cam_092_-_-.jpg",
+  "faces": 15,
+  "her": true,
+  "match": 0.774,
+  "face_px": 43,
+  "sharpness": 149.4,
+  "exposure": 0.036,
+  "yaw": -0.09,
+  "yaw_reliable": true,
+  "roll": -0.5,
+  "box": [
+   1182,
+   196,
+   43,
+   56
+  ]
+ },
+ {
+  "file": "cam_093_-_-.jpg",
+  "faces": 14,
+  "her": true,
+  "match": 0.531,
+  "face_px": 34,
+  "sharpness": 109.0,
+  "exposure": 0.028,
+  "yaw": -0.5,
+  "yaw_reliable": true,
+  "roll": -2.6,
+  "box": [
+   1181,
+   408,
+   34,
+   48
+  ]
+ },
+ {
+  "file": "cam_094_-_-.jpg",
+  "faces": 14,
+  "her": true,
+  "match": 0.745,
+  "face_px": 41,
+  "sharpness": 161.1,
+  "exposure": 0.035,
+  "yaw": -0.04,
+  "yaw_reliable": true,
+  "roll": 1.6,
+  "box": [
+   1205,
+   345,
+   41,
+   52
+  ]
+ },
+ {
+  "file": "cam_095_-_-.jpg",
+  "faces": 14,
+  "her": true,
+  "match": 0.791,
+  "face_px": 42,
+  "sharpness": 220.2,
+  "exposure": 0.043,
+  "yaw": -0.05,
+  "yaw_reliable": true,
+  "roll": 1.1,
+  "box": [
+   1218,
+   346,
+   42,
+   52
+  ]
+ },
+ {
+  "file": "cam_096_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.817,
+  "face_px": 370,
+  "sharpness": 304.1,
+  "exposure": 0.005,
+  "yaw": 0.02,
+  "yaw_reliable": true,
+  "roll": -10.5,
+  "box": [
+   20,
+   608,
+   370,
+   463
+  ]
+ },
+ {
+  "file": "cam_097_-_-.jpg",
+  "faces": 4,
+  "her": true,
+  "match": 0.787,
+  "face_px": 190,
+  "sharpness": 165.7,
+  "exposure": 0.0,
+  "yaw": 0.04,
+  "yaw_reliable": true,
+  "roll": 6.9,
+  "box": [
+   595,
+   437,
+   190,
+   278
+  ]
+ },
+ {
+  "file": "cam_098_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.822,
+  "face_px": 344,
+  "sharpness": 376.2,
+  "exposure": 0.0,
+  "yaw": 0.05,
+  "yaw_reliable": true,
+  "roll": 14.6,
+  "box": [
+   750,
+   558,
+   344,
+   431
+  ]
+ },
+ {
+  "file": "cam_099_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.793,
+  "face_px": 342,
+  "sharpness": 352.4,
+  "exposure": 0.0,
+  "yaw": 0.04,
+  "yaw_reliable": true,
+  "roll": 13.9,
+  "box": [
+   816,
+   556,
+   342,
+   437
+  ]
+ },
+ {
+  "file": "cam_100_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.704,
+  "face_px": 120,
+  "sharpness": 378.2,
+  "exposure": 0.007,
+  "yaw": -0.12,
+  "yaw_reliable": true,
+  "roll": -9.0,
+  "box": [
+   565,
+   938,
+   120,
+   156
+  ]
+ },
+ {
+  "file": "cam_101_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.835,
+  "face_px": 110,
+  "sharpness": 325.8,
+  "exposure": 0.006,
+  "yaw": -0.15,
+  "yaw_reliable": true,
+  "roll": -8.0,
+  "box": [
+   435,
+   931,
+   110,
+   150
+  ]
+ },
+ {
+  "file": "cam_102_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.784,
+  "face_px": 103,
+  "sharpness": 541.8,
+  "exposure": 0.006,
+  "yaw": -0.08,
+  "yaw_reliable": true,
+  "roll": -5.2,
+  "box": [
+   481,
+   707,
+   103,
+   139
+  ]
+ },
+ {
+  "file": "cam_103_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.791,
+  "face_px": 102,
+  "sharpness": 455.9,
+  "exposure": 0.008,
+  "yaw": -0.07,
+  "yaw_reliable": true,
+  "roll": -3.4,
+  "box": [
+   457,
+   752,
+   102,
+   137
+  ]
+ },
+ {
+  "file": "cam_104_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.785,
+  "face_px": 65,
+  "sharpness": 302.6,
+  "exposure": 0.006,
+  "yaw": -0.05,
+  "yaw_reliable": true,
+  "roll": -2.9,
+  "box": [
+   524,
+   760,
+   65,
+   84
+  ]
+ },
+ {
+  "file": "cam_105_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.66,
+  "face_px": 75,
+  "sharpness": 81.6,
+  "exposure": 0.0,
+  "yaw": -0.05,
+  "yaw_reliable": true,
+  "roll": -2.7,
+  "box": [
+   308,
+   650,
+   75,
+   97
+  ]
+ },
+ {
+  "file": "cam_106_-_-.jpg",
+  "faces": 1,
+  "match": 0.187,
+  "her": false
+ },
+ {
+  "file": "cam_107_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.794,
+  "face_px": 296,
+  "sharpness": 734.1,
+  "exposure": 0.013,
+  "yaw": -0.07,
+  "yaw_reliable": true,
+  "roll": -9.6,
+  "box": [
+   689,
+   882,
+   296,
+   425
+  ]
+ },
+ {
+  "file": "cam_108_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.495,
+  "face_px": 287,
+  "sharpness": 411.7,
+  "exposure": 0.001,
+  "yaw": -0.09,
+  "yaw_reliable": true,
+  "roll": -21.6,
+  "box": [
+   651,
+   778,
+   287,
+   344
+  ]
+ },
+ {
+  "file": "cam_109_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.859,
+  "face_px": 365,
+  "sharpness": 1206.8,
+  "exposure": 0.036,
+  "yaw": -0.2,
+  "yaw_reliable": true,
+  "roll": -10.7,
+  "box": [
+   657,
+   734,
+   365,
+   487
+  ]
+ },
+ {
+  "file": "cam_110_-_-.jpg",
+  "faces": 2,
+  "match": 0.296,
+  "her": false
+ },
+ {
+  "file": "cam_111_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.584,
+  "face_px": 364,
+  "sharpness": 666.5,
+  "exposure": 0.058,
+  "yaw": 0.06,
+  "yaw_reliable": true,
+  "roll": -23.6,
+  "box": [
+   410,
+   733,
+   364,
+   352
+  ]
+ },
+ {
+  "file": "cam_112_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.779,
+  "face_px": 344,
+  "sharpness": 748.3,
+  "exposure": 0.064,
+  "yaw": -0.02,
+  "yaw_reliable": true,
+  "roll": -22.8,
+  "box": [
+   396,
+   702,
+   344,
+   375
+  ]
+ },
+ {
+  "file": "cam_113_-_-.jpg",
+  "faces": 2,
+  "match": 0.299,
+  "her": false
+ },
+ {
+  "file": "cam_114_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.898,
+  "face_px": 260,
+  "sharpness": 554.5,
+  "exposure": 0.021,
+  "yaw": -0.15,
+  "yaw_reliable": true,
+  "roll": 5.5,
+  "box": [
+   743,
+   592,
+   260,
+   367
+  ]
+ },
+ {
+  "file": "cam_115_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.876,
+  "face_px": 268,
+  "sharpness": 494.3,
+  "exposure": 0.045,
+  "yaw": -0.09,
+  "yaw_reliable": true,
+  "roll": -13.1,
+  "box": [
+   624,
+   498,
+   268,
+   368
+  ]
+ },
+ {
+  "file": "cam_116_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.876,
+  "face_px": 264,
+  "sharpness": 670.5,
+  "exposure": 0.029,
+  "yaw": -0.12,
+  "yaw_reliable": true,
+  "roll": 5.1,
+  "box": [
+   771,
+   599,
+   264,
+   381
+  ]
+ },
+ {
+  "file": "cam_117_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.877,
+  "face_px": 252,
+  "sharpness": 804.8,
+  "exposure": 0.044,
+  "yaw": -0.11,
+  "yaw_reliable": true,
+  "roll": -10.9,
+  "box": [
+   641,
+   548,
+   252,
+   355
+  ]
+ },
+ {
+  "file": "cam_118_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.866,
+  "face_px": 249,
+  "sharpness": 909.0,
+  "exposure": 0.058,
+  "yaw": -0.13,
+  "yaw_reliable": true,
+  "roll": -5.2,
+  "box": [
+   674,
+   472,
+   249,
+   361
+  ]
+ },
+ {
+  "file": "cam_119_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.875,
+  "face_px": 264,
+  "sharpness": 850.8,
+  "exposure": 0.036,
+  "yaw": -0.03,
+  "yaw_reliable": true,
+  "roll": 3.6,
+  "box": [
+   580,
+   485,
+   264,
+   391
+  ]
+ },
+ {
+  "file": "cam_120_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.885,
+  "face_px": 279,
+  "sharpness": 908.8,
+  "exposure": 0.031,
+  "yaw": -0.06,
+  "yaw_reliable": true,
+  "roll": 5.0,
+  "box": [
+   594,
+   499,
+   279,
+   392
+  ]
+ },
+ {
+  "file": "cam_121_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.709,
+  "face_px": 64,
+  "sharpness": 159.1,
+  "exposure": 0.204,
+  "yaw": -0.09,
+  "yaw_reliable": true,
+  "roll": 2.5,
+  "box": [
+   232,
+   478,
+   64,
+   81
+  ]
+ },
+ {
+  "file": "cam_122_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.603,
+  "face_px": 69,
+  "sharpness": 49.0,
+  "exposure": 0.298,
+  "yaw": -0.1,
+  "yaw_reliable": true,
+  "roll": 0.8,
+  "box": [
+   246,
+   444,
+   69,
+   83
+  ]
+ },
+ {
+  "file": "cam_123_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.535,
+  "face_px": 66,
+  "sharpness": 57.7,
+  "exposure": 0.056,
+  "yaw": -0.09,
+  "yaw_reliable": true,
+  "roll": 1.6,
+  "box": [
+   270,
+   507,
+   66,
+   80
+  ]
+ },
+ {
+  "file": "cam_124_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.559,
+  "face_px": 70,
+  "sharpness": 39.0,
+  "exposure": 0.116,
+  "yaw": -0.11,
+  "yaw_reliable": true,
+  "roll": 3.1,
+  "box": [
+   227,
+   482,
+   70,
+   92
+  ]
+ },
+ {
+  "file": "cam_125_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.73,
+  "face_px": 133,
+  "sharpness": 92.3,
+  "exposure": 0.004,
+  "yaw": -0.04,
+  "yaw_reliable": true,
+  "roll": 1.7,
+  "box": [
+   478,
+   458,
+   133,
+   167
+  ]
+ },
+ {
+  "file": "cam_126_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.8,
+  "face_px": 139,
+  "sharpness": 65.8,
+  "exposure": 0.048,
+  "yaw": -0.11,
+  "yaw_reliable": true,
+  "roll": 4.6,
+  "box": [
+   442,
+   369,
+   139,
+   180
+  ]
+ },
+ {
+  "file": "cam_127_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.878,
+  "face_px": 243,
+  "sharpness": 221.5,
+  "exposure": 0.002,
+  "yaw": -0.04,
+  "yaw_reliable": true,
+  "roll": -4.4,
+  "box": [
+   588,
+   665,
+   243,
+   366
+  ]
+ },
+ {
+  "file": "cam_128_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.863,
+  "face_px": 243,
+  "sharpness": 150.1,
+  "exposure": 0.002,
+  "yaw": -0.06,
+  "yaw_reliable": true,
+  "roll": -8.0,
+  "box": [
+   571,
+   670,
+   243,
+   359
+  ]
+ },
+ {
+  "file": "cam_129_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.865,
+  "face_px": 321,
+  "sharpness": 456.1,
+  "exposure": 0.007,
+  "yaw": -0.03,
+  "yaw_reliable": true,
+  "roll": 6.9,
+  "box": [
+   538,
+   578,
+   321,
+   431
+  ]
+ },
+ {
+  "file": "cam_130_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.777,
+  "face_px": 233,
+  "sharpness": 283.6,
+  "exposure": 0.014,
+  "yaw": -0.15,
+  "yaw_reliable": true,
+  "roll": -13.1,
+  "box": [
+   666,
+   809,
+   233,
+   400
+  ]
+ },
+ {
+  "file": "cam_131_-_-.jpg",
+  "faces": 2,
+  "match": 0.242,
+  "her": false
+ },
+ {
+  "file": "cam_132_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.841,
+  "face_px": 328,
+  "sharpness": 543.5,
+  "exposure": 0.019,
+  "yaw": -0.16,
+  "yaw_reliable": true,
+  "roll": -15.5,
+  "box": [
+   551,
+   575,
+   328,
+   462
+  ]
+ },
+ {
+  "file": "cam_133_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.848,
+  "face_px": 317,
+  "sharpness": 303.0,
+  "exposure": 0.017,
+  "yaw": -0.08,
+  "yaw_reliable": true,
+  "roll": -20.3,
+  "box": [
+   615,
+   923,
+   317,
+   376
+  ]
+ },
+ {
+  "file": "cam_134_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.581,
+  "face_px": 70,
+  "sharpness": 104.8,
+  "exposure": 0.002,
+  "yaw": -0.02,
+  "yaw_reliable": true,
+  "roll": -2.7,
+  "box": [
+   1122,
+   327,
+   70,
+   88
+  ]
+ },
+ {
+  "file": "cam_135_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.799,
+  "face_px": 78,
+  "sharpness": 78.2,
+  "exposure": 0.0,
+  "yaw": -0.05,
+  "yaw_reliable": true,
+  "roll": -2.6,
+  "box": [
+   736,
+   275,
+   78,
+   102
+  ]
+ },
+ {
+  "file": "cam_136_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.677,
+  "face_px": 369,
+  "sharpness": 131.2,
+  "exposure": 0.0,
+  "yaw": -0.01,
+  "yaw_reliable": true,
+  "roll": -21.6,
+  "box": [
+   -9,
+   705,
+   369,
+   422
+  ]
+ },
+ {
+  "file": "cam_137_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.847,
+  "face_px": 275,
+  "sharpness": 326.4,
+  "exposure": 0.001,
+  "yaw": -0.04,
+  "yaw_reliable": true,
+  "roll": 0.9,
+  "box": [
+   427,
+   836,
+   275,
+   396
+  ]
+ },
+ {
+  "file": "cam_138_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.847,
+  "face_px": 278,
+  "sharpness": 356.6,
+  "exposure": 0.001,
+  "yaw": -0.21,
+  "yaw_reliable": true,
+  "roll": 4.4,
+  "box": [
+   493,
+   703,
+   278,
+   392
+  ]
+ },
+ {
+  "file": "cam_139_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.826,
+  "face_px": 281,
+  "sharpness": 370.3,
+  "exposure": 0.001,
+  "yaw": -0.09,
+  "yaw_reliable": true,
+  "roll": 5.4,
+  "box": [
+   354,
+   659,
+   281,
+   388
+  ]
+ },
+ {
+  "file": "cam_140_-_-.jpg",
+  "faces": 3,
+  "her": true,
+  "match": 0.845,
+  "face_px": 273,
+  "sharpness": 413.5,
+  "exposure": 0.001,
+  "yaw": -0.01,
+  "yaw_reliable": true,
+  "roll": 2.7,
+  "box": [
+   474,
+   850,
+   273,
+   391
+  ]
+ },
+ {
+  "file": "cam_141_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.609,
+  "face_px": 346,
+  "sharpness": 18.9,
+  "exposure": 0.0,
+  "yaw": -0.09,
+  "yaw_reliable": true,
+  "roll": -19.4,
+  "box": [
+   760,
+   234,
+   346,
+   383
+  ]
+ },
+ {
+  "file": "cam_142_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.367,
+  "face_px": 134,
+  "sharpness": 35.9,
+  "exposure": 0.001,
+  "yaw": 0.04,
+  "yaw_reliable": true,
+  "roll": -12.8,
+  "box": [
+   669,
+   409,
+   134,
+   136
+  ]
+ },
+ {
+  "file": "cam_143_-_-.jpg",
+  "faces": 2,
+  "match": 0.341,
+  "her": false
+ },
+ {
+  "file": "cam_144_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.655,
+  "face_px": 92,
+  "sharpness": 108.4,
+  "exposure": 0.016,
+  "yaw": -0.02,
+  "yaw_reliable": true,
+  "roll": -1.3,
+  "box": [
+   957,
+   257,
+   92,
+   100
+  ]
+ },
+ {
+  "file": "cam_145_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.709,
+  "face_px": 53,
+  "sharpness": 257.4,
+  "exposure": 0.019,
+  "yaw": -0.06,
+  "yaw_reliable": true,
+  "roll": -1.8,
+  "box": [
+   564,
+   295,
+   53,
+   66
+  ]
+ },
+ {
+  "file": "cam_146_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.52,
+  "face_px": 85,
+  "sharpness": 105.2,
+  "exposure": 0.023,
+  "yaw": 0.01,
+  "yaw_reliable": true,
+  "roll": -1.1,
+  "box": [
+   982,
+   407,
+   85,
+   98
+  ]
+ },
+ {
+  "file": "cam_147_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.723,
+  "face_px": 63,
+  "sharpness": 133.4,
+  "exposure": 0.027,
+  "yaw": -0.07,
+  "yaw_reliable": true,
+  "roll": -1.4,
+  "box": [
+   924,
+   390,
+   63,
+   81
+  ]
+ },
+ {
+  "file": "cam_148_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.682,
+  "face_px": 64,
+  "sharpness": 163.9,
+  "exposure": 0.013,
+  "yaw": -0.02,
+  "yaw_reliable": true,
+  "roll": -2.0,
+  "box": [
+   892,
+   412,
+   64,
+   80
+  ]
+ },
+ {
+  "file": "cam_149_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.647,
+  "face_px": 72,
+  "sharpness": 139.3,
+  "exposure": 0.027,
+  "yaw": -0.01,
+  "yaw_reliable": true,
+  "roll": -2.7,
+  "box": [
+   868,
+   486,
+   72,
+   88
+  ]
+ },
+ {
+  "file": "cam_150_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.663,
+  "face_px": 80,
+  "sharpness": 163.5,
+  "exposure": 0.019,
+  "yaw": -0.01,
+  "yaw_reliable": true,
+  "roll": 0.9,
+  "box": [
+   924,
+   544,
+   80,
+   97
+  ]
+ },
+ {
+  "file": "cam_151_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.752,
+  "face_px": 87,
+  "sharpness": 172.0,
+  "exposure": 0.02,
+  "yaw": -0.07,
+  "yaw_reliable": true,
+  "roll": 0.5,
+  "box": [
+   941,
+   584,
+   87,
+   101
+  ]
+ },
+ {
+  "file": "cam_152_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.793,
+  "face_px": 307,
+  "sharpness": 812.0,
+  "exposure": 0.011,
+  "yaw": -0.19,
+  "yaw_reliable": true,
+  "roll": -10.3,
+  "box": [
+   778,
+   792,
+   307,
+   415
+  ]
+ },
+ {
+  "file": "cam_153_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.646,
+  "face_px": 298,
+  "sharpness": 380.2,
+  "exposure": 0.024,
+  "yaw": -0.19,
+  "yaw_reliable": true,
+  "roll": -9.5,
+  "box": [
+   854,
+   876,
+   298,
+   394
+  ]
+ },
+ {
+  "file": "cam_154_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.705,
+  "face_px": 311,
+  "sharpness": 444.2,
+  "exposure": 0.007,
+  "yaw": -0.19,
+  "yaw_reliable": true,
+  "roll": -12.3,
+  "box": [
+   828,
+   852,
+   311,
+   412
+  ]
+ },
+ {
+  "file": "cam_155_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.648,
+  "face_px": 310,
+  "sharpness": 461.6,
+  "exposure": 0.006,
+  "yaw": -0.22,
+  "yaw_reliable": true,
+  "roll": -14.6,
+  "box": [
+   869,
+   763,
+   310,
+   406
+  ]
+ },
+ {
+  "file": "cam_156_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.845,
+  "face_px": 343,
+  "sharpness": 1461.8,
+  "exposure": 0.011,
+  "yaw": -0.04,
+  "yaw_reliable": true,
+  "roll": -8.6,
+  "box": [
+   373,
+   584,
+   343,
+   468
+  ]
+ },
+ {
+  "file": "cam_157_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.818,
+  "face_px": 328,
+  "sharpness": 1638.2,
+  "exposure": 0.009,
+  "yaw": -0.09,
+  "yaw_reliable": true,
+  "roll": -3.1,
+  "box": [
+   590,
+   582,
+   328,
+   447
+  ]
+ },
+ {
+  "file": "cam_158_-_-.jpg",
+  "faces": 2,
+  "match": 0.054,
+  "her": false
+ },
+ {
+  "file": "cam_159_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.707,
+  "face_px": 161,
+  "sharpness": 105.9,
+  "exposure": 0.003,
+  "yaw": 0.04,
+  "yaw_reliable": true,
+  "roll": -9.3,
+  "box": [
+   253,
+   648,
+   161,
+   187
+  ]
+ },
+ {
+  "file": "cam_160_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.723,
+  "face_px": 155,
+  "sharpness": 121.5,
+  "exposure": 0.004,
+  "yaw": 0.06,
+  "yaw_reliable": true,
+  "roll": -9.3,
+  "box": [
+   282,
+   667,
+   155,
+   198
+  ]
+ },
+ {
+  "file": "cam_161_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.697,
+  "face_px": 188,
+  "sharpness": 114.9,
+  "exposure": 0.003,
+  "yaw": 0.05,
+  "yaw_reliable": true,
+  "roll": -18.5,
+  "box": [
+   235,
+   646,
+   188,
+   212
+  ]
+ },
+ {
+  "file": "cam_162_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.722,
+  "face_px": 164,
+  "sharpness": 31.4,
+  "exposure": 0.002,
+  "yaw": 0.19,
+  "yaw_reliable": true,
+  "roll": -14.7,
+  "box": [
+   295,
+   660,
+   164,
+   216
+  ]
+ },
+ {
+  "file": "cam_163_-_-.jpg",
+  "faces": 1,
+  "match": 0.358,
+  "her": false
+ },
+ {
+  "file": "cam_164_-_-.jpg",
+  "faces": 4,
+  "her": true,
+  "match": 0.581,
+  "face_px": 192,
+  "sharpness": 49.9,
+  "exposure": 0.035,
+  "yaw": -0.04,
+  "yaw_reliable": true,
+  "roll": -0.5,
+  "box": [
+   118,
+   164,
+   192,
+   263
+  ]
+ },
+ {
+  "file": "cam_165_-_-.jpg",
+  "faces": 3,
+  "match": 0.274,
+  "her": false
+ },
+ {
+  "file": "cam_166_-_-.jpg",
+  "faces": 5,
+  "match": 0.196,
+  "her": false
+ },
+ {
+  "file": "cam_167_-_-.jpg",
+  "faces": 14,
+  "her": true,
+  "match": 0.688,
+  "face_px": 132,
+  "sharpness": 114.2,
+  "exposure": 0.018,
+  "yaw": -0.07,
+  "yaw_reliable": true,
+  "roll": -2.2,
+  "box": [
+   492,
+   521,
+   132,
+   177
+  ]
+ },
+ {
+  "file": "cam_168_-_-.jpg",
+  "faces": 4,
+  "her": true,
+  "match": 0.742,
+  "face_px": 139,
+  "sharpness": 303.5,
+  "exposure": 0.017,
+  "yaw": 0.01,
+  "yaw_reliable": true,
+  "roll": 6.5,
+  "box": [
+   944,
+   -2,
+   139,
+   189
+  ]
+ },
+ {
+  "file": "cam_169_-_-.jpg",
+  "faces": 3,
+  "her": true,
+  "match": 0.864,
+  "face_px": 243,
+  "sharpness": 771.5,
+  "exposure": 0.033,
+  "yaw": -0.08,
+  "yaw_reliable": true,
+  "roll": -8.5,
+  "box": [
+   348,
+   340,
+   243,
+   333
+  ]
+ },
+ {
+  "file": "cam_170_-_-.jpg",
+  "faces": 3,
+  "her": true,
+  "match": 0.599,
+  "face_px": 195,
+  "sharpness": 491.8,
+  "exposure": 0.012,
+  "yaw": 0.06,
+  "yaw_reliable": true,
+  "roll": 2.2,
+  "box": [
+   616,
+   473,
+   195,
+   255
+  ]
+ },
+ {
+  "file": "cam_171_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.561,
+  "face_px": 49,
+  "sharpness": 322.8,
+  "exposure": 0.016,
+  "yaw": 0.02,
+  "yaw_reliable": true,
+  "roll": -3.4,
+  "box": [
+   664,
+   498,
+   49,
+   56
+  ]
+ },
+ {
+  "file": "cam_172_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.785,
+  "face_px": 212,
+  "sharpness": 68.9,
+  "exposure": 0.091,
+  "yaw": -0.1,
+  "yaw_reliable": true,
+  "roll": -15.2,
+  "box": [
+   484,
+   546,
+   212,
+   273
+  ]
+ },
+ {
+  "file": "cam_173_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.716,
+  "face_px": 291,
+  "sharpness": 82.3,
+  "exposure": 0.006,
+  "yaw": -0.09,
+  "yaw_reliable": true,
+  "roll": -22.8,
+  "box": [
+   444,
+   452,
+   291,
+   302
+  ]
+ },
+ {
+  "file": "cam_174_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.655,
+  "face_px": 224,
+  "sharpness": 34.2,
+  "exposure": 0.083,
+  "yaw": -0.04,
+  "yaw_reliable": true,
+  "roll": -12.0,
+  "box": [
+   470,
+   457,
+   224,
+   288
+  ]
+ },
+ {
+  "file": "cam_175_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.739,
+  "face_px": 263,
+  "sharpness": 393.2,
+  "exposure": 0.001,
+  "yaw": -0.07,
+  "yaw_reliable": true,
+  "roll": -25.3,
+  "box": [
+   385,
+   458,
+   263,
+   262
+  ]
+ },
+ {
+  "file": "cam_176_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.675,
+  "face_px": 189,
+  "sharpness": 110.0,
+  "exposure": 0.001,
+  "yaw": 0.08,
+  "yaw_reliable": true,
+  "roll": -2.4,
+  "box": [
+   533,
+   458,
+   189,
+   289
+  ]
+ },
+ {
+  "file": "cam_177_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.694,
+  "face_px": 146,
+  "sharpness": 58.7,
+  "exposure": 0.006,
+  "yaw": -0.01,
+  "yaw_reliable": true,
+  "roll": -17.1,
+  "box": [
+   375,
+   764,
+   146,
+   166
+  ]
+ },
+ {
+  "file": "cam_178_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.69,
+  "face_px": 118,
+  "sharpness": 78.8,
+  "exposure": 0.002,
+  "yaw": -0.05,
+  "yaw_reliable": true,
+  "roll": 0.0,
+  "box": [
+   418,
+   746,
+   118,
+   170
+  ]
+ },
+ {
+  "file": "cam_179_-_-.jpg",
+  "faces": 3,
+  "her": true,
+  "match": 0.797,
+  "face_px": 345,
+  "sharpness": 1772.5,
+  "exposure": 0.01,
+  "yaw": -0.17,
+  "yaw_reliable": true,
+  "roll": 8.2,
+  "box": [
+   688,
+   823,
+   345,
+   452
+  ]
+ },
+ {
+  "file": "cam_180_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.636,
+  "face_px": 337,
+  "sharpness": 1501.5,
+  "exposure": 0.063,
+  "yaw": -0.08,
+  "yaw_reliable": true,
+  "roll": -6.5,
+  "box": [
+   517,
+   647,
+   337,
+   376
+  ]
+ },
+ {
+  "file": "cam_181_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.782,
+  "face_px": 331,
+  "sharpness": 1671.0,
+  "exposure": 0.019,
+  "yaw": -0.27,
+  "yaw_reliable": true,
+  "roll": -11.7,
+  "box": [
+   631,
+   736,
+   331,
+   443
+  ]
+ },
+ {
+  "file": "cam_182_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.795,
+  "face_px": 301,
+  "sharpness": 1124.9,
+  "exposure": 0.021,
+  "yaw": -0.11,
+  "yaw_reliable": true,
+  "roll": 0.3,
+  "box": [
+   605,
+   698,
+   301,
+   440
+  ]
+ },
+ {
+  "file": "cam_183_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.824,
+  "face_px": 401,
+  "sharpness": 891.8,
+  "exposure": 0.039,
+  "yaw": -0.03,
+  "yaw_reliable": true,
+  "roll": -9.4,
+  "box": [
+   273,
+   793,
+   401,
+   543
+  ]
+ },
+ {
+  "file": "cam_184_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.794,
+  "face_px": 338,
+  "sharpness": 1595.2,
+  "exposure": 0.023,
+  "yaw": -0.24,
+  "yaw_reliable": true,
+  "roll": -23.9,
+  "box": [
+   465,
+   704,
+   338,
+   398
+  ]
+ },
+ {
+  "file": "cam_185_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.721,
+  "face_px": 227,
+  "sharpness": 91.7,
+  "exposure": 0.059,
+  "yaw": -0.31,
+  "yaw_reliable": true,
+  "roll": -14.8,
+  "box": [
+   245,
+   267,
+   227,
+   297
+  ]
+ },
+ {
+  "file": "cam_186_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.814,
+  "face_px": 187,
+  "sharpness": 118.8,
+  "exposure": 0.001,
+  "yaw": 0.04,
+  "yaw_reliable": true,
+  "roll": -16.9,
+  "box": [
+   506,
+   535,
+   187,
+   240
+  ]
+ },
+ {
+  "file": "cam_187_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.781,
+  "face_px": 176,
+  "sharpness": 253.8,
+  "exposure": 0.001,
+  "yaw": -0.04,
+  "yaw_reliable": true,
+  "roll": -8.7,
+  "box": [
+   478,
+   502,
+   176,
+   242
+  ]
+ },
+ {
+  "file": "cam_188_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.588,
+  "face_px": 111,
+  "sharpness": 99.5,
+  "exposure": 0.0,
+  "yaw": 0.2,
+  "yaw_reliable": true,
+  "roll": 4.9,
+  "box": [
+   499,
+   568,
+   111,
+   144
+  ]
+ },
+ {
+  "file": "cam_189_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.561,
+  "face_px": 213,
+  "sharpness": 56.2,
+  "exposure": 0.02,
+  "yaw": -0.03,
+  "yaw_reliable": true,
+  "roll": -18.1,
+  "box": [
+   628,
+   384,
+   213,
+   237
+  ]
+ },
+ {
+  "file": "cam_190_-_-.jpg",
+  "faces": 10,
+  "her": true,
+  "match": 0.666,
+  "face_px": 174,
+  "sharpness": 63.9,
+  "exposure": 0.001,
+  "yaw": -0.04,
+  "yaw_reliable": true,
+  "roll": -8.3,
+  "box": [
+   1030,
+   576,
+   174,
+   240
+  ]
+ },
+ {
+  "file": "cam_191_-_-.jpg",
+  "faces": 10,
+  "her": true,
+  "match": 0.784,
+  "face_px": 167,
+  "sharpness": 129.2,
+  "exposure": 0.003,
+  "yaw": -0.08,
+  "yaw_reliable": true,
+  "roll": -11.6,
+  "box": [
+   907,
+   556,
+   167,
+   203
+  ]
+ },
+ {
+  "file": "cam_192_-_-.jpg",
+  "faces": 4,
+  "her": true,
+  "match": 0.773,
+  "face_px": 237,
+  "sharpness": 486.5,
+  "exposure": 0.009,
+  "yaw": -0.15,
+  "yaw_reliable": true,
+  "roll": -31.7,
+  "box": [
+   635,
+   562,
+   237,
+   235
+  ]
+ },
+ {
+  "file": "cam_193_-_-.jpg",
+  "faces": 6,
+  "her": true,
+  "match": 0.758,
+  "face_px": 202,
+  "sharpness": 217.0,
+  "exposure": 0.005,
+  "yaw": -0.1,
+  "yaw_reliable": true,
+  "roll": -24.5,
+  "box": [
+   647,
+   531,
+   202,
+   231
+  ]
+ },
+ {
+  "file": "cam_194_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.731,
+  "face_px": 109,
+  "sharpness": 146.1,
+  "exposure": 0.003,
+  "yaw": -0.29,
+  "yaw_reliable": true,
+  "roll": -6.5,
+  "box": [
+   508,
+   800,
+   109,
+   145
+  ]
+ },
+ {
+  "file": "cam_195_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.832,
+  "face_px": 142,
+  "sharpness": 47.3,
+  "exposure": 0.001,
+  "yaw": -0.01,
+  "yaw_reliable": true,
+  "roll": -8.3,
+  "box": [
+   546,
+   197,
+   142,
+   191
+  ]
+ },
+ {
+  "file": "cam_196_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.724,
+  "face_px": 113,
+  "sharpness": 234.2,
+  "exposure": 0.04,
+  "yaw": -0.18,
+  "yaw_reliable": true,
+  "roll": -15.2,
+  "box": [
+   372,
+   590,
+   113,
+   140
+  ]
+ },
+ {
+  "file": "cam_197_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.395,
+  "face_px": 71,
+  "sharpness": 104.5,
+  "exposure": 0.031,
+  "yaw": 0.18,
+  "yaw_reliable": true,
+  "roll": 1.1,
+  "box": [
+   457,
+   531,
+   71,
+   102
+  ]
+ },
+ {
+  "file": "cam_198_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.836,
+  "face_px": 276,
+  "sharpness": 135.9,
+  "exposure": 0.013,
+  "yaw": 0.12,
+  "yaw_reliable": true,
+  "roll": 16.8,
+  "box": [
+   198,
+   588,
+   276,
+   349
+  ]
+ },
+ {
+  "file": "cam_199_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.728,
+  "face_px": 501,
+  "sharpness": 417.8,
+  "exposure": 0.144,
+  "yaw": -0.06,
+  "yaw_reliable": true,
+  "roll": 1.2,
+  "box": [
+   19,
+   121,
+   501,
+   496
+  ]
+ },
+ {
+  "file": "cam_200_-_-.jpg",
+  "faces": 18,
+  "her": true,
+  "match": 0.889,
+  "face_px": 274,
+  "sharpness": 503.0,
+  "exposure": 0.012,
+  "yaw": -0.17,
+  "yaw_reliable": true,
+  "roll": -11.0,
+  "box": [
+   598,
+   609,
+   274,
+   379
+  ]
+ },
+ {
+  "file": "cam_201_-_-.jpg",
+  "faces": 21,
+  "her": true,
+  "match": 0.878,
+  "face_px": 272,
+  "sharpness": 658.0,
+  "exposure": 0.019,
+  "yaw": -0.1,
+  "yaw_reliable": true,
+  "roll": -11.3,
+  "box": [
+   597,
+   620,
+   272,
+   374
+  ]
+ },
+ {
+  "file": "cam_202_-_-.jpg",
+  "faces": 21,
+  "her": true,
+  "match": 0.858,
+  "face_px": 285,
+  "sharpness": 659.9,
+  "exposure": 0.02,
+  "yaw": -0.13,
+  "yaw_reliable": true,
+  "roll": -12.4,
+  "box": [
+   577,
+   638,
+   285,
+   373
+  ]
+ },
+ {
+  "file": "cam_203_-_-.jpg",
+  "faces": 15,
+  "her": true,
+  "match": 0.884,
+  "face_px": 286,
+  "sharpness": 724.6,
+  "exposure": 0.014,
+  "yaw": -0.17,
+  "yaw_reliable": true,
+  "roll": -15.6,
+  "box": [
+   606,
+   557,
+   286,
+   390
+  ]
+ },
+ {
+  "file": "cam_204_-_-.jpg",
+  "faces": 20,
+  "her": true,
+  "match": 0.769,
+  "face_px": 330,
+  "sharpness": 488.7,
+  "exposure": 0.034,
+  "yaw": -0.04,
+  "yaw_reliable": true,
+  "roll": 0.1,
+  "box": [
+   66,
+   577,
+   330,
+   462
+  ]
+ },
+ {
+  "file": "cam_205_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.794,
+  "face_px": 133,
+  "sharpness": 147.0,
+  "exposure": 0.001,
+  "yaw": 0.13,
+  "yaw_reliable": true,
+  "roll": 16.3,
+  "box": [
+   598,
+   477,
+   133,
+   171
+  ]
+ },
+ {
+  "file": "cam_206_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.753,
+  "face_px": 135,
+  "sharpness": 213.7,
+  "exposure": 0.002,
+  "yaw": 0.35,
+  "yaw_reliable": true,
+  "roll": 20.3,
+  "box": [
+   688,
+   349,
+   135,
+   184
+  ]
+ },
+ {
+  "file": "cam_207_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.4,
+  "face_px": 110,
+  "sharpness": 185.5,
+  "exposure": 0.001,
+  "yaw": -1.73,
+  "yaw_reliable": false,
+  "roll": -59.9,
+  "box": [
+   729,
+   346,
+   110,
+   193
+  ]
+ },
+ {
+  "file": "cam_208_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.752,
+  "face_px": 108,
+  "sharpness": 135.1,
+  "exposure": 0.001,
+  "yaw": 0.15,
+  "yaw_reliable": true,
+  "roll": 13.8,
+  "box": [
+   534,
+   635,
+   108,
+   129
+  ]
+ },
+ {
+  "file": "cam_209_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.555,
+  "face_px": 110,
+  "sharpness": 192.8,
+  "exposure": 0.002,
+  "yaw": 0.48,
+  "yaw_reliable": true,
+  "roll": 14.5,
+  "box": [
+   596,
+   589,
+   110,
+   138
+  ]
+ },
+ {
+  "file": "cam_210_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.805,
+  "face_px": 108,
+  "sharpness": 157.1,
+  "exposure": 0.004,
+  "yaw": 0.03,
+  "yaw_reliable": true,
+  "roll": 9.7,
+  "box": [
+   591,
+   573,
+   108,
+   143
+  ]
+ },
+ {
+  "file": "cam_211_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.678,
+  "face_px": 106,
+  "sharpness": 182.4,
+  "exposure": 0.001,
+  "yaw": 0.07,
+  "yaw_reliable": true,
+  "roll": 3.7,
+  "box": [
+   640,
+   554,
+   106,
+   156
+  ]
+ },
+ {
+  "file": "cam_212_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.666,
+  "face_px": 94,
+  "sharpness": 153.4,
+  "exposure": 0.001,
+  "yaw": 0.3,
+  "yaw_reliable": true,
+  "roll": -0.3,
+  "box": [
+   657,
+   526,
+   94,
+   155
+  ]
+ },
+ {
+  "file": "cam_213_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.829,
+  "face_px": 140,
+  "sharpness": 134.6,
+  "exposure": 0.001,
+  "yaw": 0.23,
+  "yaw_reliable": true,
+  "roll": -0.3,
+  "box": [
+   484,
+   534,
+   140,
+   228
+  ]
+ },
+ {
+  "file": "cam_214_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.835,
+  "face_px": 166,
+  "sharpness": 168.1,
+  "exposure": 0.002,
+  "yaw": 0.09,
+  "yaw_reliable": true,
+  "roll": 2.3,
+  "box": [
+   443,
+   494,
+   166,
+   234
+  ]
+ },
+ {
+  "file": "cam_215_-_-.jpg",
+  "faces": 2,
+  "match": 0.348,
+  "her": false
+ },
+ {
+  "file": "cam_216_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.787,
+  "face_px": 160,
+  "sharpness": 94.6,
+  "exposure": 0.003,
+  "yaw": 0.11,
+  "yaw_reliable": true,
+  "roll": -4.8,
+  "box": [
+   508,
+   498,
+   160,
+   232
+  ]
+ },
+ {
+  "file": "cam_217_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.363,
+  "face_px": 177,
+  "sharpness": 139.3,
+  "exposure": 0.002,
+  "yaw": 0.35,
+  "yaw_reliable": true,
+  "roll": -2.1,
+  "box": [
+   621,
+   526,
+   177,
+   216
+  ]
+ },
+ {
+  "file": "cam_218_-_-.jpg",
+  "faces": 2,
+  "match": 0.233,
+  "her": false
+ },
+ {
+  "file": "cam_219_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.708,
+  "face_px": 183,
+  "sharpness": 85.5,
+  "exposure": 0.002,
+  "yaw": 0.15,
+  "yaw_reliable": true,
+  "roll": -6.3,
+  "box": [
+   406,
+   298,
+   183,
+   267
+  ]
+ },
+ {
+  "file": "cam_220_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.702,
+  "face_px": 169,
+  "sharpness": 65.0,
+  "exposure": 0.001,
+  "yaw": 0.2,
+  "yaw_reliable": true,
+  "roll": -7.0,
+  "box": [
+   459,
+   278,
+   169,
+   270
+  ]
+ },
+ {
+  "file": "cam_221_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.803,
+  "face_px": 176,
+  "sharpness": 149.3,
+  "exposure": 0.002,
+  "yaw": 0.12,
+  "yaw_reliable": true,
+  "roll": -4.3,
+  "box": [
+   418,
+   354,
+   176,
+   290
+  ]
+ },
+ {
+  "file": "cam_222_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.695,
+  "face_px": 138,
+  "sharpness": 30.0,
+  "exposure": 0.0,
+  "yaw": 0.01,
+  "yaw_reliable": true,
+  "roll": 21.1,
+  "box": [
+   546,
+   383,
+   138,
+   183
+  ]
+ },
+ {
+  "file": "cam_223_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.716,
+  "face_px": 131,
+  "sharpness": 211.0,
+  "exposure": 0.014,
+  "yaw": -0.06,
+  "yaw_reliable": true,
+  "roll": 20.3,
+  "box": [
+   473,
+   465,
+   131,
+   182
+  ]
+ },
+ {
+  "file": "cam_224_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.884,
+  "face_px": 290,
+  "sharpness": 1341.6,
+  "exposure": 0.027,
+  "yaw": -0.09,
+  "yaw_reliable": true,
+  "roll": -1.0,
+  "box": [
+   643,
+   721,
+   290,
+   397
+  ]
+ },
+ {
+  "file": "cam_225_-_-.jpg",
+  "faces": 7,
+  "her": true,
+  "match": 0.875,
+  "face_px": 284,
+  "sharpness": 593.8,
+  "exposure": 0.01,
+  "yaw": -0.07,
+  "yaw_reliable": true,
+  "roll": 8.6,
+  "box": [
+   594,
+   600,
+   284,
+   378
+  ]
+ },
+ {
+  "file": "cam_226_-_-.jpg",
+  "faces": 9,
+  "her": true,
+  "match": 0.769,
+  "face_px": 72,
+  "sharpness": 175.7,
+  "exposure": 0.011,
+  "yaw": -0.2,
+  "yaw_reliable": true,
+  "roll": 0.1,
+  "box": [
+   749,
+   1006,
+   72,
+   93
+  ]
+ },
+ {
+  "file": "cam_227_-_-.jpg",
+  "faces": 8,
+  "her": true,
+  "match": 0.853,
+  "face_px": 184,
+  "sharpness": 45.7,
+  "exposure": 0.003,
+  "yaw": 0.08,
+  "yaw_reliable": true,
+  "roll": 29.4,
+  "box": [
+   823,
+   439,
+   184,
+   192
+  ]
+ },
+ {
+  "file": "cam_228_-_-.jpg",
+  "faces": 6,
+  "her": true,
+  "match": 0.595,
+  "face_px": 98,
+  "sharpness": 511.9,
+  "exposure": 0.011,
+  "yaw": -0.13,
+  "yaw_reliable": true,
+  "roll": -12.3,
+  "box": [
+   569,
+   641,
+   98,
+   109
+  ]
+ },
+ {
+  "file": "cam_229_-_-.jpg",
+  "faces": 8,
+  "her": true,
+  "match": 0.665,
+  "face_px": 98,
+  "sharpness": 504.2,
+  "exposure": 0.011,
+  "yaw": -0.13,
+  "yaw_reliable": true,
+  "roll": -10.4,
+  "box": [
+   574,
+   647,
+   98,
+   110
+  ]
+ },
+ {
+  "file": "cam_230_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.841,
+  "face_px": 251,
+  "sharpness": 513.0,
+  "exposure": 0.003,
+  "yaw": -0.24,
+  "yaw_reliable": true,
+  "roll": -18.4,
+  "box": [
+   664,
+   622,
+   251,
+   329
+  ]
+ },
+ {
+  "file": "cam_231_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.831,
+  "face_px": 274,
+  "sharpness": 677.5,
+  "exposure": 0.005,
+  "yaw": -0.21,
+  "yaw_reliable": true,
+  "roll": -18.7,
+  "box": [
+   587,
+   537,
+   274,
+   372
+  ]
+ },
+ {
+  "file": "cam_232_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.824,
+  "face_px": 297,
+  "sharpness": 613.1,
+  "exposure": 0.004,
+  "yaw": -0.16,
+  "yaw_reliable": true,
+  "roll": -12.9,
+  "box": [
+   503,
+   497,
+   297,
+   411
+  ]
+ },
+ {
+  "file": "cam_233_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.8,
+  "face_px": 315,
+  "sharpness": 472.6,
+  "exposure": 0.001,
+  "yaw": -0.07,
+  "yaw_reliable": true,
+  "roll": -18.8,
+  "box": [
+   619,
+   341,
+   315,
+   418
+  ]
+ },
+ {
+  "file": "cam_234_-_-.jpg",
+  "faces": 4,
+  "her": true,
+  "match": 0.808,
+  "face_px": 277,
+  "sharpness": 551.2,
+  "exposure": 0.003,
+  "yaw": -0.07,
+  "yaw_reliable": true,
+  "roll": -2.2,
+  "box": [
+   491,
+   337,
+   277,
+   388
+  ]
+ },
+ {
+  "file": "cam_235_-_-.jpg",
+  "faces": 4,
+  "her": true,
+  "match": 0.755,
+  "face_px": 239,
+  "sharpness": 683.6,
+  "exposure": 0.002,
+  "yaw": 0.06,
+  "yaw_reliable": true,
+  "roll": -5.4,
+  "box": [
+   516,
+   383,
+   239,
+   312
+  ]
+ },
+ {
+  "file": "cam_236_-_-.jpg",
+  "faces": 3,
+  "her": true,
+  "match": 0.691,
+  "face_px": 222,
+  "sharpness": 343.7,
+  "exposure": 0.029,
+  "yaw": 0.55,
+  "yaw_reliable": true,
+  "roll": -11.7,
+  "box": [
+   352,
+   214,
+   222,
+   340
+  ]
+ },
+ {
+  "file": "cam_237_-_-.jpg",
+  "faces": 1,
+  "match": 0.119,
+  "her": false
+ },
+ {
+  "file": "cam_238_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.838,
+  "face_px": 224,
+  "sharpness": 395.6,
+  "exposure": 0.008,
+  "yaw": 0.16,
+  "yaw_reliable": true,
+  "roll": 4.0,
+  "box": [
+   579,
+   261,
+   224,
+   311
+  ]
+ },
+ {
+  "file": "cam_239_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.823,
+  "face_px": 207,
+  "sharpness": 382.9,
+  "exposure": 0.008,
+  "yaw": 0.12,
+  "yaw_reliable": true,
+  "roll": 1.1,
+  "box": [
+   583,
+   324,
+   207,
+   294
+  ]
+ },
+ {
+  "file": "cam_240_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.759,
+  "face_px": 90,
+  "sharpness": 132.3,
+  "exposure": 0.002,
+  "yaw": 0.07,
+  "yaw_reliable": true,
+  "roll": 1.5,
+  "box": [
+   602,
+   728,
+   90,
+   120
+  ]
+ },
+ {
+  "file": "cam_241_-_-.jpg",
+  "faces": 0
+ },
+ {
+  "file": "cam_242_-_-.jpg",
+  "faces": 3,
+  "match": 0.247,
+  "her": false
+ },
+ {
+  "file": "cam_243_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.525,
+  "face_px": 375,
+  "sharpness": 260.5,
+  "exposure": 0.0,
+  "yaw": 0.3,
+  "yaw_reliable": true,
+  "roll": 17.9,
+  "box": [
+   1233,
+   -30,
+   375,
+   433
+  ]
+ },
+ {
+  "file": "cam_244_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.601,
+  "face_px": 440,
+  "sharpness": 346.5,
+  "exposure": 0.001,
+  "yaw": 0.15,
+  "yaw_reliable": true,
+  "roll": 10.6,
+  "box": [
+   1158,
+   -47,
+   440,
+   546
+  ]
+ },
+ {
+  "file": "cam_245_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.78,
+  "face_px": 375,
+  "sharpness": 117.0,
+  "exposure": 0.0,
+  "yaw": -0.06,
+  "yaw_reliable": true,
+  "roll": -25.5,
+  "box": [
+   40,
+   376,
+   375,
+   419
+  ]
+ },
+ {
+  "file": "cam_246_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.791,
+  "face_px": 363,
+  "sharpness": 74.0,
+  "exposure": 0.0,
+  "yaw": -0.03,
+  "yaw_reliable": true,
+  "roll": -20.7,
+  "box": [
+   53,
+   392,
+   363,
+   378
+  ]
+ },
+ {
+  "file": "cam_247_-_-.jpg",
+  "faces": 5,
+  "her": true,
+  "match": 0.824,
+  "face_px": 234,
+  "sharpness": 119.9,
+  "exposure": 0.006,
+  "yaw": -0.02,
+  "yaw_reliable": true,
+  "roll": -25.5,
+  "box": [
+   469,
+   345,
+   234,
+   269
+  ]
+ },
+ {
+  "file": "cam_248_-_-.jpg",
+  "faces": 5,
+  "her": true,
+  "match": 0.834,
+  "face_px": 228,
+  "sharpness": 101.0,
+  "exposure": 0.021,
+  "yaw": 0.0,
+  "yaw_reliable": true,
+  "roll": -21.2,
+  "box": [
+   430,
+   359,
+   228,
+   269
+  ]
+ },
+ {
+  "file": "cam_249_-_-.jpg",
+  "faces": 3,
+  "her": true,
+  "match": 0.751,
+  "face_px": 176,
+  "sharpness": 58.3,
+  "exposure": 0.059,
+  "yaw": -0.17,
+  "yaw_reliable": true,
+  "roll": -21.2,
+  "box": [
+   575,
+   487,
+   176,
+   206
+  ]
+ },
+ {
+  "file": "cam_250_-_-.jpg",
+  "faces": 3,
+  "her": true,
+  "match": 0.431,
+  "face_px": 166,
+  "sharpness": 38.2,
+  "exposure": 0.049,
+  "yaw": -0.01,
+  "yaw_reliable": true,
+  "roll": -14.0,
+  "box": [
+   583,
+   480,
+   166,
+   196
+  ]
+ },
+ {
+  "file": "cam_251_-_-.jpg",
+  "faces": 4,
+  "her": true,
+  "match": 0.659,
+  "face_px": 133,
+  "sharpness": 48.9,
+  "exposure": 0.004,
+  "yaw": -0.16,
+  "yaw_reliable": true,
+  "roll": 21.9,
+  "box": [
+   685,
+   474,
+   133,
+   165
+  ]
+ },
+ {
+  "file": "cam_252_-_-.jpg",
+  "faces": 4,
+  "her": true,
+  "match": 0.853,
+  "face_px": 311,
+  "sharpness": 255.1,
+  "exposure": 0.008,
+  "yaw": -0.15,
+  "yaw_reliable": true,
+  "roll": -11.7,
+  "box": [
+   465,
+   579,
+   311,
+   472
+  ]
+ },
+ {
+  "file": "cam_253_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.737,
+  "face_px": 182,
+  "sharpness": 147.7,
+  "exposure": 0.001,
+  "yaw": -0.15,
+  "yaw_reliable": true,
+  "roll": -6.3,
+  "box": [
+   554,
+   251,
+   182,
+   224
+  ]
+ },
+ {
+  "file": "cam_254_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.828,
+  "face_px": 169,
+  "sharpness": 355.6,
+  "exposure": 0.004,
+  "yaw": -0.14,
+  "yaw_reliable": true,
+  "roll": -13.1,
+  "box": [
+   507,
+   365,
+   169,
+   222
+  ]
+ },
+ {
+  "file": "cam_255_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.79,
+  "face_px": 148,
+  "sharpness": 187.8,
+  "exposure": 0.0,
+  "yaw": -0.08,
+  "yaw_reliable": true,
+  "roll": 3.5,
+  "box": [
+   562,
+   337,
+   148,
+   216
+  ]
+ },
+ {
+  "file": "cam_256_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.644,
+  "face_px": 77,
+  "sharpness": 135.0,
+  "exposure": 0.006,
+  "yaw": 0.15,
+  "yaw_reliable": true,
+  "roll": -0.9,
+  "box": [
+   622,
+   548,
+   77,
+   109
+  ]
+ },
+ {
+  "file": "cam_257_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.671,
+  "face_px": 80,
+  "sharpness": 99.7,
+  "exposure": 0.003,
+  "yaw": 0.44,
+  "yaw_reliable": true,
+  "roll": 0.4,
+  "box": [
+   582,
+   424,
+   80,
+   114
+  ]
+ },
+ {
+  "file": "cam_258_-_-.jpg",
+  "faces": 6,
+  "her": true,
+  "match": 0.841,
+  "face_px": 114,
+  "sharpness": 111.3,
+  "exposure": 0.0,
+  "yaw": 0.15,
+  "yaw_reliable": true,
+  "roll": 8.7,
+  "box": [
+   421,
+   765,
+   114,
+   163
+  ]
+ },
+ {
+  "file": "cam_259_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.83,
+  "face_px": 251,
+  "sharpness": 140.6,
+  "exposure": 0.0,
+  "yaw": 0.06,
+  "yaw_reliable": true,
+  "roll": -1.9,
+  "box": [
+   604,
+   435,
+   251,
+   374
+  ]
+ },
+ {
+  "file": "cam_260_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.79,
+  "face_px": 268,
+  "sharpness": 114.5,
+  "exposure": 0.0,
+  "yaw": 0.14,
+  "yaw_reliable": true,
+  "roll": 11.3,
+  "box": [
+   591,
+   391,
+   268,
+   378
+  ]
+ },
+ {
+  "file": "cam_261_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.822,
+  "face_px": 267,
+  "sharpness": 89.6,
+  "exposure": 0.0,
+  "yaw": 0.13,
+  "yaw_reliable": true,
+  "roll": 11.8,
+  "box": [
+   584,
+   438,
+   267,
+   369
+  ]
+ },
+ {
+  "file": "cam_262_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.58,
+  "face_px": 77,
+  "sharpness": 60.9,
+  "exposure": 0.0,
+  "yaw": -0.27,
+  "yaw_reliable": true,
+  "roll": -1.7,
+  "box": [
+   467,
+   656,
+   77,
+   105
+  ]
+ },
+ {
+  "file": "cam_263_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.54,
+  "face_px": 82,
+  "sharpness": 129.7,
+  "exposure": 0.003,
+  "yaw": 0.07,
+  "yaw_reliable": true,
+  "roll": -1.2,
+  "box": [
+   490,
+   675,
+   82,
+   99
+  ]
+ },
+ {
+  "file": "cam_264_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.768,
+  "face_px": 134,
+  "sharpness": 120.8,
+  "exposure": 0.001,
+  "yaw": -0.01,
+  "yaw_reliable": true,
+  "roll": -14.6,
+  "box": [
+   451,
+   643,
+   134,
+   165
+  ]
+ },
+ {
+  "file": "cam_265_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.622,
+  "face_px": 413,
+  "sharpness": 556.1,
+  "exposure": 0.001,
+  "yaw": 0.07,
+  "yaw_reliable": true,
+  "roll": 15.9,
+  "box": [
+   451,
+   373,
+   413,
+   503
+  ]
+ },
+ {
+  "file": "cam_266_-_-.jpg",
+  "faces": 1,
+  "match": -0.089,
+  "her": false
+ },
+ {
+  "file": "cam_267_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.4,
+  "face_px": 360,
+  "sharpness": 251.5,
+  "exposure": 0.021,
+  "yaw": 0.05,
+  "yaw_reliable": true,
+  "roll": -22.4,
+  "box": [
+   222,
+   801,
+   360,
+   398
+  ]
+ },
+ {
+  "file": "cam_268_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.823,
+  "face_px": 396,
+  "sharpness": 415.1,
+  "exposure": 0.004,
+  "yaw": -0.06,
+  "yaw_reliable": true,
+  "roll": 16.8,
+  "box": [
+   433,
+   638,
+   396,
+   444
+  ]
+ },
+ {
+  "file": "cam_269_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.862,
+  "face_px": 377,
+  "sharpness": 303.4,
+  "exposure": 0.004,
+  "yaw": -0.06,
+  "yaw_reliable": true,
+  "roll": 15.7,
+  "box": [
+   444,
+   638,
+   377,
+   432
+  ]
+ },
+ {
+  "file": "cam_270_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.832,
+  "face_px": 278,
+  "sharpness": 196.6,
+  "exposure": 0.043,
+  "yaw": -0.21,
+  "yaw_reliable": true,
+  "roll": -26.3,
+  "box": [
+   417,
+   634,
+   278,
+   324
+  ]
+ },
+ {
+  "file": "cam_271_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.552,
+  "face_px": 167,
+  "sharpness": 45.0,
+  "exposure": 0.095,
+  "yaw": -0.13,
+  "yaw_reliable": true,
+  "roll": 4.6,
+  "box": [
+   525,
+   513,
+   167,
+   267
+  ]
+ },
+ {
+  "file": "cam_272_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.754,
+  "face_px": 202,
+  "sharpness": 125.7,
+  "exposure": 0.412,
+  "yaw": -0.05,
+  "yaw_reliable": true,
+  "roll": -20.5,
+  "box": [
+   474,
+   545,
+   202,
+   240
+  ]
+ },
+ {
+  "file": "cam_273_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.745,
+  "face_px": 108,
+  "sharpness": 298.0,
+  "exposure": 0.006,
+  "yaw": -0.18,
+  "yaw_reliable": true,
+  "roll": -9.6,
+  "box": [
+   549,
+   734,
+   108,
+   131
+  ]
+ },
+ {
+  "file": "cam_274_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.76,
+  "face_px": 256,
+  "sharpness": 164.5,
+  "exposure": 0.002,
+  "yaw": -0.12,
+  "yaw_reliable": true,
+  "roll": -14.0,
+  "box": [
+   406,
+   380,
+   256,
+   314
+  ]
+ },
+ {
+  "file": "cam_275_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.754,
+  "face_px": 115,
+  "sharpness": 285.0,
+  "exposure": 0.005,
+  "yaw": -0.1,
+  "yaw_reliable": true,
+  "roll": -7.3,
+  "box": [
+   573,
+   699,
+   115,
+   149
+  ]
+ },
+ {
+  "file": "cam_276_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.639,
+  "face_px": 103,
+  "sharpness": 212.5,
+  "exposure": 0.005,
+  "yaw": -0.24,
+  "yaw_reliable": true,
+  "roll": -5.7,
+  "box": [
+   560,
+   722,
+   103,
+   125
+  ]
+ },
+ {
+  "file": "cam_277_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.73,
+  "face_px": 110,
+  "sharpness": 333.2,
+  "exposure": 0.014,
+  "yaw": -0.18,
+  "yaw_reliable": true,
+  "roll": -14.7,
+  "box": [
+   552,
+   757,
+   110,
+   124
+  ]
+ },
+ {
+  "file": "cam_278_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.727,
+  "face_px": 103,
+  "sharpness": 396.2,
+  "exposure": 0.011,
+  "yaw": -0.13,
+  "yaw_reliable": true,
+  "roll": -6.4,
+  "box": [
+   511,
+   777,
+   103,
+   120
+  ]
+ },
+ {
+  "file": "cam_279_-_-.jpg",
+  "faces": 1,
+  "match": 0.286,
+  "her": false
+ },
+ {
+  "file": "cam_280_-_-.jpg",
+  "faces": 0
+ },
+ {
+  "file": "cam_281_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.417,
+  "face_px": 80,
+  "sharpness": 414.1,
+  "exposure": 0.011,
+  "yaw": 0.37,
+  "yaw_reliable": true,
+  "roll": -7.5,
+  "box": [
+   621,
+   738,
+   80,
+   85
+  ]
+ },
+ {
+  "file": "cam_282_-_-.jpg",
+  "faces": 1,
+  "match": 0.189,
+  "her": false
+ },
+ {
+  "file": "cam_283_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.777,
+  "face_px": 315,
+  "sharpness": 99.4,
+  "exposure": 0.052,
+  "yaw": 0.18,
+  "yaw_reliable": true,
+  "roll": 21.9,
+  "box": [
+   474,
+   444,
+   315,
+   360
+  ]
+ },
+ {
+  "file": "cam_284_-_-.jpg",
+  "faces": 3,
+  "match": 0.317,
+  "her": false
+ },
+ {
+  "file": "cam_285_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.587,
+  "face_px": 324,
+  "sharpness": 216.8,
+  "exposure": 0.0,
+  "yaw": -0.06,
+  "yaw_reliable": true,
+  "roll": 22.4,
+  "box": [
+   433,
+   690,
+   324,
+   396
+  ]
+ },
+ {
+  "file": "cam_286_-_-.jpg",
+  "faces": 1,
+  "match": 0.288,
+  "her": false
+ },
+ {
+  "file": "cam_287_-_-.jpg",
+  "faces": 1,
+  "match": -0.086,
+  "her": false
+ },
+ {
+  "file": "cam_288_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.813,
+  "face_px": 306,
+  "sharpness": 522.4,
+  "exposure": 0.038,
+  "yaw": -0.29,
+  "yaw_reliable": true,
+  "roll": -22.1,
+  "box": [
+   254,
+   693,
+   306,
+   386
+  ]
+ },
+ {
+  "file": "cam_289_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.857,
+  "face_px": 309,
+  "sharpness": 535.5,
+  "exposure": 0.057,
+  "yaw": -0.19,
+  "yaw_reliable": true,
+  "roll": -23.4,
+  "box": [
+   208,
+   740,
+   309,
+   371
+  ]
+ },
+ {
+  "file": "cam_290_-_-.jpg",
+  "faces": 2,
+  "match": 0.312,
+  "her": false
+ },
+ {
+  "file": "cam_291_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.808,
+  "face_px": 377,
+  "sharpness": 66.8,
+  "exposure": 0.002,
+  "yaw": -0.1,
+  "yaw_reliable": true,
+  "roll": 11.1,
+  "box": [
+   667,
+   667,
+   377,
+   463
+  ]
+ },
+ {
+  "file": "cam_292_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.711,
+  "face_px": 122,
+  "sharpness": 380.9,
+  "exposure": 0.008,
+  "yaw": -0.03,
+  "yaw_reliable": true,
+  "roll": -8.7,
+  "box": [
+   431,
+   544,
+   122,
+   162
+  ]
+ },
+ {
+  "file": "cam_293_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.775,
+  "face_px": 92,
+  "sharpness": 336.6,
+  "exposure": 0.079,
+  "yaw": -0.18,
+  "yaw_reliable": true,
+  "roll": -4.0,
+  "box": [
+   447,
+   591,
+   92,
+   126
+  ]
+ },
+ {
+  "file": "cam_294_-_-.jpg",
+  "faces": 0
+ },
+ {
+  "file": "cam_295_-_-.jpg",
+  "faces": 2,
+  "match": 0.097,
+  "her": false
+ },
+ {
+  "file": "cam_296_-_-.jpg",
+  "faces": 1,
+  "match": 0.341,
+  "her": false
+ },
+ {
+  "file": "cam_297_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.677,
+  "face_px": 32,
+  "sharpness": 214.0,
+  "exposure": 0.047,
+  "yaw": 0.02,
+  "yaw_reliable": true,
+  "roll": 0.0,
+  "box": [
+   564,
+   1078,
+   32,
+   44
+  ]
+ },
+ {
+  "file": "cam_298_-_-.jpg",
+  "faces": 3,
+  "her": true,
+  "match": 0.803,
+  "face_px": 293,
+  "sharpness": 233.3,
+  "exposure": 0.023,
+  "yaw": -0.09,
+  "yaw_reliable": true,
+  "roll": 12.8,
+  "box": [
+   665,
+   804,
+   293,
+   385
+  ]
+ },
+ {
+  "file": "cam_299_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.738,
+  "face_px": 304,
+  "sharpness": 304.5,
+  "exposure": 0.023,
+  "yaw": -0.17,
+  "yaw_reliable": true,
+  "roll": -17.4,
+  "box": [
+   422,
+   955,
+   304,
+   418
+  ]
+ },
+ {
+  "file": "cam_300_-_-.jpg",
+  "faces": 5,
+  "her": true,
+  "match": 0.62,
+  "face_px": 300,
+  "sharpness": 382.8,
+  "exposure": 0.02,
+  "yaw": -0.29,
+  "yaw_reliable": true,
+  "roll": -30.9,
+  "box": [
+   599,
+   355,
+   300,
+   397
+  ]
+ },
+ {
+  "file": "cam_301_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.825,
+  "face_px": 292,
+  "sharpness": 131.7,
+  "exposure": 0.003,
+  "yaw": -0.09,
+  "yaw_reliable": true,
+  "roll": 8.9,
+  "box": [
+   730,
+   789,
+   292,
+   397
+  ]
+ },
+ {
+  "file": "cam_302_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.369,
+  "face_px": 36,
+  "sharpness": 183.0,
+  "exposure": 0.074,
+  "yaw": -0.34,
+  "yaw_reliable": true,
+  "roll": 0.8,
+  "box": [
+   767,
+   826,
+   36,
+   40
+  ]
+ },
+ {
+  "file": "cam_303_-_-.jpg",
+  "faces": 2,
+  "her": true,
+  "match": 0.831,
+  "face_px": 368,
+  "sharpness": 355.2,
+  "exposure": 0.005,
+  "yaw": 0.02,
+  "yaw_reliable": true,
+  "roll": -10.3,
+  "box": [
+   20,
+   609,
+   368,
+   457
+  ]
+ },
+ {
+  "file": "cam_304_-_-.jpg",
+  "faces": 2,
+  "match": 0.154,
+  "her": false
+ },
+ {
+  "file": "cam_305_-_-.jpg",
+  "faces": 1,
+  "match": 0.113,
+  "her": false
+ },
+ {
+  "file": "cam_306_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.662,
+  "face_px": 441,
+  "sharpness": 93.7,
+  "exposure": 0.015,
+  "yaw": 0.19,
+  "yaw_reliable": true,
+  "roll": 16.2,
+  "box": [
+   435,
+   312,
+   441,
+   494
+  ]
+ },
+ {
+  "file": "cam_307_-_-.jpg",
+  "faces": 3,
+  "her": true,
+  "match": 0.683,
+  "face_px": 316,
+  "sharpness": 136.4,
+  "exposure": 0.035,
+  "yaw": -0.28,
+  "yaw_reliable": true,
+  "roll": -18.0,
+  "box": [
+   582,
+   294,
+   316,
+   425
+  ]
+ },
+ {
+  "file": "cam_308_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.753,
+  "face_px": 266,
+  "sharpness": 659.9,
+  "exposure": 0.002,
+  "yaw": -0.18,
+  "yaw_reliable": true,
+  "roll": -25.7,
+  "box": [
+   432,
+   206,
+   266,
+   309
+  ]
+ },
+ {
+  "file": "cam_309_-_-.jpg",
+  "faces": 1,
+  "her": true,
+  "match": 0.778,
+  "face_px": 265,
+  "sharpness": 237.3,
+  "exposure": 0.001,
+  "yaw": 0.09,
+  "yaw_reliable": true,
+  "roll": 17.3,
+  "box": [
+   535,
+   186,
+   265,
+   334
+  ]
+ }
+]
