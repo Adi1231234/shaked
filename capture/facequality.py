@@ -67,32 +67,35 @@ def measure(pts):
     }
 
 
-def gate(measures, ear_frac=0.80, max_gaze_dev=0.09, max_mouth=0.16):
-    """Which photos to keep, judged against her own open-eyed baseline.
+def gate(measures, ear_frac=0.80, max_gaze_dev=0.09, max_mouth=0.03):
+    """Two masks: photos trusted for the eyes, and photos trusted for the mouth.
 
-    ear_frac is a fraction of her median open-eye EAR rather than an absolute
-    number, because the source paper warns the threshold is person specific.
+    They are separate because the criteria are. An eye needs to be open and
+    looking ahead; a mouth needs to be shut. Judging both at once forced one
+    compromise threshold and left teeth painted across a closed lip line.
+
+    ear_frac is a fraction of her own median open-eye EAR rather than an
+    absolute number, because the paper that defines EAR warns the threshold is
+    person specific. max_mouth is strict on purpose: 10 of her photos have the
+    mouth properly closed, which is plenty for one small region.
     """
     ears = np.array([m["ear"] for m in measures])
     open_baseline = float(np.median(ears[ears >= np.median(ears)]))
     gazes = [m["gaze"] for m in measures if m["gaze"] is not None]
     centre = float(np.median(gazes)) if gazes else None
 
-    keep, why = [], {"blink": 0, "mouth": 0, "gaze": 0}
+    eyes_ok, mouth_ok, why = [], [], {"blink": 0, "gaze": 0, "mouth": 0}
     for m in measures:
-        if m["ear"] < open_baseline * ear_frac:
-            why["blink"] += 1
-            keep.append(False)
-        elif m["mouth"] > max_mouth:
-            why["mouth"] += 1
-            keep.append(False)
-        elif centre is not None and m["gaze"] is not None \
-                and abs(m["gaze"] - centre) > max_gaze_dev:
-            why["gaze"] += 1
-            keep.append(False)
-        else:
-            keep.append(True)
-    return np.array(keep), open_baseline, centre, why
+        blink = m["ear"] < open_baseline * ear_frac
+        away = (centre is not None and m["gaze"] is not None
+                and abs(m["gaze"] - centre) > max_gaze_dev)
+        shut = m["mouth"] <= max_mouth
+        why["blink"] += blink
+        why["gaze"] += away and not blink
+        why["mouth"] += not shut
+        eyes_ok.append(not blink and not away)
+        mouth_ok.append(shut)
+    return np.array(eyes_ok), np.array(mouth_ok), open_baseline, centre, why
 
 
 # Eye and mouth contours, from MediaPipe's documented landmark map. A triangle
@@ -109,22 +112,40 @@ MOUTH_RING = {
 }
 
 
-def region_masks(faces, grow=0):
+def dilate(seed, faces, rings):
+    """The seed vertices plus everything within `rings` triangles of them.
+
+    Each ring is collected from the previous ring only. Growing the set while
+    sweeping the face list instead let one pass chase its own additions
+    downstream, so a single "ring" flood-filled 83% of the mesh - which is why
+    growing looked useless and was left switched off.
+    """
+    grown = set(seed)
+    for _ in range(rings):
+        ring = set()
+        for tri in faces:
+            verts = {int(v) for v in tri}
+            if verts & grown:
+                ring |= verts
+        grown |= ring
+    return grown
+
+
+def region_masks(faces, grow=1):
     """Triangle masks for the eye and mouth regions, grown by `grow` rings.
 
-    Growing keeps the boundary from cutting through a lid or a lip, but one
-    ring already swallowed 83% of the mesh, which defeats the point of
-    restricting anything, so it defaults to none.
+    One ring is the default because the lip contour is not where the mouth
+    stops moving. The triangles just outside it - the corners, the philtrum,
+    the top of the chin - stretch as she smiles, and left on the general skin
+    budget they took their colour from photos with her mouth open. That is
+    what painted a black and white spike, the gap between her lips and a
+    tooth behind it, into the corner of her mouth.
     """
     import numpy as np
-    eyes, mouth = set(EYE_RING), set(MOUTH_RING)
-    for _ in range(grow):
-        for tri in faces:
-            st = set(int(v) for v in tri)
-            if st & eyes:
-                eyes |= st
-            if st & mouth:
-                mouth |= st
-    eye_tris = np.array([bool(set(int(v) for v in t) & eyes) for t in faces])
-    mouth_tris = np.array([bool(set(int(v) for v in t) & mouth) for t in faces])
-    return eye_tris, mouth_tris
+    eyes = dilate(EYE_RING, faces, grow)
+    mouth = dilate(MOUTH_RING, faces, grow)
+    eye_tris = np.array([bool({int(v) for v in t} & eyes) for t in faces])
+    mouth_tris = np.array([bool({int(v) for v in t} & mouth) for t in faces])
+    # Where they meet, the mouth wins: nothing between a lip and an eye is
+    # closer to the eye than to the mouth on this mesh.
+    return eye_tris & ~mouth_tris, mouth_tris

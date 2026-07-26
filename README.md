@@ -26,6 +26,24 @@ it. Current build: 1133 nodes, 805 distinct structures, 5.6 MB Draco-compressed.
 - **angiology** (4) - everything Z-Anatomy has in the head, which is almost nothing
 - **landmarks** (419) - clickable hotspots for named bony landmarks
 
+### Her face is drawn in a second pass, over a cleared depth buffer
+
+Z-Anatomy's head is a generic adult's. Once it is scaled to her, several
+structures sit a few millimetres proud of her much thinner soft tissue, so
+plain depth testing put a stranger's teeth, eyeballs and orbicularis oris
+straight through her face. `tools/breaches.py` measures it: 93 structures and
+5520 sampled vertices break the surface, worst at the temples (Temporoparietalis,
+40.0 mm), the ear and the neck.
+
+Shrinking the anatomy to hide that would falsify the anatomy, which is the part
+she is being examined on. So `app/scene.js` renders twice instead: everything
+on layer 0, then `clearDepth()`, then the skin on layer 1. The skin still
+self-occludes correctly because the second pass depth-tests only against
+itself, and back-face culling keeps it from covering the anatomy when you
+rotate behind the head. Lights need `layers.enableAll()` or the second pass
+renders black, and the raycaster needs `layers.enableAll()` plus a preference
+for the skin, so a tap names what is actually on screen.
+
 ### Names come from `extras`, not from node names
 
 three.js strips dots and spaces when it loads a glTF, so `Cornea.l` arrives as

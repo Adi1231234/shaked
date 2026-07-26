@@ -6,16 +6,29 @@ import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
 const DRACO_PATH = 'https://unpkg.com/three@0.169.0/examples/jsm/libs/draco/';
 
+// Her face is drawn in a second pass over a cleared depth buffer, so it always
+// covers the anatomy instead of fighting it. It has to: Z-Anatomy's head is a
+// generic adult's, and once it is scaled to her the teeth, the eyeballs and
+// orbicularis oris all sit a few millimetres proud of her much thinner lips
+// and lids. Depth testing them against each other showed a mouthful of
+// stranger's teeth straight through her mouth. Layer 1 is that second pass.
+export const SKIN_LAYER = 1;
+const BASE_LAYER = 0;
+const BACKGROUND = 0x080b12;
+
 export function createScene(canvasHost) {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(innerWidth, innerHeight);
   // A phone GPU gains nothing from 3x here and loses frames.
   renderer.setPixelRatio(Math.min(devicePixelRatio, innerWidth < 861 ? 1.75 : 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
+  // Both clears are ours to make, one per pass. Leaving them automatic lets
+  // the second pass wipe the first one's depth and colour.
+  renderer.autoClear = false;
+  renderer.setClearColor(BACKGROUND, 1);
   canvasHost.appendChild(renderer.domElement);
 
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x080b12);
 
   const camera = new THREE.PerspectiveCamera(32, innerWidth / innerHeight, 0.01, 20);
   camera.position.set(0.06, 0.02, 0.6);
@@ -33,13 +46,16 @@ export function createScene(canvasHost) {
   // Three lights: a soft fill so nothing reads as a black silhouette, a warm
   // key from the front right, and a cool rim so the skull separates from the
   // near-black background.
-  scene.add(new THREE.HemisphereLight(0xe8eeff, 0x20222c, 1.25));
   const key = new THREE.DirectionalLight(0xfff0dc, 2.4);
   key.position.set(0.45, 0.55, 1.0);
-  scene.add(key);
   const rim = new THREE.DirectionalLight(0x8fc5e8, 0.75);
   rim.position.set(-0.8, 0.25, -0.55);
-  scene.add(rim);
+  for (const light of [new THREE.HemisphereLight(0xe8eeff, 0x20222c, 1.25), key, rim]) {
+    // A light is only gathered for a pass whose layer it shares, and the skin
+    // pass is on its own layer, so it would otherwise render pitch black.
+    light.layers.enableAll();
+    scene.add(light);
+  }
 
   const onResize = () => {
     camera.aspect = innerWidth / innerHeight;
@@ -53,6 +69,14 @@ export function createScene(canvasHost) {
   (function tick() {
     requestAnimationFrame(tick);
     controls.update();
+    renderer.clear();
+    camera.layers.set(BASE_LAYER);
+    renderer.render(scene, camera);
+    // Wiping only the depth keeps the anatomy on screen but stops it from
+    // occluding her face. The skin still self-occludes correctly, because the
+    // second pass depth-tests against nothing but itself.
+    renderer.clearDepth();
+    camera.layers.set(SKIN_LAYER);
     renderer.render(scene, camera);
   })();
 
@@ -71,6 +95,13 @@ export function loadHead(url, onProgress) {
         // highlighted without lighting up everything sharing its layer colour.
         o.material = o.material.clone();
         o.userData.baseColor = o.material.color.clone();
+        if (o.userData.layer === 'skin') {
+          o.layers.set(SKIN_LAYER);
+          // Blender exports it double-sided, and the pass below cannot depth
+          // test against the anatomy, so from behind the head the inside of
+          // her face would paint straight over the occiput. Cull it instead.
+          o.material.side = THREE.FrontSide;
+        }
         meshes.push(o);
       });
       resolve({ root: gltf.scene, meshes });

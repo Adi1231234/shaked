@@ -1,12 +1,14 @@
 // Click-to-identify: raycast against the visible model, highlight the hit
 // structure and report it.
 import * as THREE from 'three';
+import { SKIN_LAYER } from './scene.js';
 
 const SELECT = new THREE.Color(0xffc25c);
 const HOVER = new THREE.Color(0x6fd3e8);
 
 export function createPicker({ camera, meshes, onPick, onHover }) {
   const ray = new THREE.Raycaster();
+  ray.layers.enableAll();       // her face sits on its own layer, see scene.js
   const pointer = new THREE.Vector2();
   let selected = [];
   let hovered = [];
@@ -17,7 +19,11 @@ export function createPicker({ camera, meshes, onPick, onHover }) {
     ray.setFromCamera(pointer, camera);
     // Only meshes still switched on in the tree can be picked.
     const visible = meshes.filter((m) => m.visible && isShown(m));
-    return ray.intersectObjects(visible, false)[0]?.object || null;
+    const hits = ray.intersectObjects(visible, false);
+    // Her face is painted over the anatomy, so a tap on it has to name the
+    // skin even though a tooth or an eyeball is physically a little nearer.
+    const face = hits.find((h) => h.object.layers.isEnabled(SKIN_LAYER));
+    return (face || hits[0])?.object || null;
   }
 
   function isShown(mesh) {
