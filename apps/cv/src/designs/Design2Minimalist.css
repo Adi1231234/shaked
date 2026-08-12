@@ -1,0 +1,142 @@
+.d2-page {
+  width: 21cm;
+  height: 29.7cm;
+  background: #ffffff;
+  padding: 0.78cm 1.22cm;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  font-family: 'Inter', sans-serif;
+  color: #111;
+  font-size: 8.9pt;
+  line-height: 1.52;
+  overflow: hidden;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.1px;
+}
+.d2-page, .d2-page * { box-sizing: border-box; }
+.d2-page * { margin: 0; padding: 0; }
+
+.d2-header {
+  text-align: center;
+  padding-bottom: 0.24cm;
+  border-bottom: 1px solid #111;
+  margin-bottom: 0.3cm;
+}
+.d2-header h1 {
+  font-size: 20.5pt;
+  font-weight: 200;
+  letter-spacing: 5.5px;
+  text-transform: uppercase;
+  margin-bottom: 0.1cm;
+}
+.d2-role {
+  font-size: 8pt;
+  letter-spacing: 3.2px;
+  text-transform: uppercase;
+  color: #666;
+  font-weight: 400;
+  margin-bottom: 0.18cm;
+}
+.d2-contact {
+  font-size: 8.6pt;
+  color: #444;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+.d2-sep {
+  margin: 0 8px;
+  color: #bbb;
+}
+
+.d2-section { margin-bottom: 0.18cm; }
+
+.d2-section h2 {
+  font-size: 8.5pt;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #111;
+  margin-bottom: 0.17cm;
+  padding-bottom: 4px;
+  position: relative;
+}
+.d2-section h2::after {
+  content: "";
+  position: absolute; left: 0; bottom: 0;
+  width: 18px; height: 1px; background: #111;
+}
+.d2-h2-spaced { margin-top: 0.24cm; }
+
+.d2-section p {
+  font-size: 8.8pt;
+  line-height: 1.5;
+  color: #333;
+  font-weight: 300;
+  margin-bottom: 3px;
+  text-align: left;
+}
+.d2-he {
+  direction: rtl; text-align: right;
+  font-family: 'Noto Sans Hebrew', 'Inter', sans-serif;
+  font-size: 8.9pt !important;
+  color: #444;
+}
+
+.d2-row {
+  display: grid;
+  grid-template-columns: 2.15cm 1fr;
+  gap: 0.34cm;
+  margin-bottom: 0.13cm;
+  align-items: baseline;
+}
+.d2-row-date {
+  font-size: 8pt;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #888;
+  font-weight: 500;
+  line-height: 1.35;
+}
+.d2-row-title {
+  font-size: 9.1pt;
+  font-weight: 500;
+  color: #111;
+  margin-bottom: 2px;
+  line-height: 1.35;
+}
+.d2-row-body ul {
+  list-style: none;
+}
+.d2-row-body ul li {
+  position: relative;
+  padding-left: 14px;
+  font-size: 8.75pt;
+  line-height: 1.43;
+  color: #444;
+  font-weight: 300;
+  margin-bottom: 0;
+}
+.d2-row-body ul li::before {
+  content: "—";
+  position: absolute; left: 0;
+  color: #999;
+}
+
+.d2-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8cm;
+}
+.d2-plain { list-style: none; }
+.d2-plain li {
+  font-size: 8.75pt;
+  line-height: 1.47;
+  color: #333;
+  font-weight: 300;
+}
+
+/* RTL / Hebrew tightening */
+.d2-page[dir="rtl"] .d2-section { margin-bottom: 0.18cm; }
+.d2-page[dir="rtl"] .d2-row { margin-bottom: 0.12cm; }
+.d2-page[dir="rtl"] .d2-row-body ul li { font-size: 8.4pt; line-height: 1.4; }
+.d2-page[dir="rtl"] .d2-section p { font-size: 8.5pt; line-height: 1.4; }

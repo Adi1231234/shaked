@@ -1,0 +1,221 @@
+.d5-page {
+  width: 21cm;
+  height: 29.7cm;
+  background: #ffffff;
+  font-family: 'Inter', sans-serif;
+  color: #1a1a1a;
+  font-size: 8.7pt;
+  line-height: 1.45;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+.d5-page, .d5-page * { box-sizing: border-box; }
+.d5-page * { margin: 0; padding: 0; }
+
+.d5-topbar {
+  height: 5px;
+  background: linear-gradient(to right, #8b2635 0%, #8b2635 33%, #c49a6c 33%, #c49a6c 66%, #1f2d47 66%, #1f2d47 100%);
+}
+
+.d5-header {
+  padding: 0.5cm 0.85cm 0.25cm 0.85cm;
+  background: #ffffff;
+}
+.d5-header h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 20pt;
+  font-weight: 500;
+  color: #1a1a1a;
+  letter-spacing: 1px;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.d5-role {
+  font-size: 8.2pt;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: #8b2635;
+  font-weight: 600;
+  margin-bottom: 0.12cm;
+}
+.d5-divider {
+  width: 32px;
+  height: 2px;
+  background: #c49a6c;
+  margin-bottom: 0.12cm;
+}
+.d5-contact {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr 1.15fr 0.7fr 1.2fr;
+  gap: 0.25cm;
+  font-size: 8.35pt;
+  color: #333;
+  line-height: 1.42;
+}
+.d5-contact > div {
+  display: flex;
+  flex-direction: column;
+}
+.d5-label {
+  font-size: 7pt;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8b2635;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.d5-body {
+  padding: 0.2cm 0.85cm 0.7cm 0.85cm;
+}
+
+.d5-section {
+  margin-bottom: 0.12cm;
+  display: grid;
+  grid-template-columns: 2.3cm 1fr;
+  gap: 0.3cm;
+  align-items: start;
+}
+.d5-section h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 12pt;
+  font-weight: 600;
+  color: #1f2d47;
+  letter-spacing: 0.5px;
+  position: relative;
+  padding-left: 8px;
+  line-height: 1.1;
+}
+.d5-section h2::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 3px; bottom: 2px;
+  width: 3px; background: #c49a6c;
+}
+.d5-h2-gap { margin-top: 0.3cm; }
+
+.d5-content p {
+  font-size: 8.9pt;
+  line-height: 1.66;
+  color: #333;
+  margin-bottom: 6px;
+  text-align: left;
+}
+.d5-he {
+  direction: rtl; text-align: right !important;
+  font-family: 'Noto Sans Hebrew', 'Inter', sans-serif;
+  font-size: 8.9pt !important;
+  color: #555;
+}
+
+.d5-entry {
+  display: grid;
+  grid-template-columns: 2cm 1fr;
+  gap: 10px;
+  margin-bottom: 0.05cm;
+  align-items: baseline;
+}
+.d5-entry-date {
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #8b2635;
+  text-transform: uppercase;
+  line-height: 1.35;
+}
+.d5-entry-title {
+  font-weight: 600;
+  font-size: 9.35pt;
+  color: #1a1a1a;
+  margin-bottom: 2px;
+  line-height: 1.32;
+}
+.d5-entry-body ul {
+  list-style: none;
+}
+.d5-entry-body ul li {
+  position: relative;
+  padding-left: 14px;
+  font-size: 8.65pt;
+  line-height: 1.56;
+  color: #444;
+  margin-bottom: 1px;
+}
+.d5-entry-body ul li::before {
+  content: "";
+  position: absolute; left: 0; top: 0.75em;
+  width: 6px; height: 1.5px;
+  background: #c49a6c;
+}
+
+.d5-bottom-grid {
+  border: 1px solid #eadfce;
+  border-left: 0;
+  border-right: 0;
+  background: #fbf8f4;
+  padding: 0.28cm;
+  margin-top: 0.06cm;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.25cm;
+}
+.d5-bottom-section {
+  min-width: 0;
+  background: #ffffff;
+  border: 1px solid #e7d9c7;
+  padding: 0.22cm 0.28cm 0.24cm;
+  min-height: 3cm;
+}
+.d5-bottom-section h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 11.4pt;
+  font-weight: 600;
+  color: #1f2d47;
+  letter-spacing: 0.4px;
+  line-height: 1.1;
+  margin-bottom: 0.16cm;
+  padding-left: 0;
+  padding-bottom: 0.08cm;
+  position: relative;
+  border-bottom: 1px solid #eadfce;
+}
+.d5-bottom-section h2::before {
+  display: none;
+}
+.d5-bottom-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.18cm;
+}
+.d5-bottom-split > div + div {
+  border-top: 1px solid #eadfce;
+  padding-top: 0.16cm;
+}
+.d5-bottom-split h2 {
+  margin-bottom: 0.12cm;
+}
+.d5-plain {
+  list-style: none;
+  margin-top: 0;
+}
+.d5-plain li {
+  position: relative;
+  padding-left: 12px;
+  font-size: 8.45pt;
+  line-height: 1.56;
+  color: #444;
+  margin-bottom: 0.04cm;
+}
+.d5-plain li::before {
+  content: "";
+  position: absolute; left: 0; top: 0.72em;
+  width: 5px; height: 1.5px;
+  background: #c49a6c;
+}
+
+/* RTL / Hebrew tightening */
+.d5-page[dir="rtl"] .d5-section { margin-bottom: 0.1cm; }
+.d5-page[dir="rtl"] .d5-entry { margin-bottom: 0.04cm; }
+.d5-page[dir="rtl"] .d5-entry-body ul li { font-size: 8.3pt; line-height: 1.35; }
+.d5-page[dir="rtl"] .d5-content p { font-size: 8.5pt; line-height: 1.4; }
