@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-rose-50 text-slate-800 font-sans;
+    background-image:
+      radial-gradient(at 20% 0%, rgba(251, 207, 232, 0.35) 0px, transparent 50%),
+      radial-gradient(at 80% 50%, rgba(233, 213, 255, 0.25) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(254, 205, 211, 0.3) 0px, transparent 50%);
+    background-attachment: fixed;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button,
+  a {
+    -webkit-touch-callout: none;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glass {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card-shadow {
+    box-shadow: 0 1px 3px 0 rgba(244, 63, 94, 0.05), 0 1px 2px 0 rgba(244, 63, 94, 0.03);
+  }
+
+  .card-shadow-lg {
+    box-shadow: 0 10px 30px -10px rgba(244, 63, 94, 0.15), 0 4px 15px -8px rgba(244, 63, 94, 0.1);
+  }
+}
