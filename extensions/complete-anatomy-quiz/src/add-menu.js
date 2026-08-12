@@ -29,7 +29,7 @@
     head.className = 'caq-add-menu__head';
     head.textContent = `הוסף את "${item.term}" ל:`;
     menu.appendChild(head);
-    CAQ.lists.targets().forEach((t) => {
+    CAQ.lists.allTargets().forEach((t) => {
       const exists = t.items.some((x) => x.cid === item.cid);
       const label = (t.builtin ? '' : '★ ') + t.label;
       menu.appendChild(itemBtn(label, `${t.items.length} · ${exists ? 'כבר קיים' : 'הוסף'}`, () => {

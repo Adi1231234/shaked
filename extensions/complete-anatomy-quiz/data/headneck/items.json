@@ -1,0 +1,2353 @@
+{
+ "topics": [
+  {
+   "diss": "1",
+   "title": "לימוד עצמי (סרטון) – גולגולת וחוליות"
+  },
+  {
+   "diss": "2+3",
+   "title": "משולשי צוואר"
+  },
+  {
+   "diss": "4",
+   "title": "גולגולת ,סינוסים ועצבים קרניאלים"
+  },
+  {
+   "diss": "5",
+   "title": "פנים - שרירי הבעה, פרוטיד, עצב 7 & אוזן חיצונית"
+  },
+  {
+   "diss": "6",
+   "title": "אזור טמפורלי"
+  },
+  {
+   "diss": "7",
+   "title": "פה, לסת ולשון"
+  },
+  {
+   "diss": "8",
+   "title": "לארינגס, פארינגס וחלל האף"
+  },
+  {
+   "diss": "9",
+   "title": "עין"
+  }
+ ],
+ "items": [
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "frontal bone"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "parietal bone"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "occipital bone"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "temporal bone"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "Zygomatic bone"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "maxilla"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "mandible"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "ethmoid bone"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "sphenoid bone"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "nasal bone"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "anterior cranial fossa"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "middle cranial fossa"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "posterior cranial fossa"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "zygomatic process of maxilla"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "alveolar process of maxilla"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "frontal process of maxilla"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "temporal process of zygomatic bone"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "zygomatic arch"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "frontal process of zygomatic bone"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "glabella"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "alveolar process"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "greater wing of sphenoid bone"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "lesser wing of sphenoid bone"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "pterion"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "temporal fossa"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "squamous part of temporal bone"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "petrous part of temporal bone"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "mastoid process"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "mandibular fossa"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "styloid process coronal palatine suture"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "styloid process sagittal palatine suture"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "styloid process lambda palatine suture"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "styloid process median palatine suture"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "bregma"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "lambda"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "(anterior fontanella)"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "(posterior fontanella)"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "granular foveolae"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "grove for middle meningeal vessels & branches"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "pterygopalatine fossa"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "process"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "pterygoid hamulus"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "pterygoid fossa"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "sella turcica"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "anterior clinoid process"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "posterior clinoid process"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "body of sphenoid bone"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "occipital condyle"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "basilar part of occipital bone"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "clivus"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "crista galli"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "inferior nuchal line"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "superior nuchal line"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "external occipital crest"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "internal occipital crest"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "external occipital protuberance"
+  },
+  {
+   "d": "1",
+   "cat": "Skull",
+   "term": "internal occipital protuberance"
+  },
+  {
+   "d": "1",
+   "cat": "Mandible",
+   "term": "ramus"
+  },
+  {
+   "d": "1",
+   "cat": "Mandible",
+   "term": "body"
+  },
+  {
+   "d": "1",
+   "cat": "Mandible",
+   "term": "angle"
+  },
+  {
+   "d": "1",
+   "cat": "Mandible",
+   "term": "mental tubercle"
+  },
+  {
+   "d": "1",
+   "cat": "Mandible",
+   "term": "mental foramen"
+  },
+  {
+   "d": "1",
+   "cat": "Mandible",
+   "term": "mental protuberance"
+  },
+  {
+   "d": "1",
+   "cat": "Mandible",
+   "term": "mental spine"
+  },
+  {
+   "d": "1",
+   "cat": "Mandible",
+   "term": "oblique line"
+  },
+  {
+   "d": "1",
+   "cat": "Mandible",
+   "term": "mandibular notch"
+  },
+  {
+   "d": "1",
+   "cat": "Mandible",
+   "term": "head & neck of condylar process"
+  },
+  {
+   "d": "1",
+   "cat": "Mandible",
+   "term": "coronoid process"
+  },
+  {
+   "d": "1",
+   "cat": "Mandible",
+   "term": "pterygoid fovea"
+  },
+  {
+   "d": "1",
+   "cat": "Mandible",
+   "term": "lingula"
+  },
+  {
+   "d": "1",
+   "cat": "Mandible",
+   "term": "mandibular foramen"
+  },
+  {
+   "d": "1",
+   "cat": "Mandible",
+   "term": "submandibular fossa"
+  },
+  {
+   "d": "1",
+   "cat": "Mandible",
+   "term": "sublingual fossa"
+  },
+  {
+   "d": "1",
+   "cat": "Mandible",
+   "term": "digastric fossa"
+  },
+  {
+   "d": "1",
+   "cat": "Mandible",
+   "term": "mylohyoid line"
+  },
+  {
+   "d": "1",
+   "cat": "Mandible",
+   "term": "mylohyoid groove"
+  },
+  {
+   "d": "1",
+   "cat": "Orbit",
+   "term": "orbital surface of zygomatic bone/greater wing of sphenoid bone/lesser wing of sphenoid bone"
+  },
+  {
+   "d": "1",
+   "cat": "Orbit",
+   "term": "orbital surface of zygomatic bone/greater wing of sphenoid bone/lesser wing of frontal bone"
+  },
+  {
+   "d": "1",
+   "cat": "Orbit",
+   "term": "orbital surface of zygomatic bone/greater wing of sphenoid bone/lesser wing of maxilla"
+  },
+  {
+   "d": "1",
+   "cat": "Orbit",
+   "term": "orbital supraorbital notch/foramen"
+  },
+  {
+   "d": "1",
+   "cat": "Orbit",
+   "term": "orbital infraorbital notch/foramen"
+  },
+  {
+   "d": "1",
+   "cat": "Orbit",
+   "term": "lacrimal bone"
+  },
+  {
+   "d": "1",
+   "cat": "Orbit",
+   "term": "fossa for lacrimal sac"
+  },
+  {
+   "d": "1",
+   "cat": "Nasal",
+   "term": "vomer"
+  },
+  {
+   "d": "1",
+   "cat": "Nasal",
+   "term": "ala of vomer"
+  },
+  {
+   "d": "1",
+   "cat": "Nasal",
+   "term": "inferior nasal concha"
+  },
+  {
+   "d": "1",
+   "cat": "Nasal",
+   "term": "middle nasal concha"
+  },
+  {
+   "d": "1",
+   "cat": "Nasal",
+   "term": "superior nasal concha"
+  },
+  {
+   "d": "1",
+   "cat": "Nasal",
+   "term": "nasal surface of maxilla"
+  },
+  {
+   "d": "1",
+   "cat": "Nasal",
+   "term": "palatine process of maxilla"
+  },
+  {
+   "d": "1",
+   "cat": "Sinus",
+   "term": "sphenoidal sinus"
+  },
+  {
+   "d": "1",
+   "cat": "Sinus",
+   "term": "frontal sinus"
+  },
+  {
+   "d": "1",
+   "cat": "Sinus",
+   "term": "maxillary sinus"
+  },
+  {
+   "d": "1",
+   "cat": "Sinus",
+   "term": "(ethmoid air cells"
+  },
+  {
+   "d": "1",
+   "cat": "Sinus",
+   "term": "mastoid air cells)"
+  },
+  {
+   "d": "1",
+   "cat": "Foramina",
+   "term": "foramen magnum"
+  },
+  {
+   "d": "1",
+   "cat": "Foramina",
+   "term": "foramen ovale"
+  },
+  {
+   "d": "1",
+   "cat": "Foramina",
+   "term": "foramen spinosum"
+  },
+  {
+   "d": "1",
+   "cat": "Foramina",
+   "term": "foramen lacerum"
+  },
+  {
+   "d": "1",
+   "cat": "Foramina",
+   "term": "foramen rotundum"
+  },
+  {
+   "d": "1",
+   "cat": "Foramina",
+   "term": "internal acoustic meatus"
+  },
+  {
+   "d": "1",
+   "cat": "Foramina",
+   "term": "external acoustic meatus"
+  },
+  {
+   "d": "1",
+   "cat": "Foramina",
+   "term": "sphenopalatine foramen"
+  },
+  {
+   "d": "1",
+   "cat": "Foramina",
+   "term": "hypoglossal canal"
+  },
+  {
+   "d": "1",
+   "cat": "Foramina",
+   "term": "jugular fossa"
+  },
+  {
+   "d": "1",
+   "cat": "Foramina",
+   "term": "jugular foramen"
+  },
+  {
+   "d": "1",
+   "cat": "Foramina",
+   "term": "optic foramen (canal)"
+  },
+  {
+   "d": "1",
+   "cat": "Foramina",
+   "term": "choanae"
+  },
+  {
+   "d": "1",
+   "cat": "Foramina",
+   "term": "carotid canal"
+  },
+  {
+   "d": "1",
+   "cat": "Foramina",
+   "term": "foramen for emissary vein"
+  },
+  {
+   "d": "1",
+   "cat": "Vertebra",
+   "term": "Atlas (C1): anterior arch"
+  },
+  {
+   "d": "1",
+   "cat": "Vertebra",
+   "term": "Atlas (C1): posterior arch"
+  },
+  {
+   "d": "1",
+   "cat": "Vertebra",
+   "term": "anterior tubercle"
+  },
+  {
+   "d": "1",
+   "cat": "Vertebra",
+   "term": "posterior tubercle"
+  },
+  {
+   "d": "1",
+   "cat": "Vertebra",
+   "term": "articular facet (for dens)"
+  },
+  {
+   "d": "1",
+   "cat": "Vertebra",
+   "term": "superior articular surface (for occipital condyle)"
+  },
+  {
+   "d": "1",
+   "cat": "Vertebra",
+   "term": "inferior articular surface (for axis)"
+  },
+  {
+   "d": "1",
+   "cat": "Vertebra",
+   "term": "lateral mass"
+  },
+  {
+   "d": "1",
+   "cat": "Vertebra",
+   "term": "tubercle for transverse ligament (of atlas)"
+  },
+  {
+   "d": "1",
+   "cat": "Vertebra",
+   "term": "transverse foramen Axis (C2): body"
+  },
+  {
+   "d": "1",
+   "cat": "Vertebra",
+   "term": "transverse process Axis (C2): body"
+  },
+  {
+   "d": "1",
+   "cat": "Vertebra",
+   "term": "dens"
+  },
+  {
+   "d": "1",
+   "cat": "Vertebra",
+   "term": "anterior articular facet"
+  },
+  {
+   "d": "1",
+   "cat": "Vertebra",
+   "term": "superior articular facet (for atlas)"
+  },
+  {
+   "d": "1",
+   "cat": "Vertebra",
+   "term": "inferior articular facet"
+  },
+  {
+   "d": "1",
+   "cat": "Vertebra",
+   "term": "transverse articular/spinous process"
+  },
+  {
+   "d": "1",
+   "cat": "Vertebra",
+   "term": "inferior articular/spinous process"
+  },
+  {
+   "d": "1",
+   "cat": "Vertebra",
+   "term": "transverse foramen (bifurcation of spinous process)"
+  },
+  {
+   "d": "2+3",
+   "cat": "General",
+   "term": "hyoid bone"
+  },
+  {
+   "d": "2+3",
+   "cat": "General",
+   "term": "thyroid cartilage"
+  },
+  {
+   "d": "2+3",
+   "cat": "General",
+   "term": "cricoid cartilage"
+  },
+  {
+   "d": "2+3",
+   "cat": "General",
+   "term": "carotid sheath"
+  },
+  {
+   "d": "2+3",
+   "cat": "General",
+   "term": "median raphe of mylohyoid"
+  },
+  {
+   "d": "2+3",
+   "cat": "General",
+   "term": "anterior/ posterior triangle"
+  },
+  {
+   "d": "2+3",
+   "cat": "General",
+   "term": "submental (digastric)/carotid/muscular triangle"
+  },
+  {
+   "d": "2+3",
+   "cat": "General",
+   "term": "submandibular (digastric)/carotid/muscular triangle"
+  },
+  {
+   "d": "2+3",
+   "cat": "General",
+   "term": "trachea"
+  },
+  {
+   "d": "2+3",
+   "cat": "General",
+   "term": "right lobe of thyroid gland"
+  },
+  {
+   "d": "2+3",
+   "cat": "General",
+   "term": "left lobe of thyroid gland"
+  },
+  {
+   "d": "2+3",
+   "cat": "General",
+   "term": "pyramidal lobe of thyroid gland"
+  },
+  {
+   "d": "2+3",
+   "cat": "General",
+   "term": "isthmus of thyroid gland"
+  },
+  {
+   "d": "2+3",
+   "cat": "Muscles",
+   "term": "platysma"
+  },
+  {
+   "d": "2+3",
+   "cat": "Muscles",
+   "term": "splenius"
+  },
+  {
+   "d": "2+3",
+   "cat": "Muscles",
+   "term": "levator scapulae"
+  },
+  {
+   "d": "2+3",
+   "cat": "Muscles",
+   "term": "anterior scalene"
+  },
+  {
+   "d": "2+3",
+   "cat": "Muscles",
+   "term": "middle scalene"
+  },
+  {
+   "d": "2+3",
+   "cat": "Muscles",
+   "term": "posterior scalene"
+  },
+  {
+   "d": "2+3",
+   "cat": "Muscles",
+   "term": "sternocleidomastoid (SCM) & sternal heads"
+  },
+  {
+   "d": "2+3",
+   "cat": "Muscles",
+   "term": "sternocleidomastoid (SCM) & clavicular heads"
+  },
+  {
+   "d": "2+3",
+   "cat": "Muscles",
+   "term": "posterior belly of digastric & fibrous loop for intermediate digastric tendon"
+  },
+  {
+   "d": "2+3",
+   "cat": "Muscles",
+   "term": "anterior belly of digastric & fibrous loop for intermediate digastric tendon"
+  },
+  {
+   "d": "2+3",
+   "cat": "Muscles",
+   "term": "styloyoid"
+  },
+  {
+   "d": "2+3",
+   "cat": "Muscles",
+   "term": "(longus capitis)"
+  },
+  {
+   "d": "2+3",
+   "cat": "Muscles",
+   "term": "thyrohyoid"
+  },
+  {
+   "d": "2+3",
+   "cat": "Muscles",
+   "term": "superior belly of omohyoid & intertendon"
+  },
+  {
+   "d": "2+3",
+   "cat": "Muscles",
+   "term": "inferior belly of omohyoid & intertendon"
+  },
+  {
+   "d": "2+3",
+   "cat": "Muscles",
+   "term": "sternohyoid"
+  },
+  {
+   "d": "2+3",
+   "cat": "Muscles",
+   "term": "sternothyroid"
+  },
+  {
+   "d": "2+3",
+   "cat": "Muscles",
+   "term": "trapezius"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "common carotid artery"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "internal carotid (carotid sinus & body)"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "external carotid (carotid sinus & body)"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "internal jugular vein"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "vagus nerve (CN"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "external jugular vein"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "anterior jugular vein"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "communication vein"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "facial vein & artery"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "ansa cervicalis (superior root)"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "ansa cervicalis (inferior root)"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "brachial plexus"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "accessory nerve (CN"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "phrenic nerve"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "subclavian artery & vein"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "thyrocervical trunk"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "vertebral artery"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "costocervical trunk"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "suprascapular artery"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "transverse cervical artery"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "inferior thyroid artery"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "superior thyroid artery"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "inferior thyroid vein"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "middle thyroid vein"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "superior thyroid vein"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "ascending pharyngeal artery"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "occipital artery"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "lingual artery"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "maxillary artery"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "(posterior auricular artery)"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "superior laryngeal artery"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "retromandibular vein"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "lingual vein"
+  },
+  {
+   "d": "2+3",
+   "cat": "Vessels",
+   "term": "sympathetic trunk"
+  },
+  {
+   "d": "4",
+   "cat": "Sinus",
+   "term": "superior sagittal sinus"
+  },
+  {
+   "d": "4",
+   "cat": "Sinus",
+   "term": "inferior sagittal sinus"
+  },
+  {
+   "d": "4",
+   "cat": "Sinus",
+   "term": "transverse sinus"
+  },
+  {
+   "d": "4",
+   "cat": "Sinus",
+   "term": "straight sinus"
+  },
+  {
+   "d": "4",
+   "cat": "Sinus",
+   "term": "occipital sinus"
+  },
+  {
+   "d": "4",
+   "cat": "Sinus",
+   "term": "confluence of sinuses"
+  },
+  {
+   "d": "4",
+   "cat": "Sinus",
+   "term": "superior petrosal sinus"
+  },
+  {
+   "d": "4",
+   "cat": "Sinus",
+   "term": "inferior petrosal sinus"
+  },
+  {
+   "d": "4",
+   "cat": "Sinus",
+   "term": "cavernous sinus"
+  },
+  {
+   "d": "4",
+   "cat": "Sinus",
+   "term": "sphenoparietal sinus"
+  },
+  {
+   "d": "4",
+   "cat": "Sinus",
+   "term": "sigmoid sinus"
+  },
+  {
+   "d": "4",
+   "cat": "Sinus",
+   "term": "Great cerebral vein of Galen"
+  },
+  {
+   "d": "4",
+   "cat": "Cranial nerves",
+   "term": "olfactory (CN"
+  },
+  {
+   "d": "4",
+   "cat": "Cranial nerves",
+   "term": "optic (CN"
+  },
+  {
+   "d": "4",
+   "cat": "Cranial nerves",
+   "term": "oculomotor (CN"
+  },
+  {
+   "d": "4",
+   "cat": "Cranial nerves",
+   "term": "trochlear (CN"
+  },
+  {
+   "d": "4",
+   "cat": "Cranial nerves",
+   "term": "trigeminal (CN"
+  },
+  {
+   "d": "4",
+   "cat": "Cranial nerves",
+   "term": "abducent (CN"
+  },
+  {
+   "d": "4",
+   "cat": "Cranial nerves",
+   "term": "facial (CN"
+  },
+  {
+   "d": "4",
+   "cat": "Cranial nerves",
+   "term": "vestibulocochlear (CN"
+  },
+  {
+   "d": "4",
+   "cat": "Cranial nerves",
+   "term": "glossopharyngeal (CN"
+  },
+  {
+   "d": "4",
+   "cat": "Cranial nerves",
+   "term": "vagus (CN"
+  },
+  {
+   "d": "4",
+   "cat": "Cranial nerves",
+   "term": "accessory (CN.11)"
+  },
+  {
+   "d": "4",
+   "cat": "Cranial nerves",
+   "term": "hypoglossal (CN"
+  },
+  {
+   "d": "4",
+   "cat": "Cranial nerves",
+   "term": "ophthalmic nerve (V1)"
+  },
+  {
+   "d": "4",
+   "cat": "Cranial nerves",
+   "term": "maxillary nerve (V2)"
+  },
+  {
+   "d": "4",
+   "cat": "Cranial nerves",
+   "term": "mandibular nerve (V3)"
+  },
+  {
+   "d": "5",
+   "cat": "Muscles",
+   "term": "frontalis"
+  },
+  {
+   "d": "5",
+   "cat": "Muscles",
+   "term": "orbital part of orbicularis oculi"
+  },
+  {
+   "d": "5",
+   "cat": "Muscles",
+   "term": "palpebral part of orbicularis oculi"
+  },
+  {
+   "d": "5",
+   "cat": "Muscles",
+   "term": "levator anguli oris"
+  },
+  {
+   "d": "5",
+   "cat": "Muscles",
+   "term": "depressor anguli oris"
+  },
+  {
+   "d": "5",
+   "cat": "Muscles",
+   "term": "buccinator"
+  },
+  {
+   "d": "5",
+   "cat": "Muscles",
+   "term": "risorius"
+  },
+  {
+   "d": "5",
+   "cat": "Muscles",
+   "term": "orbicularis oris"
+  },
+  {
+   "d": "5",
+   "cat": "Muscles",
+   "term": "(procerus"
+  },
+  {
+   "d": "5",
+   "cat": "Muscles",
+   "term": "corrugator supercilii"
+  },
+  {
+   "d": "5",
+   "cat": "Muscles",
+   "term": "levator labii superioris alaeque nasi"
+  },
+  {
+   "d": "5",
+   "cat": "Muscles",
+   "term": "levator labii superioris"
+  },
+  {
+   "d": "5",
+   "cat": "Muscles",
+   "term": "transverse part of nasalis"
+  },
+  {
+   "d": "5",
+   "cat": "Muscles",
+   "term": "alar part of nasalis"
+  },
+  {
+   "d": "5",
+   "cat": "Muscles",
+   "term": "anterior auricular muscle"
+  },
+  {
+   "d": "5",
+   "cat": "Muscles",
+   "term": "posterior auricular muscle"
+  },
+  {
+   "d": "5",
+   "cat": "Muscles",
+   "term": "superior auricular muscle"
+  },
+  {
+   "d": "5",
+   "cat": "Muscles",
+   "term": "major zygomatic"
+  },
+  {
+   "d": "5",
+   "cat": "Muscles",
+   "term": "minor zygomatic"
+  },
+  {
+   "d": "5",
+   "cat": "Muscles",
+   "term": "depressor septi nasi"
+  },
+  {
+   "d": "5",
+   "cat": "Muscles",
+   "term": "depressor labii inferioris"
+  },
+  {
+   "d": "5",
+   "cat": "Muscles",
+   "term": "mentalis)"
+  },
+  {
+   "d": "5",
+   "cat": "Vessels",
+   "term": "facial artery"
+  },
+  {
+   "d": "5",
+   "cat": "Vessels",
+   "term": "angular artery"
+  },
+  {
+   "d": "5",
+   "cat": "Vessels",
+   "term": "dorsal nasal artery"
+  },
+  {
+   "d": "5",
+   "cat": "Vessels",
+   "term": "transverse facial artery"
+  },
+  {
+   "d": "5",
+   "cat": "Vessels",
+   "term": "retromandubular vein"
+  },
+  {
+   "d": "5",
+   "cat": "Vessels",
+   "term": "external carotid artery"
+  },
+  {
+   "d": "5",
+   "cat": "Vessels",
+   "term": "inferior labial artery"
+  },
+  {
+   "d": "5",
+   "cat": "Vessels",
+   "term": "superior labial artery"
+  },
+  {
+   "d": "5",
+   "cat": "Vessels",
+   "term": "(zygomaticofacial artety"
+  },
+  {
+   "d": "5",
+   "cat": "Vessels",
+   "term": "zygomaticotemporal artery"
+  },
+  {
+   "d": "5",
+   "cat": "Vessels",
+   "term": "supratrochlear artery & nerve"
+  },
+  {
+   "d": "5",
+   "cat": "Vessels",
+   "term": "supraorbital artery & nerve)"
+  },
+  {
+   "d": "5",
+   "cat": "External ear",
+   "term": "helix"
+  },
+  {
+   "d": "5",
+   "cat": "External ear",
+   "term": "crus of helix"
+  },
+  {
+   "d": "5",
+   "cat": "External ear",
+   "term": "antihelix"
+  },
+  {
+   "d": "5",
+   "cat": "External ear",
+   "term": "crura of antihelix"
+  },
+  {
+   "d": "5",
+   "cat": "External ear",
+   "term": "auricular tubercle (Darwin)"
+  },
+  {
+   "d": "5",
+   "cat": "External ear",
+   "term": "scapha"
+  },
+  {
+   "d": "5",
+   "cat": "External ear",
+   "term": "triangular fossa"
+  },
+  {
+   "d": "5",
+   "cat": "External ear",
+   "term": "tragus"
+  },
+  {
+   "d": "5",
+   "cat": "External ear",
+   "term": "antitragus"
+  },
+  {
+   "d": "5",
+   "cat": "External ear",
+   "term": "intertragic notch"
+  },
+  {
+   "d": "5",
+   "cat": "External ear",
+   "term": "concha of auricle"
+  },
+  {
+   "d": "5",
+   "cat": "External ear",
+   "term": "lobule of auricle"
+  },
+  {
+   "d": "5",
+   "cat": "Facial nerve",
+   "term": "facial nerve (CN"
+  },
+  {
+   "d": "5",
+   "cat": "Facial nerve",
+   "term": "(stylomastoid foramen)"
+  },
+  {
+   "d": "5",
+   "cat": "Facial nerve",
+   "term": "posterior auricular nerve"
+  },
+  {
+   "d": "5",
+   "cat": "Facial nerve",
+   "term": "nerve to posterior belly of digastric and stylohyoid muscles"
+  },
+  {
+   "d": "5",
+   "cat": "Facial nerve",
+   "term": "temprofacial division"
+  },
+  {
+   "d": "5",
+   "cat": "Facial nerve",
+   "term": "cervicfacial division"
+  },
+  {
+   "d": "5",
+   "cat": "Facial nerve",
+   "term": "temporal branch"
+  },
+  {
+   "d": "5",
+   "cat": "Facial nerve",
+   "term": "zygomatic branch"
+  },
+  {
+   "d": "5",
+   "cat": "Facial nerve",
+   "term": "buccal branch"
+  },
+  {
+   "d": "5",
+   "cat": "Facial nerve",
+   "term": "marginal mandibular branch"
+  },
+  {
+   "d": "5",
+   "cat": "Facial nerve",
+   "term": "cervical branch"
+  },
+  {
+   "d": "5",
+   "cat": "Parotid",
+   "term": "parotid gland"
+  },
+  {
+   "d": "5",
+   "cat": "Parotid",
+   "term": "Parotid duct"
+  },
+  {
+   "d": "6",
+   "cat": "Muscles & fascia",
+   "term": "temporalis muscle & fascia"
+  },
+  {
+   "d": "6",
+   "cat": "Muscles & fascia",
+   "term": "masseter muscle"
+  },
+  {
+   "d": "6",
+   "cat": "Muscles & fascia",
+   "term": "(deep part of masseter muscle)"
+  },
+  {
+   "d": "6",
+   "cat": "Muscles & fascia",
+   "term": "(superficial part of masseter muscle)"
+  },
+  {
+   "d": "6",
+   "cat": "Muscles & fascia",
+   "term": "fascia"
+  },
+  {
+   "d": "6",
+   "cat": "Muscles & fascia",
+   "term": "lateral pterygoid muscle"
+  },
+  {
+   "d": "6",
+   "cat": "Muscles & fascia",
+   "term": "medial pterygoid muscle"
+  },
+  {
+   "d": "6",
+   "cat": "Muscles & fascia",
+   "term": "buccinator muscle"
+  },
+  {
+   "d": "6",
+   "cat": "Muscles & fascia",
+   "term": "sphenomandibular ligament"
+  },
+  {
+   "d": "6",
+   "cat": "Muscles & fascia",
+   "term": "stylomandibular ligament"
+  },
+  {
+   "d": "6",
+   "cat": "Muscles & fascia",
+   "term": "buccinator muscle (pterygomandibular raphe"
+  },
+  {
+   "d": "6",
+   "cat": "Muscles & fascia",
+   "term": "superior pharyngeal constrictor muscle)"
+  },
+  {
+   "d": "6",
+   "cat": "Vessels",
+   "term": "superficial temporal artery"
+  },
+  {
+   "d": "6",
+   "cat": "Vessels",
+   "term": "deep temporal artery"
+  },
+  {
+   "d": "6",
+   "cat": "Vessels",
+   "term": "maxillary artery"
+  },
+  {
+   "d": "6",
+   "cat": "Vessels",
+   "term": "middle meningeal artery"
+  },
+  {
+   "d": "6",
+   "cat": "Vessels",
+   "term": "inferior alveolar artery & nerve"
+  },
+  {
+   "d": "6",
+   "cat": "Vessels",
+   "term": "lingual artery & nerve"
+  },
+  {
+   "d": "6",
+   "cat": "Vessels",
+   "term": "mylohyoid nerve and branch (of inferior alveolar artery)"
+  },
+  {
+   "d": "6",
+   "cat": "Vessels",
+   "term": "(anterior division of) mandibular nerve (V3)"
+  },
+  {
+   "d": "6",
+   "cat": "Vessels",
+   "term": "(posterior division of) mandibular nerve (V3)"
+  },
+  {
+   "d": "6",
+   "cat": "Vessels",
+   "term": "facial nerve (CN"
+  },
+  {
+   "d": "6",
+   "cat": "Vessels",
+   "term": "auricotemporal nerve"
+  },
+  {
+   "d": "6",
+   "cat": "Vessels",
+   "term": "chorda tympani nerve"
+  },
+  {
+   "d": "6",
+   "cat": "Vessels",
+   "term": "(masseteric artery & nerve)"
+  },
+  {
+   "d": "7",
+   "cat": "Muscles",
+   "term": "anterior belly of digastric muscle"
+  },
+  {
+   "d": "7",
+   "cat": "Muscles",
+   "term": "posterior belly of digastric muscle"
+  },
+  {
+   "d": "7",
+   "cat": "Muscles",
+   "term": "mylohyoid muscle"
+  },
+  {
+   "d": "7",
+   "cat": "Muscles",
+   "term": "stylohyoid muscle"
+  },
+  {
+   "d": "7",
+   "cat": "Muscles",
+   "term": "genihyoid muscle"
+  },
+  {
+   "d": "7",
+   "cat": "Muscles",
+   "term": "genioglossus muscle"
+  },
+  {
+   "d": "7",
+   "cat": "Muscles",
+   "term": "inferior longitudinal muscle of tongue"
+  },
+  {
+   "d": "7",
+   "cat": "Muscles",
+   "term": "palatoglossus muscle"
+  },
+  {
+   "d": "7",
+   "cat": "Muscles",
+   "term": "styloglossus muscle (superior longitudinal muscle of tongue"
+  },
+  {
+   "d": "7",
+   "cat": "Muscles",
+   "term": "vertical & transverse muscle of tongue"
+  },
+  {
+   "d": "7",
+   "cat": "Muscles",
+   "term": "palatopharyngeal muscle)"
+  },
+  {
+   "d": "7",
+   "cat": "Bone",
+   "term": "styloid process"
+  },
+  {
+   "d": "7",
+   "cat": "Bone",
+   "term": "mandible"
+  },
+  {
+   "d": "7",
+   "cat": "Bone",
+   "term": "superior mental spine"
+  },
+  {
+   "d": "7",
+   "cat": "Vessels",
+   "term": "lingual nerve"
+  },
+  {
+   "d": "7",
+   "cat": "Vessels",
+   "term": "submandibular gland & duct"
+  },
+  {
+   "d": "7",
+   "cat": "Vessels",
+   "term": "sublingual glad"
+  },
+  {
+   "d": "7",
+   "cat": "Vessels",
+   "term": "submandibular ganglion"
+  },
+  {
+   "d": "7",
+   "cat": "Vessels",
+   "term": "sublingual artery & vein"
+  },
+  {
+   "d": "7",
+   "cat": "Vessels",
+   "term": "hypoglossal nerve (CN"
+  },
+  {
+   "d": "7",
+   "cat": "Mouth & Tongue",
+   "term": "root of tongue"
+  },
+  {
+   "d": "7",
+   "cat": "Mouth & Tongue",
+   "term": "body of tongue"
+  },
+  {
+   "d": "7",
+   "cat": "Mouth & Tongue",
+   "term": "apex of tongue"
+  },
+  {
+   "d": "7",
+   "cat": "Mouth & Tongue",
+   "term": "palatoglossal arch"
+  },
+  {
+   "d": "7",
+   "cat": "Mouth & Tongue",
+   "term": "palatopharyngeal arch"
+  },
+  {
+   "d": "7",
+   "cat": "Mouth & Tongue",
+   "term": "palatine tonsil"
+  },
+  {
+   "d": "7",
+   "cat": "Mouth & Tongue",
+   "term": "foramen cecum"
+  },
+  {
+   "d": "7",
+   "cat": "Mouth & Tongue",
+   "term": "uvula"
+  },
+  {
+   "d": "7",
+   "cat": "Mouth & Tongue",
+   "term": "soft palatine"
+  },
+  {
+   "d": "7",
+   "cat": "Mouth & Tongue",
+   "term": "hard palatine"
+  },
+  {
+   "d": "7",
+   "cat": "Mouth & Tongue",
+   "term": "frenulum of tongue"
+  },
+  {
+   "d": "7",
+   "cat": "Mouth & Tongue",
+   "term": "vallecula"
+  },
+  {
+   "d": "7",
+   "cat": "Mouth & Tongue",
+   "term": "median glossoepiglottic fold"
+  },
+  {
+   "d": "7",
+   "cat": "Mouth & Tongue",
+   "term": "lateral glossoepiglottic fold"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "Cartilage and bone: epiglottis"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "thyroid cartilage lamina"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "supra thyroid notch"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "cricoid cartilage (arch & lamina)"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "superior horn of thyroid cartilage"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "inferior horn of thyroid cartilage"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "oblique line"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "laryngeal prominence"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "arytenoids cartilage (muscular process)"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "arytenoids cartilage (vocal process)"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "corniculate cartilage"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "vocal fold (true vocal cord)"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "vocal ligament (true vocal cord)"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "thyroid membrane"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "circothyroid ligament"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "hyoid bone"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "aryepiglottic fold"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "cuneiform tubercle"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "corniculate tubercle"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "interarytenoid notch"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "vestibular folds (false vocal cords)"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "vestibule"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "right lobe of thyroid gland"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "left lobe of thyroid gland"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "pyramidal lobe of thyroid gland"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "isthmus of thyroid gland"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "body horn/greater horn of hyoid bone"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "lesser horn/greater horn of hyoid bone"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "Muscles : aryepiglottic muscle"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "oblique arytenoid muscle"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "transverse arytenoid muscle"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "posterior cricoarytenoid muscle"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "lateral cricoarytenoid muscle"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "straight & oblique part of cricothyroid muscle"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "thyroarytenoid muscle"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "vocalis muscle Vessels : internal branch of superior laryngeal nerve"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "vocalis muscle Vessels : external branch of superior laryngeal nerve"
+  },
+  {
+   "d": "8",
+   "cat": "Larynx",
+   "term": "recurrent laryngeal nerve & inferior laryngeal nerve"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "nasopharynx"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "oropharynx"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "laryngopharynx"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "trachea"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "esophagus"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "epiglottis"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "laryngeal inlet (aditus)"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "thyroid cartilage"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "cricoid cartilage"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "true vocal cords (folds)"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "false vocal cords (folds)"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "hard palatine"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "soft palatine"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "torus tubarius"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "opening of auditory tube (pharyngotympanic tube)"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "pharyngeal tonsil"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "sphenoidal sinus"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "palatopharyngeal arch"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "palatoglossal arch"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "vallecula"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "tensor veli palatini muscle"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "levator veli palatini muscle"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "pterygoid hamulus"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "superior pharyngeal constrictor muscle"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "middle pharyngeal constrictor muscle"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "inferior pharyngeal constrictor muscle"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "atlas bone"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "axis bone"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "dens"
+  },
+  {
+   "d": "8",
+   "cat": "Pharynx & Bisection",
+   "term": "pituitary gland & stalk"
+  },
+  {
+   "d": "9",
+   "cat": "External eye",
+   "term": "bulbar conjunctiva"
+  },
+  {
+   "d": "9",
+   "cat": "External eye",
+   "term": "superior palpebral conjunctiva"
+  },
+  {
+   "d": "9",
+   "cat": "External eye",
+   "term": "inferior palpebral conjunctiva"
+  },
+  {
+   "d": "9",
+   "cat": "External eye",
+   "term": "superior conjunctival fornix"
+  },
+  {
+   "d": "9",
+   "cat": "External eye",
+   "term": "inferior conjunctival fornix"
+  },
+  {
+   "d": "9",
+   "cat": "External eye",
+   "term": "sclera"
+  },
+  {
+   "d": "9",
+   "cat": "External eye",
+   "term": "corneal limbus (corneoscleral junction)"
+  },
+  {
+   "d": "9",
+   "cat": "External eye",
+   "term": "pupil"
+  },
+  {
+   "d": "9",
+   "cat": "External eye",
+   "term": "iris"
+  },
+  {
+   "d": "9",
+   "cat": "External eye",
+   "term": "plica semilunaris"
+  },
+  {
+   "d": "9",
+   "cat": "External eye",
+   "term": "lacrimal caruncle"
+  },
+  {
+   "d": "9",
+   "cat": "External eye",
+   "term": "lacrimal lake (lacus lacrimalis)"
+  },
+  {
+   "d": "9",
+   "cat": "External eye",
+   "term": "superior lacrimal papilla & punctum"
+  },
+  {
+   "d": "9",
+   "cat": "External eye",
+   "term": "inferior lacrimal papilla & punctum"
+  },
+  {
+   "d": "9",
+   "cat": "External eye",
+   "term": "superior tarsus"
+  },
+  {
+   "d": "9",
+   "cat": "External eye",
+   "term": "inferior tarsus"
+  },
+  {
+   "d": "9",
+   "cat": "External eye",
+   "term": "medial palpebral ligament"
+  },
+  {
+   "d": "9",
+   "cat": "External eye",
+   "term": "lateral palpebral ligament"
+  },
+  {
+   "d": "9",
+   "cat": "External eye",
+   "term": "lacrimal sac"
+  },
+  {
+   "d": "9",
+   "cat": "External eye",
+   "term": "orbital septum"
+  },
+  {
+   "d": "9",
+   "cat": "External eye",
+   "term": "(nasolacrimal duct)"
+  },
+  {
+   "d": "9",
+   "cat": "Muscles",
+   "term": "levator palpebral superioris"
+  },
+  {
+   "d": "9",
+   "cat": "Muscles",
+   "term": "superior rectus"
+  },
+  {
+   "d": "9",
+   "cat": "Muscles",
+   "term": "inferior rectus"
+  },
+  {
+   "d": "9",
+   "cat": "Muscles",
+   "term": "medial rectus"
+  },
+  {
+   "d": "9",
+   "cat": "Muscles",
+   "term": "lateral rectus"
+  },
+  {
+   "d": "9",
+   "cat": "Muscles",
+   "term": "superior oblique"
+  },
+  {
+   "d": "9",
+   "cat": "Muscles",
+   "term": "inferior oblique"
+  },
+  {
+   "d": "9",
+   "cat": "Muscles",
+   "term": "trochlea"
+  },
+  {
+   "d": "9",
+   "cat": "Muscles",
+   "term": "common tendinous ring"
+  },
+  {
+   "d": "9",
+   "cat": "Nerves",
+   "term": "optic nerve (CN"
+  },
+  {
+   "d": "9",
+   "cat": "Nerves",
+   "term": "oculomotor nerve (CN"
+  },
+  {
+   "d": "9",
+   "cat": "Nerves",
+   "term": "3) & superior branch (of oculomoter)"
+  },
+  {
+   "d": "9",
+   "cat": "Nerves",
+   "term": "3) & inferior branch (of oculomoter)"
+  },
+  {
+   "d": "9",
+   "cat": "Nerves",
+   "term": "trochlear nerve (CN"
+  },
+  {
+   "d": "9",
+   "cat": "Nerves",
+   "term": "abducent (CN"
+  },
+  {
+   "d": "9",
+   "cat": "Nerves",
+   "term": "ophthalmic nerve (V1)"
+  },
+  {
+   "d": "9",
+   "cat": "Nerves",
+   "term": "frontal nerve"
+  },
+  {
+   "d": "9",
+   "cat": "Nerves",
+   "term": "supraorbital nerve (medial branch)"
+  },
+  {
+   "d": "9",
+   "cat": "Nerves",
+   "term": "supraorbital nerve (lateral branch)"
+  },
+  {
+   "d": "9",
+   "cat": "Nerves",
+   "term": "supratrochlear nerve"
+  },
+  {
+   "d": "9",
+   "cat": "Nerves",
+   "term": "infratrochlear nerve"
+  },
+  {
+   "d": "9",
+   "cat": "Nerves",
+   "term": "lacrimal nerve"
+  },
+  {
+   "d": "9",
+   "cat": "Nerves",
+   "term": "anterior ethmoidal nerve"
+  },
+  {
+   "d": "9",
+   "cat": "Nerves",
+   "term": "posterior ethmoidal nerve"
+  },
+  {
+   "d": "9",
+   "cat": "Nerves",
+   "term": "nasociliary nerve"
+  },
+  {
+   "d": "9",
+   "cat": "Nerves",
+   "term": "long ciliary nerve"
+  },
+  {
+   "d": "9",
+   "cat": "Nerves",
+   "term": "short ciliary nerve"
+  },
+  {
+   "d": "9",
+   "cat": "Nerves",
+   "term": "ciliary ganglion"
+  },
+  {
+   "d": "9",
+   "cat": "Artery",
+   "term": "ophthalmic"
+  },
+  {
+   "d": "9",
+   "cat": "Artery",
+   "term": "central retinal"
+  },
+  {
+   "d": "9",
+   "cat": "Artery",
+   "term": "posterior ciliary"
+  },
+  {
+   "d": "9",
+   "cat": "Artery",
+   "term": "lacrimal"
+  },
+  {
+   "d": "9",
+   "cat": "Artery",
+   "term": "supraorbital"
+  },
+  {
+   "d": "9",
+   "cat": "Artery",
+   "term": "anterior ethmoidal"
+  },
+  {
+   "d": "9",
+   "cat": "Artery",
+   "term": "posterior ethmoidal"
+  },
+  {
+   "d": "9",
+   "cat": "Artery",
+   "term": "supratrochlear"
+  }
+ ]
+}
