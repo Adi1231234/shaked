@@ -1,0 +1,28 @@
+{
+ "note": "row-major 3x3 rotation, uniform scale, translation; maps Z-Anatomy world coordinates into her face's frame as p = scale * rotation @ q + translation",
+ "rotation": [
+  [
+   1.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.0,
+   -0.03710971775120004,
+   0.9993111971995642
+  ],
+  [
+   0.0,
+   -0.9993111971995642,
+   -0.03710971775120004
+  ]
+ ],
+ "scale": 102.71003371012999,
+ "translation": [
+  0.1185110517951962,
+  -161.7213713649047,
+  2.283229481931971
+ ],
+ "min_tissue_mm": 0.0922310646274127,
+ "median_tissue_mm": 12.166894972324371
+}

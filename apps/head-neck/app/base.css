@@ -1,0 +1,179 @@
+/* Tokens and shell. The model is the only bright thing on screen; warmth is
+   reserved for her skin and for whatever is selected. */
+:root {
+  --bg: #080b12;
+  --panel: #0f141d;
+  --edge: #1c2432;
+  --edge-soft: #151c27;
+  --ink: #dbe4f0;
+  --ink-dim: #7d8ba0;
+    --select: #ffc25c;
+  --hover: #6fd3e8;
+
+  /* One accent per system, matching its colour in the 3D model. */
+  --sys-integument: #e8b48f;
+  --sys-muscular: #c95a5a;
+  --sys-skeletal: #e6dfcd;
+  --sys-nervous: #a99bd6;
+  --sys-visceral: #d4a373;
+  --sys-lymphoid: #8cbf9a;
+  --sys-cardio: #cf4d5a;
+  --sys-arthro: #8fa6c4;
+
+  --s: 8px;
+  --tap: 44px;             /* minimum comfortable touch target */
+  --fast: 120ms cubic-bezier(.4, 0, .2, 1);
+  --sheet: 260ms cubic-bezier(.32, .72, 0, 1);
+  --panel-w: 360px;
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --sheet-peek: 76px;      /* grip plus title, visible when closed */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 15px/1.5 Heebo, system-ui, -apple-system, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+#stage { position: fixed; inset: 0; touch-action: none; }
+#stage canvas { display: block; }
+
+/* A soft vignette keeps the eye on the model without adding UI. */
+#stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(120% 90% at 50% 45%, transparent 55%, #000a 100%);
+}
+
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+/* ---------- boot ---------- */
+
+#boot {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: calc(var(--s) * 2.5);
+  background: var(--bg);
+  transition: opacity 500ms ease, visibility 500ms;
+}
+body.ready #boot { opacity: 0; visibility: hidden; }
+#boot p { color: var(--ink-dim); font-size: 14px; letter-spacing: .01em; }
+#boot .track {
+  width: 200px; height: 2px;
+  background: var(--edge);
+  border-radius: 2px;
+  overflow: hidden;
+}
+#boot .bar {
+  width: 0; height: 100%;
+  background: linear-gradient(90deg, var(--sys-integument), var(--select));
+  transition: width 200ms ease;
+}
+
+/* ---------- selected structure readout ---------- */
+
+#picked {
+  position: fixed;
+  z-index: 12;
+  direction: ltr;
+  padding: calc(var(--s) * 1.5) calc(var(--s) * 2);
+  border: 1px solid var(--edge);
+  border-inline-start: 2px solid var(--select);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--panel) 88%, transparent);
+  backdrop-filter: blur(14px);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--fast), transform var(--fast);
+  pointer-events: none;
+}
+body.has-selection #picked { opacity: 1; transform: none; }
+#picked-name { font-size: 17px; font-weight: 600; letter-spacing: -.01em; }
+#picked-path { color: var(--ink-dim); font-size: 12px; margin-top: 3px; line-height: 1.4; }
+
+/* ---------- the greeting ---------- */
+
+#greeting {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: calc(var(--s) * 3);
+  /* Light enough that her face stays visible behind the card. A heavy blur
+     hid it completely, which defeats the point of showing the note over it. */
+  background: radial-gradient(85% 62% at 50% 45%,
+                              color-mix(in srgb, var(--bg) 8%, transparent),
+                              color-mix(in srgb, var(--bg) 72%, transparent));
+  backdrop-filter: blur(1.5px);
+  opacity: 0;
+  transition: opacity 420ms ease;
+}
+#greeting[hidden] { display: none; }
+#greeting.in { opacity: 1; }
+
+#greeting .card {
+  display: grid;
+  justify-items: center;
+  gap: calc(var(--s) * 3);
+  max-width: 22ch;
+  padding: calc(var(--s) * 4) calc(var(--s) * 3.5);
+  border: 1px solid var(--edge);
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--panel) 90%, transparent);
+  box-shadow: 0 30px 70px #000a;
+  text-align: center;
+  transform: translateY(12px) scale(.97);
+  transition: transform 420ms cubic-bezier(.32, .72, 0, 1);
+}
+#greeting.in .card { transform: none; }
+
+#greeting p {
+  font-size: clamp(22px, 6.5vw, 30px);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -.01em;
+}
+#greeting .heart {
+  display: inline-block;
+  /* One slow beat, then still. A looping heart would nag. */
+  animation: beat 1.6s ease-out 500ms 2;
+}
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  18% { transform: scale(1.22); }
+  36% { transform: scale(1); }
+  54% { transform: scale(1.14); }
+}
+
+#greeting button {
+  min-height: var(--tap);
+  padding: 0 calc(var(--s) * 4);
+  border-radius: 999px;
+  background: var(--select);
+  color: #1a1206;
+  font-size: 16px;
+  font-weight: 600;
+  transition: transform var(--fast), filter var(--fast);
+}
+#greeting button:active { transform: scale(.97); filter: brightness(1.08); }
+
+@media (prefers-reduced-motion: reduce) {
+  #greeting, #greeting .card { transition: none; }
+  #greeting .heart { animation: none; }
+}
