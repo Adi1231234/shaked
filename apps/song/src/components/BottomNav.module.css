@@ -1,0 +1,14 @@
+.nav {
+  position: absolute; inset-inline: 0; inset-block-end: 0;
+  height: 64px; z-index: 10; padding-bottom: 4px;
+  display: flex; align-items: center; justify-content: space-around;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), #0a0a0a 70%);
+}
+.item {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; gap: 4px;
+  background: none; border: none; cursor: pointer;
+  color: #b3b3b3; font-size: 11px; font-weight: 400;
+}
+.item span { white-space: nowrap; }
+.active { color: #fff; }

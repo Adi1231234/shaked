@@ -1,0 +1,30 @@
+.viewport {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  container-type: inline-size;
+}
+.track {
+  display: flex;
+  direction: ltr;
+  height: 100%;
+}
+.cover {
+  flex: 0 0 100cqw;
+  height: 100%;
+  object-fit: cover;
+}
+.next {
+  animation: coverNext 0.35s cubic-bezier(0.3, 0, 0, 1) forwards;
+}
+.prev {
+  animation: coverPrev 0.35s cubic-bezier(0.3, 0, 0, 1) forwards;
+}
+@keyframes coverNext {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100cqw); }
+}
+@keyframes coverPrev {
+  from { transform: translateX(-100cqw); }
+  to { transform: translateX(0); }
+}
