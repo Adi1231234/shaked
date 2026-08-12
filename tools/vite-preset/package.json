@@ -1,0 +1,14 @@
+{
+  "name": "@shaked/vite-preset",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "peerDependencies": {
+    "@vitejs/plugin-react": "*",
+    "vite": "*"
+  }
+}

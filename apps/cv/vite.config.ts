@@ -1,8 +1,4 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { appConfig } from '@shaked/vite-preset'
 
-// https://vite.dev/config/
-export default defineConfig({
-  base: '/shaked-cv-react/',
-  plugins: [react()],
-})
+export default defineConfig(appConfig({ base: '/shaked/cv/' }))

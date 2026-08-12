@@ -1,8 +1,9 @@
 {
-  "name": "@shaked/song",
+  "name": "@shaked/hub",
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "description": "The one page that links to everything built for Shaked.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

@@ -1,4 +1,4 @@
 import { defineConfig } from 'vite';
 import { appConfig } from '@shaked/vite-preset';
 
-export default defineConfig(appConfig({ base: '/shaked/ent-roadmap/' }));
+export default defineConfig(appConfig({ base: '/shaked/', withReact: false }));
