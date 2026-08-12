@@ -1,0 +1,64 @@
+{
+  "name": "subtitle-studio",
+  "version": "1.0.3",
+  "description": "סטודיו כתוביות - תמלול ותרגום אוטומטי של סרטונים לעברית",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.adi.subtitlestudio",
+    "productName": "Shul",
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "resources/bin",
+        "to": "bin"
+      },
+      {
+        "from": "resources/model",
+        "to": "model"
+      },
+      {
+        "from": "build_pyi/dist/parakeet",
+        "to": "parakeet"
+      },
+      {
+        "from": "resources/whisper",
+        "to": "whisper"
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "Adi1231234",
+        "repo": "shul-subtitles"
+      }
+    ],
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "shortcutName": "Shul",
+      "artifactName": "${productName}-Setup-${version}.${ext}"
+    }
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.9"
+  }
+}
