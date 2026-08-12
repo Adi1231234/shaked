@@ -39,9 +39,10 @@ async function copyStatic() {
 
 async function packDownloads() {
   await mkdir(join(dist, 'downloads'), { recursive: true });
-  for (const { treeish, prefix, file } of downloads) {
+  for (const { treeish, prefix, file, paths = [] } of downloads) {
     step(`packing ${file}`);
-    run('git', ['archive', '--format=zip', `--prefix=${prefix}`, '-o', join(dist, 'downloads', file), treeish]);
+    const out = join(dist, 'downloads', file);
+    run('git', ['archive', '--format=zip', `--prefix=${prefix}`, '-o', out, treeish, ...paths]);
   }
 }
 

@@ -22,6 +22,13 @@ export const staticSites = [
 ];
 
 // Zipped straight out of git, so the download is exactly what is committed.
+// `paths` keeps the download to what Chrome actually loads - the repo also holds
+// notes, a lecture PDF and the source data behind the question list.
 export const downloads = [
-  { treeish: 'HEAD:extensions/complete-anatomy-quiz', prefix: 'complete-anatomy-quiz/', file: 'complete-anatomy-quiz.zip' },
+  {
+    treeish: 'HEAD:extensions/complete-anatomy-quiz',
+    prefix: 'complete-anatomy-quiz/',
+    file: 'complete-anatomy-quiz.zip',
+    paths: ['manifest.json', 'src'],
+  },
 ];
