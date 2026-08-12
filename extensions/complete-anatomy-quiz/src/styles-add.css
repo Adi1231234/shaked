@@ -1,0 +1,70 @@
+/* styles-add.css - controls injected onto the app's search rows + the add-to-list popover. */
+
+/* Per-row add controls (quick add + list menu) */
+.caq-row { position: relative !important; }
+.caq-add {
+  position: absolute; top: 50%; right: 10px; transform: translateY(-50%);
+  display: flex; gap: 5px; z-index: 5;
+}
+.caq-add__quick, .caq-add__menu {
+  border: 1px solid var(--caq-line); background: var(--caq-bg2); color: var(--caq-text);
+  border-radius: 6px; width: 26px; height: 26px; padding: 0; line-height: 1; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; font-weight: 700;
+  transition: border-color .12s, color .12s, background .12s;
+}
+.caq-add__quick { font-size: 17px; }
+.caq-add__menu { font-size: 11px; }
+.caq-add__quick:hover, .caq-add__menu:hover { border-color: var(--caq-green); color: var(--caq-green); }
+.caq-add__quick--done { background: var(--caq-green); color: #16250a; border-color: var(--caq-green); }
+
+/* Shared add-to-list popover (anchored to the clicked menu button) */
+.caq-add-menu {
+  position: fixed; z-index: 2147483600; width: 220px; max-height: 270px; overflow-y: auto;
+  background: var(--caq-bg); color: var(--caq-text); border: 1px solid var(--caq-line);
+  border-radius: 10px; box-shadow: 0 12px 40px rgba(0,0,0,.55); direction: rtl; padding: 6px;
+}
+.caq-add-menu__head { font-size: 12px; color: var(--caq-muted); padding: 6px 8px 8px; }
+.caq-add-menu__item {
+  display: flex; justify-content: space-between; gap: 8px; align-items: center; width: 100%;
+  background: transparent; border: 0; color: var(--caq-text); font: 600 13px var(--caq-font);
+  padding: 8px; border-radius: 6px; cursor: pointer; text-align: right;
+}
+.caq-add-menu__item:hover { background: var(--caq-bg2); }
+.caq-add-menu__sub { font-size: 11px; color: var(--caq-muted); flex: none; }
+.caq-add-menu__new { color: var(--caq-accent); }
+.caq-add-menu__input {
+  width: 100%; box-sizing: border-box; background: var(--caq-bg2); border: 1px solid var(--caq-line);
+  color: var(--caq-text); border-radius: 6px; padding: 8px; font: 13px var(--caq-font); margin-bottom: 6px;
+}
+.caq-add-menu__input:focus { outline: none; border-color: var(--caq-accent); }
+
+/* Delete/hide/clear links on group headers in the setup modal */
+.caq-group__del { background: none; border: 0; color: var(--caq-muted); cursor: pointer; font: 600 12px var(--caq-font); }
+.caq-group__del:hover { color: #e0533d; }
+
+/* Group header: title + rename, and the action links */
+.caq-group__titlewrap { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.caq-group__actions { display: flex; align-items: center; gap: 12px; flex: none; }
+.caq-group__icon { background: none; border: 0; color: var(--caq-muted); cursor: pointer; font-size: 13px; padding: 2px; line-height: 1; }
+.caq-group__icon:hover { color: var(--caq-accent); }
+.caq-group__rename {
+  background: var(--caq-bg2); border: 1px solid var(--caq-accent); color: var(--caq-text);
+  border-radius: 5px; padding: 3px 7px; font: 700 14px var(--caq-font); min-width: 0; flex: 1;
+}
+.caq-group__rename:focus { outline: none; }
+
+/* Restore area for hidden built-in lists */
+.caq-hidden {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px;
+  padding: 12px 2px 2px; margin-top: 6px; border-top: 1px dashed var(--caq-line);
+}
+.caq-hidden__label { font-size: 12px; color: var(--caq-muted); }
+
+/* Themed scrollbar for the add-to-list popover (match the dark app theme) */
+.caq-add-menu { scrollbar-width: thin; scrollbar-color: var(--caq-line) transparent; }
+.caq-add-menu::-webkit-scrollbar { width: 10px; }
+.caq-add-menu::-webkit-scrollbar-track { background: transparent; }
+.caq-add-menu::-webkit-scrollbar-thumb {
+  background: var(--caq-line); border-radius: 8px; border: 2px solid transparent; background-clip: padding-box;
+}
+.caq-add-menu::-webkit-scrollbar-thumb:hover { background: var(--caq-muted); background-clip: padding-box; }
