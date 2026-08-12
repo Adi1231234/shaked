@@ -1,0 +1,15 @@
+node_modules/
+dist/
+dist-ssr/
+*.local
+*.log
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# transitional import staging - removed once the migration lands
+/_import/
+/anatomy/
+/study-tools/
+/personal/
