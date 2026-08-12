@@ -7,9 +7,3 @@ dist-ssr/
 .vscode/*
 !.vscode/extensions.json
 .idea/
-
-# transitional import staging - removed once the migration lands
-/_import/
-/anatomy/
-/study-tools/
-/personal/
