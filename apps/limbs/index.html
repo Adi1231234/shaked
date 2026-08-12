@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#04060d" />
+<title>שקד ❤️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root { --radius: 12px; }
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+    background: #03050b;
+    color: #e9f1ff;
+    font-family: "Heebo", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-weight: 300;
+  }
+  body {
+    background:
+      radial-gradient(900px 600px at 80% -10%, rgba(126,232,255,0.12), transparent 60%),
+      radial-gradient(800px 500px at 0% 110%, rgba(255,95,143,0.14), transparent 60%),
+      radial-gradient(140% 90% at 50% 0%, #0a1430 0%, #04070f 55%, #02030a 100%);
+  }
+  #app {
+    position: relative;
+    height: 100dvh;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* Boot loader covers everything until first GLB ready */
+  .boot {
+    position: absolute; inset: 0;
+    z-index: 50;
+    display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(120% 80% at 50% 50%, #060a18 0%, #03050b 70%);
+    transition: opacity .8s ease, visibility .8s;
+  }
+  #app.loaded .boot { opacity: 0; visibility: hidden; pointer-events: none; }
+  .boot-rings {
+    position: relative;
+    width: 160px; height: 160px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .boot-rings .ring {
+    position: absolute;
+    border: 1.5px solid;
+    border-radius: 50%;
+    width: 50px; height: 50px;
+    animation: ring-expand 2.4s ease-out infinite;
+    opacity: 0;
+  }
+  .boot-rings .ring.r1 { border-color: rgba(126,232,255,0.6); animation-delay: 0s; }
+  .boot-rings .ring.r2 { border-color: rgba(255,155,191,0.55); animation-delay: 0.8s; }
+  .boot-rings .ring.r3 { border-color: rgba(255,230,179,0.45); animation-delay: 1.6s; }
+  @keyframes ring-expand {
+    0%   { transform: scale(0.5); opacity: 0; }
+    15%  { opacity: 1; }
+    100% { transform: scale(2.6); opacity: 0; }
+  }
+  .boot-heart {
+    font-size: 44px;
+    filter: drop-shadow(0 0 22px rgba(255,95,143,0.6));
+    animation: heart-pulse 1.6s ease-in-out infinite;
+    z-index: 2;
+  }
+  @keyframes heart-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+  .boot-text {
+    position: absolute;
+    bottom: 30%;
+    color: #6b7a9a;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-align: center;
+    width: 100%;
+  }
+  .boot-text .dot {
+    display: inline-block;
+    animation: dot-fade 1.4s ease-in-out infinite;
+  }
+  .boot-text .dot:nth-child(2) { animation-delay: 0.2s; }
+  .boot-text .dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes dot-fade {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
+  }
+
+  /* Reveal hero content after load */
+  .hero, canvas#bg, .vignette, .footer-note, .sparkle {
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+  #app.loaded .hero,
+  #app.loaded canvas#bg,
+  #app.loaded .vignette,
+  #app.loaded .footer-note,
+  #app.loaded .sparkle { opacity: 1; }
+  #app.loaded .vignette { opacity: 0.9; }
+  canvas#bg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    display: block;
+    touch-action: none;
+    cursor: grab;
+  }
+  canvas#bg.grabbing { cursor: grabbing; }
+
+  /* Soft vignette for depth */
+  .vignette {
+    position: absolute; inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.5) 100%);
+  }
+
+  /* Floating sparkles */
+  .sparkle {
+    position: absolute;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--c, #7ee8ff);
+    box-shadow: 0 0 8px currentColor;
+    color: var(--c, #7ee8ff);
+    pointer-events: none;
+    opacity: 0;
+    animation: twinkle var(--dur, 4s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 0.7; transform: scale(1); }
+  }
+
+  .hero {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: max(env(safe-area-inset-top), 24px) 24px max(env(safe-area-inset-bottom), 24px);
+    z-index: 2;
+    pointer-events: none;
+  }
+  .hero .cta { pointer-events: auto; }
+
+  .heart {
+    font-size: 44px;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 0 24px rgba(255,95,143,0.6));
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+  }
+
+  .name {
+    font-weight: 800;
+    font-size: clamp(56px, 14vw, 84px);
+    line-height: 1;
+    background: linear-gradient(120deg, #7ee8ff, #ff9bbf 50%, #ffe6b3);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 18px;
+    letter-spacing: -0.02em;
+    text-shadow: 0 6px 40px rgba(255,155,191,0.2);
+  }
+
+  .lede {
+    font-size: clamp(18px, 5vw, 24px);
+    font-weight: 400;
+    color: #e9f1ff;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .words {
+    font-size: 14.5px;
+    color: #aab7d4;
+    text-align: center;
+    line-height: 1.6;
+    max-width: 320px;
+    margin-bottom: 36px;
+  }
+  .words em {
+    font-style: normal;
+    color: #7ee8ff;
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, rgba(126,232,255,0.18), rgba(255,95,143,0.18));
+    border: 1px solid rgba(126,232,255,0.4);
+    border-radius: var(--radius);
+    color: #e9f1ff;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all .25s ease;
+    box-shadow: 0 10px 40px -20px rgba(126,232,255,0.6), 0 0 0 0 rgba(255,95,143,0.4);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.15) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform .6s ease;
+  }
+  .cta:hover {
+    transform: translateY(-2px);
+    border-color: rgba(126,232,255,0.7);
+    box-shadow: 0 14px 50px -20px rgba(126,232,255,0.8), 0 0 0 8px rgba(255,95,143,0.06);
+  }
+  .cta:hover::before { transform: translateX(100%); }
+  .cta:active { transform: translateY(0); }
+  .cta .arrow {
+    transition: transform .25s ease;
+  }
+  .cta:hover .arrow { transform: translateX(-4px); }
+
+  .footer-note {
+    position: absolute;
+    bottom: max(env(safe-area-inset-bottom), 14px);
+    left: 0; right: 0;
+    text-align: center;
+    color: #6b7a9a;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    pointer-events: none;
+  }
+  .footer-note em { font-style: normal; color: #ff9bbf; }
+
+  .rotate-hint {
+    position: absolute;
+    bottom: calc(max(env(safe-area-inset-bottom), 14px) + 22px);
+    left: 50%;
+    transform: translateX(-50%);
+    color: #8a9bbd;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    pointer-events: none;
+    white-space: nowrap;
+    opacity: 0;
+    animation: hint-fade 4.5s ease-in-out 1.4s infinite;
+  }
+  .rotate-hint .icon {
+    display: inline-block;
+    color: #7ee8ff;
+    margin-inline-end: 4px;
+    animation: hint-spin 4.5s ease-in-out 1.4s infinite;
+  }
+  @keyframes hint-fade {
+    0%, 90%, 100% { opacity: 0; }
+    15%, 75% { opacity: 0.85; }
+  }
+  @keyframes hint-spin {
+    0%, 90%, 100% { transform: rotate(0); }
+    50% { transform: rotate(360deg); }
+  }
+</style>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+
+<div id="app">
+  <div class="boot" id="boot">
+    <div class="boot-rings">
+      <div class="ring r1"></div>
+      <div class="ring r2"></div>
+      <div class="ring r3"></div>
+      <div class="boot-heart">❤️</div>
+    </div>
+    <div class="boot-text"><span class="dot">·</span> <span class="dot">·</span> <span class="dot">·</span></div>
+  </div>
+
+  <canvas id="bg"></canvas>
+  <div class="vignette"></div>
+
+  <main class="hero">
+    <div class="heart">❤️</div>
+    <h1 class="name">שקד</h1>
+    <p class="lede">בהצלחה במבחן יפה שלי</p>
+    <p class="words">
+      את הכי טובה וחכמה בעולם!
+      <br>
+      אני אוהב אותך ❤️
+    </p>
+    <a href="./quiz.html" class="cta">
+      להתחיל לתרגל
+      <span class="arrow">←</span>
+    </a>
+  </main>
+
+  <div class="rotate-hint"><span class="icon">↻</span>אפשר לסובב את היד והרגל באצבע</div>
+  <div class="footer-note">מאמין בך ויודע שתצליחי</div>
+</div>
+
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+
+// ──────────────────────────────────────────────────────────────────────
+// Layout knobs — tweak these to move the leg / arm up & down on screen.
+// Values are fractions of visibleH (the camera's visible height in
+// world units). Positive = up, negative = down. Two values per knob:
+// [portrait, landscape].
+const LEG_Y_FRAC = { portrait:  0.50, landscape:  0.30 }; // higher = leg climbs up
+const ARM_Y_FRAC = { portrait: -0.50, landscape: -0.30 }; // lower  = arm sinks down
+// ──────────────────────────────────────────────────────────────────────
+
+const canvas = document.getElementById('bg');
+
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(38, 1, 0.05, 100);
+camera.position.set(0, 0.1, 2.4);
+
+scene.add(new THREE.AmbientLight(0x445a80, 0.5));
+const key  = new THREE.DirectionalLight(0xfff2dc, 1.2); key.position.set(2, 3, 2); scene.add(key);
+const fill = new THREE.DirectionalLight(0x7ee8ff, 0.7); fill.position.set(-3, 1, -1); scene.add(fill);
+const rim  = new THREE.DirectionalLight(0xff5f8f, 0.6); rim.position.set(0, -1, -3); scene.add(rim);
+
+const dracoLoader = new DRACOLoader();
+dracoLoader.setDecoderPath('https://unpkg.com/three@0.160.0/examples/jsm/libs/draco/gltf/');
+const gltfLoader = new GLTFLoader();
+gltfLoader.setDRACOLoader(dracoLoader);
+
+const LAYERS = {
+  Bones:   { color: 0xf3e9d1, opacity: 1.00, roughness: 0.55 },
+  Muscles: { color: 0xc83a52, opacity: 0.50, roughness: 0.5 },
+  Veins:   { color: 0x4a78ff, opacity: 0.85, roughness: 0.4 },
+};
+
+const legGroup = new THREE.Group();
+const armGroup = new THREE.Group();
+scene.add(legGroup, armGroup);
+
+let loadsRemaining = 2;
+const bootStart = performance.now();
+const MIN_BOOT_MS = 700;
+function reveal() {
+  const wait = Math.max(0, MIN_BOOT_MS - (performance.now() - bootStart));
+  setTimeout(() => document.getElementById('app').classList.add('loaded'), wait);
+}
+
+// Compute PCA on every vertex of an Object3D's mesh tree, in the object's
+// local frame. Returns the centroid + the three principal axes sorted by
+// descending eigenvalue. Used to find the long axis of an asymmetric model
+// (e.g. an arm whose hand-to-shoulder line is not axis-aligned in the
+// source GLB) so we can rotate it to spin around its own length instead of
+// orbiting around an off-center axis.
+function computePCA(obj3d) {
+  obj3d.updateMatrixWorld(true);
+  const inv = new THREE.Matrix4().copy(obj3d.matrixWorld).invert();
+  const positions = [];
+  obj3d.traverse((o) => {
+    if (!o.isMesh || !o.geometry || !o.geometry.attributes.position) return;
+    const posAttr = o.geometry.attributes.position;
+    const mat = new THREE.Matrix4().multiplyMatrices(inv, o.matrixWorld);
+    const v = new THREE.Vector3();
+    for (let i = 0; i < posAttr.count; i++) {
+      v.fromBufferAttribute(posAttr, i).applyMatrix4(mat);
+      positions.push(v.x, v.y, v.z);
+    }
+  });
+  if (positions.length === 0) return null;
+
+  const n = positions.length / 3;
+  let cx = 0, cy = 0, cz = 0;
+  for (let i = 0; i < n; i++) {
+    cx += positions[i * 3];
+    cy += positions[i * 3 + 1];
+    cz += positions[i * 3 + 2];
+  }
+  cx /= n; cy /= n; cz /= n;
+
+  let xx = 0, xy = 0, xz = 0, yy = 0, yz = 0, zz = 0;
+  for (let i = 0; i < n; i++) {
+    const dx = positions[i * 3] - cx;
+    const dy = positions[i * 3 + 1] - cy;
+    const dz = positions[i * 3 + 2] - cz;
+    xx += dx * dx; xy += dx * dy; xz += dx * dz;
+    yy += dy * dy; yz += dy * dz; zz += dz * dz;
+  }
+
+  // Jacobi eigendecomposition on the 3x3 symmetric covariance matrix.
+  const a = [[xx, xy, xz], [xy, yy, yz], [xz, yz, zz]];
+  const ev = [[1, 0, 0], [0, 1, 0], [0, 0, 1]];
+  for (let iter = 0; iter < 40; iter++) {
+    let p = 0, q = 1;
+    let maxOff = Math.abs(a[0][1]);
+    if (Math.abs(a[0][2]) > maxOff) { p = 0; q = 2; maxOff = Math.abs(a[0][2]); }
+    if (Math.abs(a[1][2]) > maxOff) { p = 1; q = 2; maxOff = Math.abs(a[1][2]); }
+    if (maxOff < 1e-12) break;
+    const apq = a[p][q];
+    const theta = (a[q][q] - a[p][p]) / (2 * apq);
+    const t = (theta >= 0 ? 1 : -1) / (Math.abs(theta) + Math.sqrt(theta * theta + 1));
+    const c = 1 / Math.sqrt(t * t + 1);
+    const s = t * c;
+    const app = a[p][p], aqq = a[q][q];
+    a[p][p] = c * c * app - 2 * s * c * apq + s * s * aqq;
+    a[q][q] = s * s * app + 2 * s * c * apq + c * c * aqq;
+    a[p][q] = 0; a[q][p] = 0;
+    for (let i = 0; i < 3; i++) {
+      if (i !== p && i !== q) {
+        const aip = a[i][p], aiq = a[i][q];
+        a[i][p] = c * aip - s * aiq; a[p][i] = a[i][p];
+        a[i][q] = s * aip + c * aiq; a[q][i] = a[i][q];
+      }
+    }
+    for (let i = 0; i < 3; i++) {
+      const vip = ev[i][p], viq = ev[i][q];
+      ev[i][p] = c * vip - s * viq;
+      ev[i][q] = s * vip + c * viq;
+    }
+  }
+
+  const axes = [
+    { val: a[0][0], vec: new THREE.Vector3(ev[0][0], ev[1][0], ev[2][0]).normalize() },
+    { val: a[1][1], vec: new THREE.Vector3(ev[0][1], ev[1][1], ev[2][1]).normalize() },
+    { val: a[2][2], vec: new THREE.Vector3(ev[0][2], ev[1][2], ev[2][2]).normalize() },
+  ];
+  axes.sort((p, q) => q.val - p.val);
+  return {
+    centroid: new THREE.Vector3(cx, cy, cz),
+    primary: axes[0].vec,
+    secondary: axes[1].vec,
+    tertiary: axes[2].vec,
+  };
+}
+
+function applyLayers(scene3) {
+  scene3.traverse((obj) => {
+    if (!obj.isMesh) return;
+    let layer = null;
+    for (let n = obj; n; n = n.parent) {
+      if (LAYERS[n.name]) { layer = LAYERS[n.name]; break; }
+    }
+    if (!layer) return;
+    obj.material = obj.material.clone();
+    obj.material.color = new THREE.Color(layer.color);
+    if ('roughness' in obj.material) obj.material.roughness = layer.roughness;
+    if ('metalness' in obj.material) obj.material.metalness = 0.05;
+    obj.material.transparent = layer.opacity < 1;
+    obj.material.opacity = layer.opacity;
+    obj.material.depthWrite = layer.opacity >= 0.99;
+  });
+}
+
+function loadInto(file, group, opts) {
+  gltfLoader.load(`./models/${file}`, (gltf) => {
+    applyLayers(gltf.scene);
+    // IMPORTANT: rotate first, then compute the bbox in world space, then
+    // apply the centering position offset. Three.js applies object
+    // transforms in T*R*S order, so a position offset chosen before
+    // rotation gets re-rotated and the model ends up far from its
+    // intended placement.
+    if (opts.autoAlign) {
+      // PCA-align the model so its longest axis becomes world Y. This
+      // makes a Y-spin look like a self-rotation instead of an orbit
+      // around an off-center axis (the arm's hand-to-shoulder line is
+      // not axis-aligned in the source GLB).
+      //
+      // PCA gives a line, not a direction, so the +Y end is ambiguous.
+      // We pick the sign by mass distribution: the hand has more modeling
+      // detail (fingers), so the centroid sits closer to the hand. We
+      // want the hand on top, so +Y should point TOWARD the centroid,
+      // i.e. in the same direction as (centroid - bboxCenter).
+      const pca = computePCA(gltf.scene);
+      if (pca) {
+        const tmpBox = new THREE.Box3().setFromObject(gltf.scene);
+        const tmpCenter = tmpBox.getCenter(new THREE.Vector3());
+        const massOffset = pca.centroid.clone().sub(tmpCenter);
+        let yAxis = pca.primary.clone();
+        if (yAxis.dot(massOffset) < 0) yAxis.negate();
+        const q = new THREE.Quaternion().setFromUnitVectors(yAxis, new THREE.Vector3(0, 1, 0));
+        gltf.scene.quaternion.premultiply(q);
+      }
+    } else if (opts.flipUp) {
+      gltf.scene.rotation.x = Math.PI;
+    }
+    gltf.scene.updateMatrixWorld(true);
+    const box = new THREE.Box3().setFromObject(gltf.scene);
+    const center = box.getCenter(new THREE.Vector3());
+    const size = box.getSize(new THREE.Vector3());
+    if (opts.autoAlign) {
+      // Pivot around the palm horizontally: shift X/Z so the palm sits
+      // on the parent group's Y axis (which is the spin axis). Any
+      // vertex with X=0,Z=0 stays still during the spin, regardless of
+      // Y — so the palm barely moves while the rest of the arm sweeps
+      // around it. Y stays bbox-centered so the visual placement on
+      // screen is unchanged.
+      const yCutoff = box.max.y - size.y * 0.15;
+      let hx = 0, hz = 0, hCount = 0;
+      const v = new THREE.Vector3();
+      gltf.scene.traverse((o) => {
+        if (!o.isMesh || !o.geometry || !o.geometry.attributes.position) return;
+        const posAttr = o.geometry.attributes.position;
+        for (let i = 0; i < posAttr.count; i++) {
+          v.fromBufferAttribute(posAttr, i).applyMatrix4(o.matrixWorld);
+          if (v.y >= yCutoff) { hx += v.x; hz += v.z; hCount++; }
+        }
+      });
+      if (hCount > 0) {
+        gltf.scene.position.set(-hx / hCount, -center.y, -hz / hCount);
+      } else {
+        gltf.scene.position.sub(center);
+      }
+    } else {
+      gltf.scene.position.sub(center);
+    }
+    gltf.scene.userData.naturalHeight = size.y;
+    group.add(gltf.scene);
+    group.userData.spin = opts.spin;
+    layoutModels();
+    if (--loadsRemaining === 0) reveal();
+  });
+}
+
+// Leg: hangs from the top — top-of-thigh clipped above the screen.
+// Arm: rises from the bottom — humerus + shoulder mass clipped below
+// the screen, hand pointing up. autoAlign rotates the arm so its long
+// axis becomes vertical, so the spin reads as self-rotation.
+loadInto('legs.glb', legGroup, { spin: 0.22 });
+loadInto('arms.glb', armGroup, { spin: 0.18, autoAlign: true });
+
+// Compute placement + scale so the two models hug opposite visible corners
+// and stay on screen on any aspect ratio (mobile portrait through landscape).
+function layoutModels() {
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  if (!w || !h) return;
+  const aspect = w / h;
+  const fovV = camera.fov * Math.PI / 180;
+  const dist = camera.position.z;
+  const visibleH = 2 * dist * Math.tan(fovV / 2);
+  const visibleW = visibleH * aspect;
+  const portrait = aspect < 1;
+
+  // Leg hangs from the top edge (positive yFrac) on the right side; the
+  // upper soft-tissue mass is clipped above the viewport.
+  // Arm — already flipped on Z at load time so the hand is its visual
+  // top — rises from the bottom on the left side. We sit the arm just
+  // a touch below center so the hand reaches into the upper-middle
+  // area while the humerus fades down off the bottom edge.
+  const xFrac = portrait ? 0.32 : 0.42;
+  const legYFrac = portrait ? LEG_Y_FRAC.portrait : LEG_Y_FRAC.landscape;
+  const armYFrac = portrait ? ARM_Y_FRAC.portrait : ARM_Y_FRAC.landscape;
+  legGroup.position.set( visibleW * xFrac, visibleH * legYFrac, 0);
+  armGroup.position.set(-visibleW * xFrac, visibleH * armYFrac, 0);
+
+  // 50% bigger than the original tuning.
+  const targetH = portrait
+    ? Math.min(visibleH * 0.78, visibleW * 1.65)
+    : Math.min(visibleH * 0.92, visibleW * 0.60);
+  // Scale the OUTER group, not the inner gltf.scene. The inner gltf.scene
+  // holds the position offset that places the palm on the spin axis (X=Z=0
+  // in the inner frame). If we scaled the inner gltf.scene, scale would
+  // multiply the rotated vertex (R*v) BEFORE adding the position offset
+  // (matrix order T*R*S), so the palm would land at (s-1)*palmOffset
+  // instead of 0 — sweeping a circle when s ≠ 1. Scaling the outer group
+  // applies the scale uniformly to the inner frame's origin AND its
+  // contents, preserving the palm-on-axis property at any scale.
+  for (const g of [legGroup, armGroup]) {
+    const m = g.children[0];
+    if (!m || !m.userData.naturalHeight) continue;
+    g.scale.setScalar(targetH / m.userData.naturalHeight);
+  }
+}
+
+function resize() {
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h;
+  camera.position.z = (w / h < 0.7) ? 2.6 : 2.3;
+  camera.updateProjectionMatrix();
+  layoutModels();
+}
+resize();
+new ResizeObserver(resize).observe(canvas);
+
+const clock = new THREE.Clock();
+let mouseX = 0, mouseY = 0, tMouseX = 0, tMouseY = 0;
+window.addEventListener('pointermove', (e) => {
+  tMouseX = (e.clientX / window.innerWidth - 0.5);
+  tMouseY = (e.clientY / window.innerHeight - 0.5);
+});
+
+// Drag-to-rotate: pick the closer of leg/arm based on horizontal pointer
+// position, then rotate that group by pointer delta. While dragging, the
+// auto-spin and X-axis sway are paused for that group; on release, auto-
+// spin resumes from the user's new orientation.
+let dragGroup = null;
+let dragLastX = 0;
+let dragStarted = false;
+let downX = 0, downY = 0, downId = -1;
+canvas.addEventListener('pointerdown', (e) => {
+  const rect = canvas.getBoundingClientRect();
+  const cx = e.clientX - rect.left;
+  // Leg sits on the right (canvas x > center), arm on the left.
+  dragGroup = (cx < rect.width / 2) ? armGroup : legGroup;
+  dragLastX = e.clientX;
+  downX = e.clientX; downY = e.clientY;
+  downId = e.pointerId;
+  dragStarted = false;
+});
+canvas.addEventListener('pointermove', (e) => {
+  if (downId !== e.pointerId || !dragGroup) return;
+  const dx = e.clientX - dragLastX;
+  dragLastX = e.clientX;
+  if (!dragStarted) {
+    if (Math.hypot(e.clientX - downX, e.clientY - downY) < 4) return;
+    dragStarted = true;
+    canvas.classList.add('grabbing');
+    canvas.setPointerCapture(e.pointerId);
+    dragGroup.userData.dragging = true;
+  }
+  dragGroup.rotation.y += dx * 0.012;
+});
+function endDrag(e) {
+  if (downId !== e.pointerId) return;
+  if (dragGroup) dragGroup.userData.dragging = false;
+  dragGroup = null;
+  dragStarted = false;
+  downId = -1;
+  canvas.classList.remove('grabbing');
+}
+canvas.addEventListener('pointerup', endDrag);
+canvas.addEventListener('pointercancel', endDrag);
+
+function animate() {
+  const dt = clock.getDelta();
+  const t = clock.getElapsedTime();
+  for (const g of [legGroup, armGroup]) {
+    if (g.children.length === 0) continue;
+    if (g.userData.dragging) continue;
+    g.rotation.y += dt * (g.userData.spin || 0.2);
+    g.rotation.x = Math.sin(t * 0.4) * 0.05;
+  }
+  // Parallax follow
+  mouseX += (tMouseX - mouseX) * 0.06;
+  mouseY += (tMouseY - mouseY) * 0.06;
+  camera.position.x = mouseX * 0.2;
+  camera.position.y = 0.05 + mouseY * -0.12;
+  camera.lookAt(0, 0, 0);
+
+  renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+}
+animate();
+
+// Sparkles
+const sparkleColors = ['#7ee8ff', '#ff9bbf', '#ffe6b3'];
+for (let i = 0; i < 12; i++) {
+  const s = document.createElement('div');
+  s.className = 'sparkle';
+  s.style.left = Math.random() * 100 + '%';
+  s.style.top = Math.random() * 100 + '%';
+  s.style.setProperty('--c', sparkleColors[i % sparkleColors.length]);
+  s.style.setProperty('--dur', (3 + Math.random() * 4) + 's');
+  s.style.setProperty('--delay', (Math.random() * 4) + 's');
+  document.getElementById('app').appendChild(s);
+}
+</script>
+</body>
+</html>

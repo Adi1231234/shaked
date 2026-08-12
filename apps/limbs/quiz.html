@@ -1,0 +1,3778 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#04060d" />
+<title>שקד · גפיים 💜</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  :root{
+    --radius: 12px;
+    --bg-0:#03050b;
+    --ink:#e9f1ff;
+    --ink-dim:#aab7d4;
+    --ink-soft:#6b7a9a;
+    --cyan:#7ee8ff;
+    --cyan-deep:#3aa6ff;
+    --rose:#ff5f8f;
+    --rose-soft:#ff9bbf;
+    --gold:#ffe6b3;
+    --green:#5fffb0;
+    --bone:#f3e9d1;
+    --muscle:#d04060;
+    --vein:#5a8fff;
+  }
+  html, body {
+    height: 100%;
+    background: var(--bg-0);
+    color: var(--ink);
+    font-family: "Heebo", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-weight: 300;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+  body {
+    background:
+      radial-gradient(1100px 600px at 80% -10%, rgba(126,232,255,0.08), transparent 60%),
+      radial-gradient(900px 500px at 0% 110%, rgba(255,95,143,0.10), transparent 60%),
+      radial-gradient(140% 90% at 50% 0%, #0a1430 0%, #04070f 55%, #02030a 100%);
+  }
+  #app {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* Boot loader: cover entire UI until first GLB ready */
+  .boot {
+    position: fixed; inset: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(120% 80% at 50% 50%, #060a18 0%, #03050b 70%);
+    transition: opacity .8s ease, visibility .8s;
+  }
+  body.loaded .boot { opacity: 0; visibility: hidden; pointer-events: none; }
+  .boot-rings {
+    position: relative;
+    width: 160px; height: 160px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .boot-rings .ring {
+    position: absolute;
+    border: 1.5px solid;
+    border-radius: 50%;
+    width: 50px; height: 50px;
+    animation: ring-expand 2.4s ease-out infinite;
+    opacity: 0;
+  }
+  .boot-rings .ring.r1 { border-color: rgba(126,232,255,0.6); animation-delay: 0s; }
+  .boot-rings .ring.r2 { border-color: rgba(255,155,191,0.55); animation-delay: 0.8s; }
+  .boot-rings .ring.r3 { border-color: rgba(255,230,179,0.45); animation-delay: 1.6s; }
+  @keyframes ring-expand {
+    0%   { transform: scale(0.5); opacity: 0; }
+    15%  { opacity: 1; }
+    100% { transform: scale(2.6); opacity: 0; }
+  }
+  .boot-heart {
+    font-size: 44px;
+    filter: drop-shadow(0 0 22px rgba(255,95,143,0.6));
+    animation: heart-pulse 1.6s ease-in-out infinite;
+    z-index: 2;
+  }
+  @keyframes heart-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+
+  /* Hide app contents until loaded */
+  body:not(.loaded) #app { opacity: 0; }
+  #app { transition: opacity 0.6s ease 0.1s; }
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 35;
+    padding: max(env(safe-area-inset-top), 10px) 16px 10px;
+    display: grid;
+    grid-template-columns: 84px 1fr 84px;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    border-bottom: 1px solid rgba(126,232,255,0.12);
+    backdrop-filter: none;
+  }
+  .top-back {
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--ink-dim);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: color .2s ease;
+  }
+  .top-back:hover { color: var(--cyan); }
+  .top-back-icon {
+    font-size: 16px;
+    line-height: 1;
+  }
+  .brand-title {
+    justify-self: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    line-height: 1;
+  }
+  /* במבחן/תרגול: הלב משמאל ל«שקד» (בעמוד RTL בלי זה הלב נופל לימין המילה) */
+  body.mode-quiz .brand-title {
+    direction: ltr;
+  }
+  .brand-heart {
+    color: #c7f3ff;
+    font-size: 22px;
+    filter: drop-shadow(0 0 12px rgba(126,232,255,0.35));
+  }
+  .brand-name {
+    font-weight: 800;
+    font-size: 24px;
+    background: linear-gradient(120deg, var(--cyan), var(--rose-soft) 60%, var(--gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .exam-progress {
+    width: min(520px, calc(100% - 32px));
+    font-size: 12px;
+    color: var(--ink);
+    background: rgba(7,11,28,0.72);
+    border: 1px solid rgba(126,232,255,0.20);
+    border-radius: var(--radius);
+    padding: 8px 10px;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    align-self: center;
+    display: none;
+    box-shadow: 0 10px 26px -20px rgba(126,232,255,0.5);
+  }
+  body.mode-quiz .exam-progress { display: inline-flex; }
+  body.mode-practice .exam-progress-total,
+  body.mode-practice .exam-progress-slash {
+    display: none;
+  }
+  .exam-progress-stats,
+  .exam-progress-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .exam-progress-item {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    white-space: nowrap;
+  }
+  .exam-progress b {
+    color: var(--cyan);
+    font-size: 15px;
+    font-weight: 800;
+  }
+  .exam-progress-sep {
+    width: 1px;
+    height: 18px;
+    background: rgba(255,255,255,0.11);
+  }
+  .exam-progress-label { color: var(--ink-soft); font-size: 11px; }
+
+  .header-btn {
+    background: rgba(126,232,255,0.06);
+    border: 1px solid rgba(126,232,255,0.18);
+    color: var(--cyan);
+    border-radius: var(--radius);
+    padding: 6px 12px;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .header-btn:hover { background: rgba(126,232,255,0.12); border-color: rgba(126,232,255,0.32); }
+  .back-to-overview {
+    background: rgba(255,95,143,0.10);
+    border-color: rgba(255,95,143,0.3);
+    color: var(--rose-soft);
+    display: none;
+  }
+  .back-to-overview:hover { background: rgba(255,95,143,0.18); border-color: rgba(255,95,143,0.45); }
+  body.mode-quiz .back-to-overview { display: inline-flex; align-items: center; }
+  body.mode-practice .back-to-overview { display: none; }
+  .exam-progress .back-to-overview {
+    padding: 6px 10px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  /* ===== Screens ===== */
+  .screen { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+
+  .main-controls { display: flex; flex-direction: column; gap: 0; }
+  body.mode-quiz:not(.mode-practice) .main-controls .tabs,
+  body.mode-quiz:not(.mode-practice) .main-controls > .row,
+  body.mode-quiz:not(.mode-practice) .search-wrap,
+  body.mode-quiz:not(.mode-practice) .tab-actions {
+    display: none;
+  }
+  .main-controls .exam-progress {
+    margin: 0 16px 8px;
+    max-width: calc(100% - 32px);
+  }
+  body.panel-exam:not(.mode-quiz) .stage,
+  body.panel-exam:not(.mode-quiz) .info {
+    display: none;
+  }
+
+  /* ===== Main tabs (חקירה / תרגול / מבחן) ===== */
+  nav.main-tabs {
+    display: flex;
+    gap: 28px;
+    margin: 6px 16px 12px;
+    padding: 0 2px;
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+  }
+  .m-tab {
+    flex: 0 0 auto;
+    background: transparent;
+    border: none;
+    color: var(--ink-soft);
+    border-radius: var(--radius);
+    padding: 11px 0 12px;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    position: relative;
+    transition: color .2s ease;
+  }
+  .m-tab::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: -1px;
+    height: 3px;
+    border-radius: var(--radius);
+    background: linear-gradient(90deg, var(--cyan), var(--rose-soft));
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform .2s ease;
+  }
+  .m-tab:hover { color: var(--ink-dim); }
+  .m-tab.active {
+    color: var(--ink);
+  }
+  .m-tab.active::after {
+    transform: scaleX(1);
+  }
+
+  /* ===== Tab-specific actions (only visible on matching panel) ===== */
+  .tab-actions { display: none; padding: 4px 16px 8px; }
+  body.panel-practice .tab-actions[data-panel="practice"] { display: block; }
+  body.panel-exam .tab-actions[data-panel="exam"] { display: block; }
+  body.mode-quiz .tab-actions[data-panel="exam"] { display: none; }
+  body.panel-exam:not(.mode-quiz) .main-controls {
+    flex: 1;
+    min-height: 0;
+  }
+  body.panel-exam:not(.mode-quiz) .tab-actions[data-panel="exam"] {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  body.show-exam-config .tab-actions[data-panel="exam"] { display: none; }
+  body.panel-exam .tabs,
+  body.panel-exam #main-controls > .row {
+    display: none;
+  }
+  /* Search box only relevant in overview (free explore) — hidden in practice/exam tab. */
+  body.panel-practice .search-wrap,
+  body.panel-exam .search-wrap { display: none; }
+
+  .exam-actions-row { display: flex; gap: 8px; align-items: stretch; }
+  .exam-actions-row .start-btn { flex: 1; }
+  .exam-history-btn {
+    padding: 0 14px;
+    white-space: nowrap;
+    align-self: stretch;
+    display: flex; align-items: center;
+  }
+  .exam-inline-history {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid rgba(126,232,255,0.14);
+    border-radius: var(--radius);
+    background: rgba(255,255,255,0.025);
+  }
+  body.panel-exam:not(.mode-quiz) .exam-inline-history {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .exam-overview {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 10px;
+    text-align: right;
+  }
+  .exam-overview-title {
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .exam-stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .exam-stat {
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+    padding: 8px 10px;
+    min-width: 0;
+  }
+  .exam-stat-value {
+    color: var(--cyan);
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+  .exam-stat-label {
+    color: var(--ink-soft);
+    font-size: 10.5px;
+    margin-top: 3px;
+    white-space: nowrap;
+  }
+  .exam-trend.up .exam-stat-value { color: var(--green); }
+  .exam-trend.down .exam-stat-value { color: var(--rose-soft); }
+  .exam-chart {
+    width: 100%;
+    height: 128px;
+    border: 1px solid rgba(126,232,255,0.12);
+    border-radius: var(--radius);
+    background:
+      linear-gradient(180deg, rgba(126,232,255,0.05), transparent),
+      rgba(3,5,11,0.18);
+    overflow: visible;
+  }
+  .exam-chart text {
+    fill: var(--ink-soft);
+    font-size: 10px;
+  }
+  .exam-chart-line {
+    fill: none;
+    stroke: var(--cyan);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .exam-chart-point {
+    fill: var(--rose-soft);
+    stroke: #081023;
+    stroke-width: 2;
+    cursor: pointer;
+  }
+  .exam-chart-point.active {
+    fill: var(--green);
+    stroke: var(--ink);
+  }
+  .exam-chart-hit {
+    fill: transparent;
+    cursor: pointer;
+  }
+  .exam-chart-wrap {
+    position: relative;
+  }
+  .exam-chart-tooltip {
+    position: absolute;
+    display: none;
+    transform: translate(-50%, calc(-100% - 10px));
+    pointer-events: none;
+    z-index: 3;
+    color: var(--ink);
+    background: rgba(7,11,28,0.95);
+    border: 1px solid rgba(126,232,255,0.28);
+    border-radius: var(--radius);
+    padding: 7px 10px;
+    font-size: 12px;
+    line-height: 1.25;
+    white-space: nowrap;
+    box-shadow: 0 12px 28px -18px rgba(0,0,0,0.9);
+  }
+  .exam-inline-history .history-list {
+    max-height: 170px;
+    margin: 0;
+  }
+  body.panel-exam:not(.mode-quiz) .exam-inline-history .history-list {
+    flex: 1;
+    max-height: none;
+  }
+  .exam-config-grid { display: grid; gap: 14px; text-align: right; }
+  .exam-config-group { display: grid; gap: 8px; }
+  .exam-config-label {
+    color: var(--ink-dim);
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .exam-choice-row { display: flex; gap: 8px; }
+  .exam-choice { flex: 1; position: relative; }
+  .exam-choice input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .exam-choice span {
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(126,232,255,0.18);
+    border-radius: var(--radius);
+    background: rgba(255,255,255,0.035);
+    color: var(--ink-dim);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .15s ease, border-color .15s ease, color .15s ease;
+  }
+  .exam-choice input:checked + span {
+    background: linear-gradient(135deg, rgba(126,232,255,0.18), rgba(255,95,143,0.12));
+    border-color: rgba(126,232,255,0.45);
+    color: var(--ink);
+  }
+  .exam-config-error {
+    min-height: 18px;
+    color: var(--rose-soft);
+    font-size: 12px;
+    text-align: center;
+  }
+  .practice-reset-btn {
+    display: none;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.10);
+    color: var(--ink-dim);
+    border-radius: var(--radius);
+    padding: 6px 10px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .practice-reset-btn:hover { color: var(--cyan); border-color: rgba(126,232,255,0.28); }
+  body.mode-practice .practice-reset-btn { display: inline-flex; }
+
+  /* ===== Start exam / practice buttons ===== */
+  .start-btn, .practice-btn {
+    width: 100%;
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    font: inherit;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .start-btn {
+    background: linear-gradient(135deg, var(--rose) 0%, var(--cyan-deep) 100%);
+    border: none;
+    color: #04060d;
+    box-shadow: 0 8px 22px -12px rgba(255,95,143,0.5);
+  }
+  .practice-btn {
+    background: rgba(126,232,255,0.08);
+    border: 1px solid rgba(126,232,255,0.32);
+    color: var(--cyan);
+  }
+  .practice-btn:hover { background: rgba(126,232,255,0.14); border-color: rgba(126,232,255,0.5); }
+  .start-btn:disabled, .practice-btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
+  .start-btn:not(:disabled):active, .practice-btn:not(:disabled):active { transform: translateY(1px); }
+  .start-btn-main { font-size: 14px; }
+  .start-btn-sub { font-size: 10px; opacity: 0.75; font-weight: 500; }
+
+  .learn-link {
+    background: transparent;
+    border: 1px solid rgba(126,232,255,0.18);
+    color: var(--ink-dim);
+    border-radius: var(--radius);
+    padding: 10px;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all .2s ease;
+    width: 100%;
+  }
+  .learn-link:hover { color: var(--cyan); border-color: rgba(126,232,255,0.35); }
+  .results-btn { width: 100%; }
+
+  /* ===== Tabs (limb selector) ===== */
+  nav.tabs { display: flex; gap: 6px; padding: 4px 16px 6px; }
+  .tab {
+    flex: 1;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    color: var(--ink-dim);
+    border-radius: var(--radius);
+    padding: 8px 12px;
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all .25s ease;
+  }
+  .tab.active {
+    background: linear-gradient(135deg, rgba(126,232,255,0.14), rgba(58,166,255,0.10));
+    border-color: rgba(126,232,255,0.35);
+    color: var(--ink);
+    box-shadow: 0 6px 20px -10px rgba(126,232,255,0.5);
+  }
+
+  /* ===== History list (used inside history overlay) ===== */
+  .history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 60vh;
+    overflow-y: auto;
+    margin: 12px 0 16px;
+    padding-left: 2px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(126,232,255,0.35) transparent;
+  }
+  .history-empty {
+    color: var(--ink-soft);
+    font-size: 13px;
+    text-align: center;
+    padding: 18px 8px;
+    border: 1px dashed rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+  }
+  .history-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+    padding: 10px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: right;
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .history-item:hover { background: rgba(126,232,255,0.06); border-color: rgba(126,232,255,0.2); }
+  .history-item .h-score { font-weight: 700; font-size: 16px; color: var(--cyan); min-width: 50px; }
+  .history-item .h-mid { flex: 1; min-width: 0; }
+  .history-item .h-topics { font-size: 12px; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .history-item .h-date { font-size: 11px; color: var(--ink-soft); margin-top: 2px; }
+  .history-item .h-arrow { color: var(--ink-soft); font-size: 14px; }
+  .history-item.high .h-score { color: var(--green); }
+  .history-item.low .h-score { color: var(--rose-soft); }
+
+  .row { display: flex; gap: 6px; padding: 4px 16px 6px; }
+  .seg-btn {
+    flex: 1;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    color: var(--ink-soft);
+    border-radius: var(--radius);
+    padding: 6px 8px;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all .2s ease;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .seg-btn .swatch {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: currentColor;
+    opacity: 0.5;
+  }
+  .seg-btn.layer-bones.on { color: var(--bone); border-color: rgba(243,233,209,0.35); background: rgba(243,233,209,0.08); }
+  .seg-btn.layer-muscles.on { color: var(--rose-soft); border-color: rgba(255,155,191,0.4); background: rgba(208,64,96,0.10); }
+  .seg-btn.layer-veins.on { color: var(--vein); border-color: rgba(90,143,255,0.4); background: rgba(90,143,255,0.10); }
+  .seg-btn.on .swatch { opacity: 1; box-shadow: 0 0 8px currentColor; }
+
+  .stage {
+    container-type: inline-size;
+    flex: 1;
+    position: relative;
+    margin: 0 12px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid rgba(126,232,255,0.10);
+    background:
+      radial-gradient(80% 60% at 50% 30%, rgba(126,232,255,0.05), transparent 70%),
+      linear-gradient(180deg, #060a17 0%, #03050b 100%);
+    box-shadow: 0 20px 60px -30px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.02);
+    touch-action: none;
+  }
+  .stage.reveal-correct-hint {
+    animation: stage-reveal-pulse 1s ease-in-out 2;
+  }
+  @keyframes stage-reveal-pulse {
+    0%, 100% {
+      box-shadow: 0 20px 60px -30px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.02);
+    }
+    45% {
+      box-shadow:
+        0 24px 64px -28px rgba(95,255,176,0.25),
+        inset 0 0 0 1px rgba(95,255,176,0.45),
+        inset 0 0 52px 14px rgba(95,255,176,0.18);
+    }
+  }
+  .stage canvas { display: block; width: 100%; height: 100%; }
+
+  /* Floating screen-space marker for “here is the correct structure” (no camera zoom). */
+  .reveal-pointer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 14;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.12s ease;
+  }
+  .reveal-pointer.is-on {
+    opacity: 1;
+  }
+  /* Arrow + label are positioned independently inside #reveal-pointer
+     (anchored at the projected mesh point) by JS so each can stay in-stage. */
+  .reveal-pointer-arrow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 26px;
+    height: 50px;
+    transform-origin: 50% 0;
+    /* Default: tip pinned to (left:0, top:0), centered horizontally on the anchor */
+    transform: translateX(-50%);
+  }
+  .reveal-pointer-arrow svg {
+    display: block;
+    width: 26px;
+    height: 50px;
+    overflow: visible;
+    filter: drop-shadow(0 5px 14px rgba(0,0,0,0.55));
+  }
+  .reveal-pointer-label-wrap {
+    position: absolute;
+    top: 56px;
+    left: 0;
+    transform: translateX(-50%);
+    max-width: min(260px, calc(100cqw - 24px));
+    text-align: center;
+  }
+  .reveal-pointer-label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    color: #051209;
+    padding: 7px 14px;
+    border-radius: var(--radius);
+    background: linear-gradient(145deg, #8fffcc 0%, #7ee8ff 100%);
+    border: 2px solid rgba(255,255,255,0.95);
+    box-shadow:
+      0 0 0 1px rgba(95,255,176,0.5),
+      0 0 28px rgba(95,255,176,0.55),
+      0 6px 20px rgba(0,0,0,0.35);
+    animation: reveal-label-nudge 0.85s ease-in-out infinite;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  @keyframes reveal-label-nudge {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  .loader {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink-dim); font-size: 14px;
+    pointer-events: none;
+    transition: opacity .4s ease;
+  }
+  .loader.hide { opacity: 0; }
+  .pulse {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(126,232,255,0.6), transparent 70%);
+    animation: pulse 1.6s ease-in-out infinite;
+    margin-inline-end: 12px;
+  }
+  @keyframes pulse {
+    0%,100% { transform: scale(0.8); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 1; }
+  }
+  /* ===== קיצורים: כפתור פינתי + פופאובר אופקי ===== */
+  .shortcut-help {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    left: auto;
+    z-index: 7;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    direction: rtl;
+    gap: 0;
+  }
+  .shortcut-help-btn {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius);
+    border: 1px solid rgba(126, 232, 255, 0.35);
+    background: rgba(8, 11, 22, 0.85);
+    color: var(--cyan);
+    cursor: pointer;
+    box-shadow: 0 4px 18px -8px rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(10px);
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .shortcut-help-btn:hover {
+    background: rgba(126, 232, 255, 0.12);
+    border-color: rgba(126, 232, 255, 0.55);
+    box-shadow: 0 6px 22px -6px rgba(126, 232, 255, 0.25);
+  }
+  .shortcut-help-btn:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 2px;
+  }
+  .shortcut-help-btn svg {
+    width: 18px;
+    height: 18px;
+    opacity: 0.92;
+  }
+  .shortcut-help.is-open .shortcut-help-btn {
+    background: rgba(126, 232, 255, 0.16);
+    border-color: rgba(126, 232, 255, 0.55);
+  }
+  .shortcut-help-popover {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    left: auto;
+    min-width: min(100vw - 24px, 300px);
+    max-width: min(100vw - 24px, 420px);
+    padding: 12px 12px 10px;
+    border-radius: var(--radius);
+    background: rgba(7, 10, 20, 0.96);
+    border: 1px solid rgba(126, 232, 255, 0.18);
+    box-shadow:
+      0 16px 40px -16px rgba(0, 0, 0, 0.85),
+      0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+    backdrop-filter: blur(14px);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px) scale(0.98);
+    transform-origin: top right;
+    pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+  }
+  .shortcut-help:hover .shortcut-help-popover,
+  .shortcut-help.is-open .shortcut-help-popover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .shortcut-help-popover {
+      transition: none;
+      transform: none;
+    }
+    .shortcut-help:hover .shortcut-help-popover,
+    .shortcut-help.is-open .shortcut-help-popover {
+      transform: none;
+    }
+  }
+  .shortcut-help-popover::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    left: auto;
+    width: 100%;
+    height: 12px;
+  }
+  .shortcut-help-section--desktop { display: none; }
+  .shortcut-help-section--mobile { display: block; }
+  @media (hover: hover) and (pointer: fine) {
+    .shortcut-help-section--desktop { display: block; }
+    .shortcut-help-section--mobile { display: none; }
+  }
+  .sh-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    direction: rtl;
+    text-align: right;
+  }
+  .sh-table-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: 12px;
+    padding: 2px 2px 8px;
+    margin-bottom: 2px;
+    border-bottom: 1px solid rgba(126, 232, 255, 0.22);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--cyan);
+    letter-spacing: 0.02em;
+  }
+  .sh-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: 12px;
+    padding: 10px 2px;
+    border-bottom: 1px solid rgba(126, 232, 255, 0.09);
+    align-items: start;
+  }
+  .sh-row:last-of-type {
+    border-bottom: none;
+    padding-bottom: 2px;
+  }
+  .sh-row.sh-click-quiz {
+    display: none;
+  }
+  body.mode-quiz .sh-row.sh-click-learn {
+    display: none;
+  }
+  body.mode-quiz .sh-row.sh-click-quiz {
+    display: grid;
+  }
+  .sh-cell-do {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.45;
+  }
+  .sh-cell-how {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--ink-dim);
+    line-height: 1.5;
+  }
+  .sh-cell-how .sh-k {
+    margin-inline-start: 3px;
+    margin-inline-end: 3px;
+    vertical-align: baseline;
+  }
+  .sh-k {
+    display: inline-block;
+    padding: 2px 7px;
+    font-size: 10px;
+    font-weight: 600;
+    font-family: ui-monospace, "Cascadia Code", "Segoe UI", sans-serif;
+    line-height: 1.35;
+    border-radius: var(--radius);
+    background: rgba(126, 232, 255, 0.09);
+    border: 1px solid rgba(126, 232, 255, 0.22);
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  body.mode-quiz .shortcut-help { top: 10px; }
+
+  .reset-btn {
+    position: absolute;
+    bottom: 8px; left: 8px;
+    width: 36px; height: 36px;
+    background: rgba(126,232,255,0.10);
+    border: 1px solid rgba(126,232,255,0.32);
+    color: var(--cyan);
+    border-radius: 50%;
+    font: inherit;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s ease, border-color .2s ease, transform .35s ease;
+    z-index: 5;
+    box-shadow: 0 4px 14px -8px rgba(0,0,0,0.6);
+  }
+  .reset-btn:hover { background: rgba(126,232,255,0.18); border-color: rgba(126,232,255,0.5); transform: rotate(-90deg); }
+  .reset-btn:active { transform: rotate(-180deg); }
+
+  /* ===== סרגל שאלה: רוחב מלא, גובה נמוך, שתי עמודות — שאלה | מה בחרת ===== */
+  .quiz-prompt.qp-bar {
+    margin: 0 8px 6px;
+    width: calc(100% - 16px);
+    max-width: none;
+    align-self: stretch;
+    display: none;
+    box-sizing: border-box;
+    border-radius: var(--radius);
+    background: rgba(8, 11, 22, 0.94);
+    border: 1px solid rgba(126, 232, 255, 0.14);
+    box-shadow: 0 3px 14px -6px rgba(0, 0, 0, 0.55);
+    overflow: visible;
+  }
+  body.mode-quiz .quiz-prompt.qp-bar {
+    display: block;
+    /* גובה קבוע אחיד; מספיק לכמה שורות של עברית+לטינית בלי לחתוך */
+    height: 124px;
+    min-height: 124px;
+    max-height: 124px;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  .qp-bar-row {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    height: 100%;
+    min-height: 0;
+  }
+  .qp-sec {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 12px 9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 4px;
+    text-align: right;
+  }
+  .qp-sec--question {
+    justify-content: center;
+  }
+  .qp-sec--picked {
+    justify-content: center;
+    min-height: 0;
+  }
+  body.mode-quiz .qp-sec--question,
+  body.mode-quiz .qp-sec--picked {
+    justify-content: flex-start;
+  }
+  .qp-sec-label {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    opacity: 0.72;
+  }
+  .qp-bar-divider {
+    flex: 0 0 1px;
+    width: 1px;
+    align-self: stretch;
+    margin: 6px 0;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      rgba(255, 255, 255, 0.11) 18%,
+      rgba(255, 255, 255, 0.11) 82%,
+      transparent
+    );
+  }
+  .qp-sec--question .qp-ask,
+  .qp-sec--picked .qp-ask {
+    margin: 0;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--ink-dim);
+    line-height: 1.2;
+  }
+  .qp-ask--silent {
+    visibility: hidden;
+  }
+  .qp-target {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    direction: rtl;
+    justify-content: flex-start;
+    gap: 4px 6px;
+    line-height: 1.2;
+    min-height: 1.3em;
+  }
+  /* שורת המטרה תופסת את הגובה הפנוי מתחת לתוויות — בלי חיתוך בשימוש רגיל */
+  body.mode-quiz .quiz-prompt.qp-bar .qp-target {
+    flex: 1 1 auto;
+    min-height: 0;
+    align-items: baseline;
+    align-content: flex-start;
+    justify-content: flex-start;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    word-break: break-word;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  body.mode-quiz .quiz-prompt.qp-bar .qp-target::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+  .qp-target-lat {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--rose-soft);
+    unicode-bidi: isolate;
+  }
+  .qp-target-dot {
+    color: var(--ink-dim);
+    opacity: 0.38;
+    font-size: 12px;
+    unicode-bidi: isolate;
+  }
+  .qp-target-heb {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    unicode-bidi: isolate;
+  }
+  .qp-target--idle .qp-target-idle {
+    color: var(--ink-soft);
+    opacity: 0.92;
+    font-size: 13px;
+    font-weight: 600;
+    unicode-bidi: isolate;
+    user-select: none;
+    pointer-events: none;
+  }
+  /* במבחן/תרגול — רק קופסת השאלה למעלה; ללא פאנל המידע התחתון */
+  body.mode-quiz .info {
+    display: none !important;
+  }
+
+  /* Search box + dropdown */
+  .search-wrap {
+    position: relative;
+    margin: 0 16px 6px;
+  }
+  .search-input {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(126,232,255,0.18);
+    border-radius: var(--radius);
+    padding: 10px 14px 10px 36px;
+    color: var(--ink);
+    font: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+  }
+  .search-input::placeholder { color: var(--ink-soft); }
+  .search-input:focus {
+    border-color: rgba(126,232,255,0.5);
+    background: rgba(255,255,255,0.06);
+    box-shadow: 0 0 0 3px rgba(126,232,255,0.12);
+  }
+  .search-icon {
+    position: absolute;
+    top: 50%; left: 12px;
+    transform: translateY(-50%);
+    width: 14px; height: 14px;
+    border: 1.6px solid var(--ink-soft);
+    border-radius: 50%;
+    pointer-events: none;
+    transition: opacity .15s ease;
+  }
+  .search-icon::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; right: -5px;
+    width: 7px; height: 1.6px;
+    background: var(--ink-soft);
+    transform: rotate(45deg);
+    border-radius: var(--radius);
+  }
+  .search-wrap.has-text .search-icon { opacity: 0; }
+  .search-clear {
+    position: absolute;
+    top: 50%; left: 5px;
+    transform: translateY(-50%);
+    width: 26px; height: 26px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 50%;
+    color: var(--ink-dim);
+    font: inherit;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: background .15s ease, color .15s ease, transform .15s ease;
+  }
+  .search-clear:hover {
+    background: rgba(255,95,143,0.14);
+    color: var(--rose-soft);
+    transform: translateY(-50%) scale(1.05);
+  }
+  .search-wrap.has-text .search-clear { display: flex; }
+  .search-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0; right: 0;
+    z-index: 20;
+    background: rgba(7,11,28,0.96);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(126,232,255,0.22);
+    border-radius: var(--radius);
+    padding: 4px;
+    max-height: 280px;
+    overflow-y: auto;
+    box-shadow: 0 18px 40px -12px rgba(0,0,0,0.7);
+    display: none;
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(126,232,255,0.35) transparent;
+  }
+  /* WebKit / Chromium */
+  .search-dropdown::-webkit-scrollbar {
+    width: 8px;
+  }
+  .search-dropdown::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 6px 0;
+  }
+  .search-dropdown::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(126,232,255,0.35), rgba(255,155,191,0.30));
+    border-radius: var(--radius);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  .search-dropdown::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(126,232,255,0.6), rgba(255,155,191,0.5));
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+  .search-wrap.open .search-dropdown { display: block; }
+  .search-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background .15s ease;
+  }
+  .search-item:hover, .search-item.active {
+    background: rgba(126,232,255,0.10);
+  }
+  .search-item .layer-pip {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 0 8px currentColor;
+  }
+  .search-item.layer-Bones .layer-pip { background: var(--bone); color: var(--bone); }
+  .search-item.layer-Muscles .layer-pip { background: var(--rose-soft); color: var(--rose-soft); }
+  .search-item.layer-Veins .layer-pip { background: var(--vein); color: var(--vein); }
+  .search-item .item-text {
+    flex: 1; min-width: 0;
+    display: flex; flex-direction: column;
+    line-height: 1.2;
+    overflow: hidden;
+  }
+  .search-item .item-primary {
+    font-size: 14px;
+    color: var(--ink);
+    direction: ltr;
+    text-align: right;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .search-item .item-secondary {
+    font-size: 12px;
+    color: var(--ink-dim);
+    margin-top: 2px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .search-item mark {
+    background: rgba(126,232,255,0.22);
+    color: var(--cyan);
+    padding: 0 2px;
+    border-radius: var(--radius);
+  }
+  .search-empty {
+    padding: 14px 12px;
+    color: var(--ink-soft);
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .feedback {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    transition: box-shadow .3s ease;
+  }
+  .feedback.correct { box-shadow: inset 0 0 0 3px var(--green), inset 0 0 80px rgba(95,255,176,0.2); }
+  .feedback.wrong { box-shadow: inset 0 0 0 3px var(--rose), inset 0 0 80px rgba(255,95,143,0.2); }
+
+  .info {
+    margin: 8px 12px max(env(safe-area-inset-bottom), 10px);
+    padding: 12px 16px;
+    background: linear-gradient(135deg, rgba(126,232,255,0.06), rgba(255,95,143,0.04));
+    border: 1px solid rgba(126,232,255,0.15);
+    border-radius: var(--radius);
+    box-sizing: border-box;
+    height: 128px;
+    min-height: 128px;
+    max-height: 128px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+    overflow: hidden;
+    transition: border-color .3s ease, background .3s ease;
+  }
+  .info.empty { opacity: 0.6; }
+  .info-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--ink-soft);
+    flex-shrink: 0;
+    align-self: center;
+    transition: background .25s ease, box-shadow .25s ease;
+  }
+  .info[data-layer="Bones"] {
+    border-color: rgba(243,233,209,0.28);
+    background: linear-gradient(135deg, rgba(243,233,209,0.08), rgba(255,255,255,0.02));
+  }
+  .info[data-layer="Bones"] .info-dot {
+    background: var(--bone);
+    box-shadow: 0 0 16px rgba(243,233,209,0.7);
+  }
+  .info[data-layer="Muscles"] {
+    border-color: rgba(255,155,191,0.32);
+    background: linear-gradient(135deg, rgba(208,64,96,0.10), rgba(255,255,255,0.02));
+  }
+  .info[data-layer="Muscles"] .info-dot {
+    background: var(--rose-soft);
+    box-shadow: 0 0 16px rgba(255,155,191,0.7);
+  }
+  .info[data-layer="Veins"] {
+    border-color: rgba(90,143,255,0.36);
+    background: linear-gradient(135deg, rgba(90,143,255,0.10), rgba(255,255,255,0.02));
+  }
+  .info[data-layer="Veins"] .info-dot {
+    background: var(--vein);
+    box-shadow: 0 0 16px rgba(90,143,255,0.7);
+  }
+  .info-text {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 3px;
+    padding: 2px 0;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(126,232,255,0.35) transparent;
+  }
+  .info.empty .info-text {
+    justify-content: center;
+    overflow-y: hidden;
+  }
+  .info .primary {
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--ink);
+    line-height: 1.15;
+    letter-spacing: 0.01em;
+    direction: ltr;
+    text-align: right;       /* in our RTL container, right = visual start */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .info.empty .primary {
+    direction: rtl;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--ink-dim);
+    white-space: normal;
+  }
+  .info .secondary {
+    font-size: 14px;
+    color: var(--cyan);
+    margin-top: 4px;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .info .desc {
+    font-size: 12.5px;
+    color: var(--ink-dim);
+    margin-top: 2px;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  .skip {
+    background: rgba(255,95,143,0.10);
+    border: 1px solid rgba(255,95,143,0.3);
+    color: var(--rose-soft);
+    border-radius: var(--radius);
+    padding: 6px 10px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    display: none;
+  }
+  body.mode-quiz .exam-progress-actions .skip { display: inline-flex; align-items: center; justify-content: center; }
+
+  /* ===== Modal overlays (history + results) ===== */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: rgba(3,5,11,0.85);
+    backdrop-filter: blur(14px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    animation: overlay-in 0.3s ease;
+  }
+  body.show-results #results-overlay { display: flex; }
+  body.show-history #history-overlay { display: flex; }
+  body.show-exam-config #exam-config-overlay { display: flex; }
+  body.show-results #results-overlay { align-items: stretch; }
+  @keyframes overlay-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .results-card {
+    width: 100%;
+    max-width: 520px;
+    max-height: 92vh;
+    overflow-y: auto;
+    background: linear-gradient(180deg, #0a1430 0%, #060a17 100%);
+    border: 1px solid rgba(126,232,255,0.22);
+    border-radius: var(--radius);
+    padding: 22px 20px max(env(safe-area-inset-bottom), 22px);
+    text-align: center;
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,0.8);
+    animation: card-in 0.4s cubic-bezier(.2,.9,.3,1.2);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(126,232,255,0.35) transparent;
+  }
+  #results-overlay .results-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .results-summary {
+    flex: 0 0 auto;
+  }
+  @keyframes card-in {
+    from { transform: translateY(20px) scale(0.96); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+  }
+  .results-emoji {
+    font-size: 48px;
+    line-height: 1;
+    margin-bottom: 6px;
+    filter: drop-shadow(0 0 18px rgba(255,95,143,0.5));
+  }
+  .results-title {
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .results-score {
+    font-weight: 800;
+    font-size: 56px;
+    line-height: 1;
+    background: linear-gradient(120deg, var(--cyan), var(--rose-soft) 60%, var(--gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 4px;
+    direction: ltr;
+  }
+  .results-sep {
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    background: none;
+    color: var(--ink-soft);
+    margin: 0 10px;
+    font-weight: 300;
+    font-size: 40px;
+    vertical-align: 4px;
+  }
+  .results-pct {
+    font-size: 14px;
+    color: var(--ink-dim);
+    margin-bottom: 6px;
+  }
+  .results-meta {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+  }
+  .mistakes-section {
+    text-align: right;
+    margin: 14px 0 18px;
+  }
+  #results-overlay .mistakes-section {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+  .mistakes-section.empty { display: none; }
+  .mistakes-title {
+    font-size: 13px;
+    color: var(--rose-soft);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .mistakes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  #results-overlay .mistakes-list {
+    max-height: 100%;
+    overflow-y: auto;
+    padding-left: 2px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(126,232,255,0.35) transparent;
+  }
+  .mistake-item {
+    background: rgba(255,95,143,0.06);
+    border: 1px solid rgba(255,95,143,0.18);
+    border-radius: var(--radius);
+    padding: 8px 12px;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .mistake-item .m-correct {
+    color: var(--green);
+    font-weight: 600;
+  }
+  .mistake-item .m-lat {
+    color: var(--ink);
+    direction: ltr;
+    text-align: right;
+    font-size: 12px;
+    opacity: 0.85;
+  }
+  .mistake-item .m-wrong {
+    color: var(--ink-soft);
+    font-size: 11px;
+    margin-top: 3px;
+  }
+  .mistake-item .m-wrong b { color: var(--rose-soft); font-weight: 500; }
+  .mistake-item .m-skipped { color: var(--ink-soft); font-size: 11px; margin-top: 3px; font-style: italic; }
+  .results-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  #results-overlay .results-actions {
+    flex: 0 0 auto;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    background: linear-gradient(180deg, rgba(6,10,23,0), #060a17 24%);
+  }
+  .results-btn { margin-top: 0; }
+
+  .confetti { position: absolute; pointer-events: none; font-size: 22px; animation: fall 1.4s ease-out forwards; }
+  @keyframes fall {
+    0% { transform: translate(0,-10px) rotate(0); opacity: 1; }
+    100% { transform: translate(var(--dx,0), 200px) rotate(var(--r,720deg)); opacity: 0; }
+  }
+  @media (max-width: 430px) {
+    .exam-progress {
+      align-items: stretch;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .exam-progress-stats,
+    .exam-progress-actions {
+      justify-content: space-between;
+    }
+    .exam-progress-actions > button {
+      flex: 1;
+      justify-content: center;
+    }
+  }
+</style>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+
+<div class="boot" id="boot">
+  <div class="boot-rings">
+    <div class="ring r1"></div>
+    <div class="ring r2"></div>
+    <div class="ring r3"></div>
+    <div class="boot-heart">💜</div>
+  </div>
+</div>
+
+<div id="app">
+  <header>
+    <a class="top-back" href="./index.html" id="back-home" aria-label="&#1495;&#1494;&#1512;&#1492; &#1500;&#1506;&#1502;&#1493;&#1491; &#1492;&#1489;&#1497;&#1514;">
+      <span class="top-back-icon">&rarr;</span>
+      <span>&#1495;&#1494;&#1512;&#1492;</span>
+    </a>
+    <div class="brand-title" aria-label="&#1513;&#1511;&#1491;">
+      <span class="brand-heart">&hearts;</span>
+      <span class="brand-name">&#1513;&#1511;&#1491;</span>
+    </div>
+    <div aria-hidden="true"></div>
+  </header>
+
+  <!-- ===== MAIN SCREEN: 3D viewer + controls ===== -->
+  <section class="screen screen-main" id="screen-main">
+    <div class="main-controls" id="main-controls">
+      <nav class="main-tabs" role="tablist">
+        <button class="m-tab active" data-tab="overview">חקירה</button>
+        <button class="m-tab" data-tab="practice">תרגול</button>
+        <button class="m-tab" data-tab="exam">מבחן</button>
+      </nav>
+      <div class="exam-progress" id="exam-progress">
+        <div class="exam-progress-stats">
+          <span class="exam-progress-item"><span class="exam-progress-label">שאלה</span> <b id="q-num">1</b><span class="exam-progress-slash"> מתוך </span><span class="exam-progress-total" id="q-total">20</span></span>
+          <span class="exam-progress-sep" aria-hidden="true"></span>
+          <span class="exam-progress-item"><span class="exam-progress-label">ניקוד</span> <b id="score-num">0</b></span>
+        </div>
+        <div class="exam-progress-actions">
+          <button class="practice-reset-btn" id="practice-reset" type="button">איפוס</button>
+          <button class="skip" id="skip">דלג ←</button>
+          <button class="header-btn back-to-overview" id="back-to-overview" aria-label="יציאה">✕ סיום</button>
+        </div>
+      </div>
+      <nav class="tabs">
+        <button class="tab active" data-limb="legs">רגל</button>
+        <button class="tab" data-limb="arms">יד</button>
+      </nav>
+      <div class="row">
+        <button class="seg-btn layer-bones on" data-layer="Bones"><span class="swatch"></span>עצמות</button>
+        <button class="seg-btn layer-muscles" data-layer="Muscles"><span class="swatch"></span>שרירים</button>
+        <button class="seg-btn layer-veins" data-layer="Veins"><span class="swatch"></span>ורידים</button>
+      </div>
+      <div class="search-wrap" id="search-wrap">
+        <span class="search-icon" aria-hidden="true"></span>
+        <input id="search-input" class="search-input" type="text" autocomplete="off" spellcheck="false"
+               placeholder="חפש מבנה — בעברית או באנגלית" />
+        <button id="search-clear" class="search-clear" aria-label="נקה">×</button>
+        <div id="search-dropdown" class="search-dropdown" role="listbox"></div>
+      </div>
+
+      <!-- Tab-specific actions, shown only on practice/exam tabs -->
+      <div class="tab-actions" data-panel="practice"></div>
+      <div class="tab-actions" data-panel="exam">
+        <div class="exam-actions-row">
+          <button class="start-btn" id="start-exam">
+            <span class="start-btn-main">התחל מבחן</span>
+            <span class="start-btn-sub">בחירת שאלות ונושאים · נשמר</span>
+          </button>
+        </div>
+        <div class="exam-inline-history">
+          <div class="exam-overview" id="exam-overview"></div>
+          <div class="history-list" id="exam-history-list">
+            <div class="history-empty">עוד אין מבחנים שמורים</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="quiz-prompt qp-bar" id="prompt">
+        <div class="qp-bar-row">
+          <section class="qp-sec qp-sec--question" aria-labelledby="qp-lbl-q">
+            <div id="qp-lbl-q" class="qp-sec-label">שאלה</div>
+            <p class="qp-ask" id="ask">איפה נמצא</p>
+            <div class="qp-target" id="target">—</div>
+          </section>
+          <div class="qp-bar-divider" aria-hidden="true"></div>
+          <section class="qp-sec qp-sec--picked" aria-labelledby="qp-lbl-p">
+            <div id="qp-lbl-p" class="qp-sec-label">מה בחרת</div>
+            <p class="qp-ask qp-ask--silent" aria-hidden="true">&#8203;</p>
+            <div class="qp-target qp-target--idle" id="picked-display">
+              <span class="qp-target-idle">יש לבחור</span>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="stage" id="stage">
+      <div class="loader" id="loader"><div class="pulse"></div>טוען מודל…</div>
+      <div class="feedback" id="feedback"></div>
+      <button class="reset-btn" id="reset-view" aria-label="אפס מיקום" title="אפס מיקום">↻</button>
+      <div class="shortcut-help" id="shortcut-help">
+        <button type="button" class="shortcut-help-btn" id="shortcut-help-btn"
+          aria-expanded="false" aria-controls="shortcut-help-popover" title="שליטה בתצוגת התלת־ממד">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2.5"/>
+            <path d="M7 9h2M11 9h2M15 9h2M7 13h4M14 13h3"/>
+          </svg>
+        </button>
+        <div class="shortcut-help-popover" id="shortcut-help-popover" role="region"
+          aria-label="שליטה בתצוגת התלת־ממד בלבד" aria-hidden="true">
+          <div class="shortcut-help-section shortcut-help-section--desktop">
+            <div class="sh-table">
+              <div class="sh-table-head">
+                <span>מה זה נותן</span>
+                <span>מה לעשות (על התצוגה)</span>
+              </div>
+              <div class="sh-row">
+                <div class="sh-cell-do">סיבוב המודל סביב צירים</div>
+                <div class="sh-cell-how">גרירה בזמן שלחצן העכבר <kbd class="sh-k">שמאלי</kbd> לחוץ</div>
+              </div>
+              <div class="sh-row">
+                <div class="sh-cell-do">הזזת זווית התצוגה (למעלה / למטה / צדדים)</div>
+                <div class="sh-cell-how">
+                  <kbd class="sh-k">Ctrl</kbd><span>/</span><kbd class="sh-k">⌘</kbd>
+                  <span>+ גרירה עם שמאלי, או גרירה עם</span>
+                  <kbd class="sh-k">ימני</kbd>
+                  <span>(בלי Ctrl)</span>
+                </div>
+              </div>
+              <div class="sh-row">
+                <div class="sh-cell-do">זום פנימה והחוצה</div>
+                <div class="sh-cell-how">
+                  <span>גלילת</span> <kbd class="sh-k">גלגלת</kbd>
+                  <span>· או לחיצה על</span> <kbd class="sh-k">גלגלת אמצעית</kbd> <span>ואז גרירה</span>
+                </div>
+              </div>
+              <div class="sh-row sh-click-learn">
+                <div class="sh-cell-do">שם בעברית / לטינית של חלק במודל</div>
+                <div class="sh-cell-how"><kbd class="sh-k">לחיצה</kbd> <span>על אותו חלק בתלת־ממד</span></div>
+              </div>
+              <div class="sh-row sh-click-quiz">
+                <div class="sh-cell-do">עונים על שאלת התרגול או המבחן</div>
+                <div class="sh-cell-how"><kbd class="sh-k">לחיצה</kbd> <span>על החלק הנכון במודל — לא חקירת שמות כמו במצב «חקירה»</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="shortcut-help-section shortcut-help-section--mobile">
+            <div class="sh-table">
+              <div class="sh-table-head">
+                <span>מה זה נותן</span>
+                <span>מה לעשות (מגע)</span>
+              </div>
+              <div class="sh-row">
+                <div class="sh-cell-do">סיבוב המודל</div>
+                <div class="sh-cell-how">גרירה עם <strong>אצבע אחת</strong> על המודל</div>
+              </div>
+              <div class="sh-row">
+                <div class="sh-cell-do">זום והזזת התצוגה</div>
+                <div class="sh-cell-how"><strong>שתי אצבעות</strong> — צביטה לזום, גרירה להזזה</div>
+              </div>
+              <div class="sh-row sh-click-learn">
+                <div class="sh-cell-do">שם המבנה (חקירה בלבד)</div>
+                <div class="sh-cell-how"><kbd class="sh-k">לחיצה</kbd> <span>על חלק במודל</span></div>
+              </div>
+              <div class="sh-row sh-click-quiz">
+                <div class="sh-cell-do">עונים על השאלה (תרגול / מבחן פעיל)</div>
+                <div class="sh-cell-how"><kbd class="sh-k">לחיצה</kbd> <span>על החלק הנכון — לא את כרטיס השם של חקירה</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="reveal-pointer" class="reveal-pointer" hidden>
+        <div class="reveal-pointer-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 46" width="26" height="50" focusable="false">
+            <defs>
+              <linearGradient id="reveal-arrow-fill" x1="12" y1="0" x2="12" y2="46" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#9dffcf"/>
+                <stop offset="100%" stop-color="#6ae8ff"/>
+              </linearGradient>
+            </defs>
+            <!-- Top vertex (12,0) = mesh anchor; rotates around it to redirect into stage. -->
+            <path d="M12 0L20 14h-5v32H9V14H4L12 0z" fill="url(#reveal-arrow-fill)" stroke="rgba(255,255,255,0.92)" stroke-width="1.1" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="reveal-pointer-label-wrap">
+          <span class="reveal-pointer-label">כאן התשובה</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="info empty" id="info">
+      <div class="info-dot"></div>
+      <div class="info-text">
+        <div class="primary" id="info-primary">לחץ על מבנה כדי לראות את שמו</div>
+        <div class="secondary" id="info-secondary"></div>
+        <div class="desc" id="info-desc"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXAM CONFIG OVERLAY ===== -->
+  <div class="modal-overlay" id="exam-config-overlay">
+    <div class="results-card">
+      <div class="results-title">הגדרת מבחן</div>
+      <div class="exam-config-grid">
+        <div class="exam-config-group">
+          <div class="exam-config-label">כמה שאלות?</div>
+          <div class="exam-choice-row">
+            <label class="exam-choice"><input type="radio" name="exam-count" value="10"><span>10</span></label>
+            <label class="exam-choice"><input type="radio" name="exam-count" value="20" checked><span>20</span></label>
+            <label class="exam-choice"><input type="radio" name="exam-count" value="30"><span>30</span></label>
+          </div>
+        </div>
+        <div class="exam-config-group">
+          <div class="exam-config-label">איזה אזור?</div>
+          <div class="exam-choice-row">
+            <label class="exam-choice"><input type="radio" name="exam-limb" value="legs" checked><span>רגל</span></label>
+            <label class="exam-choice"><input type="radio" name="exam-limb" value="arms"><span>יד</span></label>
+          </div>
+        </div>
+        <div class="exam-config-group">
+          <div class="exam-config-label">באיזה נושאים?</div>
+          <div class="exam-choice-row">
+            <label class="exam-choice"><input type="checkbox" name="exam-topic" value="Bones" checked><span>עצמות</span></label>
+            <label class="exam-choice"><input type="checkbox" name="exam-topic" value="Muscles"><span>שרירים</span></label>
+            <label class="exam-choice"><input type="checkbox" name="exam-topic" value="Veins"><span>ורידים</span></label>
+          </div>
+        </div>
+        <div class="exam-config-error" id="exam-config-error"></div>
+      </div>
+      <div class="results-actions">
+        <button class="start-btn results-btn" id="exam-config-start">התחל</button>
+        <button class="learn-link" id="exam-config-close">ביטול</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== HISTORY OVERLAY ===== -->
+  <div class="modal-overlay" id="history-overlay">
+    <div class="results-card">
+      <div class="results-title">היסטוריית מבחנים</div>
+      <div class="history-list" id="history-list">
+        <div class="history-empty">עוד אין מבחנים שמורים</div>
+      </div>
+      <div class="results-actions">
+        <button class="learn-link" id="history-clear" hidden>נקה הכל</button>
+        <button class="learn-link" id="history-close">סגור</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== RESULTS OVERLAY ===== -->
+  <div class="modal-overlay" id="results-overlay">
+    <div class="results-card">
+      <div class="results-summary">
+        <div class="results-emoji" id="results-emoji">🎉</div>
+        <div class="results-title" id="results-title">סיימת!</div>
+        <div class="results-score">
+          <span id="r-score">0</span><span class="results-sep">/</span><span id="r-total">20</span>
+        </div>
+        <div class="results-pct" id="r-pct">0%</div>
+        <div class="results-meta" id="r-meta"></div>
+      </div>
+
+      <div class="mistakes-section" id="r-mistakes-section">
+        <div class="mistakes-title">טעויות (<span id="r-mistakes-count">0</span>)</div>
+        <div class="mistakes-list" id="r-mistakes-list"></div>
+      </div>
+
+      <div class="results-actions">
+        <button class="start-btn results-btn" id="results-again">מבחן נוסף</button>
+        <button class="learn-link" id="results-back">חזרה</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+// =====================================================================
+// Dictionary: original glTF node name -> { heb, lat, desc? }
+// Layer is derived from the GLB's top-level group at runtime.
+// Items not in this dict still get clicked; they show their Latin name.
+// =====================================================================
+const STRUCTURES = {
+  // ===== LEG BONES =====
+  'Femur.r':                              { heb: 'עצם הירך', lat: 'Femur', desc: 'העצם הארוכה והחזקה ביותר בגוף' },
+  'Patella.r':                            { heb: 'פיקת הברך', lat: 'Patella', desc: 'עצם שומשמית שמגנה על מפרק הברך' },
+  'Tibia.r':                              { heb: 'עצם השוק', lat: 'Tibia', desc: 'הרחבה והפנימית מבין שתי עצמות השוק' },
+  'Fibula.r':                             { heb: 'השוקית', lat: 'Fibula', desc: 'הדקה והחיצונית מבין עצמות השוק' },
+  'Talus.r':                              { heb: 'טאלוס', lat: 'Talus', desc: 'מתחבר לעצם השוק ויוצר את מפרק הקרסול' },
+  'Calcaneus.r':                          { heb: 'עצם העקב', lat: 'Calcaneus', desc: 'העצם הגדולה ביותר בכף הרגל' },
+  'Navicular bone.r':                     { heb: 'העצם הסירתית', lat: 'Os naviculare' },
+  'Cuboid bone.r':                        { heb: 'העצם הקובית', lat: 'Os cuboideum' },
+  'Medial cuneiform bone.r':              { heb: 'הטריזית הפנימית', lat: 'Os cuneiforme mediale' },
+  'Intermediate cuneiform bone.r':        { heb: 'הטריזית האמצעית', lat: 'Os cuneiforme intermedium' },
+  'Lateral cuneiform bone.r':             { heb: 'הטריזית הצדית', lat: 'Os cuneiforme laterale' },
+  'First metatarsal bone.r':              { heb: 'מטטרסל I', lat: '1st Metatarsal' },
+  'Second metatarsal bone.r':             { heb: 'מטטרסל II', lat: '2nd Metatarsal' },
+  'Third metatarsal bone.r':              { heb: 'מטטרסל III', lat: '3rd Metatarsal' },
+  'Fourth metatarsal bone.r':             { heb: 'מטטרסל IV', lat: '4th Metatarsal' },
+  'Fifth metatarsal bone.r':              { heb: 'מטטרסל V', lat: '5th Metatarsal' },
+  'Sesamoid bones of foot.r':             { heb: 'עצמות שומשמיות', lat: 'Ossa sesamoidea' },
+
+  // ===== FEMUR LANDMARKS =====
+  'Head of femur.r':                       { heb: 'ראש עצם הירך', lat: 'Caput femoris', desc: 'מתחבר לאצטבולום ויוצר את מפרק הירך' },
+  'Neck of femur.r':                       { heb: 'צוואר עצם הירך', lat: 'Collum femoris', desc: 'אזור פגיע לשברים, במיוחד בקשישים' },
+  'Greater trochanter.r':                  { heb: 'הטרוכנטר הגדול', lat: 'Trochanter major', desc: 'נקודת אחיזה לשרירי האליות והמסובבים' },
+  'Lesser trochanter.r':                   { heb: 'הטרוכנטר הקטן', lat: 'Trochanter minor', desc: 'נקודת אחיזה לשריר האיליופסואס' },
+  'Trochanteric fossa.r':                  { heb: 'הגומה הטרוכנטרית', lat: 'Fossa trochanterica' },
+  'Intertrochanteric crest.r':             { heb: 'הציצה הבין-טרוכנטרית', lat: 'Crista intertrochanterica' },
+  'Intertrochanteric line.r':              { heb: 'הקו הבין-טרוכנטרי', lat: 'Linea intertrochanterica' },
+  'Linea aspera.r':                        { heb: 'הקו המחוספס', lat: 'Linea aspera', desc: 'רכס לאורך החלק האחורי של גוף עצם הירך' },
+  'Pectineal line of femur.r':             { heb: 'הקו המסרקי', lat: 'Linea pectinea' },
+  'Gluteal tuberosity.r':                  { heb: 'הגבשושית האלייתית', lat: 'Tuberositas glutea' },
+  'Adductor tubercle.r':                   { heb: 'הזיז המקרב', lat: 'Tuberculum adductorium', desc: 'נקודת אחיזת גיד המקרב הגדול' },
+  'Medial condyle of femur.r':             { heb: 'הרכס הפנימי של עצם הירך', lat: 'Condylus medialis femoris' },
+  'Medial epicondyle of femur.r':          { heb: 'הרכסון הפנימי של עצם הירך', lat: 'Epicondylus medialis femoris' },
+  'Lateral condyle of femur.r':            { heb: 'הרכס הצדי של עצם הירך', lat: 'Condylus lateralis femoris' },
+  'Lateral epicondyle of femur.r':         { heb: 'הרכסון הצדי של עצם הירך', lat: 'Epicondylus lateralis femoris' },
+  'Patellar surface of femur.r':           { heb: 'השטח הפיקתי של עצם הירך', lat: 'Facies patellaris' },
+  'Intercondylar fossa.r':                 { heb: 'הגומה הבין-רכסית', lat: 'Fossa intercondylaris' },
+  'Popliteal surface of femur.r':          { heb: 'השטח הפופליטאי', lat: 'Facies poplitea' },
+  'Fovea for ligament of head of femur.r': { heb: 'הפובאה של ראש עצם הירך', lat: 'Fovea capitis femoris' },
+
+  // Tibia / fibula / foot landmarks
+  'Hip bone.r':                            { heb: 'עצם האגן', lat: 'Os coxae' },
+  'Medial condyle of tibia.r':             { heb: 'הרכס הפנימי של השוקה', lat: 'Condylus medialis tibiae' },
+  'Lateral condyle of tibia.r':            { heb: 'הרכס הצדי של השוקה', lat: 'Condylus lateralis tibiae' },
+  'Tibial tuberosity.r':                   { heb: 'הגבשושית השוקתית', lat: 'Tuberositas tibiae', desc: 'נקודת אחיזה לגיד הפיקה' },
+  'Medial malleolus.r':                    { heb: 'הקרסול הפנימי', lat: 'Malleolus medialis' },
+  'Anterior border of tibia.r':            { heb: 'השפה הקדמית של השוקה', lat: 'Margo anterior tibiae' },
+  'Head of fibula.r':                      { heb: 'ראש השוקית', lat: 'Caput fibulae' },
+  'Lateral malleolus.r':                   { heb: 'הקרסול הצדי', lat: 'Malleolus lateralis' },
+  'Calcaneal tuberosity.r':                { heb: 'גבשושית עצם העקב', lat: 'Tuber calcanei' },
+
+  // ===== ARM BONE LANDMARKS =====
+  'Head of humerus.r':                     { heb: 'ראש עצם הזרוע', lat: 'Caput humeri' },
+  'Anatomical neck of humerus.r':          { heb: 'הצוואר האנטומי', lat: 'Collum anatomicum' },
+  'Surgical neck of humerus.r':            { heb: 'הצוואר הניתוחי', lat: 'Collum chirurgicum', desc: 'אזור פגיע במיוחד לשברים' },
+  'Greater tubercle.r':                    { heb: 'הזיז הגדול', lat: 'Tuberculum majus' },
+  'Lesser tubercle.r':                     { heb: 'הזיז הקטן', lat: 'Tuberculum minus' },
+  'Crest of greater tubercle.r':           { heb: 'ציצת הזיז הגדול', lat: 'Crista tuberculi majoris' },
+  'Crest of lesser tubercle.r':            { heb: 'ציצת הזיז הקטן', lat: 'Crista tuberculi minoris' },
+  'Deltoid tuberosity.r':                  { heb: 'הגבשושית הדלתואידית', lat: 'Tuberositas deltoidea' },
+  'Olecranon fossa.r':                     { heb: 'הגומה האולקרנית', lat: 'Fossa olecrani' },
+  'Coronoid fossa.r':                      { heb: 'הגומה הקורונואידית', lat: 'Fossa coronoidea' },
+  'Radial fossa.r':                        { heb: 'הגומה החישורית', lat: 'Fossa radialis' },
+  'Medial epicondyle of humerus.r':        { heb: 'הרכסון הפנימי של עצם הזרוע', lat: 'Epicondylus medialis humeri' },
+  'Lateral epicondyle of humerus.r':       { heb: 'הרכסון הצדי של עצם הזרוע', lat: 'Epicondylus lateralis humeri' },
+  'Trochlea of humerus.r':                 { heb: 'הגלגלת', lat: 'Trochlea humeri' },
+  'Capitulum of humerus.r':                { heb: 'ההסעפה', lat: 'Capitulum humeri' },
+  'Olecranon.r':                           { heb: 'האולקרנון', lat: 'Olecranon', desc: 'הבליטה האחורית של עצם הגומד במרפק' },
+  'Coronoid process of ulna.r':            { heb: 'הזיז הקורונואידי של הגומד', lat: 'Processus coronoideus ulnae' },
+  'Trochlear notch.r':                     { heb: 'החריץ הגלגלתי', lat: 'Incisura trochlearis' },
+  'Tuberosity of ulna.r':                  { heb: 'גבשושית הגומד', lat: 'Tuberositas ulnae' },
+  'Head of ulna.r':                        { heb: 'ראש הגומד', lat: 'Caput ulnae' },
+  'Head of radius.r':                      { heb: 'ראש החישור', lat: 'Caput radii' },
+  'Neck of radius.r':                      { heb: 'צוואר החישור', lat: 'Collum radii' },
+  'Dorsal radial tubercle.r':              { heb: 'הזיז הגבי של החישור', lat: 'Tuberculum dorsale radii' },
+  'Acromion.r':                            { heb: 'האקרומיון', lat: 'Acromion', desc: 'הזיז הגרמי של השכמה שניתן לחוש בכתף' },
+  'Coracoid process.r':                    { heb: 'הזיז העורבי', lat: 'Processus coracoideus' },
+  'Spine of scapula.r':                    { heb: 'השדרה של השכמה', lat: 'Spina scapulae' },
+  'Supraspinous fossa.r':                  { heb: 'הגומה העל-שדרתית', lat: 'Fossa supraspinata' },
+  'Infraspinous fossa.r':                  { heb: 'הגומה התת-שדרתית', lat: 'Fossa infraspinata' },
+  'Subscapular fossa.r':                   { heb: 'הגומה התת-שכמית', lat: 'Fossa subscapularis' },
+  'Sternal end.r':                         { heb: 'הקצה החזי של עצם הבריח', lat: 'Extremitas sternalis claviculae' },
+  'Acromial end.r':                        { heb: 'הקצה האקרומיוני של עצם הבריח', lat: 'Extremitas acromialis claviculae' },
+  'Scapula.r':                             { heb: 'השכמה', lat: 'Scapula' },
+  'Clavicle.r':                            { heb: 'עצם הבריח', lat: 'Clavicula' },
+
+  // ===== ROTATOR CUFF & EXTRA ARM MUSCLES (added by Z-Anatomy) =====
+  'Supraspinatus muscle.r':                { heb: 'העל-שדרתי', lat: 'Supraspinatus', desc: 'משריר שרוול הסובבים' },
+  'Infraspinatus muscle.r':                { heb: 'התת-שדרתי', lat: 'Infraspinatus', desc: 'משריר שרוול הסובבים' },
+  'Subscapularis muscle.r':                { heb: 'התת-שכמי', lat: 'Subscapularis', desc: 'משריר שרוול הסובבים' },
+  'Teres minor muscle.r':                  { heb: 'העגול הקטן', lat: 'Teres minor', desc: 'משריר שרוול הסובבים' },
+  'Teres major muscle.r':                  { heb: 'העגול הגדול', lat: 'Teres major' },
+  'Acromial part of deltoid muscle.r':     { heb: 'הדלתואיד · חלק אקרומיוני', lat: 'Deltoideus (acromial)' },
+  'Clavicular part of deltoid muscle.r':   { heb: 'הדלתואיד · חלק בריחי', lat: 'Deltoideus (clavicular)' },
+  'Scapular spinal part of deltoid muscle.r': { heb: 'הדלתואיד · חלק שדרת השכמה', lat: 'Deltoideus (spinal)' },
+
+  // ===== LEG MUSCLES =====
+  'Rectus femoris.r':                  { heb: 'הראש הישר של הארבע-ראשי', lat: 'Rectus femoris' },
+  'Vastus lateralis muscle.r':         { heb: 'הראש הצדי של הארבע-ראשי', lat: 'Vastus lateralis' },
+  'Vastus medialis muscle.r':          { heb: 'הראש הפנימי של הארבע-ראשי', lat: 'Vastus medialis' },
+  'Vastus intermedius muscle.r':       { heb: 'הראש האמצעי של הארבע-ראשי', lat: 'Vastus intermedius' },
+  'Long head of biceps femoris.r':     { heb: 'דו-ראשי הירך · ראש ארוך', lat: 'Biceps femoris (long head)' },
+  'Short head of biceps femoris.r':    { heb: 'דו-ראשי הירך · ראש קצר', lat: 'Biceps femoris (short head)' },
+  'Semitendinosus muscle.r':           { heb: 'חצי-גידי', lat: 'Semitendinosus' },
+  'Semimembranosus muscle.r':          { heb: 'חצי-קרומי', lat: 'Semimembranosus' },
+  'Sartorius muscle.r':                { heb: 'שריר החייט', lat: 'Sartorius', desc: 'השריר הארוך ביותר בגוף' },
+  'Gracilis muscle.r':                 { heb: 'השריר הדק', lat: 'Gracilis' },
+  'Adductor longus.r':                 { heb: 'מקרב ארוך', lat: 'Adductor longus' },
+  'Adductor brevis.r':                 { heb: 'מקרב קצר', lat: 'Adductor brevis' },
+  'Adductor magnus.r':                 { heb: 'מקרב גדול', lat: 'Adductor magnus' },
+  'Pectineus muscle.r':                { heb: 'שריר המסרק', lat: 'Pectineus' },
+  'Gluteus maximus muscle.r':          { heb: 'אליות גדול', lat: 'Gluteus maximus' },
+  'Gluteus medius muscle.r':           { heb: 'אליות אמצעי', lat: 'Gluteus medius' },
+  'Gluteus minimus muscle.r':          { heb: 'אליות קטן', lat: 'Gluteus minimus' },
+  'Tensor fasciae latae.r':            { heb: 'מותח הפסיה הרחבה', lat: 'Tensor fasciae latae' },
+  'Iliacus muscle.r':                  { heb: 'איליאקוס', lat: 'Iliacus' },
+  'Psoas major.r':                     { heb: 'פסואס מייג׳ור', lat: 'Psoas major' },
+  'Psoas minor.r':                     { heb: 'פסואס מינור', lat: 'Psoas minor' },
+  'Piriformis muscle.r':               { heb: 'פיריפורמיס', lat: 'Piriformis' },
+  'Quadratus femoris muscle.r':        { heb: 'ריבועי הירך', lat: 'Quadratus femoris' },
+  'Obturator externus.r':              { heb: 'הסותם החיצוני', lat: 'Obturator externus' },
+  'Obturator internus.r':              { heb: 'הסותם הפנימי', lat: 'Obturator internus' },
+  'Superior gemellus muscle.r':        { heb: 'תאומי עליון', lat: 'Gemellus superior' },
+  'Inferior gemellus muscle.r':        { heb: 'תאומי תחתון', lat: 'Gemellus inferior' },
+  'Lateral head of gastrocnemius.r':   { heb: 'תאומי שוק · ראש צדי', lat: 'Gastrocnemius (lateral head)' },
+  'Medial head of gastrocnemius.r':    { heb: 'תאומי שוק · ראש פנימי', lat: 'Gastrocnemius (medial head)' },
+  'Soleus muscle.r':                   { heb: 'שריר הסוליה', lat: 'Soleus' },
+  'Plantaris muscle.r':                { heb: 'פלנטריס', lat: 'Plantaris' },
+  'Tibialis anterior muscle.r':        { heb: 'שוקתי קדמי', lat: 'Tibialis anterior' },
+  'Tibialis posterior muscle.r':       { heb: 'שוקתי אחורי', lat: 'Tibialis posterior' },
+  'Fibularis longus muscle.r':         { heb: 'שוקיתי ארוך', lat: 'Fibularis longus' },
+  'Fibularis brevis muscle.r':         { heb: 'שוקיתי קצר', lat: 'Fibularis brevis' },
+  'Fibularis tertius muscle.r':        { heb: 'שוקיתי שלישוני', lat: 'Fibularis tertius' },
+  'Popliteus muscle.r':                { heb: 'פופליטאוס', lat: 'Popliteus' },
+  'Extensor digitorum longus.r':       { heb: 'יישרן הבהונות הארוך', lat: 'Extensor digitorum longus' },
+  'Extensor hallucis longus.r':        { heb: 'יישרן הבוהן הארוך', lat: 'Extensor hallucis longus' },
+  'Flexor digitorum longus.r':         { heb: 'כופפן הבהונות הארוך', lat: 'Flexor digitorum longus' },
+  'Flexor hallucis longus.r':          { heb: 'כופפן הבוהן הארוך', lat: 'Flexor hallucis longus' },
+
+  // ===== LEG VEINS =====
+  'Great saphenous vein.r':            { heb: 'הוריד הספני הגדול', lat: 'V. saphena magna', desc: 'הוריד הארוך ביותר בגוף' },
+  'Small saphenous vein.r':            { heb: 'הוריד הספני הקטן', lat: 'V. saphena parva' },
+  'Femoral vein.r':                    { heb: 'הוריד הירכי', lat: 'V. femoralis' },
+  'Deep femoral vein.r':               { heb: 'הוריד הירכי העמוק', lat: 'V. femoralis profunda' },
+  'Popliteal vein.r':                  { heb: 'הוריד הברכי', lat: 'V. poplitea' },
+  'Anterior tibial vein.r':            { heb: 'הוריד השוקתי הקדמי', lat: 'V. tibialis anterior' },
+  'Posterior tibial vein.r':           { heb: 'הוריד השוקתי האחורי', lat: 'V. tibialis posterior' },
+  'Fibular vein.r':                    { heb: 'הוריד השוקיתי', lat: 'V. fibularis' },
+  'Accessory saphenous vein.r':        { heb: 'הוריד הספני הנלווה', lat: 'V. saphena accessoria' },
+  'Lateral marginal vein.r':           { heb: 'הוריד השולי הצדי', lat: 'V. marginalis lateralis' },
+  'Medial marginal vein.r':            { heb: 'הוריד השולי הפנימי', lat: 'V. marginalis medialis' },
+  'Dorsal venous arch of foot.r':      { heb: 'קשת ורידית גבית של כף הרגל', lat: 'Arcus venosus dorsalis pedis' },
+
+  // ===== ARM BONES =====
+  'Humerus.r':                  { heb: 'עצם הזרוע', lat: 'Humerus', desc: 'העצם הארוכה של הזרוע, מהכתף עד המרפק' },
+  'Radius.r':                   { heb: 'עצם החישור', lat: 'Radius', desc: 'בצד האגודל של האמה' },
+  'Ulna.r':                     { heb: 'עצם הגומד', lat: 'Ulna', desc: 'בצד הזרת של האמה' },
+  'Scaphoid.r':                 { heb: 'סקפואיד · העצם הסירתית', lat: 'Os scaphoideum', desc: 'הקרפאל הנשבר ביותר בנפילה על יד פשוטה' },
+  'Lunate bone.r':              { heb: 'לונאט · העצם הסהרונית', lat: 'Os lunatum' },
+  'Triquetrum.r':               { heb: 'טריקטרום · העצם המשולשת', lat: 'Os triquetrum' },
+  'Pisiform.r':                 { heb: 'פיסיפורם · העצם האפונית', lat: 'Os pisiforme' },
+  'Trapezium.r':                { heb: 'טרפזיום', lat: 'Os trapezium' },
+  'Trapezoid.r':                { heb: 'טרפזואיד', lat: 'Os trapezoideum' },
+  'Capitate.r':                 { heb: 'קפיטאט · העצם הראשית', lat: 'Os capitatum', desc: 'הקרפאל הגדול ביותר' },
+  'Hamate.r':                   { heb: 'המאט · העצם דמוית הוו', lat: 'Os hamatum' },
+  '1st metacarpal bone.r':      { heb: 'מטקרפל I', lat: '1st Metacarpal' },
+  '2nd metacarpal bone.r':      { heb: 'מטקרפל II', lat: '2nd Metacarpal' },
+  '3rd metacarpal bone.r':      { heb: 'מטקרפל III', lat: '3rd Metacarpal' },
+  '4th metacarpal bone.r':      { heb: 'מטקרפל IV', lat: '4th Metacarpal' },
+  '5th metacarpal bone.r':      { heb: 'מטקרפל V', lat: '5th Metacarpal' },
+  'Sesamoid bones of hand.r':   { heb: 'עצמות שומשמיות', lat: 'Ossa sesamoidea' },
+
+  // ===== ARM MUSCLES =====
+  'Long head of biceps brachii.r':       { heb: 'דו-ראשי הזרוע · ראש ארוך', lat: 'Biceps brachii (long head)' },
+  'Short head of biceps brachii.r':      { heb: 'דו-ראשי הזרוע · ראש קצר', lat: 'Biceps brachii (short head)' },
+  'Long head of triceps brachii.r':      { heb: 'תלת-ראשי · ראש ארוך', lat: 'Triceps brachii (long head)' },
+  'Lateral head of triceps brachii.r':   { heb: 'תלת-ראשי · ראש צדי', lat: 'Triceps brachii (lateral head)' },
+  'Medial head of triceps brachii.r':    { heb: 'תלת-ראשי · ראש פנימי', lat: 'Triceps brachii (medial head)' },
+  'Brachialis muscle.r':                 { heb: 'ברקיאליס', lat: 'Brachialis' },
+  'Coracobrachialis muscle.r':           { heb: 'קורקובראקיאליס', lat: 'Coracobrachialis' },
+  'Brachioradialis muscle.r':            { heb: 'ברקיורדיאליס', lat: 'Brachioradialis' },
+  'Anconeus muscle.r':                   { heb: 'אנקונאוס', lat: 'Anconeus' },
+  'Supinator.r':                         { heb: 'סופינטור (מוסבן)', lat: 'Supinator' },
+  'Pronator quadratus.r':                { heb: 'פרונטור ריבועי', lat: 'Pronator quadratus' },
+  'Humeral head of pronator teres.r':    { heb: 'פרונטור טרס · ראש זרועי', lat: 'Pronator teres (humeral head)' },
+  'Ulnar head of pronator teres.r':      { heb: 'פרונטור טרס · ראש גומדי', lat: 'Pronator teres (ulnar head)' },
+  'Flexor carpi radialis.r':             { heb: 'כופף שורש היד החישורי', lat: 'Flexor carpi radialis' },
+  'Palmaris longus muscle.r':            { heb: 'כפי ארוך', lat: 'Palmaris longus' },
+  'Humeral head of flexor carpi ulnaris.r': { heb: 'כופף שורש היד הגומדי · ראש זרועי', lat: 'Flexor carpi ulnaris (humeral head)' },
+  'Ulnar head of flexor carpi ulnaris.r':   { heb: 'כופף שורש היד הגומדי · ראש גומדי', lat: 'Flexor carpi ulnaris (ulnar head)' },
+  'Flexor digitorum superficialis humero-ulnar head.r': { heb: 'כופפן אצבעות שטחי · ראש זרועי-גומדי', lat: 'Flexor digitorum superficialis (humero-ulnar head)' },
+  'Flexor digitorum superficialis radial head.r':       { heb: 'כופפן אצבעות שטחי · ראש חישורי', lat: 'Flexor digitorum superficialis (radial head)' },
+  'Flexor digitorum profundus.r':        { heb: 'כופפן אצבעות עמוק', lat: 'Flexor digitorum profundus' },
+  'Flexor pollicis longus.r':            { heb: 'כופפן האגודל הארוך', lat: 'Flexor pollicis longus' },
+  'Extensor carpi radialis longus.r':    { heb: 'יישרן שורש היד החישורי הארוך', lat: 'Extensor carpi radialis longus' },
+  'Extensor carpi radialis brevis.r':    { heb: 'יישרן שורש היד החישורי הקצר', lat: 'Extensor carpi radialis brevis' },
+  'Humeral head of extensor carpi ulnaris.r': { heb: 'יישרן שורש היד הגומדי · ראש זרועי', lat: 'Extensor carpi ulnaris (humeral head)' },
+  'Ulnar head of extensor carpi ulnaris.r':   { heb: 'יישרן שורש היד הגומדי · ראש גומדי', lat: 'Extensor carpi ulnaris (ulnar head)' },
+  'Extensor digitorum.r':                { heb: 'יישרן האצבעות', lat: 'Extensor digitorum' },
+  'Extensor digiti minimi.r':            { heb: 'יישרן הזרת', lat: 'Extensor digiti minimi' },
+  'Extensor indicis.r':                  { heb: 'יישרן האצבע המורה', lat: 'Extensor indicis' },
+  'Extensor pollicis longus.r':          { heb: 'יישרן האגודל הארוך', lat: 'Extensor pollicis longus' },
+  'Extensor pollicis brevis.r':          { heb: 'יישרן האגודל הקצר', lat: 'Extensor pollicis brevis' },
+  'Abductor pollicis longus.r':          { heb: 'מרחיק האגודל הארוך', lat: 'Abductor pollicis longus' },
+  'Abductor pollicis brevis.r':          { heb: 'מרחיק האגודל הקצר', lat: 'Abductor pollicis brevis' },
+  'Adductor pollicis.r':                 { heb: 'מקרב האגודל', lat: 'Adductor pollicis' },
+  'Opponens pollicis muscle.r':          { heb: 'מנגיד האגודל', lat: 'Opponens pollicis' },
+  'Abductor digiti minimi.r':            { heb: 'מרחיק הזרת', lat: 'Abductor digiti minimi' },
+  'Opponens digiti minimi muscle of hand.r': { heb: 'מנגיד הזרת', lat: 'Opponens digiti minimi' },
+  'Palmaris brevis muscle.r':            { heb: 'כפי קצר', lat: 'Palmaris brevis' },
+
+  // ===== ARM VEINS =====
+  'Arm superficial vein-Cephalic vein.r':           { heb: 'הוריד הצפלי', lat: 'V. cephalica', desc: 'בצד החישור (האגודל) של הזרוע' },
+  'Arm superficial vein-Basilic vein.r':            { heb: 'הוריד הבזילי', lat: 'V. basilica', desc: 'בצד הגומד (הזרת) של הזרוע' },
+  'Arm superficial vein-Median cubital vein.r':     { heb: 'הוריד המרפקי האמצעי', lat: 'V. mediana cubiti', desc: 'אתר נטילת דם נפוץ' },
+  'Arm superficial vein-Median antebrachial vein.r':{ heb: 'הוריד האמתי האמצעי', lat: 'V. mediana antebrachii' },
+  'Axillary vein.r':                                { heb: 'הוריד הבית-שחי', lat: 'V. axillaris' },
+  'Deep veins of the arm.r':                        { heb: 'ורידים עמוקים של הזרוע', lat: 'Vv. brachiales' },
+  'Radial veins.r':                                 { heb: 'הוריד החישורי', lat: 'V. radialis' },
+  'Ulnar veins.r':                                  { heb: 'הוריד הגומדי', lat: 'V. ulnaris' },
+  'Anterior interosseous veins.r':                  { heb: 'הוריד הבין-עצמי הקדמי', lat: 'V. interossea anterior' },
+  'Posterior interosseous veins.r':                 { heb: 'הוריד הבין-עצמי האחורי', lat: 'V. interossea posterior' },
+};
+
+// Sanitize per Three.js GLTFLoader: spaces -> _, [].:/ removed
+function sanitize(n) { return n.replace(/\s/g, '_').replace(/[\[\]\.:\/]/g, ''); }
+const SANITIZED_TO_ORIG = {};
+for (const k of Object.keys(STRUCTURES)) SANITIZED_TO_ORIG[sanitize(k)] = k;
+
+const LAYER_COLORS = {
+  Bones:   { color: 0xf3e9d1, roughness: 0.55, metalness: 0.0, opacity: 1.0 },
+  Muscles: { color: 0xc83a52, roughness: 0.5,  metalness: 0.0, opacity: 0.92 },
+  Veins:   { color: 0x4a78ff, roughness: 0.4,  metalness: 0.0, opacity: 0.95 },
+};
+const LAYER_LABELS = { Bones: 'עצם', Muscles: 'שריר', Veins: 'וריד' };
+
+// =====================================================================
+// Three.js setup
+// =====================================================================
+const stage = document.getElementById('stage');
+const loader = document.getElementById('loader');
+const feedbackEl = document.getElementById('feedback');
+const revealPointerEl = document.getElementById('reveal-pointer');
+let revealPointerPick = null;
+let revealPointerRunId = null;
+const _revealProj = new THREE.Vector3();
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+stage.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(40, 1, 0.05, 100);
+camera.position.set(0, 0.4, 1.6);
+
+scene.add(new THREE.AmbientLight(0x4a6080, 0.45));
+const key  = new THREE.DirectionalLight(0xfff2dc, 1.5); key.position.set(2, 3, 2); scene.add(key);
+const fill = new THREE.DirectionalLight(0x88c8ff, 0.6); fill.position.set(-2, 1, -1); scene.add(fill);
+const rim  = new THREE.DirectionalLight(0xff9bbf, 0.4); rim.position.set(0, 2, -3); scene.add(rim);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+controls.minDistance = 0.05;
+controls.maxDistance = 5;
+controls.enablePan = true;
+controls.panSpeed = 1.1;
+// Wheel / trackpad on desktop feels right at 20; pinch-zoom on phones is much jumpier with the same factor.
+const ORBIT_ZOOM_SPEED_DESKTOP = 20.0;
+const ORBIT_ZOOM_SPEED_TOUCH = 2.0;
+function applyOrbitZoomSensitivity() {
+  const coarse =
+    window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+  controls.zoomSpeed = coarse ? ORBIT_ZOOM_SPEED_TOUCH : ORBIT_ZOOM_SPEED_DESKTOP;
+}
+applyOrbitZoomSensitivity();
+if (window.matchMedia) {
+  window
+    .matchMedia('(pointer: coarse)')
+    .addEventListener('change', applyOrbitZoomSensitivity);
+}
+controls.screenSpacePanning = true;
+// Touch: one finger rotates, two fingers pinch-zoom + pan together.
+controls.touches = { ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY_PAN };
+// Mouse: left rotate, middle dolly, right pan.
+controls.mouseButtons = { LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN };
+
+const dracoLoader = new DRACOLoader();
+dracoLoader.setDecoderPath('https://unpkg.com/three@0.160.0/examples/jsm/libs/draco/gltf/');
+const gltfLoader = new GLTFLoader();
+gltfLoader.setDRACOLoader(dracoLoader);
+
+const SELECT_COLOR  = new THREE.Color(0x7ee8ff);
+const CORRECT_COLOR = new THREE.Color(0x5fffb0);
+const WRONG_COLOR   = new THREE.Color(0xff5f8f);
+
+let currentLimb = 'legs';
+/** Bumped on every loadLimb(); stale async completions must not scene.add() after a newer swap. */
+let limbLoadGeneration = 0;
+let currentRoot = null;
+let pickables = [];   // { mesh, nodeName, layer, info, originalEmissive }
+let layerNodes = {};  // { Bones: Object3D, Muscles: Object3D, Veins: Object3D }
+let selected = null;
+const cache = {};
+
+function infoFor(nodeName, layer) {
+  const s = STRUCTURES[nodeName];
+  if (s) return { heb: s.heb, lat: s.lat, desc: s.desc, layer };
+  // Fallback: nodeName without trailing .r, prefer Latin display only
+  const lat = nodeName.replace(/\.r$/, '').replace(/_/g, ' ');
+  return { heb: '', lat, desc: '', layer };
+}
+
+async function loadLimb(name) {
+  const gen = ++limbLoadGeneration;
+  if (currentRoot) { scene.remove(currentRoot); currentRoot = null; }
+  pickables = [];
+  layerNodes = {};
+  selected = null;
+  loader.classList.remove('hide');
+
+  let gltf = cache[name];
+  if (!gltf) {
+    gltf = await gltfLoader.loadAsync(`./models/${name}.glb`);
+    cache[name] = gltf;
+  }
+  if (gen !== limbLoadGeneration) return;
+
+  currentRoot = gltf.scene.clone(true);
+
+  // Identify the three top-level layer groups by name
+  for (const child of currentRoot.children) {
+    if (LAYER_COLORS[child.name]) layerNodes[child.name] = child;
+  }
+
+  // Walk every mesh, give it a per-mesh material and tag with layer + node identity
+  for (const [layerName, layerNode] of Object.entries(layerNodes)) {
+    const lc = LAYER_COLORS[layerName];
+    layerNode.traverse((obj) => {
+      if (!obj.isMesh) return;
+
+      // Identify this mesh's bone/muscle/vein name
+      let nodeName = null;
+      for (let n = obj; n && n !== layerNode; n = n.parent) {
+        const orig = SANITIZED_TO_ORIG[n.name];
+        if (orig) { nodeName = orig; break; }
+      }
+      if (!nodeName) {
+        // No dictionary entry: still pickable, derive name from sanitized parent
+        let n = obj;
+        while (n && n !== layerNode && !n.name) n = n.parent;
+        nodeName = n?.name || obj.name || 'unknown';
+      }
+
+      // Per-mesh material so highlighting is local
+      obj.material = obj.material.clone();
+      obj.material.color = new THREE.Color(lc.color);
+      if ('roughness' in obj.material) obj.material.roughness = lc.roughness;
+      if ('metalness' in obj.material) obj.material.metalness = lc.metalness;
+      obj.material.transparent = lc.opacity < 1;
+      obj.material.opacity = lc.opacity;
+      obj.material.depthWrite = lc.opacity >= 0.99;
+      obj.material.emissive = new THREE.Color(0x000000);
+
+      // Compute approximate size (max bbox dim in world space) for pick priority.
+      // Tiny meshes (landmark hotspots) win over big ones (whole bones) when both
+      // are hit during fuzzy picking.
+      if (!obj.geometry.boundingBox) obj.geometry.computeBoundingBox();
+      const bbSize = obj.geometry.boundingBox.getSize(new THREE.Vector3());
+      const meshSize = Math.max(bbSize.x, bbSize.y, bbSize.z);
+      // Heuristic: small landmark hotspots are <40mm; bones are usually >50mm.
+      const isHotspot = meshSize > 0 && meshSize < 0.04;
+
+      // Hotspots (landmark markers) get a custom rose tint so they read as
+      // "click me" pins rather than disconnected anatomy.
+      if (isHotspot && layerName === 'Bones') {
+        obj.material.color = new THREE.Color(0xff8fb5);
+        obj.material.emissive = new THREE.Color(0x802040);
+        obj.material.emissiveIntensity = 0.35;
+        obj.material.roughness = 0.3;
+      }
+
+      pickables.push({
+        mesh: obj,
+        nodeName,
+        layer: layerName,
+        info: infoFor(nodeName, layerName),
+        originalEmissive: obj.material.emissive.clone(),
+        isHotspot,
+      });
+    });
+  }
+
+  scene.add(currentRoot);
+  applyLayerVisibility();
+  frameModel(currentRoot);
+  loader.classList.add('hide');
+  reveal();
+  setInfoEmpty();
+}
+
+const bootStart = performance.now();
+const MIN_BOOT_MS = 700;
+let revealed = false;
+function reveal() {
+  if (revealed) return;
+  revealed = true;
+  const wait = Math.max(0, MIN_BOOT_MS - (performance.now() - bootStart));
+  setTimeout(() => document.body.classList.add('loaded'), wait);
+}
+
+let initialView = null;
+function computeVisibleBox(root) {
+  const box = new THREE.Box3();
+  const tmpBox = new THREE.Box3();
+  root.updateMatrixWorld(true);
+  root.traverse((o) => {
+    if (!o.isMesh || !o.visible) return;
+    for (let p = o.parent; p; p = p.parent) { if (!p.visible) return; }
+    if (!o.geometry?.boundingBox) o.geometry?.computeBoundingBox();
+    if (!o.geometry?.boundingBox) return;
+    tmpBox.copy(o.geometry.boundingBox).applyMatrix4(o.matrixWorld);
+    box.union(tmpBox);
+  });
+  if (box.isEmpty()) box.setFromObject(root);
+  return box;
+}
+function frameModel(root) {
+  // Make sure camera aspect reflects the current canvas size before fitting.
+  const w = stage.clientWidth, h = stage.clientHeight;
+  if (w && h) { camera.aspect = w / h; camera.updateProjectionMatrix(); }
+
+  const box = computeVisibleBox(root);
+  const size = box.getSize(new THREE.Vector3());
+  const center = box.getCenter(new THREE.Vector3());
+  root.position.sub(center);
+  const vfov = THREE.MathUtils.degToRad(camera.fov);
+  const aspect = camera.aspect || 1;
+  const distForHeight = (size.y / 2) / Math.tan(vfov / 2);
+  const distForWidth  = (size.x / 2) / Math.tan(vfov / 2) / aspect;
+  const dist = Math.max(distForHeight, distForWidth) * 1.2;
+  camera.position.set(0, 0, dist);
+  controls.target.set(0, 0, 0);
+  controls.update();
+  initialView = {
+    rootPos: root.position.clone(),
+    rootQuat: root.quaternion.clone(),
+    camPos: camera.position.clone(),
+    target: controls.target.clone(),
+  };
+}
+
+function resetView() {
+  if (!initialView || !currentRoot) return;
+  currentRoot.position.copy(initialView.rootPos);
+  currentRoot.quaternion.copy(initialView.rootQuat);
+  camera.position.copy(initialView.camPos);
+  controls.target.copy(initialView.target);
+  controls.update();
+}
+
+/** Quiz reveal: draw correct mesh above occluders while highlighted (restore in clearSelection). */
+const REVEAL_MESH_RENDER_ORDER = 999;
+
+function pushRevealMeshToFront(mesh) {
+  if (!mesh?.material) return;
+  const m = mesh.material;
+  const u = mesh.userData;
+  if (u._revealSavedRenderOrder === undefined) u._revealSavedRenderOrder = mesh.renderOrder;
+  if (u._revealSavedDepthTest === undefined) u._revealSavedDepthTest = m.depthTest;
+  if (u._revealSavedDepthWrite === undefined) u._revealSavedDepthWrite = m.depthWrite;
+  mesh.renderOrder = REVEAL_MESH_RENDER_ORDER;
+  m.depthTest = false;
+  m.depthWrite = false;
+}
+
+function restoreRevealMeshDepth(mesh) {
+  if (!mesh?.material) return;
+  const u = mesh.userData;
+  if (u._revealSavedRenderOrder !== undefined) {
+    mesh.renderOrder = u._revealSavedRenderOrder;
+    delete u._revealSavedRenderOrder;
+  }
+  const m = mesh.material;
+  if (u._revealSavedDepthTest !== undefined) {
+    m.depthTest = u._revealSavedDepthTest;
+    delete u._revealSavedDepthTest;
+  }
+  if (u._revealSavedDepthWrite !== undefined) {
+    m.depthWrite = u._revealSavedDepthWrite;
+    delete u._revealSavedDepthWrite;
+  }
+}
+
+function clearSelection() {
+  if (!selected) return;
+  restoreRevealMeshDepth(selected.mesh);
+  selected.mesh.material.emissive.copy(selected.originalEmissive);
+  selected.mesh.material.emissiveIntensity = 1;
+  selected = null;
+}
+function setSelection(p, color = SELECT_COLOR, emissiveIntensity = 0.7, revealDrawOnTop = false) {
+  clearSelection();
+  selected = p;
+  p.mesh.material.emissive.copy(color);
+  if ('emissiveIntensity' in p.mesh.material) {
+    p.mesh.material.emissiveIntensity = emissiveIntensity;
+  }
+  if (revealDrawOnTop) pushRevealMeshToFront(p.mesh);
+}
+
+/** Wrong answers: ensure mesh layer is on (same as search). */
+function ensureLayerVisibleForPick(p) {
+  if (!p?.layer || layerState[p.layer]) return;
+  layerState[p.layer] = true;
+  document.querySelector(`.seg-btn[data-layer="${p.layer}"]`)?.classList.add('on');
+  applyLayerVisibility();
+}
+
+let correctRevealPulseGen = 0;
+/** Pulses emissive so the correct mesh is easier to spot after a mistake. */
+function pulseCorrectRevealHighlight(runId, baseIntensity) {
+  const pulseId = ++correctRevealPulseGen;
+  const mesh = selected?.mesh;
+  if (!mesh?.material || runId == null) return;
+  const mat = mesh.material;
+  const start = performance.now();
+  const duration = 1250;
+
+  function frame(now) {
+    if (pulseId !== correctRevealPulseGen) return;
+    if (!exam || exam.runId !== runId || !selected || selected.mesh !== mesh) return;
+    const t = (now - start) / duration;
+    if (t >= 1) {
+      mat.emissiveIntensity = baseIntensity;
+      return;
+    }
+    const damp = 1 - t * 0.35;
+    const waves = Math.sin(t * Math.PI * 6.5) * damp;
+    mat.emissiveIntensity = baseIntensity + waves * 0.5;
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+/** World bbox center → projected NDC (mutates `out`). */
+function projectMeshCenterToNDC(p, out) {
+  if (!p?.mesh) return null;
+  p.mesh.updateWorldMatrix(true, false);
+  if (!p.mesh.geometry.boundingBox) p.mesh.geometry.computeBoundingBox();
+  p.mesh.geometry.boundingBox.getCenter(out);
+  out.applyMatrix4(p.mesh.matrixWorld);
+  out.project(camera);
+  return out;
+}
+
+function isProjectedMeshCenterVisible(p) {
+  projectMeshCenterToNDC(p, _revealProj);
+  return (
+    Math.abs(_revealProj.x) <= 1.06 &&
+    Math.abs(_revealProj.y) <= 1.06 &&
+    _revealProj.z >= -1 &&
+    _revealProj.z <= 1
+  );
+}
+
+/**
+ * Zoom out (and gently pan the orbit target toward the mesh) until its center
+ * projects inside the frustum. OrbitControls maxDistance can clamp pulls; we
+ * relax it for this animation only.
+ */
+function smoothZoomOutUntilVisible(p, runId, onDone) {
+  const onFinish = typeof onDone === 'function' ? onDone : () => {};
+
+  function easeOutCubic(t) {
+    return 1 - (1 - t) ** 3;
+  }
+
+  if (!p?.mesh || !exam || exam.runId !== runId) {
+    onFinish();
+    return;
+  }
+  if (isProjectedMeshCenterVisible(p)) {
+    onFinish();
+    return;
+  }
+
+  const meshCenter = new THREE.Vector3();
+  if (!p.mesh.geometry.boundingBox) p.mesh.geometry.computeBoundingBox();
+  p.mesh.geometry.boundingBox.getCenter(meshCenter);
+  meshCenter.applyMatrix4(p.mesh.matrixWorld);
+
+  const savedMaxDistance = controls.maxDistance;
+  controls.maxDistance = 120;
+
+  const startDist = camera.position.distanceTo(controls.target);
+  if (startDist < 1e-7) {
+    controls.maxDistance = savedMaxDistance;
+    controls.update();
+    onFinish();
+    return;
+  }
+
+  const primaryMs = 1400;
+  const maxElapsedMs = 4800;
+  const t0 = performance.now();
+  let finished = false;
+
+  function done() {
+    if (finished) return;
+    finished = true;
+    controls.maxDistance = savedMaxDistance;
+    controls.update();
+    onFinish();
+  }
+
+  function step(now) {
+    if (!exam || exam.runId !== runId) {
+      controls.maxDistance = savedMaxDistance;
+      return;
+    }
+
+    const elapsed = now - t0;
+    const u = Math.min(1, elapsed / primaryMs);
+
+    controls.target.lerp(meshCenter, 0.088 + easeOutCubic(u) * 0.052);
+
+    const towardCam = camera.position.clone().sub(controls.target);
+    const len = towardCam.length();
+    if (len < 1e-7) {
+      done();
+      return;
+    }
+    towardCam.multiplyScalar(1 / len);
+
+    const ease = easeOutCubic(u);
+    const pullCap = Math.min(
+      startDist * (8 + ease * 26),
+      startDist + 14 + ease * 52,
+      94,
+    );
+    let goalDist = THREE.MathUtils.lerp(startDist, pullCap, ease);
+
+    if (elapsed > primaryMs) {
+      const over = elapsed - primaryMs;
+      goalDist = Math.min(pullCap + over * 0.052, 94);
+    }
+
+    camera.position.copy(controls.target).addScaledVector(towardCam, goalDist);
+    controls.update();
+
+    if (isProjectedMeshCenterVisible(p) && elapsed > 55) {
+      done();
+      return;
+    }
+    if (elapsed >= maxElapsedMs) {
+      done();
+      return;
+    }
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+/** Reveal-pointer geometry constants (kept in sync with CSS). */
+const REVEAL_ARROW_LEN = 50;
+const REVEAL_ARROW_HALF_W = 13;
+const REVEAL_LABEL_GAP = 6;
+const REVEAL_PAD = 14;
+
+function updateRevealPointerPosition() {
+  const el = revealPointerEl;
+  const p = revealPointerPick;
+  if (!el || !p?.mesh || !el.classList.contains('is-on')) return;
+  if (exam && revealPointerRunId != null && exam.runId !== revealPointerRunId) {
+    hideRevealScreenPointer();
+    return;
+  }
+
+  projectMeshCenterToNDC(p, _revealProj);
+
+  const w = renderer.domElement.clientWidth;
+  const h = renderer.domElement.clientHeight;
+  const vis =
+    Math.abs(_revealProj.x) <= 1.06 &&
+    Math.abs(_revealProj.y) <= 1.06 &&
+    _revealProj.z >= -1 &&
+    _revealProj.z <= 1;
+
+  if (!vis) {
+    el.style.opacity = '0';
+    return;
+  }
+
+  const meshLeft = (_revealProj.x * 0.5 + 0.5) * w;
+  const meshTop = (-_revealProj.y * 0.5 + 0.5) * h;
+
+  el.style.left = `${meshLeft}px`;
+  el.style.top = `${meshTop}px`;
+  el.style.opacity = '1';
+
+  layoutRevealPointer(meshLeft, meshTop);
+}
+
+/**
+ * Place the arrow + label so that:
+ *   1. The arrow's tip stays anchored at the mesh projection (meshLeft, meshTop).
+ *   2. The arrow body and the label remain fully inside the stage rectangle.
+ *      If the mesh sits near a stage edge, the arrow rotates around its tip
+ *      so its body extends inward and the label fits.
+ *   3. The label is placed below the body (default) or above (when below
+ *      doesn't fit), and shifts horizontally if it would still overflow.
+ */
+function layoutRevealPointer(meshLeft, meshTop) {
+  const el = revealPointerEl;
+  const arrow = el?.querySelector('.reveal-pointer-arrow');
+  const labelWrap = el?.querySelector('.reveal-pointer-label-wrap');
+  if (!el || !arrow || !labelWrap) return;
+
+  const stageW = stage.clientWidth;
+  const stageH = stage.clientHeight;
+  if (!stageW || !stageH) return;
+
+  // Reset label transform to measure natural width without prior horizontal shift.
+  labelWrap.style.transform = 'translateX(-50%)';
+
+  const labelW = labelWrap.offsetWidth;
+  const labelH = labelWrap.offsetHeight;
+  const labelHalfW = labelW / 2;
+
+  // 1) Below vs above. Prefer below; flip when there is not enough room.
+  const totalH = REVEAL_ARROW_LEN + REVEAL_LABEL_GAP + labelH;
+  const spaceBelow = stageH - REVEAL_PAD - meshTop;
+  const spaceAbove = meshTop - REVEAL_PAD;
+  let placeBelow;
+  if (spaceBelow >= totalH) placeBelow = true;
+  else if (spaceAbove >= totalH) placeBelow = false;
+  else placeBelow = spaceBelow >= spaceAbove;
+
+  // 2) Pick body anchor (where arrow body bottom + label center sit).
+  //    Default: directly below/above the mesh (bodyDx = 0). Clamp horizontally
+  //    so both label half-width and arrow half-width stay inside the stage.
+  const halfW = Math.max(REVEAL_ARROW_HALF_W, labelHalfW);
+  const minBodyCx = REVEAL_PAD + halfW;
+  const maxBodyCx = stageW - REVEAL_PAD - halfW;
+  let bodyCx;
+  if (minBodyCx <= maxBodyCx) {
+    bodyCx = Math.max(minBodyCx, Math.min(maxBodyCx, meshLeft));
+  } else {
+    // Stage narrower than the bubble; just center it.
+    bodyCx = stageW * 0.5;
+  }
+
+  const bodyDx = bodyCx - meshLeft;
+  const bodyDy = placeBelow ? REVEAL_ARROW_LEN : -REVEAL_ARROW_LEN;
+
+  // 3) Rotate + scale the arrow so the body bottom lands at (bodyDx, bodyDy)
+  //    while the tip stays at the transform origin (= mesh point).
+  //    Solving for: (-L*scaleY*sin(a), L*scaleY*cos(a)) = (bodyDx, bodyDy)
+  const bodyDist = Math.hypot(bodyDx, bodyDy);
+  let scaleY = 1;
+  let angleDeg = 0;
+  if (bodyDist > 0.5) {
+    scaleY = bodyDist / REVEAL_ARROW_LEN;
+    angleDeg = Math.atan2(-bodyDx, bodyDy) * 180 / Math.PI;
+  }
+  arrow.style.transform =
+    `translateX(-50%) rotate(${angleDeg.toFixed(3)}deg) scale(1, ${scaleY.toFixed(4)})`;
+
+  // 4) Place label at the body anchor; shift horizontally if the clamp had to push
+  //    the body so far that the label would still touch the stage edge.
+  const labelTopRel = placeBelow
+    ? (bodyDy + REVEAL_LABEL_GAP)
+    : (bodyDy - REVEAL_LABEL_GAP - labelH);
+
+  // Desired label center on screen (in stage local coords).
+  const desiredLabelCx = meshLeft + bodyDx;
+  const labelMinCx = REVEAL_PAD + labelHalfW;
+  const labelMaxCx = stageW - REVEAL_PAD - labelHalfW;
+  let labelCx;
+  if (labelMinCx <= labelMaxCx) {
+    labelCx = Math.max(labelMinCx, Math.min(labelMaxCx, desiredLabelCx));
+  } else {
+    labelCx = stageW * 0.5;
+  }
+  const labelLeftRel = labelCx - meshLeft;
+
+  labelWrap.style.top = `${labelTopRel.toFixed(2)}px`;
+  labelWrap.style.left = `${labelLeftRel.toFixed(2)}px`;
+  labelWrap.style.transform = 'translateX(-50%)';
+}
+
+function showRevealScreenPointer(p, runId) {
+  if (!revealPointerEl || !p?.mesh) return;
+  revealPointerPick = p;
+  revealPointerRunId = runId;
+  revealPointerEl.hidden = false;
+  revealPointerEl.classList.add('is-on');
+  updateRevealPointerPosition();
+}
+
+function hideRevealScreenPointer() {
+  revealPointerPick = null;
+  revealPointerRunId = null;
+  if (!revealPointerEl) return;
+  revealPointerEl.classList.remove('is-on');
+  revealPointerEl.style.left = '';
+  revealPointerEl.style.top = '';
+  revealPointerEl.style.opacity = '';
+  const arrow = revealPointerEl.querySelector('.reveal-pointer-arrow');
+  if (arrow) arrow.style.transform = '';
+  const labelWrap = revealPointerEl.querySelector('.reveal-pointer-label-wrap');
+  if (labelWrap) {
+    labelWrap.style.transform = '';
+    labelWrap.style.left = '';
+    labelWrap.style.top = '';
+  }
+  revealPointerEl.hidden = true;
+}
+
+// =====================================================================
+// Picking — fuzzy raycast so a fat fingertip lands on thin bones.
+// First try the exact tap point. If nothing is hit, fan out a ring of
+// extra rays at ~22px radius and pick the nearest hit by 2D pixel
+// distance from the original tap.
+// =====================================================================
+const raycaster = new THREE.Raycaster();
+const ndc = new THREE.Vector2();
+
+const PICK_RADIUS_PX = 10;
+const PICK_RING = (() => {
+  // 1 center + a tight 8-ray ring. Keep this small so hotspot markers do not
+  // steal taps that land clearly beside them.
+  const out = [[0, 0]];
+  const dirs = 8;
+  for (let i = 0; i < dirs; i++) {
+    const a = (i / dirs) * Math.PI * 2;
+    out.push([Math.cos(a), Math.sin(a)]);
+  }
+  return out;
+})();
+
+function pickFromEvent(ev) {
+  const rect = renderer.domElement.getBoundingClientRect();
+  const cx = ev.clientX - rect.left;
+  const cy = ev.clientY - rect.top;
+  const visiblePickables = pickables.filter(p => layerNodes[p.layer]?.visible);
+  if (!visiblePickables.length) return null;
+  const visibleMeshes = visiblePickables.map(p => p.mesh);
+  const meshToP = new Map(visiblePickables.map(p => [p.mesh, p]));
+
+  let bestHotspot = null, bestHotspotPenalty = Infinity;
+  let bestAny = null, bestAnyPenalty = Infinity;
+  for (let i = 0; i < PICK_RING.length; i++) {
+    const [ox, oy] = PICK_RING[i];
+    const px = cx + ox * PICK_RADIUS_PX;
+    const py = cy + oy * PICK_RADIUS_PX;
+    const x = (px / rect.width) * 2 - 1;
+    const y = -((py / rect.height) * 2 - 1);
+    ndc.set(x, y);
+    raycaster.setFromCamera(ndc, camera);
+    const hits = raycaster.intersectObjects(visibleMeshes, false);
+    if (!hits.length) continue;
+    const offsetPx2 = (ox * PICK_RADIUS_PX) ** 2 + (oy * PICK_RADIUS_PX) ** 2;
+
+    // Among hits on this ray, prefer hotspot meshes over bulk meshes when both
+    // are hit (so a sphere marker drawn on a bone surface still "wins").
+    let rayPick = hits[0].object;
+    for (const h of hits) {
+      const p = meshToP.get(h.object);
+      if (p?.isHotspot) { rayPick = h.object; break; }
+    }
+    const rayPickP = meshToP.get(rayPick);
+
+    if (rayPickP?.isHotspot && offsetPx2 < bestHotspotPenalty) {
+      bestHotspotPenalty = offsetPx2;
+      bestHotspot = rayPick;
+    }
+    if (offsetPx2 < bestAnyPenalty) {
+      bestAnyPenalty = offsetPx2;
+      bestAny = rayPick;
+    }
+  }
+  const winner = bestHotspotPenalty <= bestAnyPenalty ? bestHotspot : bestAny;
+  return winner ? meshToP.get(winner) || null : null;
+}
+
+let downPos = null;
+renderer.domElement.addEventListener('pointermove', (e) => {
+  renderer.domElement.style.cursor = pickFromEvent(e) ? 'pointer' : '';
+});
+renderer.domElement.addEventListener('pointerleave', () => {
+  renderer.domElement.style.cursor = '';
+});
+renderer.domElement.addEventListener('pointerdown', (e) => { downPos = { x: e.clientX, y: e.clientY }; });
+renderer.domElement.addEventListener('pointerup', (e) => {
+  if (!downPos) return;
+  const dx = e.clientX - downPos.x, dy = e.clientY - downPos.y;
+  downPos = null;
+  if (Math.hypot(dx, dy) > 12) return;
+  const picked = pickFromEvent(e);
+  if (!picked) {
+    if (mode === 'learn') { clearSelection(); setInfoEmpty(); }
+    return;
+  }
+  if (mode === 'learn') {
+    setSelection(picked);
+    showInfo(picked);
+  } else {
+    answerQuestion(picked);
+  }
+});
+
+// =====================================================================
+// Info panel
+// =====================================================================
+const infoEl = document.getElementById('info');
+const primaryEl = document.getElementById('info-primary');
+const secondaryEl = document.getElementById('info-secondary');
+const descEl = document.getElementById('info-desc');
+
+function showInfo(p) {
+  const i = p.info;
+  infoEl.classList.remove('empty');
+  infoEl.dataset.layer = p.layer;
+  primaryEl.textContent = i.lat;
+  secondaryEl.textContent = i.heb || '';
+  descEl.textContent = i.desc || '';
+}
+function setInfoEmpty() {
+  infoEl.classList.add('empty');
+  delete infoEl.dataset.layer;
+  primaryEl.textContent = mode === 'quiz' ? 'לחץ על המבנה המבוקש בתלת-ממד' : 'לחץ על מבנה כדי לראות את שמו';
+  secondaryEl.textContent = '';
+  descEl.textContent = '';
+}
+
+// =====================================================================
+// Search box: type Hebrew or English to find and highlight a structure.
+// =====================================================================
+const searchWrap = document.getElementById('search-wrap');
+const searchInput = document.getElementById('search-input');
+const searchClear = document.getElementById('search-clear');
+const searchDropdown = document.getElementById('search-dropdown');
+let searchResults = [];
+let searchActiveIdx = 0;
+
+function normalize(s) {
+  // strip diacritics, lowercase, collapse spaces; keep Hebrew letters as-is.
+  return (s || '')
+    .toString()
+    .normalize('NFKD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function searchPool() {
+  // One entry per *named* pickable; deduplicate so the dropdown shows each
+  // structure once, not once per mesh fragment.
+  const seen = new Map();
+  for (const p of pickables) {
+    if (!p.info?.lat) continue;
+    const key = `${p.layer}::${p.nodeName}`;
+    if (!seen.has(key)) seen.set(key, p);
+  }
+  return [...seen.values()];
+}
+
+function searchableText(p) {
+  // English term from the model (e.g., "Adductor tubercle"), Latin display
+  // name, and Hebrew label all count as match haystacks. Strip ".r"/".l" sides.
+  const eng = (p.nodeName || '').replace(/\.[rl]$/, '').replace(/_/g, ' ');
+  return {
+    eng: normalize(eng),
+    lat: normalize(p.info.lat),
+    heb: normalize(p.info.heb),
+  };
+}
+
+function scoreMatch(p, q) {
+  if (!q) return 0;
+  const t = searchableText(p);
+  // Tokenize query — every token must hit *some* haystack. This lets users
+  // search loose phrases like "adductor t" or "biceps long" without needing
+  // exact prefixes.
+  const tokens = q.split(/\s+/).filter(Boolean);
+  let total = 0;
+  for (const tok of tokens) {
+    let best = 0;
+    for (const h of [t.eng, t.lat, t.heb]) {
+      if (!h) continue;
+      if (h === tok) best = Math.max(best, 120);
+      else if (h.startsWith(tok)) best = Math.max(best, 90);
+      else {
+        // Word-boundary boost (start of any word in the haystack).
+        const re = new RegExp(`(^|\\s|-)${tok.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'u');
+        if (re.test(h)) best = Math.max(best, 55);
+        else if (h.includes(tok)) best = Math.max(best, 25);
+      }
+    }
+    if (best === 0) return 0;  // a token failed to match anywhere — skip entry
+    total += best;
+  }
+  // Penalize very long names so a focused short hit beats a sprawling name.
+  return total - Math.min(t.lat.length, 60) / 20;
+}
+
+function highlightMatch(text, q) {
+  if (!q) return text;
+  const idx = normalize(text).indexOf(q);
+  if (idx < 0) return text;
+  // Find original-case slice. Normalize is roughly 1:1 for our text.
+  return text.slice(0, idx) + '<mark>' + text.slice(idx, idx + q.length) + '</mark>' + text.slice(idx + q.length);
+}
+
+function renderDropdown(query, results) {
+  if (!results.length) {
+    searchDropdown.innerHTML = '<div class="search-empty">לא נמצא מבנה תואם</div>';
+    return;
+  }
+  const q = normalize(query);
+  searchDropdown.innerHTML = results.slice(0, 30).map((p, i) => `
+    <div class="search-item layer-${p.layer} ${i === searchActiveIdx ? 'active' : ''}" data-idx="${i}" role="option">
+      <div class="layer-pip"></div>
+      <div class="item-text">
+        <div class="item-primary">${highlightMatch(p.info.lat, q)}</div>
+        <div class="item-secondary">${highlightMatch(p.info.heb || '', q)}</div>
+      </div>
+    </div>
+  `).join('');
+  // Wire up click handlers for the freshly rendered items
+  for (const el of searchDropdown.querySelectorAll('.search-item')) {
+    el.addEventListener('mouseenter', () => {
+      searchActiveIdx = +el.dataset.idx;
+      for (const e of searchDropdown.querySelectorAll('.search-item')) e.classList.toggle('active', e === el);
+    });
+    el.addEventListener('mousedown', (ev) => {
+      ev.preventDefault();
+      pickFromSearch(searchResults[+el.dataset.idx]);
+    });
+  }
+}
+
+function updateSearchResults() {
+  const q = normalize(searchInput.value);
+  searchWrap.classList.toggle('has-text', !!q);
+  if (!q) {
+    searchResults = [];
+    searchWrap.classList.remove('open');
+    return;
+  }
+  const pool = searchPool();
+  const scored = [];
+  for (const p of pool) {
+    const s = scoreMatch(p, q);
+    if (s > 0) scored.push({ p, s });
+  }
+  scored.sort((a, b) => b.s - a.s || a.p.info.lat.length - b.p.info.lat.length);
+  searchResults = scored.map(x => x.p);
+  searchActiveIdx = 0;
+  searchWrap.classList.add('open');
+  renderDropdown(q, searchResults);
+}
+
+function focusOn(p) {
+  // Fly the orbit camera over so the picked mesh fills a comfortable area.
+  if (!p.mesh.geometry.boundingBox) p.mesh.geometry.computeBoundingBox();
+  const box = p.mesh.geometry.boundingBox.clone().applyMatrix4(p.mesh.matrixWorld);
+  const center = box.getCenter(new THREE.Vector3());
+  const size = box.getSize(new THREE.Vector3());
+  const radius = Math.max(size.x, size.y, size.z) * 0.5;
+  // Hotspots are tiny — pick a sensible minimum view radius so we don't zoom in
+  // past the bone they sit on.
+  const viewRadius = Math.max(radius, 0.04);
+  const vfov = THREE.MathUtils.degToRad(camera.fov);
+  const dist = (viewRadius / Math.tan(vfov / 2)) * 2.6;
+  // Keep the current viewing direction; just slide along it to the new center.
+  const dir = camera.position.clone().sub(controls.target).normalize();
+  controls.target.copy(center);
+  camera.position.copy(center).add(dir.multiplyScalar(dist));
+  controls.update();
+}
+
+function pickFromSearch(p) {
+  if (!p) return;
+  // Make sure the layer is on so the highlight is visible.
+  if (!layerState[p.layer]) {
+    layerState[p.layer] = true;
+    document.querySelector(`.seg-btn[data-layer="${p.layer}"]`)?.classList.add('on');
+    applyLayerVisibility();
+  }
+  setSelection(p);
+  showInfo(p);
+  focusOn(p);
+  searchInput.value = p.info.lat;
+  searchWrap.classList.remove('open');
+  searchInput.blur();
+}
+
+searchInput.addEventListener('input', updateSearchResults);
+searchInput.addEventListener('focus', () => { if (searchInput.value) updateSearchResults(); });
+searchInput.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    if (!searchResults.length) return;
+    searchActiveIdx = (searchActiveIdx + 1) % Math.min(searchResults.length, 30);
+    renderDropdown(normalize(searchInput.value), searchResults);
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (!searchResults.length) return;
+    searchActiveIdx = (searchActiveIdx - 1 + Math.min(searchResults.length, 30)) % Math.min(searchResults.length, 30);
+    renderDropdown(normalize(searchInput.value), searchResults);
+  } else if (e.key === 'Enter') {
+    e.preventDefault();
+    pickFromSearch(searchResults[searchActiveIdx]);
+  } else if (e.key === 'Escape') {
+    searchWrap.classList.remove('open');
+    searchInput.blur();
+  }
+});
+searchClear.addEventListener('click', () => {
+  searchInput.value = '';
+  searchWrap.classList.remove('has-text', 'open');
+  searchInput.focus();
+});
+document.addEventListener('click', (e) => {
+  if (!searchWrap.contains(e.target)) searchWrap.classList.remove('open');
+});
+
+// =====================================================================
+// Mode state + exam flow + history
+// =====================================================================
+const QUESTIONS_PER_EXAM = 20;
+const HISTORY_KEY = 'shaked-quiz-history-v1';
+
+// 'learn' (default — explore + see names) | 'quiz' (active exam or practice)
+let mode = 'learn';
+let target = null;
+let score = 0;
+let activeResultsRecord = null;
+let answerLocked = false;
+let examRunSeq = 0;
+
+// Active exam (null when not running)
+let exam = null;
+
+// Layer toggles. In learn mode the user can toggle freely; an exam/practice
+// snapshots whichever layers were active at the moment of "start".
+const layerState = { Bones: true, Muscles: false, Veins: false };
+
+const askEl = document.getElementById('ask');
+const targetEl = document.getElementById('target');
+const pickedDisplayEl = document.getElementById('picked-display');
+const scoreNum = document.getElementById('score-num');
+const qNumEl = document.getElementById('q-num');
+const qTotalEl = document.getElementById('q-total');
+const examConfigError = document.getElementById('exam-config-error');
+
+function applyLayerVisibility() {
+  for (const [name, node] of Object.entries(layerNodes)) {
+    if (node) node.visible = layerState[name];
+  }
+}
+
+function quizPool() {
+  const visible = Object.keys(layerState).filter(l => layerState[l]);
+  return pickables.filter(p => visible.includes(p.layer) && p.info.heb);
+}
+function askPrefix(layer) {
+  return layer === 'Veins' ? 'איפה נמצא הוריד' : layer === 'Muscles' ? 'איפה נמצא השריר' : 'איפה נמצאת העצם';
+}
+
+function escapeHtml(s) {
+  if (s == null) return '';
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+/** Same markup as the question row (#target) — Hebrew · Latin order, qp-target-* classes. */
+function qpTargetLineHtml(p) {
+  if (!p) {
+    return `<span class="qp-target-lat" dir="ltr">—</span>`;
+  }
+  const lat = escapeHtml(p.info?.lat || p.nodeName || '—');
+  const hebRaw = p.info?.heb || '';
+  const heb = hebRaw ? escapeHtml(hebRaw) : '';
+  return heb
+    ? `<span class="qp-target-heb" dir="rtl">${heb}</span><span class="qp-target-dot" aria-hidden="true">·</span><span class="qp-target-lat" dir="ltr">${lat}</span>`
+    : `<span class="qp-target-lat" dir="ltr">${lat}</span>`;
+}
+
+function resetPickedDisplay() {
+  if (!pickedDisplayEl) return;
+  pickedDisplayEl.className = 'qp-target qp-target--idle';
+  pickedDisplayEl.innerHTML = '<span class="qp-target-idle">יש לבחור</span>';
+}
+
+function showPickedDisplay(p) {
+  if (!pickedDisplayEl) return;
+  pickedDisplayEl.className = 'qp-target';
+  pickedDisplayEl.innerHTML = qpTargetLineHtml(p);
+}
+
+function setMode(next) {
+  mode = next;
+  document.body.classList.toggle('mode-quiz', next === 'quiz');
+}
+
+// Active main tab: 'overview' | 'practice' | 'exam'.
+let activeTab = 'overview';
+function setActiveTab(name, opts = {}) {
+  activeTab = name;
+  for (const btn of document.querySelectorAll('.m-tab')) {
+    btn.classList.toggle('active', btn.dataset.tab === name);
+  }
+  document.body.classList.toggle('panel-overview', name === 'overview');
+  document.body.classList.toggle('panel-practice', name === 'practice');
+  document.body.classList.toggle('panel-exam', name === 'exam');
+  if (!opts.skipUrl) {
+    const url = new URL(window.location.href);
+    if (name === 'overview') url.searchParams.delete('tab');
+    else url.searchParams.set('tab', name);
+    history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+  }
+  if (name === 'exam') renderHistory('exam-history-list');
+}
+
+// ===== Exam flow =====
+function buildExamQuestions(limb, topics, limit = QUESTIONS_PER_EXAM) {
+  const pool = pickables.filter(p => topics.includes(p.layer) && p.info.heb);
+  // Deduplicate by structure name + layer (some structures have multiple meshes).
+  const byKey = new Map();
+  for (const p of pool) {
+    const k = `${p.layer}::${p.nodeName}`;
+    if (!byKey.has(k)) byKey.set(k, p);
+  }
+  const uniquePool = [...byKey.values()];
+  // Shuffle (Fisher-Yates).
+  for (let i = uniquePool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [uniquePool[i], uniquePool[j]] = [uniquePool[j], uniquePool[i]];
+  }
+  return Number.isFinite(limit) ? uniquePool.slice(0, limit) : uniquePool;
+}
+
+function startSession(kind, options = {}) {
+  const topics = options.topics || Object.keys(layerState).filter(t => layerState[t]);
+  if (!topics.length) return;
+  const limb = options.limb || currentLimb;
+  const questionLimit = options.questionCount || QUESTIONS_PER_EXAM;
+
+  setMode('quiz');
+  document.body.classList.toggle('mode-practice', kind === 'practice');
+
+  // Recompute camera fit because the controls bar just disappeared and the
+  // stage grew taller.
+  if (currentRoot) requestAnimationFrame(() => frameModel(currentRoot));
+
+  const hasExplicitQuestions = Array.isArray(options.questions);
+  const allQuestions = hasExplicitQuestions
+    ? options.questions.slice(0, questionLimit)
+    : buildExamQuestions(limb, topics, kind === 'practice' ? Infinity : questionLimit);
+  if (!allQuestions.length) return;
+  exam = {
+    kind,
+    runId: ++examRunSeq,
+    limb,
+    topics: [...topics],
+    questions: allQuestions,
+    idx: 0,
+    answered: 0,
+    score: 0,
+    mistakes: [],
+    startedAt: Date.now(),
+  };
+  answerLocked = false;
+  score = 0;
+  scoreNum.textContent = '0';
+  qTotalEl.textContent = String(allQuestions.length);
+  presentExamQuestion();
+}
+function startExam() { return startSession('exam'); }
+function startPractice() { return startSession('practice'); }
+
+function resetPractice() {
+  if (!exam || exam.kind !== 'practice') return;
+  exam.idx = 0;
+  exam.answered = 0;
+  exam.score = 0;
+  exam.mistakes = [];
+  score = 0;
+  scoreNum.textContent = '0';
+  presentExamQuestion();
+}
+
+function showExamConfig() {
+  examConfigError.textContent = '';
+  document.querySelector(`input[name="exam-limb"][value="${currentLimb}"]`)?.click();
+  for (const input of document.querySelectorAll('input[name="exam-topic"]')) {
+    input.checked = !!layerState[input.value];
+  }
+  document.body.classList.add('show-exam-config');
+}
+
+function hideExamConfig() {
+  document.body.classList.remove('show-exam-config');
+}
+
+async function startConfiguredExam() {
+  const count = Number(document.querySelector('input[name="exam-count"]:checked')?.value || QUESTIONS_PER_EXAM);
+  const limb = document.querySelector('input[name="exam-limb"]:checked')?.value || currentLimb;
+  const topics = [...document.querySelectorAll('input[name="exam-topic"]:checked')].map(input => input.value);
+  if (!topics.length) {
+    examConfigError.textContent = 'צריך לבחור לפחות נושא אחד';
+    return;
+  }
+
+  hideExamConfig();
+  for (const key of Object.keys(layerState)) layerState[key] = topics.includes(key);
+  syncLayerButtons();
+  if (limb !== currentLimb) {
+    currentLimb = limb;
+    syncLimbTabs();
+    await loadLimb(currentLimb);
+  } else {
+    applyLayerVisibility();
+  }
+  startSession('exam', { limb, topics, questionCount: count });
+}
+
+async function startMistakeExam(rec) {
+  const mistakes = normalizedMistakes(rec);
+  const topics = [...new Set(mistakes.map(m => m.correctLayer).filter(Boolean))];
+  if (!rec || !mistakes.length || !topics.length) return;
+
+  for (const key of Object.keys(layerState)) layerState[key] = topics.includes(key);
+  syncLayerButtons();
+  if (rec.limb !== currentLimb) {
+    currentLimb = rec.limb;
+    syncLimbTabs();
+    await loadLimb(currentLimb);
+  } else {
+    applyLayerVisibility();
+  }
+
+  const questions = [];
+  for (const mistake of mistakes) {
+    const pickable = pickables.find(p => p.layer === mistake.correctLayer && p.nodeName === mistake.correctNodeName)
+      || pickables.find(p => p.layer === mistake.correctLayer && p.info.lat === mistake.correctLat)
+      || pickables.find(p => p.layer === mistake.correctLayer && p.info.heb === mistake.correctHeb);
+    if (pickable) {
+      questions.push(pickable);
+    }
+  }
+  if (questions.length !== mistakes.length) {
+    console.warn(`Mistake exam could match ${questions.length} of ${mistakes.length} saved mistakes.`);
+  }
+  startSession('exam', { limb: rec.limb, topics, questions, questionCount: questions.length });
+}
+
+function presentExamQuestion() {
+  correctRevealPulseGen++;
+  stage.classList.remove('reveal-correct-hint');
+  hideRevealScreenPointer();
+  answerLocked = false;
+  clearSelection();
+  if (!exam) return;
+  if (exam.idx >= exam.questions.length) {
+    if (exam.kind === 'practice') {
+      // Reshuffle and keep going.
+      for (let i = exam.questions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [exam.questions[i], exam.questions[j]] = [exam.questions[j], exam.questions[i]];
+      }
+      exam.idx = 0;
+    } else {
+      finishExam();
+      return;
+    }
+  }
+  target = exam.questions[exam.idx];
+  qNumEl.textContent = String(exam.kind === 'practice' ? exam.answered + 1 : exam.idx + 1);
+  askEl.textContent = askPrefix(target.layer);
+  targetEl.innerHTML = qpTargetLineHtml(target);
+  resetPickedDisplay();
+  setInfoEmpty();
+}
+
+function finishExam() {
+  if (!exam) return;
+  hideRevealScreenPointer();
+  stage.classList.remove('reveal-correct-hint');
+  answerLocked = true;
+  const record = {
+    id: exam.startedAt,
+    date: exam.startedAt,
+    limb: exam.limb,
+    topics: exam.topics,
+    score: exam.score,
+    total: exam.questions.length,
+    mistakes: exam.mistakes.map(m => ({
+      correctNodeName: m.correct.nodeName,
+      correctLayer: m.correct.layer,
+      correctHeb: m.correct.info.heb,
+      correctLat: m.correct.info.lat,
+      pickedNodeName: m.picked ? m.picked.nodeName : null,
+      pickedLayer: m.picked ? m.picked.layer : null,
+      pickedHeb: m.picked ? m.picked.info.heb : null,
+      pickedLat: m.picked ? m.picked.info.lat : null,
+      skipped: !m.picked,
+    })),
+  };
+  record.mistakes = normalizedMistakes(record);
+  saveHistoryEntry(record);
+  showResults(record);
+  exam = null;
+  target = null;
+  examRunSeq++;
+}
+
+function flash(kind) {
+  feedbackEl.classList.remove('correct','wrong');
+  void feedbackEl.offsetWidth;
+  feedbackEl.classList.add(kind);
+  setTimeout(() => feedbackEl.classList.remove(kind), 600);
+}
+function confettiBurst() {
+  const emojis = ['💜','✨','💫','🦴','💖'];
+  for (let i = 0; i < 14; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti';
+    el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    el.style.left = (10 + Math.random()*80) + '%';
+    el.style.top = (20 + Math.random()*30) + '%';
+    el.style.setProperty('--dx', (Math.random()*120 - 60) + 'px');
+    el.style.setProperty('--r', (Math.random()*900 - 450) + 'deg');
+    el.style.animationDelay = (Math.random()*0.2) + 's';
+    stage.appendChild(el);
+    setTimeout(() => el.remove(), 1600);
+  }
+}
+
+function answerQuestion(picked) {
+  if (!target || !exam || answerLocked) return;
+  answerLocked = true;
+  const runId = exam.runId;
+  if (picked === target) {
+    exam.score++;
+    score = exam.score;
+    setSelection(picked, CORRECT_COLOR);
+    showPickedDisplay(picked);
+    flash('correct');
+    confettiBurst();
+    scoreNum.textContent = String(score);
+    setTimeout(() => {
+      if (!exam || exam.runId !== runId) return;
+      exam.answered++;
+      exam.idx++;
+      presentExamQuestion();
+    }, 1100);
+  } else {
+    exam.mistakes.push({ correct: target, picked });
+    setSelection(picked, WRONG_COLOR);
+    flash('wrong');
+    setTimeout(() => {
+      if (!exam || exam.runId !== runId) return;
+      ensureLayerVisibleForPick(target);
+      const revealIntensity = 0.98;
+      setSelection(target, CORRECT_COLOR, revealIntensity, true);
+
+      const showWrongRevealChrome = () => {
+        showRevealScreenPointer(target, runId);
+        pulseCorrectRevealHighlight(runId, revealIntensity);
+        stage.classList.remove('reveal-correct-hint');
+        void stage.offsetWidth;
+        stage.classList.add('reveal-correct-hint');
+        showPickedDisplay(picked);
+      };
+
+      const advanceQuestion = () => {
+        if (!exam || exam.runId !== runId) return;
+        exam.answered++;
+        exam.idx++;
+        presentExamQuestion();
+      };
+
+      if (isProjectedMeshCenterVisible(target)) {
+        showWrongRevealChrome();
+        setTimeout(advanceQuestion, 1900);
+      } else {
+        smoothZoomOutUntilVisible(target, runId, () => {
+          showWrongRevealChrome();
+          setTimeout(advanceQuestion, 1900);
+        });
+      }
+    }, 600);
+  }
+}
+
+function skipQuestion() {
+  if (mode !== 'quiz' || !exam || !target || answerLocked) return;
+  answerLocked = true;
+  exam.mistakes.push({ correct: target, picked: null });
+  exam.answered++;
+  exam.idx++;
+  presentExamQuestion();
+}
+
+// ===== History (localStorage) =====
+function loadHistory() {
+  try {
+    const raw = localStorage.getItem(HISTORY_KEY);
+    if (!raw) return [];
+    const arr = JSON.parse(raw);
+    return Array.isArray(arr) ? arr : [];
+  } catch { return []; }
+}
+function saveHistory(list) {
+  try { localStorage.setItem(HISTORY_KEY, JSON.stringify(list)); } catch {}
+}
+function saveHistoryEntry(rec) {
+  const list = loadHistory();
+  list.unshift(rec);
+  // Keep last 50.
+  saveHistory(list.slice(0, 50));
+  renderHistory('exam-history-list');
+}
+
+const TOPIC_HEB = { Bones: 'עצמות', Muscles: 'שרירים', Veins: 'ורידים' };
+const LIMB_HEB  = { legs: 'רגל', arms: 'יד' };
+
+function expectedMistakeCount(rec) {
+  const total = Number(rec?.total) || 0;
+  const score = Number(rec?.score) || 0;
+  return Math.max(0, total - score);
+}
+
+function normalizedMistakes(rec) {
+  const mistakes = Array.isArray(rec?.mistakes) ? [...rec.mistakes] : [];
+  const expected = expectedMistakeCount(rec);
+  if (mistakes.length <= expected) return mistakes;
+
+  const result = [];
+  const seen = new Set();
+  let overflow = mistakes.length - expected;
+  for (const mistake of mistakes) {
+    const key = `${mistake.correctLayer || ''}::${mistake.correctNodeName || mistake.correctLat || mistake.correctHeb || ''}`;
+    if (overflow > 0 && seen.has(key)) {
+      overflow--;
+      continue;
+    }
+    seen.add(key);
+    result.push(mistake);
+  }
+  return result.slice(0, expected);
+}
+
+function formatDate(ts) {
+  const d = new Date(ts);
+  const today = new Date();
+  const sameDay = d.toDateString() === today.toDateString();
+  const hh = String(d.getHours()).padStart(2, '0');
+  const mm = String(d.getMinutes()).padStart(2, '0');
+  if (sameDay) return `היום ${hh}:${mm}`;
+  const dd = String(d.getDate()).padStart(2, '0');
+  const mo = String(d.getMonth() + 1).padStart(2, '0');
+  return `${dd}/${mo} ${hh}:${mm}`;
+}
+
+function renderExamOverview(list) {
+  const el = document.getElementById('exam-overview');
+  if (!el) return;
+  if (!list.length) {
+    el.innerHTML = `
+      <div class="exam-overview-title">סקירה</div>
+      <div class="history-empty">אחרי המבחן הראשון יופיעו כאן ממוצע, מגמה וגרף התקדמות</div>`;
+    return;
+  }
+
+  const chronological = [...list].reverse();
+  const scores = chronological.map(rec => rec.total ? Math.round((rec.score / rec.total) * 100) : 0);
+  const latest = scores[scores.length - 1];
+  const avg = Math.round(scores.reduce((sum, n) => sum + n, 0) / scores.length);
+  const previous = scores.length > 1 ? scores[scores.length - 2] : latest;
+  const delta = latest - previous;
+  const trendClass = delta > 0 ? 'up' : delta < 0 ? 'down' : '';
+  const trendText = delta > 0 ? `+${delta}%` : delta < 0 ? `${delta}%` : 'ללא שינוי';
+  const best = Math.max(...scores);
+  const width = 340;
+  const height = 128;
+  const padX = 34;
+  const padTop = 16;
+  const padBottom = 36;
+  const chartBottom = height - padBottom;
+  const usableW = width - padX * 2;
+  const usableH = chartBottom - padTop;
+  const points = scores.map((pct, i) => {
+    const x = scores.length === 1 ? width / 2 : padX + (i / (scores.length - 1)) * usableW;
+    const y = padTop + (1 - pct / 100) * usableH;
+    const rec = chronological[i];
+    return { x, y, pct, score: rec.score, total: rec.total, date: formatDate(rec.date), index: i + 1 };
+  });
+  const path = points.map((p, i) => `${i ? 'L' : 'M'} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ');
+  const latestPoint = points[points.length - 1];
+
+  el.innerHTML = `
+    <div class="exam-overview-title">סקירה</div>
+    <div class="exam-stat-row">
+      <div class="exam-stat">
+        <div class="exam-stat-value">${list.length}</div>
+        <div class="exam-stat-label">מבחנים</div>
+      </div>
+      <div class="exam-stat">
+        <div class="exam-stat-value">${avg}%</div>
+        <div class="exam-stat-label">ממוצע</div>
+      </div>
+      <div class="exam-stat">
+        <div class="exam-stat-value">${latest}%</div>
+        <div class="exam-stat-label">אחרון</div>
+      </div>
+      <div class="exam-stat exam-trend ${trendClass}">
+        <div class="exam-stat-value">${trendText}</div>
+        <div class="exam-stat-label">מגמה</div>
+      </div>
+    </div>
+    <div class="exam-chart-wrap">
+    <svg class="exam-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="גרף תשובות נכונות לפי מבחן">
+      <line x1="${padX}" y1="${padTop}" x2="${padX}" y2="${chartBottom}" stroke="rgba(255,255,255,0.12)" />
+      <line x1="${padX}" y1="${chartBottom}" x2="${width - padX}" y2="${chartBottom}" stroke="rgba(255,255,255,0.12)" />
+      <text x="${padX - 8}" y="${padTop + 4}" text-anchor="end">100%</text>
+      <text x="${padX - 8}" y="${chartBottom + 3}" text-anchor="end">0%</text>
+      <text x="${padX}" y="${height - 10}" text-anchor="start">ציר X: מבחנים מהישן לחדש</text>
+      <text x="${width - padX}" y="${height - 10}" text-anchor="end">ציר Y: % נכונות</text>
+      <path class="exam-chart-line" d="${path}" />
+      ${points.map(p => `
+        <circle class="exam-chart-point" data-chart-point="1" data-score="${p.score}" data-total="${p.total}" data-pct="${p.pct}" data-date="${p.date}" data-index="${p.index}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4.5"></circle>
+        <circle class="exam-chart-hit" data-chart-point="1" data-score="${p.score}" data-total="${p.total}" data-pct="${p.pct}" data-date="${p.date}" data-index="${p.index}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="13"></circle>
+      `).join('')}
+    </svg>
+    <div class="exam-chart-tooltip" id="exam-chart-tooltip"></div>
+    </div>`;
+
+  const tooltip = document.getElementById('exam-chart-tooltip');
+  const showTooltip = (point) => {
+    const svg = el.querySelector('.exam-chart');
+    const wrap = el.querySelector('.exam-chart-wrap');
+    if (!svg || !wrap || !tooltip) return;
+    const svgRect = svg.getBoundingClientRect();
+    const wrapRect = wrap.getBoundingClientRect();
+    const x = Number(point.getAttribute('cx'));
+    const y = Number(point.getAttribute('cy'));
+    tooltip.textContent = `מבחן ${point.dataset.index}: ${point.dataset.score}/${point.dataset.total} (${point.dataset.pct}%) · ${point.dataset.date}`;
+    tooltip.style.left = `${((x / width) * svgRect.width) + (svgRect.left - wrapRect.left)}px`;
+    tooltip.style.top = `${((y / height) * svgRect.height) + (svgRect.top - wrapRect.top)}px`;
+    tooltip.style.display = 'block';
+  };
+  for (const point of el.querySelectorAll('[data-chart-point]')) {
+    point.addEventListener('mouseenter', () => showTooltip(point));
+    point.addEventListener('mouseleave', () => {
+      if (!point.classList.contains('active')) tooltip.style.display = 'none';
+    });
+    point.addEventListener('click', () => {
+      el.querySelectorAll('.exam-chart-point').forEach(node => node.classList.remove('active'));
+      const cx = point.getAttribute('cx');
+      const cy = point.getAttribute('cy');
+      el.querySelectorAll(`[data-chart-point][cx="${cx}"][cy="${cy}"]`).forEach(node => node.classList.add('active'));
+      showTooltip(point);
+    });
+  }
+}
+
+function renderHistory(targetId = 'history-list') {
+  const list = loadHistory();
+  const wrap = document.getElementById(targetId);
+  const clearBtn = document.getElementById('history-clear');
+  if (!wrap) return;
+  if (targetId === 'exam-history-list') renderExamOverview(list);
+  if (!list.length) {
+    wrap.innerHTML = '<div class="history-empty">עוד אין מבחנים שמורים</div>';
+    if (clearBtn) clearBtn.hidden = true;
+    return;
+  }
+  if (clearBtn) clearBtn.hidden = false;
+  wrap.innerHTML = list.map(rec => {
+    const pct = rec.total ? Math.round((rec.score / rec.total) * 100) : 0;
+    const cls = pct >= 85 ? 'high' : pct < 60 ? 'low' : '';
+    const topics = rec.topics.map(t => TOPIC_HEB[t] || t).join(' · ');
+    return `<div class="history-item ${cls}" data-id="${rec.id}">
+      <div class="h-score">${rec.score}/${rec.total}</div>
+      <div class="h-mid">
+        <div class="h-topics">${LIMB_HEB[rec.limb] || rec.limb} · ${topics}</div>
+        <div class="h-date">${formatDate(rec.date)}</div>
+      </div>
+      <div class="h-arrow">›</div>
+    </div>`;
+  }).join('');
+  for (const el of wrap.querySelectorAll('.history-item')) {
+    el.addEventListener('click', () => {
+      const id = +el.dataset.id;
+      const rec = loadHistory().find(r => r.id === id);
+      if (rec) showResults(rec, { fromHistory: true });
+    });
+  }
+}
+
+// ===== Results overlay =====
+function showResults(rec, opts = {}) {
+  activeResultsRecord = rec;
+  const pct = rec.total ? Math.round((rec.score / rec.total) * 100) : 0;
+  const emoji = pct >= 90 ? '🏆' : pct >= 75 ? '🎉' : pct >= 50 ? '💪' : '🌱';
+  document.getElementById('results-emoji').textContent = emoji;
+  document.getElementById('results-title').textContent =
+    opts.fromHistory ? 'תוצאות מבחן' : (pct === 100 ? 'מושלם!' : pct >= 75 ? 'כל הכבוד!' : 'סיימת');
+  document.getElementById('r-score').textContent = String(rec.score);
+  document.getElementById('r-total').textContent = String(rec.total);
+  document.getElementById('r-pct').textContent = pct + '%';
+  const topics = rec.topics.map(t => TOPIC_HEB[t] || t).join(' · ');
+  document.getElementById('r-meta').textContent =
+    `${LIMB_HEB[rec.limb] || rec.limb} · ${topics} · ${formatDate(rec.date)}`;
+
+  const mSection = document.getElementById('r-mistakes-section');
+  const mList = document.getElementById('r-mistakes-list');
+  const mistakes = normalizedMistakes(rec);
+  document.getElementById('r-mistakes-count').textContent = String(mistakes.length);
+  if (!mistakes.length) {
+    mSection.classList.add('empty');
+    mList.innerHTML = '';
+  } else {
+    mSection.classList.remove('empty');
+    mList.innerHTML = mistakes.map(m => {
+      const layerLabel = LAYER_LABELS[m.correctLayer] || '';
+      const wrongLine = m.skipped
+        ? `<div class="m-skipped">דילגת על השאלה</div>`
+        : `<div class="m-wrong">לחצת על: <b>${m.pickedHeb || m.pickedLat || '—'}</b></div>`;
+      return `<div class="mistake-item">
+        <div class="m-correct">${m.correctHeb || m.correctLat} <span style="color:var(--ink-soft);font-weight:400">· ${layerLabel}</span></div>
+        <div class="m-lat">${m.correctLat}</div>
+        ${wrongLine}
+      </div>`;
+    }).join('');
+  }
+
+  const againBtn = document.getElementById('results-again');
+  const mistakeCount = mistakes.length;
+  againBtn.textContent = mistakeCount ? 'מבחן חדש על הטעויות שלי' : 'אין טעויות למבחן חוזר';
+  againBtn.disabled = !mistakeCount;
+  againBtn.dataset.fromHistory = opts.fromHistory ? '1' : '';
+  againBtn.dataset.historyId = opts.fromHistory ? String(rec.id) : '';
+  if (opts.fromHistory) {
+    againBtn.dataset.limb = rec.limb;
+  } else {
+    delete againBtn.dataset.limb;
+    delete againBtn.dataset.historyId;
+  }
+
+  document.body.classList.add('show-results');
+}
+
+function hideResults() {
+  document.body.classList.remove('show-results');
+}
+
+function syncLayerButtons() {
+  for (const btn of document.querySelectorAll('#main-controls .seg-btn[data-layer]')) {
+    btn.classList.toggle('on', !!layerState[btn.dataset.layer]);
+  }
+  document.getElementById('start-exam').disabled = false;
+}
+function syncLimbTabs() {
+  for (const btn of document.querySelectorAll('.tab[data-limb]')) {
+    btn.classList.toggle('active', btn.dataset.limb === currentLimb);
+  }
+}
+
+// ===== Main tabs (חקירה / תרגול / מבחן) =====
+document.querySelectorAll('.m-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    setActiveTab(btn.dataset.tab);
+    if (btn.dataset.tab === 'practice' && !(exam && exam.kind === 'practice')) {
+      if (!Object.values(layerState).some(Boolean)) return;
+      startPractice();
+    } else if (btn.dataset.tab !== 'practice' && exam && exam.kind === 'practice') {
+      exitExam();
+    }
+  });
+});
+
+// ===== Limb tabs =====
+document.querySelectorAll('.tab[data-limb]').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    if (btn.dataset.limb === currentLimb) return;
+    currentLimb = btn.dataset.limb;
+    syncLimbTabs();
+    await loadLimb(currentLimb);
+    if (exam && exam.kind === 'practice' && Object.values(layerState).some(Boolean)) {
+      startPractice();
+    }
+  });
+});
+
+// ===== Layer toggles (also serve as topic selection for exam/practice) =====
+document.querySelectorAll('#main-controls .seg-btn[data-layer]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const layer = btn.dataset.layer;
+    layerState[layer] = !layerState[layer];
+    syncLayerButtons();
+    applyLayerVisibility();
+    clearSelection();
+    setInfoEmpty();
+    if (exam && exam.kind === 'practice' && Object.values(layerState).some(Boolean)) {
+      startPractice();
+    }
+  });
+});
+
+// ===== Start exam / practice =====
+document.getElementById('start-exam').addEventListener('click', () => {
+  showExamConfig();
+});
+document.getElementById('exam-config-start').addEventListener('click', startConfiguredExam);
+document.getElementById('exam-config-close').addEventListener('click', hideExamConfig);
+document.getElementById('exam-config-overlay').addEventListener('click', (e) => {
+  if (e.target.id === 'exam-config-overlay') hideExamConfig();
+});
+
+// ===== Exit exam back to learn mode =====
+function exitExam() {
+  hideRevealScreenPointer();
+  stage.classList.remove('reveal-correct-hint');
+  exam = null;
+  target = null;
+  answerLocked = false;
+  examRunSeq++;
+  document.body.classList.remove('mode-practice');
+  setMode('learn');
+  clearSelection();
+  setInfoEmpty();
+  if (currentRoot) requestAnimationFrame(() => frameModel(currentRoot));
+}
+document.getElementById('back-to-overview').addEventListener('click', exitExam);
+
+document.getElementById('skip').addEventListener('click', skipQuestion);
+document.getElementById('reset-view').addEventListener('click', resetView);
+document.getElementById('practice-reset').addEventListener('click', resetPractice);
+
+// ===== קיצורים: כפתור פינתי (מעבר עכבר / לחיצה / Esc) =====
+(function setupShortcutHelp() {
+  const root = document.getElementById('shortcut-help');
+  const btn = document.getElementById('shortcut-help-btn');
+  const panel = document.getElementById('shortcut-help-popover');
+  if (!root || !btn || !panel) return;
+
+  function syncAria() {
+    const open = root.classList.contains('is-open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+  }
+
+  function close() {
+    root.classList.remove('is-open');
+    syncAria();
+  }
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    root.classList.toggle('is-open');
+    syncAria();
+  });
+
+  root.addEventListener('click', (e) => e.stopPropagation());
+
+  document.addEventListener('click', close);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') close();
+  });
+
+  syncAria();
+})();
+
+// ===== Header history button =====
+document.getElementById('history-close').addEventListener('click', () => {
+  document.body.classList.remove('show-history');
+});
+document.getElementById('history-overlay').addEventListener('click', (e) => {
+  if (e.target.id === 'history-overlay') document.body.classList.remove('show-history');
+});
+document.getElementById('history-clear').addEventListener('click', () => {
+  if (!confirm('למחוק את כל היסטוריית המבחנים?')) return;
+  saveHistory([]);
+  renderHistory();
+  renderHistory('exam-history-list');
+});
+
+// ===== Results overlay actions =====
+document.getElementById('results-again').addEventListener('click', (e) => {
+  hideResults();
+  setActiveTab('exam');
+  const btn = e.currentTarget;
+  const rec = btn.dataset.fromHistory === '1'
+    ? loadHistory().find(r => String(r.id) === btn.dataset.historyId)
+    : activeResultsRecord;
+  if (rec) startMistakeExam(rec);
+});
+document.getElementById('results-back').addEventListener('click', () => {
+  hideResults();
+  exitExam();
+});
+
+function resize() {
+  const w = stage.clientWidth, h = stage.clientHeight;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+}
+resize();
+new ResizeObserver(resize).observe(stage);
+
+function tick() {
+  controls.update();
+  if (revealPointerPick) updateRevealPointerPosition();
+  renderer.render(scene, camera);
+  requestAnimationFrame(tick);
+}
+tick();
+
+// ===== Initial state =====
+setMode('learn');
+const initialTab = new URLSearchParams(window.location.search).get('tab');
+setActiveTab(['overview', 'practice', 'exam'].includes(initialTab) ? initialTab : 'overview', { skipUrl: true });
+syncLimbTabs();
+syncLayerButtons();
+loadLimb(currentLimb).then(() => {
+  if (activeTab === 'practice' && Object.values(layerState).some(Boolean)) {
+    startPractice();
+  }
+});
+</script>
+</body>
+</html>
