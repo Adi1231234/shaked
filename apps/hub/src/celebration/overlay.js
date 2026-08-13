@@ -28,7 +28,7 @@ export function buildOverlay() {
       <h2 class="celebrate__note">
         ${LINES.map((line, i) => `<span style="--i:${i}">${line}</span>`).join('')}
       </h2>
-      <button class="celebrate__go" type="button">יאללה, קדימה ❤️</button>
+      <button class="celebrate__go" type="button">בואי תראי ❤️</button>
       <p class="celebrate__hint">געי במסך לעוד כובעים</p>
     </div>
 
