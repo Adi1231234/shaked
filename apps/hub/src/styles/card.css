@@ -1,7 +1,16 @@
+/* Two up on a phone - one card per row wastes the screen and makes the grid
+   feel like a long list. Above 640px the cards go back to their natural width. */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.4rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.4rem;
+  }
 }
 
 .card {
@@ -135,5 +144,51 @@
   from {
     opacity: 0;
     transform: translateY(22px);
+  }
+}
+
+/* Two cards share a phone's width, so everything inside gets a size down and
+   the blurb is capped - a card should stay a glance, not a paragraph. */
+@media (max-width: 639px) {
+  .card {
+    border-radius: 16px;
+  }
+
+  .card__kind {
+    inset-block-start: 0.5rem;
+    inset-inline-start: 0.5rem;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.66rem;
+  }
+
+  .card__body {
+    gap: 0.35rem;
+    padding: 0.8rem 0.85rem 0.9rem;
+  }
+
+  .card__exam {
+    font-size: 0.7rem;
+    letter-spacing: 0.03em;
+  }
+
+  .card__title {
+    font-size: 1.02rem;
+  }
+
+  .card__blurb {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+
+  .card__action {
+    align-self: stretch;
+    margin-top: 0.5rem;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.8rem;
+    text-align: center;
   }
 }

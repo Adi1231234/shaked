@@ -17,7 +17,8 @@
     "dev:cv": "npm run dev -w @shaked/cv",
     "dev:ent-roadmap": "npm run dev -w @shaked/ent-roadmap",
     "dev:hub": "npm run dev -w @shaked/hub",
-    "dev:song": "npm run dev -w @shaked/song"
+    "dev:song": "npm run dev -w @shaked/song",
+    "check": "node tools/check/run.mjs"
   },
   "dependencies": {
     "react": "19.2.5",
@@ -29,6 +30,7 @@
     "@vitejs/plugin-react": "6.0.1",
     "autoprefixer": "10.4.20",
     "lucide-react": "0.460.0",
+    "playwright": "^1.62.1",
     "postcss": "8.4.47",
     "tailwindcss": "3.4.14",
     "typescript": "5.9.3",

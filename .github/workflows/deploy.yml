@@ -1,8 +1,10 @@
-name: Deploy the site
+name: Build, check and deploy
 
+# Every push runs the health check. Only main is allowed to deploy, and only
+# after the check has passed - a broken site never reaches her.
 on:
   push:
-    branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -11,7 +13,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -24,13 +26,23 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run build
+
+      - name: Build the site
+        run: npm run build
+
+      - name: Health-check every page in a real browser
+        run: |
+          npx playwright install --with-deps chromium
+          npm run check
+
       - uses: actions/upload-pages-artifact@v3
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         with:
           path: dist
 
   deploy:
     needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
