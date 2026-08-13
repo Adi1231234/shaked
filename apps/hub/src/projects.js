@@ -70,15 +70,6 @@ export const projects = [
     accent: '#d4b887',
   },
   {
-    id: 'cv-onepage',
-    title: 'קורות חיים · עמוד אחד',
-    exam: 'הגשות מועמדות',
-    blurb: 'הגרסה השקטה של קורות החיים - קובץ אחד, עמוד אחד, בלי כפתורים.',
-    kind: 'site',
-    href: 'cv-onepage/',
-    accent: '#94a3b8',
-  },
-  {
     id: 'song',
     title: 'השיר',
     exam: 'סתם, בשבילה',

@@ -8,8 +8,8 @@
 
 ## מבנה
 
-- `apps/hub/` - עמוד הבית עם הקלפים. זה מה שיושב בשורש האתר. `src/celebration/` הוא מסך הפתיחה: גשם של כובעי סיום על קנבס וברכת הסיום. הטקסט יושב ב-`overlay.js`, תערובת האימוג'ים בשורה אחת ב-`confetti.js`.
-- `apps/` - כל האתרים. `limbs`, `head-neck`, `blood-vessels`, `good-luck`, `cv-onepage` הם HTML כתוב-ביד ומועתקים כמו שהם. `cv`, `ent-roadmap`, `song` נבנים ב-Vite.
+- `apps/hub/` - עמוד הבית עם הקלפים. זה מה שיושב בשורש האתר. `src/celebration/` הוא מסך הפתיחה: זריקת כובעי סיום על שתי שכבות קנבס וברכת הסיום. הטקסט יושב ב-`overlay.js`, תערובת האימוג'ים בשורה אחת ב-`particles.js`. הכובעים מצוירים כספרייטים שמורים (`sprites.js`) - `fillText` של אימוג'י צבעוני עלה 380ms לפריים מול 0.6ms כך.
+- `apps/` - כל האתרים. `limbs`, `head-neck`, `blood-vessels`, `good-luck` הם HTML כתוב-ביד ומועתקים כמו שהם. `cv`, `ent-roadmap`, `song` נבנים ב-Vite.
 - `extensions/complete-anatomy-quiz/` - תוסף Chrome. נארז ל-zip ישירות מ-git בזמן build.
 - `desktop/shul-subtitles/` - אפליקציית Electron. לא חלק מה-workspace ולא נכנסת לאתר: היא נבנית ומופצת דרך GitHub Releases.
 - `tools/vite-preset/` - הגדרת ה-Vite היחידה שכל האפליקציות חולקות.

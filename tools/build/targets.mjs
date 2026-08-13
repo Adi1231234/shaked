@@ -17,7 +17,6 @@ export const staticSites = [
   { dir: 'apps/head-neck', out: 'head-neck', include: ['index.html', 'app', 'models', 'data'] },
   { dir: 'apps/blood-vessels', out: 'blood-vessels', include: ['index.html'] },
   { dir: 'apps/good-luck', out: 'good-luck', include: ['index.html'] },
-  { dir: 'apps/cv-onepage', out: 'cv-onepage', include: ['index.html'] },
 ];
 
 // Zipped straight out of git, so the download is exactly what is committed.
