@@ -1,5 +1,5 @@
 /* The room the celebration happens in: the dark, the drifting light, the beam
-   the caps are thrown through, and the canvas they fly on. */
+   the caps are thrown through, and the two canvases they fly on. */
 
 .celebrating {
   overflow: hidden;
@@ -30,12 +30,12 @@
   animation: sky-drift 16s ease-in-out infinite alternate;
 }
 
-/* The spotlight the caps are tossed through - a cone widening from the floor. */
+/* The spotlight the caps are tossed through - a cone widening from the floor.
+   Soft radial pools rather than a clipped triangle: a hard-edged polygon reads
+   as broken geometry on a wide screen, not as light. */
 .celebrate__beam {
   position: absolute;
   inset: 0;
-  /* Soft radial pools rather than a clipped triangle - a hard-edged polygon
-     reads as broken geometry on a wide screen, not as light. */
   background:
     radial-gradient(120% 88% at 50% 112%, rgba(255, 209, 102, 0.3), transparent 60%),
     radial-gradient(72% 62% at 50% 104%, rgba(255, 61, 127, 0.26), transparent 68%);
@@ -63,32 +63,14 @@
   pointer-events: none;
 }
 
-.celebrate__scene {
-  position: relative;
-  width: min(36rem, 100%);
-  max-height: 100%;
-  overflow-y: auto;
-  padding: clamp(1.4rem, 5vw, 2.4rem) clamp(1.1rem, 4.5vw, 2.2rem) clamp(1.2rem, 4vw, 2rem);
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 28px;
-  /* Translucent so the caps are visible flying behind her name - but no
-     backdrop-filter: re-blurring a moving canvas every frame is the one thing
-     that reliably drops a mid-range phone below 60fps. */
-  background: linear-gradient(180deg, rgba(11, 8, 20, 0.82), rgba(5, 4, 10, 0.9));
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.03) inset,
-    0 40px 110px -40px rgba(255, 61, 127, 0.65);
-  animation: scene-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+/* The near layer passes over the note - that is what sells the depth. */
+.celebrate__stage--front {
+  z-index: 2;
 }
 
 .celebrate--leaving {
   pointer-events: none;
   animation: stage-close 2.4s ease forwards;
-}
-
-.celebrate--leaving .celebrate__scene {
-  animation: scene-out 0.5s ease forwards;
 }
 
 @keyframes stage-open {
@@ -104,21 +86,6 @@
   }
   100% {
     opacity: 0;
-  }
-}
-
-@keyframes scene-in {
-  from {
-    opacity: 0;
-    transform: translateY(26px) scale(0.94);
-    filter: blur(6px);
-  }
-}
-
-@keyframes scene-out {
-  to {
-    opacity: 0;
-    transform: translateY(-18px) scale(0.96);
   }
 }
 
@@ -138,8 +105,7 @@
 @media (prefers-reduced-motion: reduce) {
   .celebrate,
   .celebrate__sky,
-  .celebrate__beam,
-  .celebrate__scene {
+  .celebrate__beam {
     animation: none;
     opacity: 1;
     transform: none;

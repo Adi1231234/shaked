@@ -8,27 +8,14 @@
   animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.7s both;
 }
 
-.celebrate__name {
-  display: flex;
-  justify-content: center;
-  margin: 0.15em 0 0.35em;
-  font-size: clamp(4rem, 24vw, 8rem);
-  font-weight: 900;
-  line-height: 0.95;
-  letter-spacing: -0.04em;
-}
-
-.celebrate__name span {
-  background: linear-gradient(100deg, #ff3d7f, #a855f7 45%, #22d3ee);
-  background-size: 250% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 8px 34px rgba(255, 61, 127, 0.45));
+.celebrate__cap {
+  margin: 0.25em 0 0.35em;
+  font-size: clamp(3rem, 14vw, 4.2rem);
+  line-height: 1;
+  filter: drop-shadow(0 10px 30px rgba(255, 209, 102, 0.45));
   animation:
-    letter-drop 0.95s cubic-bezier(0.16, 1, 0.3, 1) both,
-    hue-slide 7s ease-in-out infinite;
-  animation-delay: calc(0.75s + var(--i) * 0.12s), 1.8s;
+    letter-drop 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.75s both,
+    cap-bob 3s ease-in-out 1.7s infinite;
 }
 
 .celebrate__note {
@@ -119,19 +106,15 @@
   }
 }
 
-@keyframes hue-slide {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
+@keyframes cap-bob {
   50% {
-    background-position: 100% 50%;
+    transform: translateY(-10px) rotate(-7deg);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .celebrate__eyebrow,
-  .celebrate__name span,
+  .celebrate__cap,
   .celebrate__note span,
   .celebrate__go {
     animation: none;

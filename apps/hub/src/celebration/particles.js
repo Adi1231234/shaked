@@ -15,15 +15,20 @@ const pick = (list) => list[Math.floor(Math.random() * list.length)];
  */
 const speedForApex = (apex) => Math.sqrt(2 * GRAVITY * Math.max(apex, 40));
 
-/** A cap thrown up from (x, y) - real launch velocity, then gravity takes it. */
-export function cap(x, y, { apex, spread }) {
+/**
+ * A cap thrown up from (x, y) - real launch velocity, then gravity takes it.
+ * `front` caps are drawn over the note: bigger and nearer, so the toss reads as
+ * depth rather than as a texture somewhere in the background.
+ */
+export function cap(x, y, { apex, spread }, front = false) {
   return {
     kind: 'cap',
+    front,
     x,
     y,
-    vx: rand(-spread, spread),
-    vy: -speedForApex(apex * rand(0.38, 1)),
-    size: rand(22, 54),
+    vx: rand(-spread, spread) * (front ? 1.15 : 1),
+    vy: -speedForApex(apex * (front ? rand(0.5, 1.05) : rand(0.38, 1))),
+    size: front ? rand(58, 104) : rand(26, 60),
     rot: rand(0, Math.PI * 2),
     vrot: rand(-5, 5),
     glyph: pick(CAPS),

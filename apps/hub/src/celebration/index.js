@@ -1,4 +1,5 @@
 import './stage.css';
+import './scene.css';
 import './message.css';
 import { createStage } from './stage.js';
 import { buildOverlay, dismissOverlay } from './overlay.js';
@@ -11,7 +12,12 @@ export function celebrate() {
   document.body.append(root);
   document.body.classList.add('celebrating');
 
-  const stage = reducedMotion() ? null : createStage(root.querySelector('.celebrate__stage'));
+  const stage = reducedMotion()
+    ? null
+    : createStage(
+        root.querySelector('.celebrate__stage--back'),
+        root.querySelector('.celebrate__stage--front'),
+      );
   let stream = 0;
 
   if (stage) {

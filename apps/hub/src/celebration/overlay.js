@@ -9,8 +9,6 @@ const LINES = [
   'את הכי טובה בעולם!!!!',
 ];
 
-const NAME = 'שקד';
-
 export function buildOverlay() {
   const root = document.createElement('div');
   root.className = 'celebrate';
@@ -18,22 +16,24 @@ export function buildOverlay() {
   root.setAttribute('aria-modal', 'true');
   root.setAttribute('aria-label', 'ברכת סיום התואר');
 
+  // Two canvases: caps fly behind the note and, closer to the eye, in front of
+  // it. The depth is what makes the toss readable instead of a background blur.
   root.innerHTML = `
     <div class="celebrate__sky" aria-hidden="true"></div>
     <div class="celebrate__beam" aria-hidden="true"></div>
-    <canvas class="celebrate__stage" aria-hidden="true"></canvas>
+    <canvas class="celebrate__stage celebrate__stage--back" aria-hidden="true"></canvas>
 
     <div class="celebrate__scene">
       <p class="celebrate__eyebrow">המבחן האחרון · סוף התואר</p>
-      <p class="celebrate__name" aria-hidden="true">
-        ${[...NAME].map((ch, i) => `<span style="--i:${i}">${ch}</span>`).join('')}
-      </p>
+      <p class="celebrate__cap" aria-hidden="true">🎓</p>
       <h2 class="celebrate__note">
         ${LINES.map((line, i) => `<span style="--i:${i}">${line}</span>`).join('')}
       </h2>
       <button class="celebrate__go" type="button">יאללה, קדימה ❤️</button>
       <p class="celebrate__hint">געי במסך לעוד כובעים</p>
     </div>
+
+    <canvas class="celebrate__stage celebrate__stage--front" aria-hidden="true"></canvas>
   `;
 
   return root;

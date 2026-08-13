@@ -1,5 +1,5 @@
-// The canvas stage: one rAF loop, one particle list, and a burst() that fires
-// a cap toss from wherever you point it.
+// The canvas stage: one rAF loop over two layers - caps behind the note and
+// caps in front of it - and a burst() that fires a cap toss from any point.
 
 import { cap, draw, ribbon, shockwave, spark, update } from './particles.js';
 
@@ -9,8 +9,11 @@ const scaleFor = (width) => Math.min(Math.max(width / 1200, 0.5), 1);
 /** Hard ceiling so holding a finger on the screen can't grow the cast forever. */
 const maxParticles = (width) => Math.round(260 * scaleFor(width)) + 120;
 
-export function createStage(canvas) {
-  const ctx = canvas.getContext('2d');
+export function createStage(backCanvas, frontCanvas) {
+  const layers = [
+    { canvas: backCanvas, ctx: backCanvas.getContext('2d') },
+    { canvas: frontCanvas, ctx: frontCanvas.getContext('2d') },
+  ];
   let parts = [];
   let width = 0;
   let height = 0;
@@ -20,11 +23,13 @@ export function createStage(canvas) {
 
   function resize() {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    width = canvas.clientWidth;
-    height = canvas.clientHeight;
-    canvas.width = Math.round(width * dpr);
-    canvas.height = Math.round(height * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    width = backCanvas.clientWidth;
+    height = backCanvas.clientHeight;
+    for (const { canvas, ctx } of layers) {
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
   }
 
   resize();
@@ -33,14 +38,13 @@ export function createStage(canvas) {
   function tick(now) {
     const dt = Math.min((now - last) / 1000, 0.05);
     last = now;
-    ctx.clearRect(0, 0, width, height);
+    for (const { ctx } of layers) ctx.clearRect(0, 0, width, height);
 
     parts = parts.filter((p) => {
-      const living = update(p, dt);
-      if (!living) return false;
-      // let them arc well above the top, but drop them once they are gone below
-      if (p.y > height + 90 || p.x < -160 || p.x > width + 160) return false;
-      draw(ctx, p);
+      if (!update(p, dt)) return false;
+      // let them arc above the top, but drop them once they are gone below
+      if (p.y > height + 120 || p.x < -200 || p.x > width + 200) return false;
+      draw(layers[p.front ? 1 : 0].ctx, p);
       return true;
     });
 
@@ -52,16 +56,15 @@ export function createStage(canvas) {
   /** One toss: caps + ribbons launched from (x, y), with a flash and a ring. */
   function burst(x, y, strength = 1) {
     const s = scaleFor(width) * strength;
-    const caps = Math.round(26 * s);
-    const ribbons = Math.round(30 * s);
-    const sparks = Math.round(22 * s);
     // Aim the arc to peak inside the frame. Overshooting the top looks like the
     // caps vanished; peaking around three quarters up keeps them on screen.
     const shot = { apex: (y - height * 0.14) * strength, spread: width * 0.36 * strength };
+    const jitter = () => x + Math.random() * 70 - 35;
 
-    for (let i = 0; i < caps; i++) parts.push(cap(x + Math.random() * 70 - 35, y, shot));
-    for (let i = 0; i < ribbons; i++) parts.push(ribbon(x + Math.random() * 70 - 35, y, shot));
-    for (let i = 0; i < sparks; i++) parts.push(spark(x, y));
+    for (let i = 0; i < Math.round(30 * s); i++) parts.push(cap(jitter(), y, shot));
+    for (let i = 0; i < Math.round(7 * s); i++) parts.push(cap(jitter(), y, shot, true));
+    for (let i = 0; i < Math.round(16 * s); i++) parts.push(ribbon(jitter(), y, shot));
+    for (let i = 0; i < Math.round(20 * s); i++) parts.push(spark(x, y));
     parts.push(shockwave(x, y));
 
     const ceiling = maxParticles(width);
@@ -73,14 +76,14 @@ export function createStage(canvas) {
     /** The big opening toss, thrown up from the bottom of the screen. */
     openingToss() {
       burst(width / 2, height + 20, 1.35);
-      setTimeout(() => burst(width * 0.2, height + 20, 0.75), 260);
-      setTimeout(() => burst(width * 0.8, height + 20, 0.75), 420);
+      setTimeout(() => burst(width * 0.18, height + 20, 0.8), 260);
+      setTimeout(() => burst(width * 0.82, height + 20, 0.8), 420);
     },
     /** Keeps a gentle stream going so the stage never falls still. */
     keepAlive() {
       return setInterval(() => {
-        if (alive) burst(Math.random() * width, height + 20, 0.45);
-      }, 1600);
+        if (alive) burst(Math.random() * width, height + 20, 0.5);
+      }, 1400);
     },
     size: () => ({ width, height }),
     settle() {
