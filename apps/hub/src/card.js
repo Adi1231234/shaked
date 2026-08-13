@@ -2,10 +2,18 @@ import { kindLabels } from './projects.js';
 
 const previewUrl = (id) => `${import.meta.env.BASE_URL}previews/${id}.webp`;
 
+// UTC so the date can never slip a month backwards on a western timezone.
+const monthYear = new Intl.DateTimeFormat('he-IL', {
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
+
 /** One card. The whole thing is the link; the button is just the affordance. */
 export function renderCard(project, index) {
-  const { id, title, exam, blurb, kind, href, accent, external } = project;
+  const { id, title, exam, blurb, kind, href, accent, external, created } = project;
   const action = project.action ?? 'פתיחה';
+  const when = monthYear.format(new Date(created));
 
   const card = document.createElement('a');
   card.className = 'card';
@@ -23,6 +31,7 @@ export function renderCard(project, index) {
     <figure class="card__preview">
       <img src="${previewUrl(id)}" alt="" loading="lazy" decoding="async" />
       <figcaption class="card__kind">${kindLabels[kind]}</figcaption>
+      <time class="card__when" datetime="${created}">${when}</time>
     </figure>
     <div class="card__body">
       <p class="card__exam">${exam}</p>

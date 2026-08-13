@@ -85,6 +85,23 @@
   z-index: 1;
 }
 
+/* When it was built - opposite corner to the kind badge, and deliberately
+   quiet: it dates the card without competing with it. Sits on the preview so
+   it costs the body no height, which matters on the two-up phone grid. */
+.card__when {
+  position: absolute;
+  inset-block-start: 0.75rem;
+  inset-inline-end: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(6, 5, 12, 0.6);
+  backdrop-filter: blur(6px);
+  z-index: 1;
+}
+
 .card__body {
   display: flex;
   flex: 1;
@@ -159,6 +176,13 @@
     inset-inline-start: 0.5rem;
     padding: 0.15rem 0.5rem;
     font-size: 0.66rem;
+  }
+
+  .card__when {
+    inset-block-start: 0.5rem;
+    inset-inline-end: 0.5rem;
+    padding: 0.12rem 0.42rem;
+    font-size: 0.62rem;
   }
 
   .card__body {
