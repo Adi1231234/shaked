@@ -1,5 +1,7 @@
-// The three things flying around the stage: tossed caps, fluttering ribbons,
-// and the spark flash that goes off at the moment of a toss.
+// The things flying around the stage: tossed caps, fluttering ribbons, and the
+// spark flash and ring that go off at the moment of a toss.
+
+import { SPRITE_SIZE, glyphSprite } from './sprites.js';
 
 const CAPS = ['🎓', '🎓', '🎓', '🎓', '🎓', '❤️'];
 const RIBBON_COLORS = ['#ff3d7f', '#a855f7', '#22d3ee', '#ffd166', '#ffffff'];
@@ -95,35 +97,48 @@ export function update(p, dt) {
   return true;
 }
 
-export function draw(ctx, p) {
-  ctx.save();
-  ctx.translate(p.x, p.y);
-
+/**
+ * Draws straight through setTransform rather than save/translate/rotate/restore
+ * - one matrix write instead of four state operations per particle - and blits
+ * cached glyph bitmaps instead of laying out emoji text. `dpr` is folded into
+ * the matrix because setTransform replaces the canvas's own scaling.
+ */
+export function draw(ctx, p, dpr) {
   if (p.kind === 'wave') {
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.globalAlpha = Math.max(p.life, 0) * 0.5;
     ctx.strokeStyle = '#ffd166';
     ctx.lineWidth = 2.5;
     ctx.beginPath();
-    ctx.arc(0, 0, p.r, 0, Math.PI * 2);
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
     ctx.stroke();
-  } else if (p.kind === 'spark') {
+    ctx.globalAlpha = 1;
+    return;
+  }
+
+  if (p.kind === 'spark') {
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.globalAlpha = Math.max(p.life, 0);
     ctx.fillStyle = p.color;
     ctx.beginPath();
-    ctx.arc(0, 0, p.size, 0, Math.PI * 2);
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
     ctx.fill();
-  } else if (p.kind === 'ribbon') {
-    ctx.rotate(p.rot);
-    ctx.scale(1, Math.cos(p.flip));
-    ctx.fillStyle = p.color;
-    ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-  } else {
-    ctx.rotate(p.rot);
-    ctx.font = `${p.size}px "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(p.glyph, 0, 0);
+    ctx.globalAlpha = 1;
+    return;
   }
 
-  ctx.restore();
+  const cos = Math.cos(p.rot);
+  const sin = Math.sin(p.rot);
+
+  if (p.kind === 'ribbon') {
+    const f = Math.cos(p.flip);
+    ctx.setTransform(cos * dpr, sin * dpr, -sin * f * dpr, cos * f * dpr, p.x * dpr, p.y * dpr);
+    ctx.fillStyle = p.color;
+    ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+    return;
+  }
+
+  const k = p.size / SPRITE_SIZE;
+  ctx.setTransform(cos * k * dpr, sin * k * dpr, -sin * k * dpr, cos * k * dpr, p.x * dpr, p.y * dpr);
+  ctx.drawImage(glyphSprite(p.glyph), -SPRITE_SIZE / 2, -SPRITE_SIZE / 2);
 }

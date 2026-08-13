@@ -7,7 +7,11 @@ import { cap, draw, ribbon, shockwave, spark, update } from './particles.js';
 const scaleFor = (width) => Math.min(Math.max(width / 1200, 0.5), 1);
 
 /** Hard ceiling so holding a finger on the screen can't grow the cast forever. */
-const maxParticles = (width) => Math.round(260 * scaleFor(width)) + 120;
+const maxParticles = (width) => Math.round(240 * scaleFor(width)) + 100;
+
+// Two full-screen canvases at DPR 3 is a lot of pixels to clear every frame for
+// confetti, and nobody counts the pixels on a flying cap.
+const MAX_DPR = 1.5;
 
 export function createStage(backCanvas, frontCanvas) {
   const layers = [
@@ -17,18 +21,21 @@ export function createStage(backCanvas, frontCanvas) {
   let parts = [];
   let width = 0;
   let height = 0;
+  let dpr = 1;
   let raf = 0;
   let last = performance.now();
   let alive = true;
+  // Rolling cost of the draw work, and the budget multiplier it drives.
+  let workMs = 0;
+  let quality = 1;
 
   function resize() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
     width = backCanvas.clientWidth;
     height = backCanvas.clientHeight;
-    for (const { canvas, ctx } of layers) {
+    for (const { canvas } of layers) {
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
   }
 
@@ -38,15 +45,25 @@ export function createStage(backCanvas, frontCanvas) {
   function tick(now) {
     const dt = Math.min((now - last) / 1000, 0.05);
     last = now;
-    for (const { ctx } of layers) ctx.clearRect(0, 0, width, height);
+    const started = performance.now();
+
+    for (const { ctx } of layers) {
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, width * dpr, height * dpr);
+    }
 
     parts = parts.filter((p) => {
       if (!update(p, dt)) return false;
       // let them arc above the top, but drop them once they are gone below
       if (p.y > height + 120 || p.x < -200 || p.x > width + 200) return false;
-      draw(layers[p.front ? 1 : 0].ctx, p);
+      draw(layers[p.front ? 1 : 0].ctx, p, dpr);
       return true;
     });
+
+    // If the device is struggling, thin the cast out rather than drop frames.
+    workMs += (performance.now() - started - workMs) * 0.05;
+    if (workMs > 7) quality = Math.max(0.3, quality - 0.02);
+    else if (workMs < 3) quality = Math.min(1, quality + 0.01);
 
     if (alive || parts.length) raf = requestAnimationFrame(tick);
   }
@@ -55,7 +72,7 @@ export function createStage(backCanvas, frontCanvas) {
 
   /** One toss: caps + ribbons launched from (x, y), with a flash and a ring. */
   function burst(x, y, strength = 1) {
-    const s = scaleFor(width) * strength;
+    const s = scaleFor(width) * strength * quality;
     // Aim the arc to peak inside the frame. Overshooting the top looks like the
     // caps vanished; peaking around three quarters up keeps them on screen.
     const shot = { apex: (y - height * 0.14) * strength, spread: width * 0.36 * strength };
@@ -67,7 +84,7 @@ export function createStage(backCanvas, frontCanvas) {
     for (let i = 0; i < Math.round(20 * s); i++) parts.push(spark(x, y));
     parts.push(shockwave(x, y));
 
-    const ceiling = maxParticles(width);
+    const ceiling = Math.round(maxParticles(width) * quality);
     if (parts.length > ceiling) parts.splice(0, parts.length - ceiling);
   }
 
@@ -86,6 +103,7 @@ export function createStage(backCanvas, frontCanvas) {
       }, 1400);
     },
     size: () => ({ width, height }),
+    stats: () => ({ workMs: +workMs.toFixed(2), quality: +quality.toFixed(2), parts: parts.length }),
     settle() {
       alive = false;
     },

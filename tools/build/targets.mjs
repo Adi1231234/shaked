@@ -14,7 +14,6 @@ export const bundled = [
 
 export const staticSites = [
   { dir: 'apps/limbs', out: 'limbs', include: ['index.html', 'quiz.html', 'models'] },
-  { dir: 'apps/limbs-landing', out: 'limbs-landing', include: ['index.html'] },
   { dir: 'apps/head-neck', out: 'head-neck', include: ['index.html', 'app', 'models', 'data'] },
   { dir: 'apps/blood-vessels', out: 'blood-vessels', include: ['index.html'] },
   { dir: 'apps/good-luck', out: 'good-luck', include: ['index.html'] },

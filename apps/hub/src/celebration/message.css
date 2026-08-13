@@ -1,15 +1,7 @@
 /* Her name, then the note - revealed one beat at a time. */
 
-.celebrate__eyebrow {
-  font-size: clamp(0.72rem, 3vw, 0.85rem);
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  color: rgba(255, 209, 102, 0.85);
-  animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.7s both;
-}
-
 .celebrate__cap {
-  margin: 0.25em 0 0.35em;
+  margin: 0 0 0.35em;
   font-size: clamp(3rem, 14vw, 4.2rem);
   line-height: 1;
   filter: drop-shadow(0 10px 30px rgba(255, 209, 102, 0.45));
@@ -113,7 +105,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .celebrate__eyebrow,
   .celebrate__cap,
   .celebrate__note span,
   .celebrate__go {

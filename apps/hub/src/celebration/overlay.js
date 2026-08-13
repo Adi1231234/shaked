@@ -24,7 +24,6 @@ export function buildOverlay() {
     <canvas class="celebrate__stage celebrate__stage--back" aria-hidden="true"></canvas>
 
     <div class="celebrate__scene">
-      <p class="celebrate__eyebrow">המבחן האחרון · סוף התואר</p>
       <p class="celebrate__cap" aria-hidden="true">🎓</p>
       <h2 class="celebrate__note">
         ${LINES.map((line, i) => `<span style="--i:${i}">${line}</span>`).join('')}

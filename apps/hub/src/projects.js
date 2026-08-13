@@ -13,15 +13,6 @@ export const projects = [
     accent: '#7ee8ff',
   },
   {
-    id: 'limbs-landing',
-    title: 'לשקד · גפיים',
-    exam: 'מבחן גפיים',
-    blurb: 'עמוד הפתיחה לפני המבחן. גוללים, ומהאצבעות עד הצעדים הכל מתחבר.',
-    kind: 'site',
-    href: 'limbs-landing/',
-    accent: '#ff5f8f',
-  },
-  {
     id: 'head-neck',
     title: 'ראש וצוואר',
     exam: 'מבחן ראש-צוואר',
