@@ -1,4 +1,5 @@
 import react from '@vitejs/plugin-react';
+import { staleHtmlGuard } from './stale-html-guard.js';
 
 /**
  * The one Vite setup every app in this monorepo shares.
@@ -15,7 +16,7 @@ export function appConfig({ base, withReact = true, overrides = {} }) {
   return ({ command }) => ({
     // dev serves from the root; only the built site lives under a sub-path
     base: command === 'build' ? base : '/',
-    plugins: withReact ? [react()] : [],
+    plugins: [...(withReact ? [react()] : []), staleHtmlGuard()],
     ...overrides,
   });
 }
