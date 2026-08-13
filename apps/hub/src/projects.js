@@ -81,7 +81,9 @@ export const projects = [
   {
     id: 'good-luck',
     title: 'בהצלחה',
-    exam: 'לפני מבחן',
+    // Built for the blood-vessels exam - its last commit is literally
+    // "vessels last ~11s", two days after the vessels diagram was finished.
+    exam: 'מבחן כלי דם',
     blurb: 'עמוד אחד עם חלקיקים והודעה אחת: את הכי טובה בעולם.',
     kind: 'site',
     href: 'good-luck/',
