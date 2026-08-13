@@ -5,6 +5,8 @@ name: Regenerate the lockfile on linux
 # runner. Run this by hand when that happens and commit the artifact it
 # produces. Temporary - delete once the lockfile is healthy.
 on:
+  push:
+    branches: [chore/lockfile]
   workflow_dispatch:
 
 jobs:
