@@ -72,8 +72,8 @@ export const projects = [
   {
     id: 'song',
     title: 'השיר',
-    exam: 'סתם, בשבילה',
-    blurb: 'עמוד בסגנון Spotify לשיר אחד. נגן מלא, עטיפות, והכל בטלפון.',
+    exam: 'שירים לפני המבחן',
+    blurb: 'עמוד בסגנון Spotify עם שני שירים. נגן מלא, עטיפות, והכל בטלפון.',
     kind: 'site',
     href: 'song/',
     accent: '#1db954',
