@@ -9,36 +9,45 @@ const LINES = [
   'את הכי טובה בעולם!!!!',
 ];
 
+const NAME = 'שקד';
+
 export function buildOverlay() {
   const root = document.createElement('div');
   root.className = 'celebrate';
   root.setAttribute('role', 'dialog');
   root.setAttribute('aria-modal', 'true');
-  root.setAttribute('aria-label', 'ברכה');
+  root.setAttribute('aria-label', 'ברכת סיום התואר');
 
   root.innerHTML = `
-    <canvas class="celebrate__caps" aria-hidden="true"></canvas>
-    <div class="celebrate__card">
-      <p class="celebrate__cap" aria-hidden="true">🎓</p>
+    <div class="celebrate__sky" aria-hidden="true"></div>
+    <div class="celebrate__beam" aria-hidden="true"></div>
+    <canvas class="celebrate__stage" aria-hidden="true"></canvas>
+
+    <div class="celebrate__scene">
+      <p class="celebrate__eyebrow">המבחן האחרון · סוף התואר</p>
+      <p class="celebrate__name" aria-hidden="true">
+        ${[...NAME].map((ch, i) => `<span style="--i:${i}">${ch}</span>`).join('')}
+      </p>
       <h2 class="celebrate__note">
         ${LINES.map((line, i) => `<span style="--i:${i}">${line}</span>`).join('')}
       </h2>
       <button class="celebrate__go" type="button">יאללה, קדימה ❤️</button>
+      <p class="celebrate__hint">געי במסך לעוד כובעים</p>
     </div>
   `;
 
   return root;
 }
 
-/** Fade the greeting out, let the caps finish falling, then clean up. */
-export function dismissOverlay(root, confetti, onDone) {
+/** Fade the greeting out, let the caps already in the air finish falling. */
+export function dismissOverlay(root, stage, onDone) {
   if (root.classList.contains('celebrate--leaving')) return;
   root.classList.add('celebrate--leaving');
-  confetti?.settle();
   document.body.classList.remove('celebrating');
+  stage?.settle();
   setTimeout(() => {
-    confetti?.destroy();
+    stage?.destroy();
     root.remove();
     onDone?.();
-  }, 2600);
+  }, 2400);
 }

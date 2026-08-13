@@ -1,0 +1,146 @@
+/* Her name, then the note - revealed one beat at a time. */
+
+.celebrate__eyebrow {
+  font-size: clamp(0.72rem, 3vw, 0.85rem);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: rgba(255, 209, 102, 0.85);
+  animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.7s both;
+}
+
+.celebrate__name {
+  display: flex;
+  justify-content: center;
+  margin: 0.15em 0 0.35em;
+  font-size: clamp(4rem, 24vw, 8rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.celebrate__name span {
+  background: linear-gradient(100deg, #ff3d7f, #a855f7 45%, #22d3ee);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 8px 34px rgba(255, 61, 127, 0.45));
+  animation:
+    letter-drop 0.95s cubic-bezier(0.16, 1, 0.3, 1) both,
+    hue-slide 7s ease-in-out infinite;
+  animation-delay: calc(0.75s + var(--i) * 0.12s), 1.8s;
+}
+
+.celebrate__note {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  font-size: clamp(1.05rem, 4.6vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: #f4f5fa;
+}
+
+.celebrate__note span {
+  text-wrap: balance;
+  animation: line-reveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(1.15s + var(--i) * 0.19s);
+}
+
+.celebrate__note span:first-child,
+.celebrate__note span:last-child {
+  font-weight: 900;
+  font-size: 1.14em;
+  background: linear-gradient(100deg, #ff8fb0, #d8b4fe 50%, #7dd3fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.celebrate__go {
+  margin-top: clamp(1.3rem, 4.5vw, 1.9rem);
+  min-height: 50px;
+  padding: 0.8rem 2.1rem;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: #16030b;
+  background: linear-gradient(100deg, #ffd166, #ff8fb0 55%, #ff3d7f);
+  box-shadow: 0 14px 40px -16px rgba(255, 61, 127, 0.9);
+  cursor: pointer;
+  animation: rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 2.15s both;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.celebrate__go:hover,
+.celebrate__go:focus-visible {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 18px 46px -14px rgba(255, 61, 127, 1);
+  outline: none;
+}
+
+.celebrate__hint {
+  margin-top: 0.85rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  color: rgba(244, 245, 250, 0.45);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+/* Only invite her to play once the scene has finished arriving. */
+.celebrate--playful .celebrate__hint {
+  opacity: 1;
+}
+
+@keyframes letter-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-70px) rotate(-14deg) scale(0.7);
+    filter: blur(10px);
+  }
+}
+
+@keyframes line-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(5px);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@keyframes hue-slide {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .celebrate__eyebrow,
+  .celebrate__name span,
+  .celebrate__note span,
+  .celebrate__go {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .celebrate__hint {
+    display: none;
+  }
+}

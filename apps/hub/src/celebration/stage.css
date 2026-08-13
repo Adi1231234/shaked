@@ -1,0 +1,152 @@
+/* The room the celebration happens in: the dark, the drifting light, the beam
+   the caps are thrown through, and the canvas they fly on. */
+
+.celebrating {
+  overflow: hidden;
+}
+
+.celebrate {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: max(1.1rem, env(safe-area-inset-top)) 1.1rem max(1.1rem, env(safe-area-inset-bottom));
+  background: #04040a;
+  animation: stage-open 0.55s ease both;
+  overscroll-behavior: contain;
+  touch-action: manipulation;
+}
+
+/* Slow aurora so the black is never flat. */
+.celebrate__sky {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(40rem 32rem at 22% 18%, rgba(255, 61, 127, 0.3), transparent 62%),
+    radial-gradient(38rem 30rem at 80% 12%, rgba(168, 85, 247, 0.28), transparent 60%),
+    radial-gradient(46rem 34rem at 50% 96%, rgba(34, 211, 238, 0.22), transparent 65%);
+  filter: blur(10px);
+  animation: sky-drift 16s ease-in-out infinite alternate;
+}
+
+/* The spotlight the caps are tossed through - a cone widening from the floor. */
+.celebrate__beam {
+  position: absolute;
+  inset: 0;
+  /* Soft radial pools rather than a clipped triangle - a hard-edged polygon
+     reads as broken geometry on a wide screen, not as light. */
+  background:
+    radial-gradient(120% 88% at 50% 112%, rgba(255, 209, 102, 0.3), transparent 60%),
+    radial-gradient(72% 62% at 50% 104%, rgba(255, 61, 127, 0.26), transparent 68%);
+  opacity: 0;
+  transform: scaleY(0.35);
+  transform-origin: 50% 100%;
+  animation: beam-open 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+}
+
+/* The pool of light on the floor the caps are thrown out of. */
+.celebrate__beam::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 -18% 0;
+  height: 42%;
+  background: radial-gradient(60% 100% at 50% 100%, rgba(255, 209, 102, 0.4), transparent 70%);
+  filter: blur(4px);
+}
+
+.celebrate__stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.celebrate__scene {
+  position: relative;
+  width: min(36rem, 100%);
+  max-height: 100%;
+  overflow-y: auto;
+  padding: clamp(1.4rem, 5vw, 2.4rem) clamp(1.1rem, 4.5vw, 2.2rem) clamp(1.2rem, 4vw, 2rem);
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 28px;
+  /* Translucent so the caps are visible flying behind her name - but no
+     backdrop-filter: re-blurring a moving canvas every frame is the one thing
+     that reliably drops a mid-range phone below 60fps. */
+  background: linear-gradient(180deg, rgba(11, 8, 20, 0.82), rgba(5, 4, 10, 0.9));
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+    0 40px 110px -40px rgba(255, 61, 127, 0.65);
+  animation: scene-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+}
+
+.celebrate--leaving {
+  pointer-events: none;
+  animation: stage-close 2.4s ease forwards;
+}
+
+.celebrate--leaving .celebrate__scene {
+  animation: scene-out 0.5s ease forwards;
+}
+
+@keyframes stage-open {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes stage-close {
+  0%,
+  22% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes scene-in {
+  from {
+    opacity: 0;
+    transform: translateY(26px) scale(0.94);
+    filter: blur(6px);
+  }
+}
+
+@keyframes scene-out {
+  to {
+    opacity: 0;
+    transform: translateY(-18px) scale(0.96);
+  }
+}
+
+@keyframes beam-open {
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes sky-drift {
+  to {
+    transform: translate3d(2%, -3%, 0) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .celebrate,
+  .celebrate__sky,
+  .celebrate__beam,
+  .celebrate__scene {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .celebrate--leaving {
+    animation: none;
+    opacity: 0;
+  }
+}
